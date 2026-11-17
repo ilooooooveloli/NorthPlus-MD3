@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>North+ 体验优化助手</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="title">North+ 体验优化助手</div>
+      <div class="subtitle">north-plus.net 专属优化</div>
+    </header>
+
+    <section class="section">
+      <div class="label-row">
+        <span class="label">外观模式</span>
+      </div>
+      <div class="segmented" id="theme-group">
+        <button type="button" data-theme="auto">跟随系统</button>
+        <button type="button" data-theme="dark">深色</button>
+        <button type="button" data-theme="light">浅色</button>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="toggle-row">
+        <div>
+          <div class="label">宽屏适配</div>
+          <div class="desc">消除两侧大面积留白</div>
+        </div>
+        <label class="switch">
+          <input type="checkbox" id="wide-toggle" />
+          <span class="slider"></span>
+        </label>
+      </div>
+
+      <div class="width-control" id="width-control">
+        <div class="label-row">
+          <span class="sub-label">最大内容宽度</span>
+          <span class="value-badge" id="width-value">1400px</span>
+        </div>
+        <input type="range" id="width-range" min="1000" max="1900" step="50" value="1400" />
+        <div class="range-hints">
+          <span>1000px</span>
+          <span>1400px</span>
+          <span>全宽</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="toggle-row">
+        <div>
+          <div class="label">阅读排版优化</div>
+          <div class="desc">优化字体、行距与卡片圆角</div>
+        </div>
+        <label class="switch">
+          <input type="checkbox" id="readable-toggle" />
+          <span class="slider"></span>
+        </label>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="toggle-row">
+        <div>
+          <div class="label">购买后原地刷新</div>
+          <div class="desc">购买楼层内容后留在当前页并定位</div>
+        </div>
+        <label class="switch">
+          <input type="checkbox" id="purchase-toggle" />
+          <span class="slider"></span>
+        </label>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="toggle-row">
+        <div>
+          <div class="label">右下角快捷栏</div>
+          <div class="desc">快速切换深浅色、宽屏与回到顶部</div>
+        </div>
+        <label class="switch">
+          <input type="checkbox" id="floating-toggle" />
+          <span class="slider"></span>
+        </label>
+      </div>
+    </section>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

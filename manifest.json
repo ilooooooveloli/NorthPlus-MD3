@@ -1,0 +1,38 @@
+{
+  "manifest_version": 3,
+  "name": "North+ 体验优化助手",
+  "version": "1.0.0",
+  "description": "优化 North+ 论坛的页面宽度（消除两侧大面积留白）、提供深色模式与阅读体验增强。",
+  "permissions": [
+    "storage"
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_popup": "src/popup.html",
+    "default_title": "North+ 体验优化助手",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.north-plus.net/*",
+        "*://north-plus.net/*"
+      ],
+      "css": [
+        "src/content.css"
+      ],
+      "js": [
+        "src/content.js"
+      ],
+      "run_at": "document_start"
+    }
+  ]
+}

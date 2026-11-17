@@ -1,0 +1,641 @@
+/* ==========================================================================
+   North+ 体验优化助手 - Content Stylesheet
+   Scoped via classes on <html>:
+     - .np-wide     : 宽屏适配，消除两侧留白
+     - .np-dark     : 深色模式
+     - .np-readable : 阅读排版优化
+   ========================================================================== */
+
+:root {
+  --np-max-width: 1400px;
+  --np-width-vw: 92vw;
+}
+
+/* --------------------------------------------------------------------------
+   1. 宽屏适配 (.np-wide)
+   -------------------------------------------------------------------------- */
+html.np-wide body {
+  background-image: none !important;
+}
+
+html.np-wide #toptool,
+html.np-wide #header,
+html.np-wide #main,
+html.np-wide #footer,
+html.np-wide .footer,
+html.np-wide div[style*="width: 920px"],
+html.np-wide div[style*="width:920px"] {
+  width: var(--np-width-vw) !important;
+  max-width: var(--np-max-width) !important;
+  box-sizing: border-box !important;
+}
+
+/* 顶部横幅与图片自适应，防止撑破布局 */
+html.np-wide #header table,
+html.np-wide #main table {
+  max-width: 100% !important;
+}
+
+html.np-wide .banner img,
+html.np-wide #header table img,
+html.np-wide .tpc_content img {
+  max-width: 100% !important;
+  height: auto !important;
+}
+
+/* 帖子正文区域自动换行，防止长链接/长代码撑宽表格 */
+html.np-wide .tpc_content {
+  overflow-wrap: break-word !important;
+  word-wrap: break-word !important;
+}
+
+html.np-wide th.r_one,
+html.np-wide td.r_one {
+  min-width: 0 !important;
+}
+
+/* --------------------------------------------------------------------------
+   2. 阅读排版优化 (.np-readable)
+   -------------------------------------------------------------------------- */
+html.np-readable body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+    "Hiragino Sans GB", "Microsoft YaHei", Arial, sans-serif !important;
+}
+
+html.np-readable .t,
+html.np-readable .t5,
+html.np-readable #breadcrumbs {
+  border-radius: 6px !important;
+}
+
+html.np-readable .tpc_content {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+    "Hiragino Sans GB", "Microsoft YaHei", Arial, sans-serif !important;
+  font-size: 15px !important;
+  line-height: 1.8 !important;
+  padding: 12px 24px 24px !important;
+}
+
+html.np-readable tr.tr3 {
+  transition: background-color 0.15s ease !important;
+}
+
+html.np-readable .pages {
+  border-radius: 4px !important;
+  overflow: hidden !important;
+}
+
+/* --------------------------------------------------------------------------
+   3. 深色模式 (.np-dark)
+   -------------------------------------------------------------------------- */
+html.np-dark {
+  color-scheme: dark;
+}
+
+html.np-dark body {
+  background-color: #141518 !important;
+  background-image: none !important;
+  color: #dcdfe4 !important;
+}
+
+/* 主卡片与奇数行背景 */
+html.np-dark #wrapA,
+html.np-dark #main {
+  background-color: transparent !important;
+}
+
+html.np-dark .f_one,
+html.np-dark .t_one,
+html.np-dark .r_one,
+html.np-dark .t,
+html.np-dark .t2,
+html.np-dark .t5,
+html.np-dark .tr4,
+html.np-dark .gonggao,
+html.np-dark #cate_thread,
+html.np-dark #tab_1,
+html.np-dark #infobox,
+html.np-dark #profile-menubar,
+html.np-dark #user-login {
+  background-color: #1e2024 !important;
+  background-image: none !important;
+  border-color: #2e3238 !important;
+  color: #dcdfe4 !important;
+}
+
+/* 次级区域与偶数行背景 */
+html.np-dark .f_two,
+html.np-dark .t_two,
+html.np-dark .r_two,
+html.np-dark .tr2,
+html.np-dark #footer,
+html.np-dark #breadcrumbs,
+html.np-dark #notice {
+  background-color: #25282e !important;
+  background-image: none !important;
+  border-color: #2e3238 !important;
+}
+
+/* 版块公告栏标签页 */
+html.np-dark .gonggao .gongul {
+  border-bottom-color: #2e3238 !important;
+  background-color: #25282e !important;
+}
+
+html.np-dark .gonggao .gongul li {
+  background-color: #2c3038 !important;
+  background-image: none !important;
+}
+
+html.np-dark .gonggao .gongul li.active {
+  background-color: #1e2024 !important;
+}
+
+html.np-dark .gongul .lin {
+  border-color: #2e3238 !important;
+  color: #f0f2f5 !important;
+}
+
+/* 帖子列表顶部的 全部 / 精华 / 分类 切换标签 */
+html.np-dark .threadlist li a {
+  color: #b0b6be !important;
+}
+
+html.np-dark .threadlist li a:hover {
+  background-color: #383d47 !important;
+  color: #ffffff !important;
+}
+
+html.np-dark .threadlist li.current a,
+html.np-dark .threadlist li.current a:hover {
+  background-color: #1e2024 !important;
+  border-color: #383d47 !important;
+  border-bottom-color: #1e2024 !important;
+  color: #6cb6ff !important;
+}
+
+html.np-dark .threadlist2 a {
+  background-color: #25282e !important;
+  background-image: none !important;
+  border-color: #383d47 !important;
+  color: #dcdfe4 !important;
+}
+
+/* 下拉菜单与用户信息浮层 */
+html.np-dark .menu,
+html.np-dark .user-infoWraptwo {
+  background-color: #1e2024 !important;
+  background-image: none !important;
+  border-color: #383d47 !important;
+  color: #dcdfe4 !important;
+}
+
+html.np-dark .menu .ul2 li a:hover {
+  background-color: #2a2e35 !important;
+}
+
+/* 表格行悬停高亮 */
+html.np-dark .z .tr3:hover,
+html.np-dark tr.tr3.t_one:hover,
+html.np-dark tr.tr3.f_one:hover,
+html.np-dark tr.tr3.f_two:hover {
+  background-color: #2a2e35 !important;
+}
+
+html.np-dark .z .tr3:hover > td,
+html.np-dark tr.tr3.t_one:hover > td,
+html.np-dark tr.tr3.f_one:hover > td,
+html.np-dark tr.tr3.f_two:hover > td {
+  background-color: #2a2e35 !important;
+}
+
+/* 区块标题栏 */
+html.np-dark .h,
+html.np-dark .h2,
+html.np-dark .h3,
+html.np-dark th.h,
+html.np-dark th.h2 {
+  background-color: #2c3038 !important;
+  background-image: none !important;
+  border-color: #383d47 !important;
+  color: #f0f2f5 !important;
+}
+
+/* 顶部导航栏 */
+html.np-dark #mainNav {
+  background-color: #1b1d21 !important;
+  background-image: none !important;
+  border-color: #2e3238 !important;
+}
+
+/* 文字与链接 */
+html.np-dark a {
+  color: #dcdfe4 !important;
+}
+
+html.np-dark a:hover {
+  color: #6cb6ff !important;
+}
+
+html.np-dark h1,
+html.np-dark h2,
+html.np-dark h3,
+html.np-dark h1 a,
+html.np-dark h2 a,
+html.np-dark h3 a {
+  color: #f0f2f5 !important;
+}
+
+html.np-dark .tpc_content {
+  color: #dcdfe4 !important;
+}
+
+html.np-dark .tpc_content a {
+  color: #6cb6ff !important;
+}
+
+html.np-dark .gray,
+html.np-dark .gray2,
+html.np-dark .gray3,
+html.np-dark .tr2,
+html.np-dark .tr3,
+html.np-dark .f10,
+html.np-dark .tipad,
+html.np-dark .tiptop {
+  color: #9aa0a6 !important;
+}
+
+/* 覆盖帖子与公告内常见暗色内联文字（避免黑字在深色背景上看不清） */
+html.np-dark .tpc_content font[color="#000000"],
+html.np-dark .tpc_content font[color="black"],
+html.np-dark .tpc_content [style*="color:#000"],
+html.np-dark .tpc_content [style*="color: #000"],
+html.np-dark .tpc_content [style*="color:black"],
+html.np-dark .tpc_content [style*="color: black"],
+html.np-dark .tpc_content [style*="color:#333"],
+html.np-dark .tpc_content [style*="color: #333"],
+html.np-dark .tpc_content [style*="color:#555"],
+html.np-dark .tpc_content [style*="color: #555"],
+html.np-dark .tpc_content [style*="color: rgb(0, 0, 0)"],
+html.np-dark .gonggao font[color="#000000"],
+html.np-dark .gonggao font[color="black"],
+html.np-dark .gonggao [style*="color:#000"],
+html.np-dark .gonggao [style*="color: #000"],
+html.np-dark .gonggao [style*="color:#333"],
+html.np-dark .gonggao [style*="color: #333"],
+html.np-dark .gonggao [style*="color: rgb(0, 0, 0)"] {
+  color: #dcdfe4 !important;
+}
+
+html.np-dark .tpc_content [style*="background-color:#fff"],
+html.np-dark .tpc_content [style*="background-color: #fff"],
+html.np-dark .tpc_content [style*="background-color:white"],
+html.np-dark .tpc_content [style*="background-color: white"],
+html.np-dark .tpc_content [style*="background:#fff"],
+html.np-dark .tpc_content [style*="background: #fff"] {
+  background-color: #25282e !important;
+}
+
+/* 引用、代码块与提示框 */
+html.np-dark .quote,
+html.np-dark .quote2,
+html.np-dark .blockquote,
+html.np-dark .blockquote3,
+html.np-dark .tips {
+  background-color: #181a1e !important;
+  border-color: #383d47 !important;
+  color: #b0b6be !important;
+}
+
+/* 边框与分割线 */
+html.np-dark table,
+html.np-dark td,
+html.np-dark th,
+html.np-dark tr {
+  border-color: #2e3238 !important;
+}
+
+/* 表单控件 */
+html.np-dark input:not([type="checkbox"]):not([type="radio"]),
+html.np-dark textarea,
+html.np-dark select {
+  background-color: #181a1e !important;
+  color: #e4e6eb !important;
+  border: 1px solid #383d47 !important;
+}
+
+html.np-dark input[type="submit"],
+html.np-dark input[type="button"],
+html.np-dark button,
+html.np-dark .btn,
+html.np-dark .btn2,
+html.np-dark .abtn {
+  background-color: #2c3038 !important;
+  color: #f0f2f5 !important;
+  border: 1px solid #444a56 !important;
+}
+
+html.np-dark input[type="submit"]:hover,
+html.np-dark input[type="button"]:hover,
+html.np-dark button:hover,
+html.np-dark .btn:hover,
+html.np-dark .btn2:hover,
+html.np-dark .abtn:hover {
+  background-color: #383d47 !important;
+}
+
+/* 分页器 */
+html.np-dark .pages {
+  border-color: #383d47 !important;
+  background-color: #1e2024 !important;
+}
+
+html.np-dark .pages ul li a {
+  color: #dcdfe4 !important;
+}
+
+html.np-dark .pages ul li b {
+  background-color: #3a7bd5 !important;
+  color: #ffffff !important;
+}
+
+html.np-dark .pages ul li a:hover {
+  background-color: #2c3038 !important;
+  color: #6cb6ff !important;
+}
+
+/* 个人中心 (u.php) 与设置中心 (profile.php) */
+html.np-dark .guide,
+html.np-dark .bdbA {
+  border-color: #2e3238 !important;
+}
+
+html.np-dark .guide {
+  background-color: #25282e !important;
+  background-image: none !important;
+  color: #dcdfe4 !important;
+}
+
+html.np-dark #u-wrap,
+html.np-dark #u-wrap2,
+html.np-dark #main #u-wrap2,
+html.np-dark #set-wrap,
+html.np-dark #set-side-wrap,
+html.np-dark #set-content {
+  background-color: #1e2024 !important;
+  background-image: none !important;
+  border-color: #2e3238 !important;
+  color: #dcdfe4 !important;
+}
+
+html.np-dark #u-sidebar {
+  border-right-color: #2e3238 !important;
+}
+
+html.np-dark #u-portrait,
+html.np-dark #u-sidebar .bgA,
+html.np-dark .bgA {
+  background-color: #25282e !important;
+  background-image: none !important;
+  border-color: #2e3238 !important;
+}
+
+html.np-dark #u-sidebar-box,
+html.np-dark #u-custom,
+html.np-dark #u-operate,
+html.np-dark #u-sidebar table td,
+html.np-dark #u-content,
+html.np-dark #u-top {
+  color: #dcdfe4 !important;
+}
+
+html.np-dark #u-top-nav ul {
+  border-bottom-color: #2e3238 !important;
+}
+
+html.np-dark #u-top-nav ul li {
+  background-color: transparent !important;
+  background-image: none !important;
+  border-color: transparent !important;
+}
+
+html.np-dark #u-top-nav li a {
+  background-color: #2c3038 !important;
+  background-image: none !important;
+  border: 1px solid #383d47 !important;
+  border-bottom: 0 !important;
+  color: #b0b6be !important;
+}
+
+html.np-dark #u-top-nav li a:hover {
+  background-color: #383d47 !important;
+  color: #ffffff !important;
+}
+
+html.np-dark #u-top-nav li.current a,
+html.np-dark #u-top-nav li.current a:hover {
+  background-color: #1e2024 !important;
+  border: 1px solid #383d47 !important;
+  border-bottom: 0 !important;
+  color: #6cb6ff !important;
+}
+
+html.np-dark .u-h5 {
+  background: none !important;
+  border-bottom: 1px solid #2e3238 !important;
+  color: #f0f2f5 !important;
+}
+
+html.np-dark .u-h1,
+html.np-dark .u-h5 span,
+html.np-dark .u-h5 .b {
+  background: transparent !important;
+  color: #f0f2f5 !important;
+}
+
+html.np-dark .u-h5 .r,
+html.np-dark .u-h5 .r a {
+  background: transparent !important;
+  color: #9aa0a6 !important;
+}
+
+html.np-dark #u-contentside {
+  border-left-color: #2e3238 !important;
+}
+
+html.np-dark .feed-list,
+html.np-dark .article-list,
+html.np-dark .feed-list dt,
+html.np-dark .feed-list dd,
+html.np-dark .article-list dd,
+html.np-dark .link1,
+html.np-dark #u-feed-list li,
+html.np-dark .u-list li {
+  border-bottom-color: #2e3238 !important;
+  color: #dcdfe4 !important;
+}
+
+html.np-dark .u-table {
+  background: transparent !important;
+}
+
+html.np-dark .u-table td,
+html.np-dark .u-table th {
+  border-bottom-color: #2e3238 !important;
+  color: #dcdfe4 !important;
+}
+
+html.np-dark .u-table th {
+  color: #f0f2f5 !important;
+}
+
+html.np-dark .u-table2 {
+  border-color: #2e3238 !important;
+}
+
+html.np-dark .u-table2 td:hover,
+html.np-dark .u-table2 td.current {
+  background-color: #25282e !important;
+  color: #f0f2f5 !important;
+}
+
+html.np-dark #set-side {
+  background-color: #25282e !important;
+  border-right-color: #2e3238 !important;
+}
+
+html.np-dark #set-side h2,
+html.np-dark .set-h2 {
+  background-color: #2c3038 !important;
+  border-bottom-color: #2e3238 !important;
+  color: #f0f2f5 !important;
+}
+
+html.np-dark #set-side ul li a,
+html.np-dark #set-menu li a {
+  color: #b0b6be !important;
+}
+
+html.np-dark #set-side ul li.current a,
+html.np-dark #set-side ul li a:hover,
+html.np-dark #set-menu li.current a,
+html.np-dark #set-menu li a:hover {
+  background-color: #1e2024 !important;
+  color: #6cb6ff !important;
+}
+
+html.np-dark #set-content-wrap,
+html.np-dark .set-tab-box {
+  border-color: #2e3238 !important;
+}
+
+html.np-dark .set-tab {
+  border-bottom-color: #2e3238 !important;
+}
+
+html.np-dark .set-tab ul li {
+  background-color: #2c3038 !important;
+  background-image: none !important;
+  border-color: #383d47 !important;
+}
+
+html.np-dark .set-tab ul li a {
+  color: #b0b6be !important;
+}
+
+html.np-dark .set-tab ul li.current {
+  background-color: #1e2024 !important;
+  border-color: #383d47 !important;
+  border-bottom-color: #1e2024 !important;
+}
+
+html.np-dark .set-tab ul li.current a {
+  color: #6cb6ff !important;
+}
+
+html.np-dark .set-tab-table {
+  background-color: #25282e !important;
+  background-image: none !important;
+}
+
+html.np-dark .set-tab-table td {
+  border-color: #2e3238 !important;
+}
+
+html.np-dark .set-tab-table td.current {
+  background-color: #1e2024 !important;
+  border-color: #2e3238 !important;
+}
+
+html.np-dark .set-tab-table td.current a {
+  color: #6cb6ff !important;
+}
+
+html.np-dark #set-content,
+html.np-dark #set-content form,
+html.np-dark .set-table,
+html.np-dark .set-table2 td {
+  border-bottom-color: #2e3238 !important;
+  color: #dcdfe4 !important;
+}
+
+/* --------------------------------------------------------------------------
+   4. 悬浮快捷工具栏 (#np-floating-bar)
+   -------------------------------------------------------------------------- */
+#np-floating-bar {
+  position: fixed;
+  right: 20px;
+  bottom: 24px;
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 6px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  backdrop-filter: blur(8px);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", sans-serif;
+}
+
+html.np-dark #np-floating-bar {
+  background: rgba(30, 32, 36, 0.92);
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.45);
+}
+
+#np-floating-bar button {
+  width: 36px;
+  height: 36px;
+  border: none !important;
+  border-radius: 8px;
+  background: transparent !important;
+  color: #444 !important;
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: background-color 0.15s ease, color 0.15s ease, transform 0.1s ease;
+}
+
+html.np-dark #np-floating-bar button {
+  color: #d0d4dc !important;
+}
+
+#np-floating-bar button:hover {
+  background: rgba(0, 0, 0, 0.08) !important;
+  color: #111 !important;
+}
+
+html.np-dark #np-floating-bar button:hover {
+  background: rgba(255, 255, 255, 0.12) !important;
+  color: #ffffff !important;
+}
+
+#np-floating-bar button:active {
+  transform: scale(0.94);
+}
