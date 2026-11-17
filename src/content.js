@@ -6,6 +6,7 @@
     theme: 'auto', // 'auto' | 'dark' | 'light'
     wide: true,
     maxWidth: 1400, // 0 表示全宽 (96vw)
+    modernUI: true,
     readable: true,
     floatingBar: true,
     stayOnPurchase: true
@@ -27,6 +28,7 @@
 
     root.classList.toggle('np-dark', resolveDark(currentPrefs.theme));
     root.classList.toggle('np-wide', Boolean(currentPrefs.wide));
+    root.classList.toggle('np-modern', Boolean(currentPrefs.modernUI));
     root.classList.toggle('np-readable', Boolean(currentPrefs.readable));
 
     if (currentPrefs.maxWidth === 0) {
@@ -183,7 +185,62 @@
 
   function onReady() {
     syncFloatingBar();
+    enhanceModernUI();
     restoreScrollAfterPurchase();
+  }
+
+  // 4.5 现代化按钮与工具栏增强（非破坏性，保留原链接与事件）
+  function enhanceActionButtons(selector, modifierClass, label, iconPaths) {
+    document.querySelectorAll(selector).forEach((img) => {
+      // 跳过帖子楼层内的操作栏，避免误替换每层楼的回复/引用等按钮
+      if (img.closest('table.js-post, div.tipad, div.tiptop, .readbot')) return;
+      const link = img.closest('a');
+      if (!link || link.dataset.npEnhanced) return;
+      link.dataset.npEnhanced = '1';
+      link.classList.add('np-action-btn', modifierClass);
+
+      const inner = document.createElement('span');
+      inner.className = 'np-action-btn__inner';
+      const svg = createIconSvg(iconPaths);
+      svg.setAttribute('width', '15');
+      svg.setAttribute('height', '15');
+      const text = document.createElement('span');
+      text.textContent = label;
+      inner.append(svg, text);
+      link.appendChild(inner);
+    });
+  }
+
+  function enhanceModernUI() {
+    if (!document.body) return;
+
+    enhanceActionButtons(
+      'img#td_post, img#td_post1, a[href*="post.php?fid"] > img[src*="post"]',
+      'np-action-btn--primary',
+      '发新帖',
+      '<path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/>'
+    );
+
+    enhanceActionButtons(
+      'a[href*="action-reply"] > img[src*="reply"], img[src*="reply.png"]',
+      'np-action-btn--reply',
+      '回复主题',
+      '<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>'
+    );
+
+    document.querySelectorAll('div.t3').forEach((bar) => {
+      if (bar.dataset.npT3Enhanced) return;
+      bar.dataset.npT3Enhanced = '1';
+      const rights = bar.querySelectorAll(':scope > .fr');
+      if (rights.length === 1) {
+        rights[0].classList.add('np-t3-push-right');
+      } else if (rights.length > 1) {
+        rights[rights.length - 1].classList.add('np-t3-push-right');
+        rights.forEach((el, idx) => {
+          el.style.order = String(10 + (rights.length - 1 - idx));
+        });
+      }
+    });
   }
 
   function restoreScrollAfterPurchase() {

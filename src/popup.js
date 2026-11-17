@@ -5,6 +5,7 @@ const DEFAULT_PREFS = {
   theme: 'auto',
   wide: true,
   maxWidth: 1400,
+  modernUI: true,
   readable: true,
   floatingBar: true,
   stayOnPurchase: true
@@ -17,6 +18,7 @@ const wideToggle = document.getElementById('wide-toggle');
 const widthControl = document.getElementById('width-control');
 const widthRange = document.getElementById('width-range');
 const widthValue = document.getElementById('width-value');
+const modernToggle = document.getElementById('modern-toggle');
 const readableToggle = document.getElementById('readable-toggle');
 const purchaseToggle = document.getElementById('purchase-toggle');
 const floatingToggle = document.getElementById('floating-toggle');
@@ -33,6 +35,7 @@ function render() {
   widthRange.value = String(sliderVal);
   widthValue.textContent = prefs.maxWidth === 0 ? '全宽 (96%)' : `${prefs.maxWidth}px`;
 
+  modernToggle.checked = Boolean(prefs.modernUI);
   readableToggle.checked = Boolean(prefs.readable);
   purchaseToggle.checked = Boolean(prefs.stayOnPurchase);
   floatingToggle.checked = Boolean(prefs.floatingBar);
@@ -65,6 +68,10 @@ widthRange.addEventListener('input', () => {
   const val = Number(widthRange.value);
   const maxWidth = val >= FULL_WIDTH_SLIDER ? 0 : val;
   save({ maxWidth });
+});
+
+modernToggle.addEventListener('change', () => {
+  save({ modernUI: modernToggle.checked });
 });
 
 readableToggle.addEventListener('change', () => {

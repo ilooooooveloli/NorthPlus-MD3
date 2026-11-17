@@ -262,38 +262,172 @@ html.np-dark .tr3,
 html.np-dark .f10,
 html.np-dark .tipad,
 html.np-dark .tiptop {
-  color: #9aa0a6 !important;
+  color: #a6adb8 !important;
 }
 
-/* 覆盖帖子与公告内常见暗色内联文字（避免黑字在深色背景上看不清） */
-html.np-dark .tpc_content font[color="#000000"],
-html.np-dark .tpc_content font[color="black"],
-html.np-dark .tpc_content [style*="color:#000"],
-html.np-dark .tpc_content [style*="color: #000"],
-html.np-dark .tpc_content [style*="color:black"],
-html.np-dark .tpc_content [style*="color: black"],
-html.np-dark .tpc_content [style*="color:#333"],
-html.np-dark .tpc_content [style*="color: #333"],
-html.np-dark .tpc_content [style*="color:#555"],
-html.np-dark .tpc_content [style*="color: #555"],
-html.np-dark .tpc_content [style*="color: rgb(0, 0, 0)"],
-html.np-dark .gonggao font[color="#000000"],
-html.np-dark .gonggao font[color="black"],
-html.np-dark .gonggao [style*="color:#000"],
-html.np-dark .gonggao [style*="color: #000"],
-html.np-dark .gonggao [style*="color:#333"],
-html.np-dark .gonggao [style*="color: #333"],
-html.np-dark .gonggao [style*="color: rgb(0, 0, 0)"] {
-  color: #dcdfe4 !important;
+/* 论坛内置颜色类在深色模式下的可读性适配 */
+html.np-dark .s1 {
+  color: #f87171 !important;
 }
 
-html.np-dark .tpc_content [style*="background-color:#fff"],
-html.np-dark .tpc_content [style*="background-color: #fff"],
-html.np-dark .tpc_content [style*="background-color:white"],
-html.np-dark .tpc_content [style*="background-color: white"],
-html.np-dark .tpc_content [style*="background:#fff"],
-html.np-dark .tpc_content [style*="background: #fff"] {
-  background-color: #25282e !important;
+html.np-dark .s2 {
+  color: #4ade80 !important;
+}
+
+html.np-dark .s3 {
+  color: #fbbf24 !important;
+}
+
+html.np-dark .s4 {
+  color: #6cb6ff !important;
+}
+
+html.np-dark .s5 {
+  color: #e6eaf0 !important;
+}
+
+html.np-dark .s6 {
+  color: #b4bcc8 !important;
+}
+
+html.np-dark .s7 {
+  color: #c084fc !important;
+}
+
+html.np-dark .s8 {
+  color: #60a5fa !important;
+}
+
+/* 覆盖帖子、签名、公告与引用内常见暗色内联文字（避免黑字/深灰字在深色背景上看不清） */
+html.np-dark #main font[color="#000000" i],
+html.np-dark #main font[color="#000" i],
+html.np-dark #main font[color="black" i],
+html.np-dark #main font[color="#111111" i],
+html.np-dark #main font[color="#222222" i],
+html.np-dark #main font[color="#333333" i],
+html.np-dark #main font[color="#444444" i],
+html.np-dark #main font[color="#555555" i],
+html.np-dark #main font[color="#666666" i],
+html.np-dark #main font[color="#777777" i],
+html.np-dark #main font[color="#808080" i],
+html.np-dark #main font[color="#888888" i],
+html.np-dark #main font[color="gray" i],
+html.np-dark #main font[color="grey" i],
+html.np-dark #main font[color="dimgray" i],
+html.np-dark #main font[color="dimgrey" i],
+html.np-dark #main font[color="navy" i],
+html.np-dark #main font[color="darkblue" i],
+html.np-dark #main font[color="midnightblue" i],
+html.np-dark #main font[color="darkslategray" i],
+html.np-dark #main font[color="darkred" i],
+html.np-dark #main font[color="maroon" i],
+html.np-dark #main font[color="darkgreen" i],
+html.np-dark #main font[color="purple" i],
+html.np-dark #main font[color="indigo" i],
+html.np-dark #main font[color="brown" i],
+html.np-dark #main [style*="color:#000" i],
+html.np-dark #main [style*="color: #000" i],
+html.np-dark #main [style*="color:black" i],
+html.np-dark #main [style*="color: black" i],
+html.np-dark #main [style*="color:#111" i],
+html.np-dark #main [style*="color: #111" i],
+html.np-dark #main [style*="color:#222" i],
+html.np-dark #main [style*="color: #222" i],
+html.np-dark #main [style*="color:#333" i],
+html.np-dark #main [style*="color: #333" i],
+html.np-dark #main [style*="color:#444" i],
+html.np-dark #main [style*="color: #444" i],
+html.np-dark #main [style*="color:#555" i],
+html.np-dark #main [style*="color: #555" i],
+html.np-dark #main [style*="color:#666" i],
+html.np-dark #main [style*="color: #666" i],
+html.np-dark #main [style*="color:#777" i],
+html.np-dark #main [style*="color: #777" i],
+html.np-dark #main [style*="color:#808080" i],
+html.np-dark #main [style*="color: #808080" i],
+html.np-dark #main [style*="color:#888" i],
+html.np-dark #main [style*="color: #888" i],
+html.np-dark #main [style*="color:gray" i],
+html.np-dark #main [style*="color: gray" i],
+html.np-dark #main [style*="color:dimgray" i],
+html.np-dark #main [style*="color: dimgray" i],
+html.np-dark #main [style*="color:navy" i],
+html.np-dark #main [style*="color: navy" i],
+html.np-dark #main [style*="color:darkblue" i],
+html.np-dark #main [style*="color: darkblue" i],
+html.np-dark #main [style*="color: rgb(0," i],
+html.np-dark #main [style*="color:rgb(0," i],
+html.np-dark #main [style*="color: rgb(17," i],
+html.np-dark #main [style*="color: rgb(34," i],
+html.np-dark #main [style*="color: rgb(51," i],
+html.np-dark #main [style*="color: rgb(68," i],
+html.np-dark #main [style*="color: rgb(85," i],
+html.np-dark #main [style*="color: rgb(102," i],
+html.np-dark #main [style*="color: rgb(119," i],
+html.np-dark #main [style*="color: rgb(128," i],
+html.np-dark #main [style*="color: rgb(136," i],
+html.np-dark #main [style*="color: rgba(0," i],
+html.np-dark #main [style*="color:rgba(0," i] {
+  color: #e2e6ed !important;
+}
+
+html.np-dark #main [bgcolor="#ffffff" i],
+html.np-dark #main [bgcolor="#fff" i],
+html.np-dark #main [bgcolor="white" i],
+html.np-dark #main [bgcolor="#f5f5f5" i],
+html.np-dark #main [bgcolor="#f0f0f0" i],
+html.np-dark #main [bgcolor="#fafafa" i],
+html.np-dark #main [bgcolor="#eeeeee" i],
+html.np-dark #main [bgcolor="#eee" i],
+html.np-dark .tpc_content [style*="background-color:#fff" i],
+html.np-dark .tpc_content [style*="background-color: #fff" i],
+html.np-dark .tpc_content [style*="background-color:white" i],
+html.np-dark .tpc_content [style*="background-color: white" i],
+html.np-dark .tpc_content [style*="background-color:#f5f5f5" i],
+html.np-dark .tpc_content [style*="background-color: #f5f5f5" i],
+html.np-dark .tpc_content [style*="background-color:#f0f0f0" i],
+html.np-dark .tpc_content [style*="background-color: #f0f0f0" i],
+html.np-dark .tpc_content [style*="background-color:#eee" i],
+html.np-dark .tpc_content [style*="background-color: #eee" i],
+html.np-dark .tpc_content [style*="background-color: rgb(255," i],
+html.np-dark .tpc_content [style*="background-color: rgb(245," i],
+html.np-dark .tpc_content [style*="background-color: rgb(240," i],
+html.np-dark .tpc_content [style*="background:#fff" i],
+html.np-dark .tpc_content [style*="background: #fff" i] {
+  background-color: #242832 !important;
+}
+
+html.np-dark #honor,
+html.np-dark #infobox,
+html.np-dark #infobox span {
+  color: #a6b0c0 !important;
+}
+
+html.np-dark #main font[color="blue" i],
+html.np-dark #main font[color="#0000ff" i],
+html.np-dark #main font[color="#00f" i],
+html.np-dark #main [style*="color:blue" i],
+html.np-dark #main [style*="color: blue" i],
+html.np-dark #main [style*="color:#0000ff" i],
+html.np-dark #main [style*="color: #0000ff" i],
+html.np-dark #main [style*="color: rgb(0, 0, 255)" i] {
+  color: #60a5fa !important;
+}
+
+html.np-dark #main font[color="red" i],
+html.np-dark #main font[color="#ff0000" i],
+html.np-dark #main font[color="#f00" i],
+html.np-dark #main [style*="color:red" i],
+html.np-dark #main [style*="color: red" i],
+html.np-dark #main [style*="color:#ff0000" i],
+html.np-dark #main [style*="color: #ff0000" i],
+html.np-dark #main [style*="color: rgb(255, 0, 0)" i] {
+  color: #f87171 !important;
+}
+
+html.np-dark input::placeholder,
+html.np-dark textarea::placeholder {
+  color: #8b95a5 !important;
 }
 
 /* 引用、代码块与提示框 */
@@ -638,4 +772,895 @@ html.np-dark #np-floating-bar button:hover {
 
 #np-floating-bar button:active {
   transform: scale(0.94);
+}
+
+/* --------------------------------------------------------------------------
+   5. 现代化界面美化 (.np-modern)
+   -------------------------------------------------------------------------- */
+html.np-modern {
+  --np-bg: #f3f5f8;
+  --np-surface: #ffffff;
+  --np-surface-2: #f8fafc;
+  --np-surface-hover: #f1f5f9;
+  --np-border: #e2e8f0;
+  --np-border-subtle: #edf2f7;
+  --np-text: #1e293b;
+  --np-text-muted: #64748b;
+  --np-accent: #2563eb;
+  --np-accent-hover: #1d4ed8;
+  --np-accent-soft: rgba(37, 99, 235, 0.1);
+  --np-reply-bg: #0f766e;
+  --np-reply-hover: #0d9488;
+  --np-danger: #dc2626;
+  --np-danger-hover: #b91c1c;
+  --np-shadow: 0 1px 3px rgba(15, 23, 42, 0.06), 0 1px 2px rgba(15, 23, 42, 0.04);
+  --np-radius: 12px;
+  --np-radius-sm: 8px;
+}
+
+html.np-modern.np-dark {
+  --np-bg: #0f1115;
+  --np-surface: #181b21;
+  --np-surface-2: #222630;
+  --np-surface-hover: #2b303d;
+  --np-border: #3d4454;
+  --np-border-subtle: #2c323f;
+  --np-text: #e8ecf2;
+  --np-text-muted: #9aa5b8;
+  --np-accent: #4c8dff;
+  --np-accent-hover: #6ea3ff;
+  --np-accent-soft: rgba(76, 141, 255, 0.18);
+  --np-reply-bg: #0d9488;
+  --np-reply-hover: #14b8a6;
+  --np-danger: #ef4444;
+  --np-danger-hover: #f87171;
+  --np-shadow: 0 2px 10px rgba(0, 0, 0, 0.36);
+}
+
+html.np-modern body {
+  background-color: var(--np-bg) !important;
+  color: var(--np-text) !important;
+}
+
+html.np-modern a {
+  transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
+}
+
+/* --- 5.1 顶部导航栏与用户信息卡 --- */
+html.np-modern #mainNav {
+  background: var(--np-surface-2) !important;
+  border-radius: var(--np-radius) var(--np-radius) 0 0 !important;
+  border: 1px solid var(--np-border) !important;
+  border-bottom: 1px solid var(--np-border-subtle) !important;
+  padding: 4px 12px !important;
+}
+
+html.np-modern.np-dark #mainNav {
+  background: #161920 !important;
+  border-bottom-color: var(--np-border) !important;
+}
+
+html.np-modern #user-login {
+  background: transparent !important;
+  border: none !important;
+}
+
+html.np-modern #user-login,
+html.np-modern #user-login a {
+  color: var(--np-text) !important;
+}
+
+html.np-modern #user-login a:hover {
+  color: var(--np-accent) !important;
+}
+
+html.np-modern ul#guide.guide {
+  background: transparent !important;
+  background-image: none !important;
+  border: none !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  padding: 4px 0 !important;
+  margin: 0 !important;
+  height: auto !important;
+}
+
+html.np-modern ul#guide.guide li {
+  background: transparent !important;
+  background-image: none !important;
+  border: none !important;
+  float: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  width: auto !important;
+  height: auto !important;
+}
+
+html.np-modern ul#guide.guide li a {
+  display: inline-flex !important;
+  align-items: center !important;
+  white-space: nowrap !important;
+  width: auto !important;
+  background: transparent !important;
+  background-image: none !important;
+  border-radius: 8px !important;
+  padding: 5px 12px !important;
+  height: auto !important;
+  line-height: 1.4 !important;
+  color: var(--np-text) !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
+  transition: background-color 0.15s ease, color 0.15s ease !important;
+}
+
+html.np-modern ul#guide.guide li a:hover {
+  background-color: var(--np-surface-hover) !important;
+  color: var(--np-accent) !important;
+}
+
+html.np-modern.np-dark ul#guide.guide li a {
+  color: #cbd5e1 !important;
+}
+
+html.np-modern.np-dark ul#guide.guide li a:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  color: #ffffff !important;
+}
+
+html.np-modern ul#guide.guide li.current {
+  background: transparent !important;
+}
+
+html.np-modern ul#guide.guide li.current a,
+html.np-modern ul#guide.guide li.current a:hover {
+  background-color: var(--np-accent) !important;
+  background-image: none !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+}
+
+html.np-modern #infobox {
+  background-color: var(--np-surface) !important;
+  border: 1px solid var(--np-border) !important;
+  border-top: none !important;
+  border-radius: 0 0 var(--np-radius) var(--np-radius) !important;
+  padding: 10px 14px !important;
+  margin-bottom: 10px !important;
+  box-shadow: var(--np-shadow) !important;
+}
+
+/* 头像保持原始比例，避免 <td width="1"> 或固定宽高属性导致挤压/拉伸变形 */
+.user-pic table td[width="1"],
+table.js-post th.r_two .user-pic table td[width="1"] {
+  width: auto !important;
+}
+
+.user-pic img,
+table.js-post th.r_two img.pic,
+#u-portrait img,
+.user-infoWraptwo img,
+.u-face img,
+.avatar img,
+img.avatar,
+.face img {
+  width: auto !important;
+  height: auto !important;
+  max-width: 160px !important;
+  max-height: 225px !important;
+  object-fit: contain !important;
+  object-position: center !important;
+}
+
+html.np-dark .user-pic img,
+html.np-dark table.js-post th.r_two img.pic {
+  border-color: var(--np-border, #3d4454) !important;
+  background-color: transparent !important;
+}
+
+html.np-modern #user_info > a[href^="u.php"] > img {
+  width: 40px !important;
+  height: 40px !important;
+  aspect-ratio: 1 / 1 !important;
+  clip: auto !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  border-radius: 50% !important;
+  border: 2px solid var(--np-border) !important;
+}
+
+/* --- 5.2 面包屑导航 --- */
+html.np-modern #main > div.bdbA {
+  border: none !important;
+  background: transparent !important;
+  margin-bottom: 10px !important;
+}
+
+html.np-modern #breadcrumbs {
+  background-color: var(--np-surface) !important;
+  background-image: none !important;
+  border: 1px solid var(--np-border) !important;
+  border-radius: var(--np-radius-sm) !important;
+  padding: 8px 14px !important;
+  box-shadow: var(--np-shadow) !important;
+  display: flex !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+  gap: 6px !important;
+  height: auto !important;
+  line-height: 1.5 !important;
+}
+
+html.np-modern #breadcrumbs .fr {
+  margin-left: auto !important;
+  float: none !important;
+}
+
+/* --- 5.3 版块公告栏 --- */
+html.np-modern .gonggao {
+  background-color: var(--np-surface) !important;
+  border: 1px solid var(--np-border) !important;
+  border-radius: var(--np-radius) !important;
+  box-shadow: var(--np-shadow) !important;
+  overflow: hidden !important;
+  margin-bottom: 12px !important;
+}
+
+html.np-modern .gonggao .gongul {
+  background-color: var(--np-surface-2) !important;
+  border-bottom: 1px solid var(--np-border) !important;
+  padding: 6px 12px !important;
+}
+
+html.np-modern .gonggao .gongul li {
+  border-radius: 6px !important;
+  border: none !important;
+  background: transparent !important;
+}
+
+html.np-modern .gonggao .gongul li.active {
+  background-color: var(--np-surface) !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08) !important;
+}
+
+html.np-modern #cate_thread,
+html.np-modern #tab_1 {
+  background-color: var(--np-surface) !important;
+  padding: 10px 14px !important;
+}
+
+/* --- 5.4 工具栏与功能按钮排布 (div.t3 / 分页 / 发帖回复按钮) --- */
+html.np-modern div.t3 {
+  display: flex !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  padding: 10px 0 !important;
+  margin: 4px 0 !important;
+  height: auto !important;
+}
+
+html.np-modern div.t3 > .c,
+html.np-modern div.tiptop > .c,
+html.np-modern div.tipad > .c {
+  display: none !important;
+}
+
+html.np-modern div.t3 > .fl {
+  float: none !important;
+  order: 1 !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+html.np-modern div.t3 > .fr {
+  float: none !important;
+  order: 10 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+}
+
+html.np-modern div.t3 > .np-t3-push-right {
+  margin-left: auto !important;
+}
+
+/* 隐藏旧版位图按钮，显示现代 SVG 按钮 */
+html.np-modern a.np-action-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-decoration: none !important;
+  border-radius: var(--np-radius-sm) !important;
+  padding: 7px 15px !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  line-height: 1.2 !important;
+  color: #ffffff !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12) !important;
+  transition: background-color 0.15s ease, transform 0.1s ease, box-shadow 0.15s ease !important;
+}
+
+html.np-modern a.np-action-btn > img {
+  display: none !important;
+}
+
+html.np-modern a.np-action-btn .np-action-btn__inner {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+}
+
+html.np-modern a.np-action-btn--primary {
+  background-color: var(--np-accent) !important;
+}
+
+html.np-modern a.np-action-btn--primary:hover {
+  background-color: var(--np-accent-hover) !important;
+  color: #ffffff !important;
+  transform: translateY(-1px);
+}
+
+html.np-modern a.np-action-btn--reply {
+  background-color: var(--np-reply-bg) !important;
+}
+
+html.np-modern a.np-action-btn--reply:hover {
+  background-color: var(--np-reply-hover) !important;
+  color: #ffffff !important;
+  transform: translateY(-1px);
+}
+
+/* 现代分页组件 */
+html.np-modern .pages {
+  border: none !important;
+  background: transparent !important;
+  overflow: visible !important;
+}
+
+html.np-modern .pages ul {
+  display: flex !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+  gap: 4px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+html.np-modern .pages ul li {
+  float: none !important;
+  margin: 0 !important;
+  border: none !important;
+  background: transparent !important;
+}
+
+html.np-modern .pages ul li a,
+html.np-modern .pages ul li b {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-width: 30px !important;
+  height: 30px !important;
+  padding: 0 9px !important;
+  border-radius: 6px !important;
+  font-size: 12.5px !important;
+  border: 1px solid var(--np-border) !important;
+  background-color: var(--np-surface) !important;
+  color: var(--np-text) !important;
+  text-decoration: none !important;
+  box-sizing: border-box !important;
+}
+
+html.np-modern .pages ul li a:hover {
+  background-color: var(--np-surface-hover) !important;
+  border-color: var(--np-accent) !important;
+  color: var(--np-accent) !important;
+}
+
+html.np-modern .pages ul li b {
+  background-color: var(--np-accent) !important;
+  border-color: var(--np-accent) !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+}
+
+html.np-modern .pages ul li.pagesone {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  padding: 0 8px !important;
+  height: 30px !important;
+  font-size: 12px !important;
+  color: var(--np-text-muted) !important;
+}
+
+html.np-modern .pages ul li.pagesone input[type="text"] {
+  width: 44px !important;
+  height: 24px !important;
+  padding: 0 6px !important;
+  border-radius: 5px !important;
+  border: 1px solid var(--np-border) !important;
+  background-color: var(--np-surface) !important;
+  color: var(--np-text) !important;
+  text-align: center !important;
+}
+
+/* 通用按钮与表单控件 */
+html.np-modern select,
+html.np-modern input[type="text"],
+html.np-modern textarea {
+  border-radius: 6px !important;
+  border: 1px solid var(--np-border) !important;
+  background-color: var(--np-surface) !important;
+  color: var(--np-text) !important;
+  padding: 5px 10px !important;
+  font-size: 13px !important;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease !important;
+}
+
+html.np-modern select:focus,
+html.np-modern input[type="text"]:focus,
+html.np-modern textarea:focus {
+  outline: none !important;
+  border-color: var(--np-accent) !important;
+  box-shadow: 0 0 0 2px var(--np-accent-soft) !important;
+}
+
+html.np-modern input.btn,
+html.np-modern button.btn,
+html.np-modern a.abtn {
+  border-radius: 6px !important;
+  border: 1px solid var(--np-border) !important;
+  background-color: var(--np-surface-2) !important;
+  background-image: none !important;
+  color: var(--np-text) !important;
+  padding: 5px 12px !important;
+  font-size: 12.5px !important;
+  font-weight: 500 !important;
+  cursor: pointer !important;
+  text-decoration: none !important;
+  transition: background-color 0.15s ease, border-color 0.15s ease !important;
+}
+
+html.np-modern input.btn:hover,
+html.np-modern button.btn:hover,
+html.np-modern a.abtn:hover {
+  background-color: var(--np-surface-hover) !important;
+  border-color: var(--np-accent) !important;
+  color: var(--np-accent) !important;
+}
+
+html.np-modern input.btn.btn-danger {
+  background-color: var(--np-danger) !important;
+  border-color: var(--np-danger) !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  padding: 7px 16px !important;
+}
+
+html.np-modern input.btn.btn-danger:hover {
+  background-color: var(--np-danger-hover) !important;
+  border-color: var(--np-danger-hover) !important;
+  color: #ffffff !important;
+}
+
+/* --- 5.5 帖子列表体验优化 (div.t.z / #ajaxtable / .threadlist) --- */
+html.np-modern .t,
+html.np-modern .t.z {
+  background-color: var(--np-surface) !important;
+  border: 1px solid var(--np-border) !important;
+  border-radius: var(--np-radius) !important;
+  box-shadow: var(--np-shadow) !important;
+  overflow: hidden !important;
+  margin-bottom: 14px !important;
+}
+
+html.np-modern .t th.h,
+html.np-modern .t th.h2 {
+  background-color: var(--np-surface-2) !important;
+  background-image: none !important;
+  border-bottom: 1px solid var(--np-border) !important;
+  padding: 10px 14px !important;
+}
+
+/* 分类筛选药丸标签 */
+html.np-modern .hthread {
+  display: flex !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+}
+
+html.np-modern ul.fl.threadlist {
+  display: flex !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+  gap: 6px !important;
+  margin: 0 !important;
+  padding: 2px 0 !important;
+  height: auto !important;
+  border: none !important;
+}
+
+html.np-modern ul.fl.threadlist #t_typedb {
+  display: contents !important;
+}
+
+html.np-modern ul.fl.threadlist li {
+  float: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  background: transparent !important;
+}
+
+html.np-modern ul.fl.threadlist li a {
+  display: inline-flex !important;
+  align-items: center !important;
+  padding: 5px 13px !important;
+  border-radius: 999px !important;
+  font-size: 12.5px !important;
+  font-weight: 500 !important;
+  border: 1px solid transparent !important;
+  background-color: transparent !important;
+  color: var(--np-text-muted) !important;
+  text-decoration: none !important;
+  height: auto !important;
+  line-height: 1.4 !important;
+}
+
+html.np-modern ul.fl.threadlist li a:hover {
+  background-color: var(--np-surface-hover) !important;
+  color: var(--np-text) !important;
+}
+
+html.np-modern ul.fl.threadlist li.current a,
+html.np-modern ul.fl.threadlist li.current a:hover {
+  background-color: var(--np-accent) !important;
+  border-color: var(--np-accent) !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+}
+
+/* 帖子列表表格无竖线 + 舒适行距 */
+html.np-modern table#ajaxtable {
+  border-collapse: collapse !important;
+  width: 100% !important;
+}
+
+html.np-modern table#ajaxtable tr.tr2 td {
+  background-color: var(--np-surface-2) !important;
+  border: none !important;
+  border-bottom: 1px solid var(--np-border) !important;
+  padding: 9px 10px !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  color: var(--np-text-muted) !important;
+}
+
+html.np-modern div.t tr.tr3 > td,
+html.np-modern div.t tr.tr3 > th {
+  background-color: var(--np-surface) !important;
+  color: var(--np-text) !important;
+  border-color: var(--np-border-subtle) !important;
+}
+
+html.np-modern table#ajaxtable tr.tr3.t_one > td,
+html.np-modern table#ajaxtable tr.tr3.t_one > th {
+  border: none !important;
+  border-bottom: 1px solid var(--np-border-subtle) !important;
+  padding: 12px 10px !important;
+  vertical-align: middle !important;
+  background-color: var(--np-surface) !important;
+  color: var(--np-text) !important;
+}
+
+html.np-modern table#ajaxtable tr.tr3.t_one:hover > td,
+html.np-modern table#ajaxtable tr.tr3.t_one:hover > th {
+  background-color: var(--np-surface-hover) !important;
+}
+
+html.np-modern table#ajaxtable td[id^="td_"] h3 {
+  display: inline !important;
+  font-size: 14.5px !important;
+  font-weight: 500 !important;
+  line-height: 1.5 !important;
+}
+
+html.np-modern table#ajaxtable td[id^="td_"] h3 a[id^="a_ajax_"] {
+  color: var(--np-text) !important;
+  text-decoration: none !important;
+}
+
+html.np-modern table#ajaxtable td[id^="td_"] h3 a[id^="a_ajax_"]:visited {
+  color: var(--np-text-muted) !important;
+}
+
+html.np-modern table#ajaxtable td[id^="td_"] h3 a[id^="a_ajax_"]:hover {
+  color: var(--np-accent) !important;
+  text-decoration: underline !important;
+}
+
+/* 主题分类徽章 */
+html.np-modern table#ajaxtable td[id^="td_"] a.s8 {
+  display: inline-block !important;
+  padding: 2px 8px !important;
+  margin-right: 6px !important;
+  border-radius: 5px !important;
+  background-color: var(--np-accent-soft) !important;
+  color: var(--np-accent) !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
+  vertical-align: baseline !important;
+}
+
+html.np-modern table#ajaxtable td.tal.y-style.f10 {
+  font-variant-numeric: tabular-nums !important;
+  white-space: nowrap !important;
+}
+
+html.np-modern table#ajaxtable td.tal.y-style.f10 .s8 {
+  color: var(--np-accent) !important;
+  font-weight: 600 !important;
+}
+
+/* --- 5.6 帖子阅读页卡片与操作栏 (read.php) --- */
+html.np-modern div.h2 {
+  background-color: var(--np-surface) !important;
+  border: 1px solid var(--np-border) !important;
+  border-radius: var(--np-radius-sm) !important;
+  padding: 6px 12px !important;
+  margin-bottom: 10px !important;
+}
+
+html.np-modern div.t5.t2 {
+  background-color: var(--np-surface) !important;
+  border: 1px solid var(--np-border) !important;
+  border-radius: var(--np-radius) !important;
+  box-shadow: var(--np-shadow) !important;
+  overflow: hidden !important;
+  margin-bottom: 16px !important;
+}
+
+html.np-modern table.js-post th.r_two {
+  background-color: var(--np-surface-2) !important;
+  border-right: 1px solid var(--np-border-subtle) !important;
+  padding: 16px 12px !important;
+}
+
+html.np-modern table.js-post th.r_two .user-pic img {
+  border-radius: 10px !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1) !important;
+}
+
+html.np-modern div.tiptop {
+  border-bottom: 1px solid var(--np-border-subtle) !important;
+  padding: 10px 16px !important;
+  margin: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  height: auto !important;
+  position: static !important;
+}
+
+html.np-modern div.tiptop > .fl {
+  float: none !important;
+  order: 0 !important;
+}
+
+html.np-modern div.tiptop span.fl a.s3 {
+  display: inline-block !important;
+  padding: 2px 8px !important;
+  border-radius: 999px !important;
+  background-color: var(--np-accent-soft) !important;
+  color: var(--np-accent) !important;
+  font-weight: 600 !important;
+  font-size: 12px !important;
+  text-decoration: none !important;
+}
+
+html.np-modern div.tiptop > .fr {
+  order: 10 !important;
+  margin-left: auto !important;
+  float: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+html.np-modern div.tiptop > .fr ~ .fr {
+  margin-left: 0 !important;
+}
+
+html.np-modern div.tpc_content {
+  padding: 18px 24px 22px !important;
+}
+
+html.np-modern div.h1.fl,
+html.np-modern h1#subject_tpc.fl {
+  float: none !important;
+  width: 100% !important;
+  display: block !important;
+}
+
+html.np-modern div.h1.fl h1#subject_tpc {
+  font-size: 19px !important;
+  font-weight: 700 !important;
+  line-height: 1.4 !important;
+  margin-bottom: 12px !important;
+}
+
+/* 引用块与付费块 */
+html.np-modern blockquote.blockquote3 {
+  border: 1px solid var(--np-border) !important;
+  border-left: 3px solid var(--np-accent) !important;
+  background-color: var(--np-surface-2) !important;
+  border-radius: 0 var(--np-radius-sm) var(--np-radius-sm) 0 !important;
+  padding: 10px 14px !important;
+  margin: 10px 0 14px !important;
+}
+
+html.np-modern h6.quote.jumbotron {
+  border: 1px solid var(--np-border) !important;
+  background-color: var(--np-surface-2) !important;
+  border-radius: var(--np-radius-sm) !important;
+  padding: 12px 16px !important;
+  margin: 10px 0 !important;
+}
+
+/* 楼层底部操作栏 (.tipad / .readbot) */
+html.np-modern div.tipad {
+  border-top: 1px solid var(--np-border-subtle) !important;
+  padding: 8px 16px !important;
+  margin: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  height: auto !important;
+  line-height: normal !important;
+  position: static !important;
+}
+
+html.np-modern div.tipad > .fl,
+html.np-modern div.tipad > .readbot {
+  float: none !important;
+  order: 0 !important;
+  position: static !important;
+  margin: 0 !important;
+}
+
+html.np-modern div.tipad > .fr {
+  float: none !important;
+  order: 10 !important;
+  margin-left: auto !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  position: static !important;
+}
+
+html.np-modern div.tipad > .fr ~ .fr {
+  margin-left: 0 !important;
+}
+
+html.np-modern div.tipad .readbot {
+  display: flex !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+  gap: 6px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  float: none !important;
+  list-style: none !important;
+  width: auto !important;
+  height: auto !important;
+  position: static !important;
+}
+
+html.np-modern div.tipad ul.readbot li {
+  float: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  width: auto !important;
+  height: auto !important;
+  line-height: normal !important;
+  text-indent: 0 !important;
+  list-style: none !important;
+  background: none !important;
+  position: static !important;
+  top: auto !important;
+  left: auto !important;
+}
+
+html.np-modern div.tipad .readbot a {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  float: none !important;
+  position: static !important;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  width: auto !important;
+  height: auto !important;
+  margin: 0 !important;
+  padding: 4px 11px !important;
+  line-height: 1.4 !important;
+  text-indent: 0 !important;
+  white-space: nowrap !important;
+  vertical-align: middle !important;
+  border-radius: 6px !important;
+  border: 1px solid var(--np-border) !important;
+  background-color: var(--np-surface-2) !important;
+  color: var(--np-text) !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
+  background-image: none !important;
+}
+
+html.np-modern div.tipad .readbot a img {
+  vertical-align: middle !important;
+  height: 14px !important;
+  width: auto !important;
+  flex-shrink: 0 !important;
+}
+
+html.np-modern div.tipad .readbot a:hover {
+  background-color: var(--np-accent-soft) !important;
+  border-color: var(--np-accent) !important;
+  color: var(--np-accent) !important;
+}
+
+html.np-modern div.tipad > .content-dropB {
+  order: 2 !important;
+  float: none !important;
+  position: static !important;
+  width: auto !important;
+  height: auto !important;
+  margin: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+}
+
+html.np-modern div.tipad > .content-dropB > a.dropB {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  position: static !important;
+  width: auto !important;
+  height: auto !important;
+  padding: 4px 11px !important;
+  line-height: 1.4 !important;
+  text-indent: 0 !important;
+  white-space: nowrap !important;
+  border-radius: 6px !important;
+  border: 1px solid var(--np-border) !important;
+  background-color: var(--np-surface-2) !important;
+  background-image: none !important;
+  color: var(--np-text) !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
+  cursor: pointer !important;
+}
+
+html.np-modern div.tipad > .content-dropB > a.dropB:hover {
+  background-color: var(--np-accent-soft) !important;
+  border-color: var(--np-accent) !important;
+  color: var(--np-accent) !important;
+}
+
+/* 快速回复框 */
+html.np-modern form[name="FORM"] > div.t5 {
+  border-radius: var(--np-radius) !important;
+  border: 1px solid var(--np-border) !important;
+  background-color: var(--np-surface) !important;
+  box-shadow: var(--np-shadow) !important;
+  overflow: hidden !important;
 }
