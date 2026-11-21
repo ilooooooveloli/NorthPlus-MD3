@@ -48,6 +48,8 @@
     left: 'm14 18-6-6 6-6 1.4 1.4-4.6 4.6 4.6 4.6L14 18Z',
     right: 'M12.6 12 8 7.4 9.4 6l6 6-6 6L8 16.6l4.6-4.6Z',
     openNew: 'M5 21q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h7v2H5v14h14v-7h2v7q0 .825-.587 1.413T19 21H5Zm4.7-5.3-1.4-1.4L17.6 5H14V3h7v7h-2V6.4l-9.3 9.3Z',
+    mood: 'M15.5 11q.625 0 1.063-.437T17 9.5q0-.625-.437-1.062T15.5 8q-.625 0-1.062.438T14 9.5q0 .625.438 1.063T15.5 11Zm-7 0q.625 0 1.063-.437T10 9.5q0-.625-.437-1.062T8.5 8q-.625 0-1.062.438T7 9.5q0 .625.438 1.063T8.5 11Zm3.5 6.5q1.7 0 3.088-.962T17.1 14h-1.65q-.55.925-1.462 1.463T12 16q-1.075 0-1.988-.537T8.55 14H6.9q.625 1.575 2.013 2.538T12 17.5Zm0 4.5q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22Zm0-2q3.35 0 5.675-2.325T20 12q0-3.35-2.325-5.675T12 4Q8.65 4 6.325 6.325T4 12q0 3.35 2.325 5.675T12 20Z',
+    attach: 'M18 15.75q0 2.6-1.825 4.425T11.75 22q-2.6 0-4.425-1.825T5.5 15.75V6.5q0-1.875 1.313-3.187T10 2q1.875 0 3.188 1.313T14.5 6.5v8.75q0 1.15-.8 1.95t-1.95.8q-1.15 0-1.95-.8t-.8-1.95V6h2v9.25q0 .325.213.538t.537.212q.325 0 .538-.213t.212-.537V6.5q-.025-1.05-.737-1.775T10 4q-1.05 0-1.775.725T7.5 6.5v9.25q-.025 1.775 1.225 3.013T11.75 20q1.75 0 2.975-1.237T16 15.75V6h2v9.75Z',
     keyboard: 'M4 19q-.825 0-1.412-.587T2 17V7q0-.825.588-1.412T4 5h16q.825 0 1.413.588T22 7v10q0 .825-.587 1.413T20 19H4Zm0-2h16V7H4v10Zm4-1h8v-2H8v2Zm-3-3h2v-2H5v2Zm3 0h2v-2H8v2Zm3 0h2v-2h-2v2Zm3 0h2v-2h-2v2Zm3 0h2v-2h-2v2ZM5 10h2V8H5v2Zm3 0h2V8H8v2Zm3 0h2V8h-2v2Zm3 0h2V8h-2v2Zm3 0h2V8h-2v2Z'
   };
 
@@ -152,6 +154,15 @@
     }
   }
 
+  // 0) 断点：按窗口宽度给 <html> 打类，CSS 据此切换布局
+  function updateBreakpoint() {
+    const w = window.innerWidth || document.documentElement.clientWidth;
+    root.classList.toggle('np-bp-tablet', w < 1000);
+    root.classList.toggle('np-bp-phone', w < 760);
+  }
+  updateBreakpoint();
+  window.addEventListener('resize', updateBreakpoint, { passive: true });
+
   // 1) 同步读取本地缓存，避免闪烁
   try {
     const cached = localStorage.getItem(CACHE_KEY);
@@ -186,14 +197,25 @@
     onReady();
   }
 
+  function ensureViewport() {
+    if (!prefs.modernUI || document.querySelector('meta[name="viewport"]')) return;
+    const meta = document.createElement('meta');
+    meta.name = 'viewport';
+    meta.content = 'width=device-width, initial-scale=1';
+    document.head?.appendChild(meta);
+    updateBreakpoint();
+  }
+
   function onReady() {
     const steps = [
+      ensureViewport,
       enhanceHeader,
       enhanceIndex,
       enhanceThreadList,
       enhanceActionButtons,
       enhanceToolbars,
       enhanceNotice,
+      enhanceQuickReply,
       enhanceLightbox,
       syncFloating,
       setupScroll,
@@ -412,6 +434,136 @@
       rights.forEach((node, idx) => {
         node.style.setProperty('order', String(10 + (rights.length - 1 - idx)), 'important');
       });
+    });
+  }
+
+  /* ------------------------------------------------------------------
+     快速回复：单栏重排，选项变 Chip，表情 / 附件收进按钮
+     ------------------------------------------------------------------ */
+  function enhanceQuickReply() {
+    if (!prefs.modernUI) return;
+    const form = document.querySelector('form[name="FORM"]');
+    const box = form?.querySelector(':scope > div.t5');
+    const textarea = box?.querySelector('textarea');
+    if (!box || !textarea || box.dataset.np) return;
+    const row = textarea.closest('tr');
+    const mainTd = textarea.closest('td');
+    if (!row || !mainTd) return;
+    box.dataset.np = '1';
+    box.classList.add('np-qr');
+
+    const cells = [...row.children];
+    const optsTd = cells.find((c) => c !== mainTd && c.querySelector('input[type="checkbox"]'));
+    const fieldset = row.querySelector('fieldset');
+    const emojiTd = fieldset?.closest('td');
+
+    /* 选项 → Chip */
+    const opts = el('div', { class: 'np-qr-opts', role: 'group', 'aria-label': '发帖选项' });
+    if (optsTd) {
+      const nodes = [...optsTd.childNodes];
+      for (let i = 0; i < nodes.length; i++) {
+        const n = nodes[i];
+        if (!(n instanceof HTMLInputElement) || n.type !== 'checkbox') continue;
+        const label = el('label', { class: 'np-opt' });
+        const text = [];
+        let j = i + 1;
+        while (j < nodes.length && nodes[j].nodeType === Node.TEXT_NODE) text.push(nodes[j++].textContent.trim());
+        label.append(n, el('span', { text: text.join('') }));
+        const extras = [];
+        while (j < nodes.length && nodes[j].nodeName !== 'BR') {
+          if (nodes[j].nodeType === Node.ELEMENT_NODE) extras.push(nodes[j]);
+          j++;
+        }
+        if (extras.length) {
+          const group = el('span', { class: 'np-opt-group' }, [label]);
+          extras.forEach((x) => {
+            if (x.tagName === 'INPUT') {
+              x.setAttribute('inputmode', 'numeric');
+              x.setAttribute('aria-label', `${text.join('')}数额`);
+            }
+            group.append(x);
+          });
+          opts.append(group);
+        } else {
+          opts.append(label);
+        }
+        i = j - 1;
+      }
+      optsTd.classList.add('np-qr-hidden');
+    }
+
+    /* 底部操作栏 */
+    const actions = [...mainTd.children].find((c) => c.querySelector('a.abtn') && c.querySelector('input[type="submit"]'));
+    actions?.classList.add('np-qr-actions');
+    const hint = actions && [...actions.children].find((c) => /Ctrl/.test(c.textContent || ''));
+    hint?.classList.add('np-qr-hint');
+    if (hint) hint.textContent = 'Ctrl + Enter 发送';
+    actions?.querySelector(':scope > div:has(a.abtn)')?.classList.add('np-qr-tools');
+
+    const toolbar = el('div', { class: 'np-qr-toolbar' });
+
+    /* 表情：收进弹出面板 */
+    if (fieldset) {
+      const panel = el('div', { class: 'np-emoji-panel', role: 'dialog', 'aria-label': '表情' });
+      panel.hidden = true;
+      panel.append(fieldset);
+      const btn = el('button', { type: 'button', class: 'np-qr-btn', 'aria-expanded': 'false' }, [
+        icon('mood', 18),
+        el('span', { text: '表情' })
+      ]);
+      const setOpen = (open) => {
+        panel.hidden = !open;
+        btn.setAttribute('aria-expanded', String(open));
+      };
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        setOpen(panel.hidden);
+      });
+      panel.addEventListener('click', (e) => {
+        if (e.target instanceof HTMLImageElement) setTimeout(() => textarea.focus(), 0);
+      });
+      document.addEventListener('click', (e) => {
+        if (!panel.hidden && !panel.contains(e.target) && !btn.contains(e.target)) setOpen(false);
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !panel.hidden) setOpen(false);
+      });
+      const wrap = el('div', { class: 'np-emoji-wrap' }, [btn, panel]);
+      toolbar.append(wrap);
+      emojiTd?.classList.add('np-qr-hidden');
+    }
+
+    /* 附件：折叠 */
+    const attachTable = mainTd.querySelector(':scope > table');
+    if (attachTable) {
+      const attachBox = el('div', { class: 'np-qr-attach' });
+      attachBox.hidden = true;
+      attachTable.before(attachBox);
+      attachBox.append(attachTable);
+      const btn = el('button', { type: 'button', class: 'np-qr-btn', 'aria-expanded': 'false' }, [
+        icon('attach', 18),
+        el('span', { text: '附件' })
+      ]);
+      btn.addEventListener('click', () => {
+        attachBox.hidden = !attachBox.hidden;
+        btn.setAttribute('aria-expanded', String(!attachBox.hidden));
+      });
+      toolbar.append(btn);
+    }
+
+    textarea.after(toolbar);
+    toolbar.after(opts);
+    if (!opts.children.length) opts.remove();
+
+    // Ctrl/⌘ + Enter 发送（站点自带仅限部分浏览器）
+    textarea.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
+        const submit = actions?.querySelector('input[type="submit"]');
+        if (submit) {
+          e.preventDefault();
+          submit.click();
+        }
+      }
     });
   }
 
