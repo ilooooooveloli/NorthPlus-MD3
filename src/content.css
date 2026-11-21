@@ -5433,3 +5433,226 @@ html.np-md.np-bp-phone .np-qr-attach td {
 html.np-md.np-bp-phone .np-qr-attach tbody:first-child {
   display: none !important;
 }
+
+/* --------------------------------------------------------------------------
+   21. 兼容「南加北加论坛强化脚本(凛+)」
+   凛+ 的组件按原版 ~950px 页宽定位、按浅色写死配色；这里把它们挪到宽屏两侧留白、
+   换成 MD3 角色色。凛+ 自带的深色模式在 MD3 开启时由 content.js 暂时摘掉，
+   统一由 MD3 深浅色接管，关闭 MD3 后恢复。
+   -------------------------------------------------------------------------- */
+:root {
+  --np-content-w: min(92vw, 1400px);
+  --np-rinsp-gutter: calc((100vw - var(--np-content-w)) / 2);
+  --np-sticky-offset: 0px;
+}
+
+html.np-md {
+  /* MD3 下 #mainNav 始终吸顶：top 8 + 高 64 + 间距 8 */
+  --np-sticky-offset: 80px;
+}
+
+/* 21.1 配色变量映射 */
+html.np-md {
+  --rinsp-active-toggler-bg-color: var(--md-secondary-container);
+  --rinsp-active-toggler-fg-color: var(--md-on-secondary-container);
+  --rinsp-visited-link-color: var(--md-outline);
+  --rinsp-visited-link-hover-color: var(--md-on-surface);
+  --rinsp-visited-update-color: var(--md-tertiary);
+  --rinsp-visited-update-border-color: var(--md-tertiary-container);
+  --rinsp-blocked-row-bg: var(--md-surface-container-low);
+  --rinsp-blocked-row-label-color: var(--md-outline);
+  --rinsp-avatar-replace-default-text-color: var(--md-outline);
+  --rinsp-avatar-replace-default-border-color: var(--md-surface-container-high);
+  --rinsp-avatar-replace-default-bg: var(--md-surface-container-highest);
+  --rinsp-cell-background-grey-out: var(--md-surface-container-highest);
+  --rinsp-cell-background-auto-watch: color-mix(in srgb, #f0a020 16%, var(--md-surface-container));
+  --rinsp-cell-background-hgt-new: color-mix(in srgb, var(--md-primary) 16%, var(--md-surface-container));
+  --rinsp-cell-background-hgt-err: var(--md-error-container);
+  --rinsp-cell-background-active: var(--md-secondary-container);
+  --rinsp-lightest-bg-color: var(--md-surface-container-lowest);
+  --rinsp-darkest-text-color: var(--md-on-surface);
+  --rinsp-text-color-red: var(--md-error);
+  --rinsp-text-color-blue: var(--md-primary);
+  --rinsp-text-color-grey: var(--md-outline);
+  --rinsp-infscroll-divider-text-color: var(--md-on-secondary-container);
+  --rinsp-infscroll-divider-border-color: var(--md-outline-variant);
+  --rinsp-infscroll-divider-background: var(--md-secondary-container);
+  --rinsp-infscroll-loader-border-color: var(--md-outline-variant);
+  --rinsp-infscroll-loader-background: var(--md-surface-container);
+  --rinsp-infscroll-loader-progress: var(--md-primary-container);
+}
+
+html.np-md.np-dark {
+  --rinsp-text-color-orange: #e0a65a;
+  --rinsp-text-color-green: #5cc878;
+  --rinsp-text-color-violet: #c58ae0;
+}
+
+/* 21.2 两侧悬浮按钮：挪到宽屏内容区两侧留白 */
+html.np-wide .rinsp-tpcontrol-container,
+html.np-wide .rinsp-bmcontrol-container,
+html.np-wide .rinsp-excontrol-container,
+html.np-wide .rinsp-pinuser-main {
+  left: auto !important;
+  right: max(4px, calc(var(--np-rinsp-gutter) - 36px)) !important;
+}
+
+html.np-wide .rinsp-notification-container {
+  left: max(4px, calc(var(--np-rinsp-gutter) - 40px)) !important;
+}
+
+/* 右边缘贴内容区左侧；留白不够时收窄（楼层号保留、标签省略），且不出屏 */
+html.np-wide .rinsp-spots-main {
+  left: auto !important;
+  transform: none !important;
+  right: min(calc(100vw - var(--np-rinsp-gutter) + 12px), calc(100vw - 52px)) !important;
+  max-width: max(48px, calc(var(--np-rinsp-gutter) - 16px));
+}
+
+html.np-wide .rinsp-infscroll-armed .rinsp-infscroll-loader-bar {
+  width: var(--np-content-w) !important;
+}
+
+/* 扩展的悬浮工具栏已有回顶按钮，隐藏凛+ 的重复按钮 */
+html.np-floatingbar .rinsp-excontrol-totop {
+  display: none !important;
+}
+
+/* 21.3 组件外观 */
+html.np-md .rinsp-excontrol-item,
+html.np-md .rinsp-notification-item {
+  color: var(--md-on-surface-variant) !important;
+  background: var(--md-surface-container-high) !important;
+  box-shadow: var(--md-elevation-1) !important;
+  border-radius: var(--md-corner-sm) !important;
+  font-family: var(--md-font) !important;
+}
+
+html.np-md .rinsp-excontrol-item:after {
+  color: var(--md-outline);
+}
+
+html.np-md .rinsp-excontrol-item.rinsp-excontrol-item-ticker.rinsp-active,
+html.np-md .rinsp-highlight-unscored-thread-mode .rinsp-highlight-unscored-thread-toggler {
+  color: var(--md-on-secondary-container) !important;
+  background: var(--md-secondary-container) !important;
+}
+
+/* 当前楼层头像吸顶：让出吸顶导航栏的高度，底色跟随作者栏 */
+html.np-md th.r_two > .user-pic.rinsp-userpic-sticky {
+  box-sizing: content-box !important;
+  padding-top: var(--np-sticky-offset) !important;
+  background-color: var(--md-surface-container) !important;
+  background-clip: content-box !important;
+}
+
+html.np-md .rinsp-userframe-userinfo {
+  background: linear-gradient(to bottom, transparent 0%, var(--md-surface-container) 100%) !important;
+  color: var(--md-on-surface-variant);
+}
+
+/* 右上角 ⚙️ 快捷菜单：MD3 菜单 */
+html.np-md .rinsp-quick-action-overlay {
+  font-family: var(--md-font);
+}
+
+html.np-md .rinsp-quick-action-overlay:focus {
+  z-index: 1001 !important;
+  padding: 8px 12px !important;
+  margin: -5px 0 0 0 !important;
+  color: var(--md-on-surface) !important;
+  background: var(--md-surface-container) !important;
+  border-radius: var(--md-corner-md) !important;
+  box-shadow: var(--md-elevation-2) !important;
+}
+
+html.np-md .rinsp-quick-action-overlay:focus > label {
+  filter: none !important;
+  border-bottom-color: var(--md-outline-variant) !important;
+}
+
+html.np-md .rinsp-quick-action-overlay:focus > label::after {
+  color: var(--md-on-surface-variant) !important;
+}
+
+html.np-md .rinsp-quick-action {
+  padding: 4px 0;
+}
+
+html.np-md .rinsp-quick-action::before {
+  color: var(--md-on-surface) !important;
+}
+
+html.np-md .rinsp-quick-action-divider {
+  border-top-color: var(--md-outline-variant) !important;
+}
+
+/* MD3 开启时深浅色由扩展接管，凛+ 的暗黑模式开关无效，隐藏 */
+html.np-md .rinsp-dark-mode-toggle {
+  display: none !important;
+}
+
+/* 凛+ 弹窗（关键词编辑等）沿用论坛 .menu，MD3 已有样式，只去掉内层 5px 浅色边框 */
+html.np-md .rinsp-common-popup-menu > .bor {
+  border: none !important;
+  background: transparent !important;
+}
+
+html.np-md .rinsp-dialog-modal-mask {
+  background: color-mix(in srgb, var(--md-scrim) 40%, transparent) !important;
+}
+
+html.np-md .rinsp-thread-filter-pinned .tr1 .r_two,
+html.np-md .rinsp-thread-filter-pinned th.r_two > .rinsp-userpic-sticky {
+  background-color: color-mix(in srgb, #f08 14%, var(--md-surface-container)) !important;
+}
+
+html.np-md .rinsp-pinuser-item-face > div {
+  background: color-mix(in srgb, var(--md-surface-container-high) 60%, transparent) !important;
+}
+
+html.np-md .rinsp-pinuser-item:hover > .rinsp-pinuser-item-face > div {
+  background: var(--md-surface-container-high) !important;
+}
+
+/* 凛+ 设置页的「暗黑模式」：MD3 开启时不生效，给出提示 */
+html.np-md .rinsp-config-list > dt:has(> select > option[value="hcdarkbeige"])::after {
+  content: "MD3 界面开启时，深浅色由 North+ 体验助手接管，此项不生效";
+  display: block;
+  margin-top: 4px;
+  font-size: 12px;
+  color: var(--md-on-surface-variant);
+}
+
+/* 左侧「焦点」资源楼层列表：原版按论坛深色外框写死半透明白 */
+html.np-md .rinsp-highlight-spots > b {
+  color: var(--md-on-surface-variant) !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+}
+
+html.np-md .rinsp-highlight-spots > dl {
+  background: var(--md-surface-container) !important;
+  border-top: none !important;
+  border-radius: var(--md-corner-md) !important;
+  box-shadow: var(--md-elevation-1) !important;
+  padding: 4px 8px !important;
+}
+
+html.np-md .rinsp-highlight-spots > dl > dt > a {
+  color: var(--md-on-surface-variant) !important;
+}
+
+html.np-md .rinsp-highlight-spots > dl > dt > a .rinsp-spot-floor {
+  color: var(--md-on-surface) !important;
+}
+
+html.np-md .rinsp-att-enhanced.rinsp-att-sell > a:before {
+  color: var(--md-on-surface) !important;
+}
+
+html.np-md .rinsp-buy-failed {
+  background-color: var(--md-error-container) !important;
+  border-color: var(--md-error) !important;
+  color: var(--md-on-error-container) !important;
+}

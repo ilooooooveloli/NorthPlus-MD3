@@ -133,16 +133,19 @@
     root.classList.toggle('np-readable', Boolean(prefs.readable));
     root.classList.toggle('np-lightbox', Boolean(prefs.lightbox));
     root.classList.toggle('np-rowclick', Boolean(prefs.rowClick));
+    root.classList.toggle('np-floatingbar', Boolean(prefs.floatingBar));
 
     applySeed(md);
+    syncRinspDark();
 
-    if (prefs.maxWidth === 0) {
-      root.style.setProperty('--np-width-vw', '96vw');
-      root.style.setProperty('--np-max-width', 'none');
-    } else {
-      root.style.setProperty('--np-width-vw', '92vw');
-      root.style.setProperty('--np-max-width', `${prefs.maxWidth}px`);
-    }
+    rootVars.width = prefs.maxWidth === 0
+      ? { '--np-width-vw': '96vw', '--np-max-width': 'none', '--np-content-w': '96vw' }
+      : {
+          '--np-width-vw': '92vw',
+          '--np-max-width': `${prefs.maxWidth}px`,
+          '--np-content-w': `min(92vw, ${prefs.maxWidth}px)`
+        };
+    writeRootVars();
 
     try {
       localStorage.setItem(CACHE_KEY, JSON.stringify(prefs));
@@ -153,18 +156,55 @@
     if (document.readyState !== 'loading') scheduleDarkFix();
   }
 
-  // 种子色：非默认时把生成的角色色写到 <html> 行内样式，覆盖 CSS 里的默认配色
-  const SEED_VARS = [];
+  // 凛+ 自带深色模式（html.rinsp-dark-mode）会改写表格、链接、图片滤镜，与 MD3 互相打架。
+  // MD3 开启时摘掉它、由 MD3 深浅色统一接管；MD3 关闭后还给凛+。
+  let rinspDarkHeld = false;
+  function rinspWantsDark() {
+    // 与凛+ 的 isDarkMode() 一致：设置存在页面 localStorage
+    try {
+      if (!localStorage.getItem('rinsp-dark-mode')) return false;
+      return localStorage.getItem('rinsp-dark-mode-auto') ? darkQuery.matches : true;
+    } catch (_) {
+      return false;
+    }
+  }
+  function syncRinspDark() {
+    const md = root.classList.contains('np-md');
+    if (md && root.classList.contains('rinsp-dark-mode')) {
+      rinspDarkHeld = true;
+      root.classList.remove('rinsp-dark-mode');
+    } else if (!md && rinspDarkHeld) {
+      rinspDarkHeld = false;
+      if (rinspWantsDark()) root.classList.add('rinsp-dark-mode');
+    }
+  }
+  // 凛+ 跟随系统切换或改设置时会重新加上该类
+  new MutationObserver(syncRinspDark).observe(root, { attributes: true, attributeFilter: ['class'] });
+
+  // 运行时变量（宽度、种子色）写进独立的 <style>，而不是 <html> 的行内样式：
+  // 凛+ 等脚本会在加载过程中 removeAttribute('style')，行内变量会被一起清掉
+  const rootVars = { width: {}, seed: {} };
+  let rootVarsStyle = null;
+  function writeRootVars() {
+    if (!rootVarsStyle || !rootVarsStyle.isConnected) {
+      rootVarsStyle = rootVarsStyle || el('style', { id: 'np-root-vars' });
+      (document.head || root).appendChild(rootVarsStyle);
+    }
+    const decls = Object.entries({ ...rootVars.width, ...rootVars.seed })
+      .map(([k, v]) => `${k}: ${v} !important;`)
+      .join(' ');
+    rootVarsStyle.textContent = `:root { ${decls} }`;
+  }
+
+  // 种子色：非默认时生成整套角色色，覆盖 CSS 里的默认配色
   function applySeed(md) {
     const color = globalThis.npColor;
     const seed = color ? color.normalize(prefs.seed) : '';
-    SEED_VARS.splice(0).forEach((name) => root.style.removeProperty(name));
+    rootVars.seed = {};
     if (!md || !color || seed === color.DEFAULT_SEED) return;
     const scheme = color.scheme(seed, isDark());
     Object.entries(scheme).forEach(([role, value]) => {
-      const name = `--md-${role}`;
-      root.style.setProperty(name, value);
-      SEED_VARS.push(name);
+      rootVars.seed[`--md-${role}`] = value;
     });
   }
 
@@ -245,8 +285,13 @@
       setupKeyboard,
       setupRowClick,
       restoreAfterPurchase,
-      scheduleDarkFix
+      scheduleDarkFix,
+      watchInsertedContent
     ];
+    runSteps(steps);
+  }
+
+  function runSteps(steps) {
     steps.forEach((fn) => {
       try {
         fn();
@@ -254,6 +299,17 @@
         console.warn('[North+]', fn.name, err);
       }
     });
+  }
+
+  // 凛+ 的无缝翻页 / 免刷新回复会往页面里插入新楼层、新帖子行：对新内容补跑逐节点增强（均可重复执行）
+  function watchInsertedContent() {
+    const target = document.getElementById('main') || document.body;
+    let timer = 0;
+    new MutationObserver((records) => {
+      if (!records.some((r) => r.addedNodes.length)) return;
+      clearTimeout(timer);
+      timer = setTimeout(() => runSteps([enhanceThreadList, enhanceToolbars, markZoomable, scheduleDarkFix]), 300);
+    }).observe(target, { childList: true, subtree: true });
   }
 
   /* ------------------------------------------------------------------
@@ -999,14 +1055,19 @@ hr { border: none; border-top: 1px solid ${v('--md-outline-variant')}; }
     return w >= 160 || h >= 160;
   }
 
-  function enhanceLightbox() {
+  function markZoomable() {
     const mark = (img) => {
       if (isZoomable(img)) img.classList.add('np-zoomable');
     };
-    document.querySelectorAll('.tpc_content img').forEach((img) => {
+    document.querySelectorAll('.tpc_content img:not([data-np-zoom])').forEach((img) => {
+      img.dataset.npZoom = '1';
       if (img.complete) mark(img);
       else img.addEventListener('load', () => mark(img), { once: true });
     });
+  }
+
+  function enhanceLightbox() {
+    markZoomable();
 
     document.addEventListener(
       'click',
