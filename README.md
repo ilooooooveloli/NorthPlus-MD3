@@ -60,8 +60,17 @@
 manifest.json      扩展清单
 icons/             图标
 src/color.js       种子色 → MD3 配色生成（内容脚本与弹窗共用）
-src/content.js     注入论坛页面的脚本（工具栏、快捷键、图片查看器等）
-src/content.css    MD3 主题样式
+src/content/       注入论坛页面的脚本，按文件名顺序加载、共享顶层作用域
+  00-core.js         偏好默认值、页面类型、图标与 DOM 工具
+  01-prefs.js        应用偏好：深浅色、种子色、宽度、断点
+  02-pages.js        页头、首页、帖子列表、版块公告等页面增强
+  03-composer.js     快速回复与发帖编辑器
+  04-floating.js     悬浮工具栏、回顶、阅读进度、Snackbar
+  05-lightbox.js     图片查看器
+  06-navigation.js   键盘快捷键、整行点击
+  07-purchase.js     购买后原地刷新
+  99-main.js         启动入口（加载时执行的代码只放这里）
+src/styles/        MD3 主题样式，按章节编号拆分，manifest 里的顺序即层叠顺序
 src/background.js  后台定时检查更新
 src/update.js      更新检测逻辑（后台与弹窗共用）
 src/popup.*        设置弹窗

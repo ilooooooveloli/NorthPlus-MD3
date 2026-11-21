@@ -1,0 +1,360 @@
+/* --------------------------------------------------------------------------
+   20. 快速回复（重排后）
+   -------------------------------------------------------------------------- */
+html.np-md form[name="FORM"] .np-qr .np-qr-hidden,
+html.np-md form[name="FORM"] .np-qr > table > tbody > tr.tr2 {
+  display: none !important;
+}
+
+html.np-md .np-qr > table,
+html.np-md .np-qr > table > tbody {
+  display: block !important;
+  width: 100% !important;
+}
+
+html.np-md .np-qr > table > tbody > tr {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+}
+
+html.np-md .np-qr > table > tbody > tr > td {
+  display: block !important;
+}
+
+html.np-md .np-qr > table > tbody > tr > td.f_one:not(.np-qr-hidden) {
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+}
+
+html.np-md .np-qr > table > tbody > tr:first-child td.h2:last-child {
+  text-align: right !important;
+}
+
+html.np-md .np-qr > table > tbody > tr:first-child td.h2:last-child a {
+  display: inline-flex !important;
+  align-items: center !important;
+  height: 32px !important;
+  padding: 0 12px !important;
+  border-radius: var(--md-corner-full) !important;
+  color: var(--md-primary) !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+}
+
+html.np-md .np-qr > table > tbody > tr:first-child td.h2:last-child a:hover {
+  background: color-mix(in srgb, var(--md-primary) 8%, transparent) !important;
+}
+
+html.np-md .np-qr td.f_one {
+  padding: 0 20px 20px !important;
+}
+
+html.np-md .np-qr td.f_one:not(.np-qr-hidden) {
+  width: 100% !important;
+}
+
+html.np-md .np-qr td.f_one > div:first-child {
+  margin-bottom: 8px !important;
+}
+
+html.np-md .np-qr input[name="atc_title"] {
+  width: 100% !important;
+  height: 44px !important;
+  font-size: 15px !important;
+}
+
+html.np-md .np-qr td.f_one > div:first-child br {
+  display: none;
+}
+
+html.np-md .np-qr td.f_one > div[style*="padding"] {
+  padding: 0 !important;
+}
+
+html.np-md .np-qr textarea {
+  width: 100% !important;
+  min-height: 160px !important;
+  margin: 0 !important;
+  border-radius: var(--md-corner-md) var(--md-corner-md) 0 0 !important;
+  border-bottom: none !important;
+}
+
+/* 文本框下方工具条（表情 / 附件） */
+html.np-md .np-qr-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  border: 1px solid var(--md-outline);
+  border-top-color: var(--np-divider);
+  border-radius: 0 0 var(--md-corner-md) var(--md-corner-md);
+  background: var(--md-surface-container);
+}
+
+html.np-md .np-qr textarea:focus + .np-qr-toolbar {
+  border-color: var(--md-primary);
+  border-top-color: var(--np-divider);
+}
+
+html.np-md .np-qr-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  height: 32px !important;
+  padding: 0 12px 0 10px !important;
+  border: none !important;
+  border-radius: var(--md-corner-full) !important;
+  background: transparent !important;
+  color: var(--md-on-surface-variant) !important;
+  font: 500 13px/20px var(--md-font) !important;
+  cursor: pointer !important;
+  box-shadow: none !important;
+}
+
+html.np-md .np-qr-btn svg {
+  fill: currentColor;
+}
+
+html.np-md .np-qr-btn:hover {
+  background: var(--np-hover) !important;
+  color: var(--md-on-surface) !important;
+}
+
+html.np-md .np-qr-btn[aria-expanded="true"] {
+  background: var(--md-secondary-container) !important;
+  color: var(--md-on-secondary-container) !important;
+}
+
+/* 发帖选项 Chip */
+html.np-md .np-qr-opts {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+html.np-md .np-opt {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 14px;
+  box-sizing: border-box;
+  border: 1px solid var(--md-outline-variant);
+  border-radius: var(--md-corner-sm);
+  color: var(--md-on-surface-variant);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 20px;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.15s var(--md-ease), padding 0.15s var(--md-ease);
+}
+
+html.np-md .np-opt:hover {
+  background: var(--np-hover);
+  color: var(--md-on-surface);
+}
+
+html.np-md .np-opt input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  pointer-events: none;
+}
+
+html.np-md .np-opt:has(input:checked) {
+  padding-left: 8px;
+  border-color: transparent;
+  background: var(--md-secondary-container);
+  color: var(--md-on-secondary-container);
+}
+
+html.np-md .np-opt:has(input:checked)::before {
+  content: "";
+  width: 18px;
+  height: 18px;
+  background: currentColor;
+  -webkit-mask: var(--np-i-check) center / 18px no-repeat;
+  mask: var(--np-i-check) center / 18px no-repeat;
+}
+
+html.np-md .np-opt:has(input:focus-visible) {
+  outline: 3px solid var(--md-secondary);
+  outline-offset: 2px;
+}
+
+html.np-md .np-opt-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding-right: 4px;
+  border-radius: var(--md-corner-sm);
+}
+
+html.np-md .np-opt-group:has(input[type="checkbox"]:checked) {
+  background: color-mix(in srgb, var(--md-secondary-container) 45%, transparent);
+}
+
+html.np-md .np-opt-group:not(:has(input[type="checkbox"]:checked)) > input,
+html.np-md .np-opt-group:not(:has(input[type="checkbox"]:checked)) > select {
+  opacity: 0.5;
+}
+
+html.np-md .np-opt-group > input.input {
+  width: 64px !important;
+  height: 32px !important;
+  min-height: 0 !important;
+  padding: 0 8px !important;
+  text-align: center !important;
+  font-size: 13px !important;
+}
+
+html.np-md .np-opt-group > select {
+  height: 32px !important;
+  min-height: 0 !important;
+  padding: 0 8px !important;
+  font-size: 13px !important;
+}
+
+/* 附件 */
+html.np-md .np-qr-attach {
+  margin-top: 12px;
+  padding: 8px 12px;
+  border-radius: var(--md-corner-md);
+  background: var(--md-surface-container);
+}
+
+html.np-md .np-qr-attach[hidden] {
+  display: none !important;
+}
+
+html.np-md .np-qr-attach table {
+  margin: 0 !important;
+}
+
+html.np-md .np-qr-attach td {
+  padding: 4px 8px !important;
+  border: none !important;
+  font-size: 12px !important;
+  color: var(--md-on-surface-variant) !important;
+}
+
+html.np-md .np-qr-attach input[type="file"] {
+  font-size: 13px;
+  color: var(--md-on-surface-variant);
+}
+
+html.np-md .np-qr-attach input[type="file"]::file-selector-button {
+  height: 32px;
+  margin-right: 8px;
+  padding: 0 14px;
+  border: none;
+  border-radius: var(--md-corner-full);
+  background: var(--md-secondary-container);
+  color: var(--md-on-secondary-container);
+  font: 500 13px var(--md-font);
+  cursor: pointer;
+}
+
+/* 底部操作栏 */
+html.np-md .np-qr-actions {
+  display: flex !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  margin-top: 16px !important;
+  padding-top: 16px !important;
+  border-top: 1px solid var(--np-divider) !important;
+}
+
+html.np-md .np-qr-actions > div {
+  float: none !important;
+  padding: 0 !important;
+}
+
+html.np-md .np-qr-actions .np-qr-tools {
+  order: 1;
+  display: flex !important;
+  gap: 2px;
+  margin-right: auto !important;
+}
+
+html.np-md .np-qr-actions .np-qr-tools a.abtn {
+  height: 36px !important;
+  padding: 0 12px !important;
+  border: none !important;
+  color: var(--md-on-surface-variant) !important;
+}
+
+html.np-md .np-qr-actions .np-qr-tools a.abtn:hover {
+  background: var(--np-hover) !important;
+  color: var(--md-on-surface) !important;
+}
+
+html.np-md #main .np-qr .np-qr-actions .np-qr-hint {
+  order: 2;
+  font-size: 12px !important;
+  color: var(--md-on-surface-variant) !important;
+}
+
+html.np-md .np-qr-actions input[type="submit"] {
+  order: 3;
+  height: 40px !important;
+  min-width: 112px;
+  padding: 0 28px !important;
+}
+
+html.np-md.np-bp-phone .np-qr td.f_one {
+  padding: 0 12px 16px !important;
+}
+
+html.np-md.np-bp-phone .np-qr-actions .np-qr-tools {
+  width: 100%;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+html.np-md.np-bp-phone .np-qr-actions .np-qr-hint {
+  display: none !important;
+}
+
+html.np-md.np-bp-phone .np-qr-actions input[type="submit"] {
+  flex: 1 1 auto;
+}
+
+html.np-md .np-qr > table > tbody > tr:first-child > td.h2 {
+  padding: 16px 20px 12px !important;
+}
+
+html.np-md .np-qr > table > tbody > tr:first-child > td.h2:last-child {
+  padding-right: 12px !important;
+}
+
+html.np-md.np-bp-phone form[name="FORM"] input.input,
+html.np-md.np-bp-phone form[name="FORM"] textarea {
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+html.np-md.np-bp-phone .np-qr .np-opt-group {
+  flex-wrap: wrap;
+}
+
+html.np-md.np-bp-phone .np-qr-attach table,
+html.np-md.np-bp-phone .np-qr-attach tbody,
+html.np-md.np-bp-phone .np-qr-attach tr,
+html.np-md.np-bp-phone .np-qr-attach td {
+  display: block !important;
+  width: auto !important;
+}
+
+html.np-md.np-bp-phone .np-qr-attach tbody:first-child {
+  display: none !important;
+}
+

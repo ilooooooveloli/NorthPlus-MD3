@@ -1,0 +1,216 @@
+/* --------------------------------------------------------------------------
+   23. 图墙模式（thread_new.php #wall）：浮动定高块 → 自适应网格卡片
+   -------------------------------------------------------------------------- */
+html.np-md #wall,
+html.np-md #wall .dcsns,
+html.np-md #wall .dcsns-content {
+  width: auto !important;
+  height: auto !important;
+  border: none !important;
+  background: transparent !important;
+}
+
+html.np-md #wall {
+  margin-bottom: 16px !important;
+}
+
+html.np-md #wall ul.stream {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 12px;
+  height: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none;
+}
+
+html.np-md #wall li.dcsns-li {
+  position: relative !important;
+  float: none !important;
+  left: auto !important;
+  top: auto !important;
+  width: auto !important;
+  height: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  border-radius: var(--md-corner-md) !important;
+  background: var(--md-surface-container-low) !important;
+  overflow: hidden;
+  transition: background-color 0.15s var(--md-ease), box-shadow 0.15s var(--md-ease);
+}
+
+html.np-md #wall li.dcsns-li:hover {
+  background: var(--md-surface-container) !important;
+  box-shadow: var(--md-elevation-1);
+}
+
+/* 卡片内部：图片在上，标题 / 数据 / 作者日期依次往下 */
+html.np-md #wall .inner {
+  display: flex;
+  flex-direction: column;
+  height: 100% !important;
+  padding: 0 !important;
+  overflow: visible !important;
+}
+
+html.np-md #wall .section-text {
+  display: contents !important;
+}
+
+html.np-md #wall .section-text > div {
+  order: -1;
+  margin: 0 !important;
+}
+
+html.np-md #wall .section-text > div a {
+  display: block;
+}
+
+html.np-md #wall .section-text img {
+  display: block;
+  width: 100% !important;
+  height: auto !important;
+  max-height: none !important;
+  aspect-ratio: 4 / 3;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  background: var(--md-surface-container-highest);
+  object-fit: cover;
+}
+
+html.np-md #wall .section-title {
+  order: 0;
+  display: flex !important;
+  align-items: flex-start;
+  gap: 4px;
+  height: auto !important;
+  max-height: none !important;
+  margin: 0 !important;
+  padding: 12px 12px 4px !important;
+  overflow: visible !important;
+  font-size: 14px !important;
+  line-height: 20px !important;
+}
+
+html.np-md #wall .section-title a {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  color: var(--md-on-surface) !important;
+  text-decoration: none !important;
+}
+
+html.np-md #wall .section-title a b {
+  font-weight: 500 !important;
+}
+
+
+/* 回复 / 人气 */
+html.np-md #wall .section-text > span {
+  order: 1;
+  float: none !important;
+  padding: 0 12px 4px !important;
+  color: var(--md-on-surface-variant) !important;
+  font-size: 12px !important;
+  line-height: 16px;
+}
+
+/* 收藏：悬停时浮在图片右上角 */
+html.np-md #wall .section-text > span:has(#favor) {
+  position: absolute !important;
+  top: 8px;
+  right: 8px;
+  z-index: 1;
+  padding: 0 !important;
+}
+
+html.np-md #wall a#favor {
+  display: inline-flex;
+  align-items: center;
+  height: 28px;
+  padding: 0 12px;
+  border-radius: var(--md-corner-full);
+  background: color-mix(in srgb, var(--md-surface-container-highest) 85%, transparent);
+  color: var(--md-on-surface) !important;
+  font-size: 12px;
+  font-weight: 500;
+  opacity: 0;
+  backdrop-filter: blur(6px);
+  transition: opacity 0.15s var(--md-ease);
+}
+
+html.np-md #wall li.dcsns-li:hover a#favor,
+html.np-md #wall a#favor:focus-visible {
+  opacity: 1;
+}
+
+html.np-md #wall a#favor:hover {
+  background: var(--md-secondary-container);
+  color: var(--md-on-secondary-container) !important;
+}
+
+/* 作者 / 日期：原本是绝对定位的红 / 灰色底条 */
+html.np-md #wall .section-intro {
+  order: 3;
+  position: relative !important;
+  display: block !important;
+  width: auto !important;
+  height: auto !important;
+  margin-top: auto !important;
+  padding: 8px 12px 12px !important;
+  background: transparent !important;
+  transition: background-color 0.15s var(--md-ease);
+}
+
+html.np-md #wall .section-intro table {
+  width: 100% !important;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+html.np-md #wall .section-intro td {
+  padding: 0 !important;
+  background: transparent !important;
+  color: var(--md-on-surface-variant) !important;
+  font-size: 12px !important;
+}
+
+html.np-md #wall .section-intro td:first-child {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+html.np-md #wall .section-intro td + td {
+  width: 84px;
+  text-align: right;
+  white-space: nowrap;
+}
+
+html.np-md #wall .section-intro td a {
+  color: var(--md-on-surface) !important;
+  font-weight: 500;
+}
+
+/* 原版红色底条 = 新帖：日期换成主色并加圆点 */
+html.np-md #wall .section-intro[style*="990000"] td + td {
+  color: var(--md-primary) !important;
+  font-weight: 500;
+}
+
+html.np-md #wall .section-intro[style*="990000"] td + td::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-right: 6px;
+  border-radius: 50%;
+  background: var(--md-primary);
+  vertical-align: 2px;
+}
+

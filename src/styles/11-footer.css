@@ -1,0 +1,21 @@
+/* --------------------------------------------------------------------------
+   11. 页脚 / 杂项
+   -------------------------------------------------------------------------- */
+html.np-md #footer,
+html.np-md .footer {
+  background: transparent !important;
+  background-image: none !important;
+  border: none !important;
+  color: var(--md-on-surface-variant) !important;
+  padding: 16px 0 32px !important;
+}
+
+html.np-md #footer a {
+  color: var(--md-on-surface-variant) !important;
+}
+
+html.np-md div.t5.t_one {
+  background: transparent !important;
+  border: none !important;
+}
+

@@ -1,0 +1,86 @@
+/* --------------------------------------------------------------------------
+   13. 深色模式：修正帖子里写死的暗色文字/白底
+   -------------------------------------------------------------------------- */
+html.np-md.np-dark .s1 { color: #ffb4ab !important; }
+html.np-md.np-dark .s2 { color: #8fd88f !important; }
+html.np-md.np-dark .s3 { color: #f2c46d !important; }
+html.np-md.np-dark .s4 { color: var(--md-primary) !important; }
+html.np-md.np-dark .s5 { color: var(--md-on-surface) !important; }
+html.np-md.np-dark .s6 { color: var(--md-on-surface-variant) !important; }
+html.np-md.np-dark .s7 { color: #e0b6ff !important; }
+html.np-md.np-dark .s8 { color: var(--md-tertiary) !important; }
+
+html.np-md.np-dark #main font[color="#000000" i],
+html.np-md.np-dark #main font[color="#000" i],
+html.np-md.np-dark #main font[color="black" i],
+html.np-md.np-dark #main font[color="#111111" i],
+html.np-md.np-dark #main font[color="#222222" i],
+html.np-md.np-dark #main font[color="#333333" i],
+html.np-md.np-dark #main font[color="#444444" i],
+html.np-md.np-dark #main font[color="#555555" i],
+html.np-md.np-dark #main font[color="#666666" i],
+html.np-md.np-dark #main font[color="#808080" i],
+html.np-md.np-dark #main font[color="gray" i],
+html.np-md.np-dark #main font[color="grey" i],
+html.np-md.np-dark #main font[color="navy" i],
+html.np-md.np-dark #main font[color="darkblue" i],
+html.np-md.np-dark #main font[color="darkred" i],
+html.np-md.np-dark #main font[color="maroon" i],
+html.np-md.np-dark #main font[color="darkgreen" i],
+html.np-md.np-dark #main font[color="purple" i],
+html.np-md.np-dark #main font[color="indigo" i],
+html.np-md.np-dark #main font[color="brown" i],
+html.np-md.np-dark #main [style*="color:#000" i],
+html.np-md.np-dark #main [style*="color: #000" i],
+html.np-md.np-dark #main [style*="color:black" i],
+html.np-md.np-dark #main [style*="color: black" i],
+html.np-md.np-dark #main [style*="color:#333" i],
+html.np-md.np-dark #main [style*="color: #333" i],
+html.np-md.np-dark #main [style*="color:#666" i],
+html.np-md.np-dark #main [style*="color: #666" i],
+html.np-md.np-dark #main [style*="color:gray" i],
+html.np-md.np-dark #main [style*="color: gray" i],
+html.np-md.np-dark #main [style*="color:navy" i],
+html.np-md.np-dark #main [style*="color: navy" i],
+html.np-md.np-dark #main [style*="color: rgb(0," i],
+html.np-md.np-dark #main [style*="color:rgb(0," i],
+html.np-md.np-dark #main [style*="color: rgb(51," i],
+html.np-md.np-dark #main [style*="color: rgb(102," i],
+html.np-md.np-dark #main [style*="color: rgba(0," i] {
+  color: var(--md-on-surface) !important;
+}
+
+html.np-md.np-dark #main font[color="blue" i],
+html.np-md.np-dark #main font[color="#0000ff" i],
+html.np-md.np-dark #main [style*="color:blue" i],
+html.np-md.np-dark #main [style*="color: blue" i],
+html.np-md.np-dark #main [style*="color: rgb(0, 0, 255)" i] {
+  color: #9ecaff !important;
+}
+
+html.np-md.np-dark #main font[color="red" i],
+html.np-md.np-dark #main font[color="#ff0000" i],
+html.np-md.np-dark #main [style*="color:red" i],
+html.np-md.np-dark #main [style*="color: red" i],
+html.np-md.np-dark #main [style*="color:#ff0000" i],
+html.np-md.np-dark #main [style*="color: #ff0000" i],
+html.np-md.np-dark #main [style*="color: rgb(255, 0, 0)" i] {
+  color: #ffb4ab !important;
+}
+
+html.np-md.np-dark #main [bgcolor="#ffffff" i],
+html.np-md.np-dark #main [bgcolor="#fff" i],
+html.np-md.np-dark #main [bgcolor="white" i],
+html.np-md.np-dark #main [bgcolor="#f5f5f5" i],
+html.np-md.np-dark #main [bgcolor="#f0f0f0" i],
+html.np-md.np-dark #main [bgcolor="#eeeeee" i],
+html.np-md.np-dark .tpc_content [style*="background-color:#fff" i],
+html.np-md.np-dark .tpc_content [style*="background-color: #fff" i],
+html.np-md.np-dark .tpc_content [style*="background-color:white" i],
+html.np-md.np-dark .tpc_content [style*="background-color: white" i],
+html.np-md.np-dark .tpc_content [style*="background-color: rgb(255," i],
+html.np-md.np-dark .tpc_content [style*="background:#fff" i],
+html.np-md.np-dark .tpc_content [style*="background: #fff" i] {
+  background-color: var(--md-surface-container-high) !important;
+}
+

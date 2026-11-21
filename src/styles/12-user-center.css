@@ -1,0 +1,128 @@
+/* --------------------------------------------------------------------------
+   12. 个人中心（u.php）与设置（profile.php）
+   -------------------------------------------------------------------------- */
+html.np-md #u-wrap,
+html.np-md #u-wrap2,
+html.np-md #set-wrap,
+html.np-md #set-content {
+  background: var(--md-surface-container-low) !important;
+  background-image: none !important;
+  border: none !important;
+  border-radius: var(--md-corner-md) !important;
+  color: var(--md-on-surface) !important;
+}
+
+html.np-md #u-sidebar,
+html.np-md #set-side {
+  background: var(--md-surface-container) !important;
+  border: none !important;
+}
+
+html.np-md #u-portrait,
+html.np-md .bgA {
+  background: var(--md-surface-container) !important;
+  background-image: none !important;
+  border-color: var(--np-divider) !important;
+}
+
+html.np-md #u-top-nav ul,
+html.np-md .set-tab {
+  border-bottom: 1px solid var(--np-divider) !important;
+}
+
+html.np-md #u-top-nav ul li,
+html.np-md .set-tab ul li {
+  background: transparent !important;
+  background-image: none !important;
+  border: none !important;
+}
+
+html.np-md #u-top-nav li a,
+html.np-md .set-tab ul li a {
+  display: inline-block !important;
+  background: transparent !important;
+  background-image: none !important;
+  border: none !important;
+  border-bottom: 3px solid transparent !important;
+  color: var(--md-on-surface-variant) !important;
+  font-weight: 500 !important;
+  padding: 0 12px !important;
+}
+
+html.np-md #u-top-nav li.current a,
+html.np-md .set-tab ul li.current a {
+  color: var(--md-primary) !important;
+  border-bottom-color: var(--md-primary) !important;
+}
+
+html.np-md .u-h5,
+html.np-md #set-side h2,
+html.np-md .set-h2 {
+  background: none !important;
+  border: none !important;
+  border-bottom: 1px solid var(--np-divider) !important;
+  color: var(--md-on-surface) !important;
+  font-weight: 500 !important;
+}
+
+html.np-md .u-h1,
+html.np-md .u-h5 span,
+html.np-md .u-h5 .b {
+  background: transparent !important;
+  color: var(--md-on-surface) !important;
+}
+
+html.np-md .u-h5 .r,
+html.np-md .u-h5 .r a {
+  background: transparent !important;
+  color: var(--md-on-surface-variant) !important;
+}
+
+html.np-md #set-side ul li a,
+html.np-md #set-menu li a {
+  display: block !important;
+  margin: 2px 8px !important;
+  padding: 8px 12px !important;
+  border-radius: var(--md-corner-full) !important;
+  color: var(--md-on-surface-variant) !important;
+  background: transparent !important;
+}
+
+html.np-md #set-side ul li.current a,
+html.np-md #set-menu li.current a {
+  background: var(--md-secondary-container) !important;
+  color: var(--md-on-secondary-container) !important;
+}
+
+html.np-md #set-side ul li a:hover,
+html.np-md #set-menu li a:hover {
+  background: var(--np-hover) !important;
+}
+
+html.np-md .feed-list,
+html.np-md .article-list,
+html.np-md .feed-list dt,
+html.np-md .feed-list dd,
+html.np-md .article-list dd,
+html.np-md #u-feed-list li,
+html.np-md .u-list li,
+html.np-md .u-table td,
+html.np-md .u-table th,
+html.np-md .set-table,
+html.np-md .set-table2 td {
+  border-color: var(--np-divider) !important;
+  color: var(--md-on-surface) !important;
+  background: transparent !important;
+}
+
+html.np-md .set-tab-table {
+  background: var(--md-surface-container) !important;
+  background-image: none !important;
+}
+
+html.np-md .set-tab-table td.current,
+html.np-md .u-table2 td.current {
+  background: var(--md-secondary-container) !important;
+  color: var(--md-on-secondary-container) !important;
+}
+

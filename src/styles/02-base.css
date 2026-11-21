@@ -1,0 +1,81 @@
+/* --------------------------------------------------------------------------
+   2. 基础：页面、文字、链接
+   -------------------------------------------------------------------------- */
+html.np-md body {
+  background: var(--md-surface) !important;
+  color: var(--md-on-surface) !important;
+  font-family: var(--md-font) !important;
+  -webkit-font-smoothing: antialiased;
+}
+
+html.np-md body,
+html.np-md td,
+html.np-md th,
+html.np-md input,
+html.np-md select,
+html.np-md textarea,
+html.np-md button {
+  font-family: var(--md-font) !important;
+}
+
+html.np-md #wrapA,
+html.np-md #main,
+html.np-md #header,
+html.np-md #content,
+html.np-md .contentwrap {
+  background: transparent !important;
+}
+
+html.np-md a {
+  color: var(--md-on-surface);
+  transition: color 0.15s var(--md-ease), background-color 0.15s var(--md-ease);
+}
+
+html.np-md a:hover {
+  color: var(--md-primary);
+}
+
+html.np-md ::selection {
+  background: var(--md-primary-container);
+  color: var(--md-on-primary-container);
+}
+
+html.np-md .gray,
+html.np-md .gray2,
+html.np-md .gray3,
+html.np-md .f10,
+html.np-md .smalltxt {
+  color: var(--md-on-surface-variant) !important;
+}
+
+html.np-md :focus-visible {
+  outline: 3px solid var(--md-secondary) !important;
+  outline-offset: 2px !important;
+  border-radius: var(--md-corner-xs);
+}
+
+/* 通用：清除老皮肤的背景位图与灰色块 */
+html.np-md .f_one,
+html.np-md .f_two,
+html.np-md .t_one,
+html.np-md .t_two,
+html.np-md .r_one,
+html.np-md .tr1,
+html.np-md .tr2,
+html.np-md .tr3,
+html.np-md .tr4,
+html.np-md .h,
+html.np-md .h2,
+html.np-md .h3 {
+  background-color: transparent !important;
+  background-image: none !important;
+  color: inherit;
+}
+
+html.np-md table,
+html.np-md td,
+html.np-md th,
+html.np-md tr {
+  border-color: var(--np-divider) !important;
+}
+

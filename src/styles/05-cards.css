@@ -1,0 +1,207 @@
+/* --------------------------------------------------------------------------
+   5. 卡片容器（版块分类、帖子列表、公告）
+   -------------------------------------------------------------------------- */
+html.np-md .t,
+html.np-md .t.z {
+  background: var(--md-surface-container-low) !important;
+  background-image: none !important;
+  border: none !important;
+  border-radius: var(--md-corner-md) !important;
+  box-shadow: none !important;
+  overflow: hidden !important;
+  margin: 0 0 12px !important;
+  padding: 0 !important;
+}
+
+html.np-md .t > table {
+  border-collapse: collapse !important;
+  border: none !important;
+}
+
+html.np-md .t th.h,
+html.np-md .t td.h {
+  padding: 16px 16px 8px !important;
+  border: none !important;
+  color: var(--md-on-surface) !important;
+  font-size: 16px !important;
+  line-height: 24px !important;
+  font-weight: 500 !important;
+  text-align: left;
+}
+
+html.np-md .t th.h h2,
+html.np-md .t th.h h2 a,
+html.np-md .t th.h a.cfont {
+  font-size: 16px !important;
+  line-height: 24px !important;
+  font-weight: 500 !important;
+  color: var(--md-on-surface) !important;
+}
+
+html.np-md .t th.h .closeicon img {
+  opacity: 0.6;
+}
+
+/* 列头 */
+html.np-md .t tr.tr2 td,
+html.np-md .t tr.tr2 th {
+  padding: 8px 12px !important;
+  border: none !important;
+  border-bottom: 1px solid var(--np-divider) !important;
+  color: var(--md-on-surface-variant) !important;
+  font-size: 12px !important;
+  line-height: 16px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.04em;
+}
+
+/* 内容行 */
+html.np-md .t tr.tr3 > td,
+html.np-md .t tr.tr3 > th {
+  border: none !important;
+  border-bottom: 1px solid var(--np-divider) !important;
+  padding: 12px !important;
+  vertical-align: middle !important;
+  color: var(--md-on-surface) !important;
+  background: transparent !important;
+}
+
+html.np-md .t tr.tr3:last-child > td,
+html.np-md .t tr.tr3:last-child > th {
+  border-bottom: none !important;
+}
+
+html.np-md .t tr.tr3 {
+  transition: background-color 0.15s var(--md-ease);
+}
+
+html.np-md .t tr.tr3:hover,
+html.np-md .t tr.tr3:hover > td,
+html.np-md .t tr.tr3:hover > th {
+  background-color: var(--np-hover) !important;
+}
+
+/* 键盘焦点行 */
+html.np-md .t tr.tr3.np-kb-focus,
+html.np-md .t tr.tr3.np-kb-focus > td,
+html.np-md .t tr.tr3.np-kb-focus > th {
+  background-color: color-mix(in srgb, var(--md-secondary-container) 70%, transparent) !important;
+}
+
+html.np-md div.t5.np-kb-focus {
+  box-shadow: inset 0 0 0 2px var(--md-secondary) !important;
+}
+
+/* --- 5.1 首页版块行 --- */
+html.np-md tr[id^="fid_"] h3.b,
+html.np-md tr[id^="fid_"] h3.b a {
+  font-size: 15px !important;
+  line-height: 22px !important;
+  font-weight: 500 !important;
+  color: var(--md-on-surface) !important;
+  text-decoration: none !important;
+}
+
+html.np-md tr[id^="fid_"] > th > h3.b a:hover {
+  color: var(--md-primary) !important;
+}
+
+html.np-md tr[id^="fid_"] .smalltxt {
+  display: inline-block;
+  margin-top: 2px;
+  font-size: 12px !important;
+  line-height: 16px !important;
+}
+
+html.np-md tr[id^="fid_"] th > div {
+  margin-top: 6px;
+  font-size: 12px;
+  color: var(--md-on-surface-variant);
+}
+
+html.np-md tr[id^="fid_"] th > div h3.b {
+  display: inline !important;
+}
+
+html.np-md tr[id^="fid_"] th > div h3.b a {
+  display: inline-flex !important;
+  align-items: center !important;
+  height: 24px !important;
+  padding: 0 10px !important;
+  margin: 2px 0 !important;
+  border: 1px solid var(--md-outline-variant) !important;
+  border-radius: var(--md-corner-sm) !important;
+  font-size: 12px !important;
+  line-height: 16px !important;
+  color: var(--md-on-surface-variant) !important;
+}
+
+html.np-md tr[id^="fid_"] th > div h3.b a:hover {
+  background: var(--np-hover) !important;
+  color: var(--md-on-surface) !important;
+}
+
+/* 今日发帖数 → 徽章 */
+html.np-md tr[id^="fid_"] .np-zero {
+  display: none !important;
+}
+
+html.np-md tr[id^="fid_"] .np-badge {
+  display: inline-flex !important;
+  align-items: center;
+  height: 16px;
+  min-width: 16px;
+  padding: 0 5px;
+  margin-left: 6px;
+  box-sizing: border-box;
+  border-radius: var(--md-corner-full);
+  background: var(--md-error) !important;
+  color: var(--md-on-error) !important;
+  font-size: 11px !important;
+  line-height: 16px !important;
+  font-weight: 500;
+  vertical-align: 2px;
+}
+
+/* 版块状态图标 → M3 圆形图标 */
+html.np-md td.np-ficon {
+  width: 56px !important;
+}
+
+html.np-md td.np-ficon a {
+  position: relative;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--md-surface-container-highest);
+}
+
+html.np-md td.np-ficon img {
+  display: none !important;
+}
+
+html.np-md td.np-ficon a::before {
+  content: "";
+  width: 20px;
+  height: 20px;
+  background: var(--md-on-surface-variant);
+  -webkit-mask: var(--np-i-forum) center / 20px no-repeat;
+  mask: var(--np-i-forum) center / 20px no-repeat;
+}
+
+html.np-md td.np-ficon--new a {
+  background: var(--md-primary-container);
+}
+
+html.np-md td.np-ficon--new a::before {
+  background: var(--md-on-primary-container);
+}
+
+html.np-md td.np-ficon--lock a::before {
+  -webkit-mask-image: var(--np-i-lock);
+  mask-image: var(--np-i-lock);
+}
+

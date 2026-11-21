@@ -1,0 +1,620 @@
+/* --------------------------------------------------------------------------
+   3. 页头：精简、顶部应用栏（吸顶）、用户信息卡、横幅
+   -------------------------------------------------------------------------- */
+html.np-md.np-compact #toptool,
+html.np-md.np-compact #header > table {
+  display: none !important;
+}
+
+html.np-md #toptool {
+  font-size: 12px !important;
+  padding: 6px 0 !important;
+}
+
+html.np-md #toptool a {
+  color: var(--md-on-surface-variant) !important;
+}
+
+html.np-md #header > table {
+  margin-top: 8px !important;
+}
+
+/* 顶部应用栏 */
+html.np-md #mainNav {
+  position: sticky !important;
+  top: 8px !important;
+  z-index: 1000 !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  min-height: 64px !important;
+  height: auto !important;
+  margin-top: 12px !important;
+  margin-bottom: 12px !important;
+  padding: 0 12px 0 16px !important;
+  box-sizing: border-box !important;
+  background: var(--md-surface-container) !important;
+  background-image: none !important;
+  border: none !important;
+  border-radius: var(--md-corner-lg) !important;
+  transition: background-color 0.2s var(--md-ease), box-shadow 0.2s var(--md-ease) !important;
+}
+
+html.np-md.np-scrolled #mainNav {
+  background: var(--md-surface-container-high) !important;
+  box-shadow: var(--md-elevation-2) !important;
+}
+
+html.np-md #mainNav > div {
+  position: static !important;
+  width: auto !important;
+  padding: 0 !important;
+  bottom: auto !important;
+}
+
+html.np-md #mainNav > div:not(.np-brand) {
+  display: flex !important;
+  align-items: center !important;
+}
+
+html.np-md #mainNav > div:first-of-type {
+  order: 3 !important;
+  margin-left: auto !important;
+  gap: 4px !important;
+}
+
+html.np-md #mainNav > div:nth-of-type(2) {
+  order: 2 !important;
+  flex: 0 1 auto !important;
+  min-width: 0 !important;
+}
+
+html.np-md #mainNav table,
+html.np-md #mainNav td {
+  border: none !important;
+  background: transparent !important;
+  width: auto !important;
+}
+
+html.np-md #mainNav .np-brand {
+  order: 1 !important;
+  display: none;
+  align-items: center;
+  gap: 10px;
+  margin-right: 8px;
+  font-size: 22px;
+  line-height: 28px;
+  font-weight: 500;
+  color: var(--md-primary) !important;
+  text-decoration: none !important;
+  white-space: nowrap;
+}
+
+html.np-md.np-compact #mainNav .np-brand {
+  display: inline-flex;
+}
+
+html.np-md #mainNav .np-brand__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--md-corner-md);
+  background: var(--md-primary-container);
+}
+
+html.np-md #mainNav .np-brand__icon::before {
+  content: "";
+  width: 20px;
+  height: 20px;
+  background: var(--md-on-primary-container);
+  -webkit-mask: var(--np-i-forum) center / 20px no-repeat;
+  mask: var(--np-i-forum) center / 20px no-repeat;
+}
+
+/* 导航项：药丸形 */
+html.np-md ul#guide.guide {
+  display: flex !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+  gap: 4px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  height: auto !important;
+  background: transparent !important;
+  border: none !important;
+}
+
+html.np-md ul#guide.guide li {
+  float: none !important;
+  width: auto !important;
+  height: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  background: transparent !important;
+  background-image: none !important;
+}
+
+html.np-md ul#guide.guide li a {
+  display: inline-flex !important;
+  align-items: center !important;
+  height: 40px !important;
+  width: auto !important;
+  padding: 0 16px !important;
+  border-radius: var(--md-corner-full) !important;
+  background: transparent !important;
+  background-image: none !important;
+  color: var(--md-on-surface-variant) !important;
+  font-size: 14px !important;
+  line-height: 20px !important;
+  font-weight: 500 !important;
+  white-space: nowrap !important;
+  text-decoration: none !important;
+}
+
+html.np-md ul#guide.guide li a:hover {
+  background: var(--np-hover) !important;
+  color: var(--md-on-surface) !important;
+}
+
+html.np-md ul#guide.guide li.current a,
+html.np-md ul#guide.guide li.current a:hover {
+  background: var(--md-secondary-container) !important;
+  color: var(--md-on-secondary-container) !important;
+}
+
+/* 屏蔽配置下拉：保持原逻辑，只换皮 */
+html.np-md #peacemakerconfig > div:not([hidden]) {
+  background: var(--md-surface-container) !important;
+  color: var(--md-on-surface) !important;
+  border-radius: var(--md-corner-lg) !important;
+  box-shadow: var(--md-elevation-2) !important;
+  padding: 8px 0 !important;
+}
+
+/* 用户区 */
+html.np-md #user-login {
+  display: flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  background: transparent !important;
+  border: none !important;
+  color: var(--md-on-surface) !important;
+  font-size: 14px !important;
+  white-space: nowrap !important;
+}
+
+html.np-md #user-login a {
+  display: inline-flex !important;
+  align-items: center !important;
+  height: 40px !important;
+  padding: 0 12px !important;
+  border-radius: var(--md-corner-full) !important;
+  color: var(--md-on-surface-variant) !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
+}
+
+html.np-md #user-login a:first-child {
+  color: var(--md-on-surface) !important;
+}
+
+html.np-md #user-login a:hover {
+  background: var(--np-hover) !important;
+  color: var(--md-on-surface) !important;
+}
+
+/* 展开/收起用户信息的按钮 → 图标按钮 */
+html.np-md #one-key {
+  order: 9 !important;
+  position: relative !important;
+  width: 40px !important;
+  height: 40px !important;
+  flex: none !important;
+  border-radius: 50% !important;
+  background: transparent !important;
+  background-image: none !important;
+  color: var(--md-on-surface-variant);
+  cursor: pointer;
+}
+
+html.np-md #one-key:hover {
+  background: var(--np-hover) !important;
+}
+
+html.np-md #one-key::before {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  background: currentColor;
+  -webkit-mask: var(--np-i-expand) center / 24px no-repeat;
+  mask: var(--np-i-expand) center / 24px no-repeat;
+  transform: rotate(180deg);
+  transition: transform 0.25s var(--md-ease);
+}
+
+html.np-md #one-key.one-hidden::before {
+  transform: none;
+}
+
+/* 用户信息卡 */
+html.np-md #infobox {
+  box-sizing: border-box !important;
+  background: var(--md-surface-container-low) !important;
+  background-image: none !important;
+  border: none !important;
+  border-radius: var(--md-corner-lg) !important;
+  padding: 12px 16px !important;
+  margin: 0 0 12px !important;
+  width: auto !important;
+  color: var(--md-on-surface-variant) !important;
+  font-size: 13px !important;
+}
+
+html.np-md #infobox table,
+html.np-md #infobox td {
+  border: none !important;
+  background: transparent !important;
+}
+
+html.np-md #infobox a {
+  color: var(--md-on-surface);
+}
+
+html.np-md #infobox a:hover {
+  color: var(--md-primary);
+}
+
+html.np-md #user_info > a[href^="u.php"] > img,
+html.np-md #user_info > a:first-child > img {
+  width: 40px !important;
+  height: 40px !important;
+  object-fit: cover !important;
+  border-radius: 50% !important;
+  border: none !important;
+}
+
+/* --- 用户信息卡重排 --- */
+html.np-md #infobox.np-infobox {
+  padding: 16px 20px !important;
+}
+
+html.np-md #infobox.np-infobox > table > tbody > tr {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  flex-wrap: wrap !important;
+  gap: 12px 24px !important;
+}
+
+html.np-md #infobox.np-infobox > table,
+html.np-md #infobox.np-infobox > table > tbody {
+  display: block !important;
+  width: 100% !important;
+}
+
+html.np-md #user_info {
+  display: block !important;
+  flex: 1 1 380px !important;
+  width: auto !important;
+  padding: 0 !important;
+  min-width: 0;
+}
+
+html.np-md #user_info > a:first-child > img {
+  position: static !important;
+  float: left !important;
+  clip: auto !important;
+  clip-path: none !important;
+  width: 48px !important;
+  height: 48px !important;
+  margin: 0 !important;
+  object-fit: cover !important;
+  border-radius: 50% !important;
+  background: var(--md-surface-container-highest) !important;
+}
+
+html.np-md #user_info > div:last-of-type {
+  margin-left: 64px !important;
+  line-height: normal !important;
+}
+
+html.np-md #user_info div.fl,
+html.np-md #user_info div.gray2 {
+  float: none !important;
+  width: auto !important;
+}
+
+html.np-md #user_info div.gray2 {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+html.np-md #user_info div.gray2 > div.fl {
+  margin: 0 !important;
+}
+
+html.np-md #user_info .c {
+  display: none !important;
+}
+
+html.np-md .np-info-line {
+  float: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+}
+
+html.np-md .np-level {
+  display: inline-flex;
+  align-items: center;
+  height: 24px;
+  padding: 0 10px;
+  border-radius: var(--md-corner-full);
+  background: var(--md-primary-container);
+  color: var(--md-on-primary-container);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+html.np-md .np-info-stat {
+  margin-right: 4px;
+  font-size: 13px;
+  color: var(--md-on-surface-variant);
+}
+
+html.np-md .np-info-stat b {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--md-on-surface);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Assist chip（我的主题 / 我的回复 / 热门版块） */
+html.np-md #infobox a.np-chip,
+html.np-md #shortcutforum li a {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  height: 32px !important;
+  padding: 0 14px !important;
+  box-sizing: border-box !important;
+  border: 1px solid var(--md-outline-variant) !important;
+  border-radius: var(--md-corner-sm) !important;
+  background: transparent !important;
+  background-image: none !important;
+  color: var(--md-on-surface) !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  line-height: 20px !important;
+  text-decoration: none !important;
+  white-space: nowrap !important;
+}
+
+html.np-md #infobox a.np-chip {
+  padding-left: 10px !important;
+}
+
+html.np-md #infobox a.np-chip:hover,
+html.np-md #shortcutforum li a:hover {
+  background: var(--np-hover) !important;
+  color: var(--md-on-surface) !important;
+}
+
+html.np-md #infobox a.np-chip::before {
+  content: "";
+  width: 18px;
+  height: 18px;
+  background: var(--md-primary);
+  -webkit-mask: var(--np-i-article) center / 18px no-repeat;
+  mask: var(--np-i-article) center / 18px no-repeat;
+}
+
+html.np-md #infobox a.np-chip--replies::before {
+  -webkit-mask-image: var(--np-i-chat);
+  mask-image: var(--np-i-chat);
+}
+
+/* “更多”下拉 → 图标按钮 */
+html.np-md #infobox a.np-info-more {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 32px !important;
+  height: 32px !important;
+  padding: 0 !important;
+  border-radius: 50% !important;
+  background: transparent !important;
+  background-image: none !important;
+  font-size: 0 !important;
+  color: var(--md-on-surface-variant) !important;
+  text-indent: 0 !important;
+}
+
+html.np-md #infobox a.np-info-more::before {
+  content: "";
+  width: 20px;
+  height: 20px;
+  background: currentColor;
+  -webkit-mask: var(--np-i-expand) center / 20px no-repeat;
+  mask: var(--np-i-expand) center / 20px no-repeat;
+}
+
+html.np-md #infobox a.np-info-more:hover {
+  background: var(--np-hover) !important;
+}
+
+/* 签名行 */
+html.np-md .np-honor-row {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin-top: 6px;
+  min-height: 28px;
+}
+
+html.np-md .np-honor {
+  font-size: 13px !important;
+  line-height: 20px;
+  color: var(--md-on-surface-variant) !important;
+}
+
+html.np-md .np-honor--empty {
+  font-style: italic;
+  opacity: 0.8;
+}
+
+html.np-md #infobox a.np-honor-edit {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 28px !important;
+  height: 28px !important;
+  border-radius: 50% !important;
+  font-size: 0 !important;
+  color: var(--md-on-surface-variant) !important;
+}
+
+html.np-md #infobox a.np-honor-edit img {
+  display: none !important;
+}
+
+html.np-md #infobox a.np-honor-edit::before {
+  content: "";
+  width: 16px;
+  height: 16px;
+  background: currentColor;
+  -webkit-mask: var(--np-i-edit) center / 16px no-repeat;
+  mask: var(--np-i-edit) center / 16px no-repeat;
+}
+
+html.np-md #infobox a.np-honor-edit:hover {
+  background: var(--np-hover) !important;
+  color: var(--md-primary) !important;
+}
+
+/* 热门版块 / 首页统计 */
+html.np-md #infobox.np-infobox > table > tbody > tr > td:last-child {
+  display: block !important;
+  flex: 0 1 auto !important;
+  width: auto !important;
+  min-width: 0;
+  padding: 0 !important;
+  text-align: right;
+}
+
+html.np-md #fav-fid {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  padding: 0 !important;
+}
+
+html.np-md #shortcutname {
+  float: none !important;
+  margin-right: 4px;
+  font-size: 12px !important;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--md-on-surface-variant) !important;
+}
+
+html.np-md ul#shortcutforum {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+}
+
+html.np-md ul#shortcutforum li {
+  float: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: none !important;
+  list-style: none !important;
+}
+
+/* 横幅广告位：圆角卡片并排 */
+html.np-md #header .np-ads {
+  display: flex !important;
+  gap: 12px !important;
+  margin: 0 0 12px !important;
+  padding: 0 !important;
+  border: none !important;
+  background: transparent !important;
+}
+
+html.np-md #header .np-ads.np-ads--empty {
+  display: none !important;
+}
+
+html.np-md #header .np-ads > a {
+  flex: 1 1 0 !important;
+  min-width: 0 !important;
+}
+
+html.np-md #header .np-ads img {
+  display: block !important;
+  width: 100% !important;
+  height: auto !important;
+  border-radius: var(--md-corner-md) !important;
+}
+
+/* 下拉菜单（社区服务、版块切换、发帖类型等） */
+html.np-md .menu,
+html.np-md .user-infoWraptwo,
+html.np-md .dropdown-content {
+  background: var(--md-surface-container) !important;
+  background-image: none !important;
+  color: var(--md-on-surface) !important;
+  border: none !important;
+  border-radius: var(--md-corner-lg) !important;
+  box-shadow: var(--md-elevation-2) !important;
+  padding: 8px !important;
+  overflow: hidden;
+}
+
+html.np-md .menu ul,
+html.np-md .menu li {
+  background: transparent !important;
+  border: none !important;
+}
+
+html.np-md .menu .ul2 li a,
+html.np-md .menu ul li a,
+html.np-md .dropdown-content a {
+  display: block !important;
+  padding: 8px 12px !important;
+  border-radius: var(--md-corner-sm) !important;
+  color: var(--md-on-surface) !important;
+  font-size: 14px !important;
+  line-height: 20px !important;
+  text-decoration: none !important;
+  background: transparent !important;
+}
+
+html.np-md .menu .ul2 li a:hover,
+html.np-md .menu ul li a:hover,
+html.np-md .dropdown-content a:hover {
+  background: var(--np-hover) !important;
+}
+
+html.np-md .menu .ul3 h2,
+html.np-md .menu .ul3 h2 a {
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  color: var(--md-primary) !important;
+  background: transparent !important;
+  padding: 8px 12px 4px !important;
+  border: none !important;
+}
+

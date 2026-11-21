@@ -1,0 +1,453 @@
+/* --------------------------------------------------------------------------
+   9. 帖子阅读页（read.php）
+   -------------------------------------------------------------------------- */
+html.np-md #main > div.h2 {
+  display: flex !important;
+  justify-content: flex-end;
+  gap: 4px;
+  height: auto !important;
+  margin: 0 0 8px !important;
+  padding: 0 !important;
+  border: none !important;
+  background: transparent !important;
+}
+
+html.np-md #main > div.h2 .w,
+html.np-md #main > div.h2 .w a {
+  float: none !important;
+  color: var(--md-on-surface-variant) !important;
+  font-size: 12px !important;
+}
+
+html.np-md div.t5.t2 {
+  background: var(--md-surface-container-low) !important;
+  background-image: none !important;
+  border: none !important;
+  border-radius: var(--md-corner-md) !important;
+  box-shadow: none !important;
+  overflow: hidden !important;
+  margin: 0 0 12px !important;
+  scroll-margin-top: 96px;
+}
+
+html.np-md table.js-post {
+  border-collapse: collapse !important;
+  border: none !important;
+}
+
+html.np-md table.js-post > tbody > tr > th,
+html.np-md table.js-post > tbody > tr > td {
+  border: none !important;
+}
+
+/* 左侧作者栏 */
+html.np-md table.js-post th.r_two {
+  background: var(--md-surface-container) !important;
+  background-image: none !important;
+  border: none !important;
+  padding: 16px 12px !important;
+  vertical-align: top !important;
+  color: var(--md-on-surface) !important;
+}
+
+html.np-md table.js-post th.r_two .user-pic table,
+html.np-md table.js-post th.r_two .user-pic td {
+  border: none !important;
+  background: transparent !important;
+}
+
+html.np-md table.js-post th.r_two .user-pic img {
+  padding: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  border-radius: var(--md-corner-md) !important;
+  box-shadow: none !important;
+}
+
+html.np-md table.js-post th.r_two strong {
+  font-size: 14px !important;
+  line-height: 20px !important;
+  font-weight: 500 !important;
+  color: var(--md-on-surface) !important;
+}
+
+html.np-md .user-infoWrap {
+  background: var(--md-surface-container-high) !important;
+  background-image: none !important;
+  color: var(--md-on-surface) !important;
+  border: none !important;
+  border-radius: var(--md-corner-lg) !important;
+  box-shadow: var(--md-elevation-2) !important;
+}
+
+/* 头像保持比例 */
+.user-pic table td[width="1"],
+table.js-post th.r_two .user-pic table td[width="1"] {
+  width: auto !important;
+}
+
+.user-pic img,
+table.js-post th.r_two img.pic,
+#u-portrait img,
+.user-infoWraptwo img,
+.u-face img {
+  width: auto !important;
+  height: auto !important;
+  max-width: 160px !important;
+  max-height: 225px !important;
+  object-fit: contain !important;
+}
+
+/* 楼层头 */
+html.np-md div.tiptop {
+  display: flex !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  height: auto !important;
+  margin: 0 !important;
+  padding: 12px 12px 12px 20px !important;
+  border: none !important;
+  border-bottom: 1px solid var(--np-divider) !important;
+  position: static !important;
+  color: var(--md-on-surface-variant) !important;
+  font-size: 12px !important;
+}
+
+html.np-md div.tiptop > .fl {
+  float: none !important;
+}
+
+html.np-md div.tiptop span.fl a.s3 {
+  display: inline-flex !important;
+  align-items: center !important;
+  height: 24px !important;
+  padding: 0 8px !important;
+  border-radius: var(--md-corner-sm) !important;
+  background: var(--md-primary-container) !important;
+  color: var(--md-on-primary-container) !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
+}
+
+html.np-md div.tiptop .bianji {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 50%;
+  color: var(--md-on-surface-variant) !important;
+}
+
+html.np-md div.tiptop > .fr {
+  float: none !important;
+  margin-left: auto !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 2px !important;
+}
+
+html.np-md div.tiptop > .fr ~ .fr {
+  margin-left: 0 !important;
+}
+
+html.np-md div.tiptop > .fr > a,
+html.np-md div.tiptop > .fr .dropdown > a {
+  display: inline-flex !important;
+  align-items: center !important;
+  height: 28px !important;
+  padding: 0 10px !important;
+  border-radius: var(--md-corner-full) !important;
+  color: var(--md-on-surface-variant) !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
+}
+
+html.np-md div.tiptop > .fr > a:hover,
+html.np-md div.tiptop > .fr .dropdown > a:hover {
+  background: var(--np-hover) !important;
+  color: var(--md-on-surface) !important;
+}
+
+/* 标题 */
+html.np-md h1#subject_tpc,
+html.np-md div.h1.fl h1#subject_tpc {
+  float: none !important;
+  display: block !important;
+  width: auto !important;
+  margin: 0 0 16px !important;
+  padding: 0 !important;
+  font-size: 22px !important;
+  line-height: 30px !important;
+  font-weight: 500 !important;
+  color: var(--md-on-surface) !important;
+  border: none !important;
+}
+
+html.np-md div.h1.fl {
+  float: none !important;
+  width: auto !important;
+  margin-right: 16px !important;
+}
+
+/* 正文 */
+html.np-md div.tpc_content {
+  padding: 20px 24px 16px !important;
+  color: var(--md-on-surface) !important;
+}
+
+html.np-md .tpc_content a {
+  color: var(--md-primary) !important;
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--md-primary) 40%, transparent);
+  text-underline-offset: 3px;
+}
+
+html.np-md .tpc_content img {
+  border-radius: var(--md-corner-xs);
+}
+
+html.np-md.np-lightbox .tpc_content img.np-zoomable {
+  cursor: zoom-in;
+}
+
+html.np-md .tpc_content pre,
+html.np-md .tpc_content code {
+  font-family: var(--md-font-mono) !important;
+}
+
+/* 引用 / 代码 / 付费块 */
+html.np-md .quote,
+html.np-md .quote2,
+html.np-md .blockquote,
+html.np-md blockquote.blockquote3,
+html.np-md .tips {
+  background: var(--md-surface-container-high) !important;
+  background-image: none !important;
+  border: none !important;
+  border-radius: var(--md-corner-md) !important;
+  color: var(--md-on-surface) !important;
+  padding: 12px 16px !important;
+  margin: 12px 0 !important;
+}
+
+html.np-md h6.quote.jumbotron {
+  background: var(--md-tertiary-container) !important;
+  color: var(--md-on-tertiary-container) !important;
+  border: none !important;
+  border-radius: var(--md-corner-md) !important;
+  padding: 16px !important;
+  margin: 12px 0 !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+}
+
+html.np-md input[type="button"][onclick*="buytopic"] {
+  background: var(--md-primary) !important;
+  color: var(--md-on-primary) !important;
+}
+
+/* 阅读排版 */
+html.np-readable .tpc_content > div[id^="read_"],
+html.np-readable .tpc_content > div.f14 {
+  font-size: 16px;
+  line-height: 1.8;
+  letter-spacing: 0.01em;
+}
+
+html.np-readable .tpc_content p {
+  margin: 0 0 0.8em;
+}
+
+/* 楼层底部操作栏 */
+html.np-md div.tipad {
+  display: flex !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  height: auto !important;
+  line-height: normal !important;
+  margin: 0 !important;
+  padding: 8px 12px 12px 20px !important;
+  border: none !important;
+  position: static !important;
+}
+
+html.np-md div.tipad > .fl,
+html.np-md div.tipad > .readbot {
+  float: none !important;
+  order: 0 !important;
+  position: static !important;
+  margin: 0 !important;
+}
+
+html.np-md div.tipad > .fr {
+  float: none !important;
+  order: 10 !important;
+  margin-left: auto !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  position: static !important;
+}
+
+html.np-md div.tipad > .fr a {
+  color: var(--md-on-surface-variant) !important;
+  font-size: 12px !important;
+}
+
+html.np-md div.tipad > .fr ~ .fr {
+  margin-left: 0 !important;
+}
+
+html.np-md div.tipad ul.readbot {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  width: auto !important;
+  height: auto !important;
+  list-style: none !important;
+}
+
+html.np-md div.tipad ul.readbot li {
+  float: none !important;
+  width: auto !important;
+  height: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  background: none !important;
+  line-height: normal !important;
+  text-indent: 0 !important;
+  position: static !important;
+}
+
+html.np-md div.tipad .readbot a,
+html.np-md div.tipad > .content-dropB > a.dropB {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  position: static !important;
+  float: none !important;
+  width: auto !important;
+  height: 32px !important;
+  margin: 0 !important;
+  padding: 0 16px 0 12px !important;
+  box-sizing: border-box !important;
+  border: none !important;
+  border-radius: var(--md-corner-full) !important;
+  background: var(--md-secondary-container) !important;
+  background-image: none !important;
+  color: var(--md-on-secondary-container) !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  line-height: 20px !important;
+  text-indent: 0 !important;
+  white-space: nowrap !important;
+  text-decoration: none !important;
+  cursor: pointer;
+  transition: border-radius 0.15s var(--md-ease), box-shadow 0.15s var(--md-ease) !important;
+}
+
+html.np-md div.tipad .readbot a:hover,
+html.np-md div.tipad > .content-dropB > a.dropB:hover {
+  box-shadow: var(--md-elevation-1) !important;
+}
+
+html.np-md div.tipad .readbot a:active,
+html.np-md div.tipad > .content-dropB > a.dropB:active {
+  border-radius: var(--md-corner-sm) !important;
+}
+
+html.np-md div.tipad .readbot a img {
+  display: none !important;
+}
+
+html.np-md div.tipad .readbot a::before,
+html.np-md div.tipad > .content-dropB > a.dropB::before {
+  content: "";
+  width: 18px;
+  height: 18px;
+  flex: none;
+  background: currentColor;
+  -webkit-mask: var(--np-i-reply) center / 18px no-repeat;
+  mask: var(--np-i-reply) center / 18px no-repeat;
+}
+
+html.np-md div.tipad .readbot li.yinyong a::before {
+  -webkit-mask-image: var(--np-i-quote);
+  mask-image: var(--np-i-quote);
+}
+
+html.np-md div.tipad .readbot li.shou a::before {
+  -webkit-mask-image: var(--np-i-bookmark);
+  mask-image: var(--np-i-bookmark);
+}
+
+html.np-md div.tipad > .content-dropB {
+  order: 2 !important;
+  float: none !important;
+  position: static !important;
+  width: auto !important;
+  height: auto !important;
+  margin: 0 !important;
+}
+
+html.np-md div.tipad > .content-dropB > a.dropB {
+  background: transparent !important;
+  color: var(--md-on-surface-variant) !important;
+  padding: 0 12px !important;
+}
+
+html.np-md div.tipad > .content-dropB > a.dropB:hover {
+  background: var(--np-hover) !important;
+  box-shadow: none !important;
+}
+
+html.np-md div.tipad > .content-dropB > a.dropB::before {
+  -webkit-mask-image: var(--np-i-more);
+  mask-image: var(--np-i-more);
+}
+
+/* 快速回复 */
+html.np-md form[name="FORM"] > div.t5 {
+  background: var(--md-surface-container-low) !important;
+  border: none !important;
+  border-radius: var(--md-corner-md) !important;
+  overflow: hidden !important;
+  box-shadow: none !important;
+  margin-bottom: 12px !important;
+  scroll-margin-top: 96px;
+}
+
+html.np-md form[name="FORM"] > div.t5 td.h2 {
+  padding: 16px 20px 8px !important;
+  border: none !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  color: var(--md-on-surface) !important;
+}
+
+html.np-md form[name="FORM"] > div.t5 td.h2 b {
+  font-weight: 500 !important;
+}
+
+html.np-md form[name="FORM"] > div.t5 td {
+  border: none !important;
+  padding: 8px 12px !important;
+}
+
+html.np-md form[name="FORM"] textarea {
+  width: 100% !important;
+  min-height: 180px !important;
+  box-sizing: border-box !important;
+  padding: 12px 16px !important;
+  font-size: 15px !important;
+  line-height: 1.7 !important;
+  resize: vertical !important;
+}
+

@@ -1,0 +1,176 @@
+/* --------------------------------------------------------------------------
+   8. 工具栏：发帖/回复按钮 + 分页
+   -------------------------------------------------------------------------- */
+html.np-md div.t3 {
+  display: flex !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  height: auto !important;
+  padding: 4px 0 !important;
+  margin: 0 0 12px !important;
+}
+
+html.np-md div.t3 > .c,
+html.np-md div.tiptop > .c,
+html.np-md div.tipad > .c {
+  display: none !important;
+}
+
+html.np-md div.t3 > .fl {
+  float: none !important;
+  order: 1 !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+html.np-md div.t3 > .fr {
+  float: none !important;
+  order: 10 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+}
+
+html.np-md div.t3 > .np-t3-push-right {
+  margin-left: auto !important;
+}
+
+/* 图片按钮 → M3 按钮 */
+html.np-md a.np-action-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  height: 40px !important;
+  padding: 0 24px 0 16px !important;
+  box-sizing: border-box !important;
+  border-radius: var(--md-corner-full) !important;
+  font-size: 14px !important;
+  line-height: 20px !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
+  transition: box-shadow 0.15s var(--md-ease), border-radius 0.15s var(--md-ease), background-color 0.15s var(--md-ease) !important;
+}
+
+html.np-md a.np-action-btn > img {
+  display: none !important;
+}
+
+html.np-md a.np-action-btn .np-action-btn__inner {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+html.np-md a.np-action-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+html.np-md a.np-action-btn--primary,
+html.np-md a.np-action-btn--primary:hover {
+  background: var(--md-primary) !important;
+  color: var(--md-on-primary) !important;
+}
+
+html.np-md a.np-action-btn--primary:hover {
+  box-shadow: var(--md-elevation-1) !important;
+}
+
+html.np-md a.np-action-btn--reply,
+html.np-md a.np-action-btn--reply:hover {
+  background: var(--md-secondary-container) !important;
+  color: var(--md-on-secondary-container) !important;
+}
+
+html.np-md a.np-action-btn--reply:hover {
+  box-shadow: var(--md-elevation-1) !important;
+}
+
+html.np-md a.np-action-btn:active {
+  border-radius: var(--md-corner-sm) !important;
+}
+
+/* 分页 */
+html.np-md .pages {
+  border: none !important;
+  background: transparent !important;
+  overflow: visible !important;
+  height: auto !important;
+}
+
+html.np-md .pages ul {
+  display: flex !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+  gap: 4px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+html.np-md .pages ul li {
+  float: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  background: transparent !important;
+  list-style: none !important;
+}
+
+html.np-md .pages ul li a,
+html.np-md .pages ul li b {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-width: 40px !important;
+  height: 40px !important;
+  padding: 0 12px !important;
+  box-sizing: border-box !important;
+  border: none !important;
+  border-radius: var(--md-corner-full) !important;
+  background: transparent !important;
+  color: var(--md-on-surface-variant) !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
+  font-variant-numeric: tabular-nums;
+}
+
+html.np-md .pages ul li a:hover {
+  background: var(--np-hover) !important;
+  color: var(--md-on-surface) !important;
+}
+
+html.np-md .pages ul li b {
+  background: var(--md-primary) !important;
+  color: var(--md-on-primary) !important;
+}
+
+html.np-md .pages ul li.pagesone {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  padding: 0 4px 0 12px !important;
+  height: 40px !important;
+  font-size: 13px !important;
+  color: var(--md-on-surface-variant) !important;
+}
+
+html.np-md .pages ul li.pagesone input[type="text"],
+html.np-md .pages ul li.pagesone input:not([type]) {
+  width: 56px !important;
+  height: 32px !important;
+  padding: 0 8px !important;
+  text-align: center !important;
+}
+
+/* 上一主题 / 下一主题 → 文字按钮 */
+html.np-md span.fl.pages ul li a.fn {
+  color: var(--md-primary) !important;
+  padding: 0 16px !important;
+  background: transparent !important;
+}
+
+html.np-md span.fl.pages ul li a.fn:hover {
+  background: color-mix(in srgb, var(--md-primary) 8%, transparent) !important;
+}
+

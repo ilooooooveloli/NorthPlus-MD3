@@ -1,0 +1,552 @@
+/* --------------------------------------------------------------------------
+   18. 用户中心（u.php）：重新排版
+   -------------------------------------------------------------------------- */
+html.np-md #u-wrap,
+html.np-md #u-wrap #u-wrap2 {
+  width: auto !important;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+}
+
+html.np-md #u-wrap #u-wrap2 {
+  display: grid !important;
+  grid-template-columns: 260px minmax(0, 1fr) !important;
+  gap: 12px !important;
+  align-items: start !important;
+}
+
+html.np-md #u-wrap #u-wrap2::after,
+html.np-md #u-wrap #u-wrap2::before {
+  display: none !important;
+}
+
+/* 左侧资料卡 */
+html.np-md #u-wrap #u-sidebar {
+  float: none !important;
+  width: auto !important;
+  padding: 24px 16px 16px !important;
+  box-sizing: border-box !important;
+  border: none !important;
+  border-radius: var(--md-corner-lg) !important;
+  background: var(--md-surface-container-low) !important;
+  text-align: center !important;
+}
+
+html.np-md #u-wrap #u-portrait,
+html.np-md #u-wrap #u-portrait table,
+html.np-md #u-wrap #u-portrait td {
+  width: auto !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+  border: none !important;
+  background: transparent !important;
+  text-align: center !important;
+}
+
+html.np-md #u-wrap #u-portrait img {
+  width: 160px !important;
+  height: 160px !important;
+  max-width: none !important;
+  max-height: none !important;
+  padding: 0 !important;
+  border: none !important;
+  border-radius: var(--md-corner-xl) !important;
+  background: var(--md-surface-container-highest) !important;
+  object-fit: cover !important;
+}
+
+html.np-md #u-wrap #u-sidebar .bgA {
+  margin: 16px 0 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  background: transparent !important;
+}
+
+html.np-md #u-wrap #u-sidebar .bgA table {
+  width: auto !important;
+  margin: 0 auto !important;
+}
+
+html.np-md #u-wrap #u-sidebar .bgA tr {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+html.np-md #u-wrap #u-sidebar .bgA td {
+  width: auto !important;
+  padding: 0 !important;
+  border: none !important;
+  font-size: 13px !important;
+}
+
+html.np-md #u-wrap #u-sidebar .bgA td:last-child {
+  display: inline-flex !important;
+  align-items: center !important;
+  height: 24px !important;
+  padding: 0 10px !important;
+  border-radius: var(--md-corner-full) !important;
+  background: var(--md-primary-container) !important;
+  color: var(--md-on-primary-container) !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+}
+
+html.np-md #u-wrap #u-sidebar > .bdbA {
+  margin: 16px 0 0 !important;
+  padding: 16px 0 0 !important;
+  border: none !important;
+  border-top: 1px solid var(--np-divider) !important;
+  background: transparent !important;
+}
+
+html.np-md #u-wrap #u-sidebar > .bdbA table,
+html.np-md #u-wrap #u-sidebar > .bdbA tbody,
+html.np-md #u-wrap #u-sidebar > .bdbA tr {
+  display: block !important;
+  width: 100% !important;
+}
+
+html.np-md #u-wrap #u-sidebar > .bdbA tr {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 8px !important;
+}
+
+html.np-md #u-wrap #u-sidebar > .bdbA td {
+  display: block !important;
+  width: auto !important;
+  padding: 0 !important;
+  border: none !important;
+}
+
+html.np-md #u-wrap #u-sidebar > .bdbA td img {
+  display: none !important;
+}
+
+html.np-md #u-wrap #u-sidebar > .bdbA td a {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  height: 40px !important;
+  border-radius: var(--md-corner-full) !important;
+  background: var(--md-primary) !important;
+  color: var(--md-on-primary) !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
+  transition: box-shadow 0.15s var(--md-ease), border-radius 0.15s var(--md-ease);
+}
+
+html.np-md #u-wrap #u-sidebar > .bdbA td:last-child a {
+  background: var(--md-secondary-container) !important;
+  color: var(--md-on-secondary-container) !important;
+}
+
+html.np-md #u-wrap #u-sidebar > .bdbA td a:hover {
+  box-shadow: var(--md-elevation-1) !important;
+}
+
+html.np-md #u-wrap #u-sidebar > .bdbA td a:active {
+  border-radius: var(--md-corner-sm) !important;
+}
+
+html.np-md #u-wrap #u-sidebar > .bdbA td a::before {
+  content: "";
+  width: 18px;
+  height: 18px;
+  background: currentColor;
+  -webkit-mask: var(--np-i-mail) center / 18px no-repeat;
+  mask: var(--np-i-mail) center / 18px no-repeat;
+}
+
+html.np-md #u-wrap #u-sidebar > .bdbA td:last-child a::before {
+  -webkit-mask-image: var(--np-i-person-add);
+  mask-image: var(--np-i-person-add);
+}
+
+/* 右侧主体：头部 + 两栏 */
+html.np-md #u-wrap #u-content {
+  float: none !important;
+  width: auto !important;
+  min-width: 0 !important;
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) 300px !important;
+  gap: 12px !important;
+  align-items: start !important;
+  background: transparent !important;
+  border: none !important;
+}
+
+html.np-md #u-wrap #u-top {
+  grid-column: 1 / -1 !important;
+  position: static !important;
+  height: auto !important;
+  padding: 20px 24px 0 !important;
+  border: none !important;
+  border-radius: var(--md-corner-lg) !important;
+  background: var(--md-surface-container-low) !important;
+}
+
+html.np-md #u-wrap #u-top > table {
+  float: none !important;
+  width: auto !important;
+}
+
+html.np-md #u-wrap #u-top > table td {
+  padding: 0 8px 0 0 !important;
+  border: none !important;
+  vertical-align: middle !important;
+}
+
+html.np-md #u-wrap #u-top .u-h1 {
+  margin: 0 !important;
+  padding: 0 8px 0 0 !important;
+  font-size: 28px !important;
+  line-height: 36px !important;
+  font-weight: 400 !important;
+  color: var(--md-on-surface) !important;
+  background: transparent !important;
+}
+
+html.np-md #u-wrap #u-top > .c {
+  display: none !important;
+}
+
+html.np-md #u-wrap #u-top-nav {
+  position: static !important;
+  width: auto !important;
+  height: auto !important;
+  margin-top: 12px !important;
+}
+
+html.np-md #u-wrap #u-top-nav ul {
+  float: none !important;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  width: auto !important;
+  height: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+}
+
+html.np-md #u-wrap #u-top-nav ul li {
+  float: none !important;
+  width: auto !important;
+  height: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  background: transparent !important;
+}
+
+html.np-md #u-wrap #u-top-nav li a {
+  float: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  width: auto !important;
+  height: 48px !important;
+  padding: 0 16px !important;
+  border: none !important;
+  border-bottom: 3px solid transparent !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: var(--md-on-surface-variant) !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
+}
+
+html.np-md #u-wrap #u-top-nav li a:hover {
+  background: var(--np-hover) !important;
+  color: var(--md-on-surface) !important;
+}
+
+html.np-md #u-wrap #u-top-nav li.current a {
+  color: var(--md-primary) !important;
+  border-bottom-color: var(--md-primary) !important;
+  border-radius: 3px 3px 0 0 !important;
+}
+
+html.np-md #u-wrap #u-contentmain,
+html.np-md #u-wrap #u-contentside {
+  float: none !important;
+  width: auto !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  background: transparent !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 12px !important;
+}
+
+/* 内容卡片（好友近况 / 最新回复 / 最新主题，以及其它子页） */
+html.np-md #u-wrap #u-contentmain > div,
+html.np-md #u-wrap #u-contentside > div {
+  width: auto !important;
+  margin: 0 !important;
+  padding: 4px 0 8px !important;
+  border: none !important;
+  border-radius: var(--md-corner-lg) !important;
+  background: var(--md-surface-container-low) !important;
+  overflow: hidden;
+}
+
+html.np-md #u-wrap .u-h5 {
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  height: auto !important;
+  margin: 0 !important;
+  padding: 12px 8px 8px 20px !important;
+  border: none !important;
+  background: transparent !important;
+  font-size: 16px !important;
+  line-height: 24px !important;
+  font-weight: 500 !important;
+}
+
+html.np-md #u-wrap .u-h5 a.r {
+  position: static !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  height: 32px !important;
+  padding: 0 12px !important;
+  border-radius: var(--md-corner-full) !important;
+  color: var(--md-primary) !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
+}
+
+html.np-md #u-wrap .u-h5 a.r:hover {
+  background: color-mix(in srgb, var(--md-primary) 8%, transparent) !important;
+}
+
+html.np-md #u-wrap dl.feed-list,
+html.np-md #u-wrap dl.article-list {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+}
+
+html.np-md #u-wrap dl.feed-list dt,
+html.np-md #u-wrap dl.feed-list dd,
+html.np-md #u-wrap dl.article-list dt,
+html.np-md #u-wrap dl.article-list dd {
+  display: flex !important;
+  align-items: baseline !important;
+  gap: 12px !important;
+  margin: 0 !important;
+  padding: 12px 20px !important;
+  border: none !important;
+  background: transparent !important;
+  font-size: 14px !important;
+  line-height: 20px !important;
+  color: var(--md-on-surface) !important;
+  transition: background-color 0.15s var(--md-ease);
+}
+
+html.np-md #u-wrap dl.article-list + dl.article-list dt,
+html.np-md #u-wrap dl.feed-list dt + dd {
+  border-top: 1px solid var(--np-divider) !important;
+}
+
+html.np-md #u-wrap dl.feed-list dt:hover,
+html.np-md #u-wrap dl.article-list dt:hover {
+  background: var(--np-hover) !important;
+}
+
+html.np-md #u-wrap dl.article-list dt a.link1,
+html.np-md #u-wrap dl.feed-list a.link1 {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--md-on-surface) !important;
+  text-decoration: none !important;
+}
+
+html.np-md #u-wrap dl.article-list dt a.link1:hover {
+  color: var(--md-primary) !important;
+}
+
+html.np-md #u-wrap dl.article-list dt .f9,
+html.np-md #u-wrap dl.article-list dt .gray3 {
+  flex: none;
+  font-size: 12px !important;
+  color: var(--md-on-surface-variant) !important;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+html.np-md #u-wrap #u-contentmain > div:not(:has(dl, table, li)),
+html.np-md #u-wrap #u-contentside > div:not(:has(dl, table, li)) {
+  padding-bottom: 16px !important;
+}
+
+html.np-md #u-wrap #u-contentside > div:not(:has(dl, table, li))::after {
+  content: "暂无内容";
+  display: block;
+  padding: 8px 20px 0;
+  font-size: 13px;
+  color: var(--md-on-surface-variant);
+}
+
+html.np-md #u-wrap .u-table,
+html.np-md #u-wrap .u-table2 {
+  width: 100% !important;
+  border-collapse: collapse !important;
+}
+
+html.np-md #u-wrap .u-table td,
+html.np-md #u-wrap .u-table th {
+  padding: 12px 20px !important;
+  border: none !important;
+  border-bottom: 1px solid var(--np-divider) !important;
+}
+
+html.np-md #u-wrap #u-contentmain > table,
+html.np-md #u-wrap #u-contentmain > form > table {
+  width: 100% !important;
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+  border: none !important;
+  border-radius: var(--md-corner-lg) !important;
+  background: var(--md-surface-container-low) !important;
+  overflow: hidden !important;
+}
+
+html.np-md #u-wrap .u-table tr:last-child > td,
+html.np-md #u-wrap .u-table tr:last-child > th {
+  border-bottom: none !important;
+}
+
+html.np-md #u-wrap .u-table th {
+  text-align: left !important;
+  font-weight: 400 !important;
+}
+
+html.np-md #u-wrap .u-table th > a:first-child {
+  display: block !important;
+  margin-bottom: 4px !important;
+  font-size: 15px !important;
+  line-height: 22px !important;
+  font-weight: 500 !important;
+  color: var(--md-on-surface) !important;
+  text-decoration: none !important;
+}
+
+html.np-md #u-wrap .u-table th > a:first-child:hover {
+  color: var(--md-primary) !important;
+}
+
+html.np-md #u-wrap .u-table td {
+  white-space: nowrap !important;
+  font-size: 12px !important;
+  color: var(--md-on-surface-variant) !important;
+  font-variant-numeric: tabular-nums;
+}
+
+html.np-md #u-wrap .u-table tr:hover > td,
+html.np-md #u-wrap .u-table tr:hover > th {
+  background: var(--np-hover) !important;
+}
+
+html.np-md #u-wrap dl.feed-list dt,
+html.np-md #u-wrap dl.feed-list dd {
+  display: block !important;
+}
+
+/* 资料页等使用 .u-content-66 / .u-content-33 的子页 */
+html.np-md #u-wrap #u-content > .c {
+  display: none !important;
+}
+
+html.np-md #u-wrap #u-content > .u-content-66,
+html.np-md #u-wrap #u-content > .u-content-33 {
+  float: none !important;
+  width: auto !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 12px !important;
+}
+
+html.np-md #u-wrap #u-content > .u-content-66 {
+  grid-column: 1 !important;
+}
+
+html.np-md #u-wrap #u-content > .u-content-33 {
+  grid-column: 2 !important;
+}
+
+html.np-md #u-wrap #u-content > div:not(#u-top):not(.c):not(.u-content-66):not(.u-content-33):not(#u-contentmain):not(#u-contentside) {
+  grid-column: 1 / -1 !important;
+  float: none !important;
+  width: auto !important;
+}
+
+html.np-md #u-wrap #u-content > .u-content-66 > div,
+html.np-md #u-wrap #u-content > .u-content-33 > div,
+html.np-md #u-wrap #u-content > .u-profile {
+  width: auto !important;
+  margin: 0 !important;
+  padding: 4px 0 8px !important;
+  border: none !important;
+  border-radius: var(--md-corner-lg) !important;
+  background: var(--md-surface-container-low) !important;
+  overflow: hidden;
+}
+
+html.np-md #u-wrap #u-content .u-table {
+  table-layout: auto !important;
+}
+
+html.np-md #u-wrap #u-content .u-content-66 .u-table th,
+html.np-md #u-wrap #u-content .u-content-33 .u-table th,
+html.np-md #u-wrap #u-content .u-content-66 .u-table td:first-child,
+html.np-md #u-wrap #u-content .u-content-33 .u-table td:first-child {
+  width: 96px !important;
+  white-space: nowrap !important;
+  color: var(--md-on-surface-variant) !important;
+  font-size: 13px !important;
+  font-weight: 400 !important;
+}
+
+html.np-md #u-wrap #u-content .u-content-66 .u-table td,
+html.np-md #u-wrap #u-content .u-content-33 .u-table td {
+  white-space: normal !important;
+  font-size: 14px !important;
+  color: var(--md-on-surface) !important;
+  font-variant-numeric: tabular-nums;
+}
+
+html.np-md #u-wrap #u-content .u-profile .u-table th {
+  width: auto !important;
+  white-space: normal !important;
+}
+
+@media (max-width: 1100px) {
+  html.np-md #u-wrap #u-content > .u-content-33 {
+    grid-column: 1 !important;
+  }
+}
+
+@media (max-width: 1100px) {
+  html.np-md #u-wrap #u-content {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+}
+
+

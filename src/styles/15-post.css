@@ -1,0 +1,647 @@
+/* --------------------------------------------------------------------------
+   15. 发帖 / 编辑页（post.php）
+   -------------------------------------------------------------------------- */
+html.np-md #main form div.t.f_one > table th.h {
+  padding: 20px 24px 8px !important;
+  font-size: 22px !important;
+  line-height: 28px !important;
+  font-weight: 400 !important;
+}
+
+html.np-md #main form div.t.f_one > table th.h b {
+  font-weight: 400 !important;
+}
+
+/* 标题输入框 → outlined text field */
+html.np-md div.fl.input.f_one {
+  float: none !important;
+  display: flex !important;
+  align-items: center !important;
+  width: min(100%, 760px) !important;
+  height: 48px !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+  border: 1px solid var(--md-outline) !important;
+  border-radius: var(--md-corner-xs) !important;
+  background: transparent !important;
+  transition: border-color 0.15s var(--md-ease), box-shadow 0.15s var(--md-ease);
+}
+
+html.np-md div.fl.input.f_one:hover {
+  border-color: var(--md-on-surface) !important;
+}
+
+html.np-md div.fl.input.f_one:focus-within {
+  border-color: var(--md-primary) !important;
+  box-shadow: inset 0 0 0 1px var(--md-primary) !important;
+}
+
+html.np-md div.fl.input.f_one input {
+  flex: 1 !important;
+  width: auto !important;
+  height: 46px !important;
+  padding: 0 16px !important;
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  font-size: 16px !important;
+  color: var(--md-on-surface) !important;
+}
+
+html.np-md #postrule,
+html.np-md #postrule a {
+  margin: 4px 0 8px;
+  font-size: 12px !important;
+  color: var(--md-on-surface-variant) !important;
+}
+
+html.np-md #icontab .t5 {
+  background: transparent !important;
+  border: none !important;
+}
+
+/* 编辑器 */
+html.np-md div:has(> div.fl.input.f_one) {
+  height: auto !important;
+  overflow: visible !important;
+  margin-bottom: 4px !important;
+}
+
+html.np-md #editor-content {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  margin-top: 8px !important;
+  background: transparent !important;
+  border: none !important;
+}
+
+html.np-md #editor-content > .c {
+  display: none !important;
+}
+
+html.np-md #editor-content > #editor-button,
+html.np-md #editor-content > .wysiwyg {
+  float: none !important;
+  flex: 0 0 100% !important;
+  width: 100% !important;
+}
+
+html.np-md #editor-tab {
+  position: static !important;
+  top: auto !important;
+  left: auto !important;
+  display: inline-flex !important;
+  gap: 4px !important;
+  width: auto !important;
+  height: auto !important;
+  margin: 8px 0 !important;
+  padding: 4px !important;
+  border-radius: var(--md-corner-full) !important;
+  background: var(--md-surface-container-high) !important;
+}
+
+html.np-md #editor-tab > .c {
+  display: none !important;
+}
+
+html.np-md #editor-tab > span {
+  position: static !important;
+  float: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: auto !important;
+  height: 32px !important;
+  padding: 0 16px !important;
+  border: none !important;
+  border-radius: var(--md-corner-full) !important;
+  background: transparent !important;
+  background-image: none !important;
+  color: var(--md-on-surface-variant) !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  cursor: pointer;
+}
+
+html.np-md #editor-tab > span:hover {
+  background: var(--np-hover) !important;
+}
+
+html.np-md #editor-tab > span.buttonPressed {
+  background: var(--md-secondary-container) !important;
+  color: var(--md-on-secondary-container) !important;
+}
+
+html.np-md #editor-tool {
+  overflow: visible !important;
+  position: static !important;
+  top: auto !important;
+  right: auto !important;
+  margin-left: auto !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  width: auto !important;
+  height: auto !important;
+  margin: 8px 0 !important;
+}
+
+html.np-md #editor-tool span {
+  display: inline-flex !important;
+  height: auto !important;
+  overflow: visible !important;
+  border: none !important;
+  background: transparent !important;
+  padding: 0 !important;
+}
+
+html.np-md #editor-tool a {
+  display: inline-flex !important;
+  align-items: center !important;
+  height: 32px !important;
+  padding: 0 12px !important;
+  border: none !important;
+  border-radius: var(--md-corner-full) !important;
+  background: transparent !important;
+  color: var(--md-primary) !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
+}
+
+html.np-md #editor-tool a:hover {
+  background: color-mix(in srgb, var(--md-primary) 8%, transparent) !important;
+}
+
+/* 编辑器卡片：工具栏 + 编辑区连成一张卡片 */
+html.np-ext {
+  --np-editor-bg: var(--md-surface-container-lowest);
+}
+
+html.np-ext.np-dark {
+  --np-editor-bg: var(--md-surface-container);
+}
+
+html.np-md #editor-button {
+  position: relative !important;
+  box-sizing: border-box !important;
+  padding: 6px 56px 6px 10px !important;
+  border: 1px solid var(--md-outline-variant) !important;
+  border-bottom: 1px solid var(--np-divider) !important;
+  border-radius: var(--md-corner-lg) var(--md-corner-lg) 0 0 !important;
+  background: var(--md-surface-container-high) !important;
+  background-image: none !important;
+  transition: border-color 0.15s var(--md-ease);
+}
+
+html.np-md #editor-button *,
+html.np-md #editor-button div {
+  background-color: transparent !important;
+  border-color: transparent !important;
+}
+
+html.np-md #editor-button .editor-button,
+html.np-md #editor-button > div:not([style*="absolute"]) {
+  width: auto !important;
+  max-width: 100% !important;
+}
+
+html.np-md #editor-button img {
+  border-radius: var(--md-corner-xs);
+  transition: background-color 0.15s var(--md-ease);
+}
+
+html.np-md #editor-button img:hover {
+  background: var(--np-hover) !important;
+}
+
+html.np-md.np-dark #editor-button img,
+html.np-md.np-dark #editor-button .editor-button,
+html.np-md.np-dark #icontab img {
+  filter: invert(0.88) hue-rotate(180deg);
+}
+
+html.np-md #editor-content > .wysiwyg {
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+  border: 1px solid var(--md-outline-variant) !important;
+  border-top: none !important;
+  border-radius: 0 0 var(--md-corner-lg) var(--md-corner-lg) !important;
+  background: var(--np-editor-bg) !important;
+  transition: border-color 0.15s var(--md-ease);
+}
+
+html.np-md #editor-content:focus-within > .wysiwyg,
+html.np-md #editor-content:focus-within > #editor-button {
+  border-color: var(--md-primary) !important;
+}
+
+html.np-md #editor-content:focus-within > #editor-button {
+  border-bottom-color: var(--np-divider) !important;
+}
+
+html.np-md #editor-content .wysiwyg .htmlarea {
+  width: 100% !important;
+  border: none !important;
+  background: transparent !important;
+}
+
+/* 编辑器脚本会把 iframe / textarea 宽度写死成像素，统一拉满 */
+html.np-md #editor-content .wysiwyg textarea,
+html.np-md #editor-content .wysiwyg iframe {
+  display: block;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  min-height: 320px;
+  margin: 0 !important;
+  border: none !important;
+  border-radius: 0 !important;
+  outline: none !important;
+  box-shadow: none !important;
+  background: var(--np-editor-bg) !important;
+  color: var(--md-on-surface) !important;
+}
+
+html.np-md #editor-content .wysiwyg iframe {
+  padding: 0 !important;
+}
+
+html.np-md #editor-content .wysiwyg textarea {
+  padding: 14px 18px !important;
+  font-size: 15px !important;
+  line-height: 1.7 !important;
+  resize: vertical;
+}
+
+html.np-md #editor-content .wysiwyg textarea[style*="display: none"],
+html.np-md #editor-content .wysiwyg iframe[style*="display: none"] {
+  display: none !important;
+}
+
+html.np-md #editor-content .wysiwyg textarea::placeholder {
+  color: var(--md-on-surface-variant) !important;
+}
+
+/* 「更多」表情弹窗（脚本会把菜单移到 body 下并去掉 id） */
+html.np-md .menu:has(> .face) {
+  overflow: hidden !important;
+  border: none !important;
+  border-radius: var(--md-corner-md) !important;
+  background: var(--md-surface-container-high) !important;
+  box-shadow: var(--md-elevation-3) !important;
+  color: var(--md-on-surface) !important;
+}
+
+html.np-md .menu > .face {
+  box-sizing: content-box;
+  background: var(--md-surface-container-highest) !important;
+  background-image: none !important;
+  color: var(--md-on-surface-variant) !important;
+}
+
+html.np-md .menu > .face div {
+  border-radius: var(--md-corner-full);
+}
+
+html.np-md .menu > .face div.lian {
+  background: var(--md-secondary-container) !important;
+  background-image: none !important;
+  color: var(--md-on-secondary-container) !important;
+}
+
+html.np-md.np-dark .menu > .face img {
+  filter: invert(0.88) hue-rotate(180deg);
+}
+
+html.np-md #showface,
+html.np-md #showgeneralface {
+  background: transparent !important;
+}
+
+/* 表情弹窗（由底部「表情」按钮打开）：全部分类平铺成可横向滚动的 Chip，
+   表情固定格子 + object-fit，避免被拉伸变形 */
+html.np-md .menu.np-face-menu {
+  width: min(400px, calc(100vw - 16px)) !important;
+  padding: 0 !important;
+  border-radius: var(--md-corner-lg) !important;
+  z-index: 3000 !important;
+}
+
+html.np-md .menu.np-face-menu > #buttons {
+  display: flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  width: auto !important;
+  height: auto !important;
+  padding: 8px 8px 8px 12px !important;
+  overflow-x: auto !important;
+  scrollbar-width: none;
+  background: var(--md-surface-container-high) !important;
+  border-bottom: 1px solid var(--np-divider) !important;
+}
+
+html.np-md .menu.np-face-menu > #buttons::-webkit-scrollbar {
+  display: none;
+}
+
+/* 站点只显示 4 个分类、左右箭头翻页；这里全部显示 */
+html.np-md .menu.np-face-menu > #buttons > div {
+  display: inline-flex !important;
+  flex: 0 0 auto !important;
+  align-items: center !important;
+  justify-content: center !important;
+  float: none !important;
+  width: auto !important;
+  height: 32px !important;
+  padding: 0 12px !important;
+  box-sizing: border-box !important;
+  border: 1px solid var(--md-outline-variant) !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  white-space: nowrap !important;
+  cursor: pointer !important;
+}
+
+html.np-md .menu.np-face-menu > #buttons > div:hover {
+  background: var(--np-hover) !important;
+}
+
+html.np-md .menu.np-face-menu > #buttons > div.lian {
+  border-color: transparent !important;
+}
+
+/* 左右翻页箭头不再需要；关闭按钮放到最右 */
+html.np-md .menu.np-face-menu > #buttons > span:first-child,
+html.np-md .menu.np-face-menu > #buttons > span:last-child {
+  display: none !important;
+}
+
+html.np-md .menu.np-face-menu > #buttons > span:nth-child(2) {
+  order: 99;
+  position: sticky;
+  right: 0;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 32px !important;
+  height: 32px;
+  margin: 0 0 0 auto !important;
+  border-radius: var(--md-corner-full);
+  background: var(--md-surface-container-high);
+  float: none !important;
+}
+
+html.np-md .menu.np-face-menu > #buttons > span:nth-child(2) img {
+  display: none !important;
+}
+
+html.np-md .menu.np-face-menu > #buttons > span:nth-child(2)::before {
+  content: "✕";
+  font-size: 14px;
+  line-height: 1;
+  color: var(--md-on-surface-variant);
+}
+
+html.np-md .menu.np-face-menu > #buttons > span:nth-child(2):hover {
+  background: var(--md-surface-container-highest);
+}
+
+html.np-md .menu.np-face-menu > div[style*="clear"] {
+  display: none !important;
+}
+
+html.np-md .menu.np-face-menu > #showface {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(48px, 1fr));
+  align-content: start;
+  gap: 4px;
+  box-sizing: border-box !important;
+  width: auto !important;
+  height: min(280px, 50vh) !important;
+  padding: 8px !important;
+  overflow-y: auto !important;
+}
+
+html.np-md .menu.np-face-menu > #showface img {
+  box-sizing: border-box;
+  width: 100% !important;
+  height: 48px !important;
+  margin: 0 !important;
+  padding: 4px;
+  object-fit: contain;
+  border-radius: var(--md-corner-sm);
+  cursor: pointer;
+  transition: background-color 0.12s var(--md-ease);
+}
+
+html.np-md .menu.np-face-menu > #showface img:hover {
+  background: var(--np-hover);
+}
+
+/* 发帖页：编辑器底部表情条，左侧表情框收起 */
+html.np-md .np-post-hidden {
+  display: none !important;
+}
+
+html.np-md.np-editor-facebar #editor-content > .wysiwyg {
+  border-radius: 0 !important;
+}
+
+html.np-md #editor-content > .np-editor-toolbar {
+  flex: 0 0 100%;
+  box-sizing: border-box;
+  border-color: var(--md-outline-variant);
+  border-top: 1px solid var(--np-divider);
+  border-radius: 0 0 var(--md-corner-lg) var(--md-corner-lg);
+  background: var(--md-surface-container-high);
+  transition: border-color 0.15s var(--md-ease);
+}
+
+html.np-md #editor-content:focus-within > .np-editor-toolbar {
+  border-color: var(--md-primary);
+  border-top-color: var(--np-divider);
+}
+
+html.np-md.np-no-side #editor-side {
+  display: none !important;
+}
+
+html.np-md.np-no-side #editor-main {
+  float: none !important;
+  width: auto !important;
+  margin-left: 0 !important;
+}
+
+html.np-md.np-no-side #editor-main > div {
+  margin-left: 0 !important;
+  width: auto !important;
+}
+
+/* 站点给标题行 / 规则提示 / 编辑器 / 各选项行都写死了 200~205px 左缩进（给侧栏留位），
+   侧栏收起后全部铺平，与快速回复一样单栏 */
+html.np-md.np-no-side #editor-main {
+  padding-left: 0 !important;
+}
+
+html.np-md.np-no-side #postrule,
+html.np-md.np-no-side div:has(> div.fl.input.f_one),
+html.np-md.np-no-side #main form .editor-mwidth > div {
+  margin-left: 0 !important;
+  width: auto !important;
+}
+
+html.np-md.np-no-side div.fl.input.f_one {
+  flex: 1 1 auto;
+  width: 100% !important;
+}
+
+/* 发帖页附件区：跟在编辑器工具条下面 */
+html.np-md #editor-content > .np-editor-attach {
+  flex: 0 0 100%;
+  box-sizing: border-box;
+  margin-top: 8px;
+}
+
+html.np-md .np-editor-attach > table {
+  width: 100% !important;
+  margin: 8px 0 !important;
+}
+
+html.np-md .np-editor-attach th,
+html.np-md .np-editor-attach td {
+  background: transparent !important;
+}
+
+/* 帖子预览页（job.php?action=preview） */
+html.np-md.np-p-preview #main div.t table td.h {
+  padding: 20px 24px 8px !important;
+  font-size: 22px !important;
+  line-height: 28px !important;
+  font-weight: 400 !important;
+}
+
+html.np-md.np-p-preview #main div.t table tr.tr1 > th,
+html.np-md.np-p-preview #main div.t table tr.tr1 > th.np-auto-surface {
+  padding: 16px 24px 24px !important;
+  border: none !important;
+  background: transparent !important;
+  color: var(--md-on-surface) !important;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  line-height: 1.8 !important;
+  text-align: left !important;
+  overflow-wrap: anywhere;
+}
+
+/* 发帖选项 */
+html.np-md #main form table tr.tr3 > th,
+html.np-md #main form table tr.tr3 > td {
+  padding: 12px 0 !important;
+  border: none !important;
+  border-top: 1px solid var(--np-divider) !important;
+  background: transparent !important;
+  font-weight: 400 !important;
+  color: var(--md-on-surface) !important;
+}
+
+html.np-md a.abtn3 {
+  display: inline-flex !important;
+  align-items: center !important;
+  height: 32px !important;
+  padding: 0 16px !important;
+  border: none !important;
+  border-radius: var(--md-corner-full) !important;
+  background: var(--md-secondary-container) !important;
+  background-image: none !important;
+  color: var(--md-on-secondary-container) !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
+}
+
+html.np-md #main form input.btn[type="submit"],
+html.np-md #main form input.btn[value*="提"] {
+  height: 40px !important;
+  padding: 0 32px !important;
+  background: var(--md-primary) !important;
+  color: var(--md-on-primary) !important;
+}
+
+/* 表情栏原本 z-index:1000，会盖住吸顶导航 */
+html.np-md #editor-side {
+  z-index: 1 !important;
+}
+
+/* 发帖选项：复选框排成网格，整块可点 */
+html.np-md #post-option .editor-mwidth > div {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 2px 16px;
+}
+
+html.np-md #post-option .editor-mwidth > div > span {
+  display: inline-flex !important;
+  float: none !important;
+  width: auto !important;
+  margin: 0 !important;
+  white-space: nowrap;
+  align-items: center;
+  gap: 8px;
+  min-height: 36px;
+  padding: 0 12px 0 8px;
+  border-radius: var(--md-corner-full);
+  color: var(--md-on-surface) !important;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.15s var(--md-ease);
+}
+
+html.np-md #post-option .editor-mwidth > div > span:hover {
+  background: var(--np-hover);
+}
+
+html.np-md #post-option .editor-mwidth > div > span:has(input:disabled) {
+  opacity: 0.38;
+  cursor: default;
+  background: transparent;
+}
+
+html.np-md #post-option input[type="checkbox"] {
+  margin: 0 !important;
+}
+
+/* 加密 / 出售两行 */
+html.np-md.np-has-editor #main form tr.tr3 .editor-mwidth > div > div {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  min-height: 48px;
+}
+
+/* 预览按钮 → outlined button */
+html.np-md.np-has-editor #main form a.btn3 {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center;
+  height: 40px !important;
+  margin-left: 8px;
+  padding: 0 24px !important;
+  border: 1px solid var(--md-outline) !important;
+  border-radius: var(--md-corner-full) !important;
+  background: transparent !important;
+  background-image: none !important;
+  color: var(--md-primary) !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
+  vertical-align: middle;
+  transition: background-color 0.15s var(--md-ease);
+}
+
+html.np-md.np-has-editor #main form a.btn3:hover {
+  background: color-mix(in srgb, var(--md-primary) 8%, transparent) !important;
+}
+

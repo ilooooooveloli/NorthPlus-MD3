@@ -1,0 +1,253 @@
+/* --------------------------------------------------------------------------
+   7. 帖子列表（thread.php）
+   -------------------------------------------------------------------------- */
+html.np-md table#ajaxtable {
+  width: 100% !important;
+  border-collapse: collapse !important;
+}
+
+html.np-md table#ajaxtable th.h {
+  padding: 12px 16px !important;
+}
+
+/* 筛选 Chip */
+html.np-md .hthread {
+  display: flex !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+  gap: 8px;
+}
+
+html.np-md ul.fl.threadlist {
+  display: flex !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  height: auto !important;
+  border: none !important;
+  float: none !important;
+}
+
+html.np-md ul.fl.threadlist #t_typedb {
+  display: contents !important;
+}
+
+html.np-md ul.fl.threadlist li {
+  float: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  background: transparent !important;
+}
+
+html.np-md ul.fl.threadlist li a {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px;
+  height: 32px !important;
+  padding: 0 16px !important;
+  box-sizing: border-box !important;
+  border: 1px solid var(--md-outline-variant) !important;
+  border-radius: var(--md-corner-sm) !important;
+  background: transparent !important;
+  background-image: none !important;
+  color: var(--md-on-surface-variant) !important;
+  font-size: 14px !important;
+  line-height: 20px !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
+}
+
+html.np-md ul.fl.threadlist li a:hover {
+  background: var(--np-hover) !important;
+  color: var(--md-on-surface) !important;
+}
+
+html.np-md ul.fl.threadlist li.current a,
+html.np-md ul.fl.threadlist li.current a:hover {
+  padding-left: 8px !important;
+  border-color: transparent !important;
+  background: var(--md-secondary-container) !important;
+  color: var(--md-on-secondary-container) !important;
+}
+
+html.np-md ul.fl.threadlist li.current a::before {
+  content: "";
+  width: 18px;
+  height: 18px;
+  background: currentColor;
+  -webkit-mask: var(--np-i-check) center / 18px no-repeat;
+  mask: var(--np-i-check) center / 18px no-repeat;
+}
+
+/* 分隔行（“普通主题”） */
+html.np-md table#ajaxtable tr.np-divider-row td {
+  text-align: left !important;
+  padding: 16px 16px 8px !important;
+  color: var(--md-primary) !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+}
+
+/* 帖子行 */
+html.np-md table#ajaxtable tr.tr3 > td {
+  padding: 12px !important;
+}
+
+html.np-md table#ajaxtable tr.tr3 > td:first-child {
+  width: 32px;
+  padding-left: 16px !important;
+  text-align: center;
+}
+
+html.np-md table#ajaxtable tr.tr3 > td:first-child img {
+  opacity: 0.75;
+}
+
+html.np-md.np-rowclick table#ajaxtable tr.tr3,
+html.np-md.np-rowclick tr[id^="fid_"] {
+  cursor: pointer;
+}
+
+html.np-md table#ajaxtable td[id^="td_"] h3 {
+  display: inline !important;
+  margin: 0 !important;
+  font-size: 15px !important;
+  line-height: 22px !important;
+  font-weight: 500 !important;
+}
+
+html.np-md table#ajaxtable td[id^="td_"] h3 a {
+  color: var(--md-on-surface) !important;
+  text-decoration: none !important;
+}
+
+html.np-md table#ajaxtable td[id^="td_"] h3 a:visited {
+  color: var(--md-on-surface-variant) !important;
+}
+
+html.np-md table#ajaxtable td[id^="td_"] h3 a:hover {
+  color: var(--md-primary) !important;
+}
+
+html.np-md table#ajaxtable td[id^="td_"] h3 a font,
+html.np-md table#ajaxtable td[id^="td_"] h3 a b {
+  font-weight: 500 !important;
+}
+
+/* 主题分类 → assist chip */
+html.np-md table#ajaxtable td[id^="td_"] > a.s8,
+html.np-md table#ajaxtable td[id^="td_"] a[href*="type"] {
+  display: inline-flex !important;
+  align-items: center !important;
+  height: 24px !important;
+  padding: 0 8px !important;
+  margin-right: 8px !important;
+  border-radius: var(--md-corner-sm) !important;
+  background: var(--md-tertiary-container) !important;
+  color: var(--md-on-tertiary-container) !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
+  vertical-align: 1px;
+}
+
+/* 行内分页 */
+html.np-md table#ajaxtable span.tpage {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 2px;
+  margin-left: 8px;
+}
+
+html.np-md table#ajaxtable span.tpage > img {
+  display: none !important;
+}
+
+html.np-md table#ajaxtable span.tpage a {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 4px;
+  box-sizing: border-box;
+  border-radius: var(--md-corner-xs);
+  background: var(--md-surface-container-high);
+  color: var(--md-on-surface-variant) !important;
+  font-size: 11px;
+  text-decoration: none !important;
+}
+
+html.np-md table#ajaxtable span.tpage a:hover {
+  background: var(--md-secondary-container);
+  color: var(--md-on-secondary-container) !important;
+}
+
+/* 作者 / 时间 */
+html.np-md table#ajaxtable a.bl {
+  font-size: 13px !important;
+  font-weight: 500;
+  color: var(--md-on-surface) !important;
+}
+
+html.np-md table#ajaxtable .f10,
+html.np-md table#ajaxtable .gray2 {
+  font-size: 12px !important;
+  font-variant-numeric: tabular-nums;
+}
+
+html.np-md table#ajaxtable td.y-style a.f10 {
+  color: var(--md-on-surface) !important;
+  white-space: nowrap !important;
+}
+
+html.np-md table#ajaxtable tr.tr3 > td:last-child {
+  white-space: nowrap !important;
+}
+
+/* 回复 / 人气 → 图标数字 */
+html.np-md .np-stats {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 2px;
+  white-space: nowrap;
+}
+
+html.np-md .np-stat {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--md-on-surface-variant);
+  font-variant-numeric: tabular-nums;
+}
+
+html.np-md .np-stat::before {
+  content: "";
+  width: 14px;
+  height: 14px;
+  flex: none;
+  background: currentColor;
+  -webkit-mask: var(--np-i-chat) center / 14px no-repeat;
+  mask: var(--np-i-chat) center / 14px no-repeat;
+  opacity: 0.8;
+}
+
+html.np-md .np-stat--view::before {
+  -webkit-mask-image: var(--np-i-eye);
+  mask-image: var(--np-i-eye);
+}
+
+html.np-md .np-stat--reply {
+  color: var(--md-on-surface);
+  font-weight: 500;
+}
+
+html.np-md .np-stat--hot {
+  color: var(--md-error);
+}
+

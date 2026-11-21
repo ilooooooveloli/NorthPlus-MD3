@@ -1,0 +1,46 @@
+/* --------------------------------------------------------------------------
+   1. 宽屏适配（独立于 MD3 皮肤）
+   -------------------------------------------------------------------------- */
+#wrapA > #mainNav {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+html.np-wide body {
+  background-image: none !important;
+}
+
+html.np-wide #toptool,
+html.np-wide #header,
+html.np-wide #wrapA > #mainNav,
+html.np-wide #main,
+html.np-wide #footer,
+html.np-wide .footer,
+html.np-wide div[style*="width: 920px"],
+html.np-wide div[style*="width:920px"] {
+  width: var(--np-width-vw) !important;
+  max-width: var(--np-max-width) !important;
+  box-sizing: border-box !important;
+}
+
+html.np-wide #header table,
+html.np-wide #main table {
+  max-width: 100% !important;
+}
+
+html.np-wide .banner img,
+html.np-wide #header table img,
+html.np-wide .tpc_content img {
+  max-width: 100% !important;
+  height: auto !important;
+}
+
+html.np-wide .tpc_content {
+  overflow-wrap: anywhere !important;
+}
+
+html.np-wide th.r_one,
+html.np-wide td.r_one {
+  min-width: 0 !important;
+}
+

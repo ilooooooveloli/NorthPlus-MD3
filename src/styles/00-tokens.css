@@ -1,0 +1,129 @@
+/* ==========================================================================
+   North+ 体验助手 v2 — Material 3 皮肤
+   <html> 上的开关类：
+     .np-ext       插件已加载（定义 tokens）
+     .np-md        MD3 界面
+     .np-dark      深色配色
+     .np-wide      宽屏适配
+     .np-compact   精简页头
+     .np-readable  阅读排版
+     .np-collapse-notice  折叠版块公告
+   色彩由种子色 #39c5bb 按 Material Theme Builder（tonal spot）生成。
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   0. Tokens
+   -------------------------------------------------------------------------- */
+:root {
+  --np-max-width: 1400px;
+  --np-width-vw: 92vw;
+}
+
+html.np-ext {
+  /* Light scheme */
+  --md-primary: #006a64;
+  --md-on-primary: #ffffff;
+  --md-primary-container: #9df2e9;
+  --md-on-primary-container: #00504b;
+  --md-secondary: #4a6360;
+  --md-on-secondary: #ffffff;
+  --md-secondary-container: #cce8e4;
+  --md-on-secondary-container: #334b48;
+  --md-tertiary: #48617a;
+  --md-on-tertiary: #ffffff;
+  --md-tertiary-container: #cfe5ff;
+  --md-on-tertiary-container: #304961;
+  --md-error: #ba1a1a;
+  --md-on-error: #ffffff;
+  --md-error-container: #ffdad6;
+  --md-on-error-container: #93000a;
+  --md-surface: #f4fbf9;
+  --md-on-surface: #161d1c;
+  --md-on-surface-variant: #3f4947;
+  --md-surface-container-lowest: #ffffff;
+  --md-surface-container-low: #eef5f3;
+  --md-surface-container: #e9efed;
+  --md-surface-container-high: #e3eae8;
+  --md-surface-container-highest: #dde4e2;
+  --md-outline: #6f7977;
+  --md-outline-variant: #bec9c6;
+  --md-inverse-surface: #2b3231;
+  --md-inverse-on-surface: #ecf2f0;
+  --md-inverse-primary: #81d5cd;
+  --md-scrim: rgba(0, 0, 0, 0.32);
+
+  --md-elevation-1: 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.15);
+  --md-elevation-2: 0 1px 2px rgba(0, 0, 0, 0.3), 0 2px 6px 2px rgba(0, 0, 0, 0.15);
+  --md-elevation-3: 0 1px 3px rgba(0, 0, 0, 0.3), 0 4px 8px 3px rgba(0, 0, 0, 0.15);
+  --md-elevation-4: 0 2px 3px rgba(0, 0, 0, 0.3), 0 6px 10px 4px rgba(0, 0, 0, 0.15);
+
+  --md-corner-xs: 4px;
+  --md-corner-sm: 8px;
+  --md-corner-md: 12px;
+  --md-corner-lg: 16px;
+  --md-corner-xl: 28px;
+  --md-corner-full: 999px;
+
+  --md-font: Roboto, "Google Sans", system-ui, -apple-system, BlinkMacSystemFont,
+    "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+  --md-font-mono: "Roboto Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --md-ease: cubic-bezier(0.2, 0, 0, 1);
+
+  --np-divider: color-mix(in srgb, var(--md-outline-variant) 70%, transparent);
+  --np-hover: color-mix(in srgb, var(--md-on-surface) 8%, transparent);
+  --np-press: color-mix(in srgb, var(--md-on-surface) 10%, transparent);
+
+  /* Material Symbols（内联 SVG 作为 mask） */
+  --np-i-chevron-right: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M10 6 8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z'/></svg>");
+  --np-i-home: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M6 19h3v-6h6v6h3v-9l-6-4.5L6 10v9Zm-2 2V9l8-6 8 6v12h-7v-6h-2v6H4Z'/></svg>");
+  --np-i-expand: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6z'/></svg>");
+  --np-i-check: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/></svg>");
+  --np-i-reply: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M10 9V5l-7 7 7 7v-4.1c5 0 8.5 1.6 11 5.1-1-5-4-10-11-11z'/></svg>");
+  --np-i-quote: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M6 17h3l2-4V7H5v6h3zm8 0h3l2-4V7h-6v6h3z'/></svg>");
+  --np-i-more: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z'/></svg>");
+  --np-i-forum: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M21 6h-2v9H6v2c0 .55.45 1 1 1h11l4 4V7c0-.55-.45-1-1-1zm-4 6V3c0-.55-.45-1-1-1H3c-.55 0-1 .45-1 1v14l4-4h10c.55 0 1-.45 1-1z'/></svg>");
+  --np-i-lock: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z'/></svg>");
+  --np-i-chat: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z'/></svg>");
+  --np-i-eye: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z'/></svg>");
+  --np-i-bookmark: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M5 21V5q0-.825.588-1.413T7 3h10q.825 0 1.413.588T19 5v16l-7-3-7 3Zm2-3.05 5-2.15 5 2.15V5H7v12.95Z'/></svg>");
+  --np-i-edit: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M5 19h1.425L16.2 9.225 14.775 7.8 5 17.575V19Zm-2 2v-4.25L16.2 3.575q.3-.275.663-.425t.762-.15q.4 0 .775.15t.65.45L20.425 5q.3.275.437.65T21 6.4q0 .4-.138.763t-.437.662L7.25 21H3Z'/></svg>");
+  --np-i-article: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M7 17h7v-2H7v2Zm0-4h10v-2H7v2Zm0-4h10V7H7v2ZM5 21q-.825 0-1.412-.587T3 19V5q0-.825.588-1.413T5 3h14q.825 0 1.413.588T21 5v14q0 .825-.587 1.413T19 21H5Zm0-2h14V5H5v14Z'/></svg>");
+  --np-i-mail: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M4 20q-.825 0-1.412-.587T2 18V6q0-.825.588-1.412T4 4h16q.825 0 1.413.588T22 6v12q0 .825-.587 1.413T20 20H4Zm8-7L4 8v10h16V8l-8 5Zm0-2 8-5H4l8 5Z'/></svg>");
+  --np-i-person-add: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M18 14v-3h-3V9h3V6h2v3h3v2h-3v3h-2Zm-9-2q-1.65 0-2.825-1.175T5 8q0-1.65 1.175-2.825T9 4q1.65 0 2.825 1.175T13 8q0 1.65-1.175 2.825T9 12Zm-8 8v-2.8q0-.85.438-1.563T2.6 14.55q1.55-.775 3.15-1.163T9 13q1.65 0 3.25.388t3.15 1.162q.725.375 1.163 1.088T17 17.2V20H1Z'/></svg>");
+  --np-i-campaign: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M18 11v2h4v-2h-4zm-2 6.61c.96.71 2.21 1.65 3.2 2.39.4-.53.8-1.07 1.2-1.6-.99-.74-2.24-1.68-3.2-2.4-.4.54-.8 1.08-1.2 1.61zM20.4 5.6c-.4-.53-.8-1.07-1.2-1.6-.99.74-2.24 1.68-3.2 2.4.4.53.8 1.07 1.2 1.6.96-.72 2.21-1.65 3.2-2.4zM4 9c-1.1 0-2 .9-2 2v2c0 1.1.9 2 2 2h1v4h2v-4h1l5 3V6L8 9H4zm11.5 3c0-1.33-.58-2.53-1.5-3.35v6.69c.92-.81 1.5-2.01 1.5-3.34z'/></svg>");
+}
+
+html.np-ext.np-dark {
+  color-scheme: dark;
+  --md-primary: #81d5cd;
+  --md-on-primary: #003734;
+  --md-primary-container: #00504b;
+  --md-on-primary-container: #9df2e9;
+  --md-secondary: #b0ccc8;
+  --md-on-secondary: #1c3532;
+  --md-secondary-container: #334b48;
+  --md-on-secondary-container: #cce8e4;
+  --md-tertiary: #b0c9e5;
+  --md-on-tertiary: #193349;
+  --md-tertiary-container: #304961;
+  --md-on-tertiary-container: #cfe5ff;
+  --md-error: #ffb4ab;
+  --md-on-error: #690005;
+  --md-error-container: #93000a;
+  --md-on-error-container: #ffdad6;
+  --md-surface: #0e1514;
+  --md-on-surface: #dde4e2;
+  --md-on-surface-variant: #bec9c6;
+  --md-surface-container-lowest: #090f0f;
+  --md-surface-container-low: #161d1c;
+  --md-surface-container: #1a2120;
+  --md-surface-container-high: #252b2a;
+  --md-surface-container-highest: #303635;
+  --md-outline: #899391;
+  --md-outline-variant: #3f4947;
+  --md-inverse-surface: #dde4e2;
+  --md-inverse-on-surface: #2b3231;
+  --md-inverse-primary: #006a64;
+  --md-scrim: rgba(0, 0, 0, 0.6);
+}
+

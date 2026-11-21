@@ -1,0 +1,398 @@
+/* --------------------------------------------------------------------------
+   22. 设置中心各子页（profile.php / userpay.php）
+   -------------------------------------------------------------------------- */
+html.np-md #set-content-wrap {
+  padding: 8px 24px 24px !important;
+}
+
+/* 顶部页签 → MD3 secondary tabs */
+html.np-md #set-content .set-tab-table {
+  width: 100% !important;
+  margin: 0 0 8px !important;
+  background: transparent !important;
+  border-bottom: 1px solid var(--np-divider) !important;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+html.np-md #set-content .set-tab-table table {
+  width: auto !important;
+  border: none !important;
+  border-collapse: collapse !important;
+}
+
+html.np-md #set-content .set-tab-table td {
+  height: auto !important;
+  padding: 0 !important;
+  border: none !important;
+  background: transparent !important;
+  white-space: nowrap;
+}
+
+/* 没有链接的格子（如「现权限为」）只是说明文字 */
+html.np-md #set-content .set-tab-table td:not(:has(a)) {
+  height: 48px !important;
+  padding: 0 16px !important;
+  vertical-align: middle !important;
+  color: var(--md-on-surface-variant) !important;
+  font-size: 13px !important;
+}
+
+/* 只有一个页签、且没有链接时（如「写短消息」） */
+html.np-md #set-content .set-tab-table td.current:not(:has(a)) {
+  position: relative;
+  color: var(--md-primary) !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+}
+
+html.np-md #set-content .set-tab-table td.current:not(:has(a))::after {
+  content: "";
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 0;
+  height: 3px;
+  border-radius: 3px 3px 0 0;
+  background: var(--md-primary);
+}
+
+html.np-md #set-content .set-tab-table td a {
+  position: relative;
+  display: flex !important;
+  align-items: center;
+  height: 48px;
+  padding: 0 16px !important;
+  color: var(--md-on-surface-variant) !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
+  cursor: pointer;
+}
+
+html.np-md #set-content .set-tab-table td a:hover {
+  background: var(--np-hover) !important;
+  color: var(--md-on-surface) !important;
+}
+
+html.np-md #set-content .set-tab-table td.current a {
+  color: var(--md-primary) !important;
+}
+
+html.np-md #set-content .set-tab-table td.current a::after {
+  content: "";
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 0;
+  height: 3px;
+  border-radius: 3px 3px 0 0;
+  background: var(--md-primary);
+}
+
+html.np-md #set-content .set-tab-box {
+  padding: 8px 0 0 !important;
+  border: none !important;
+  background: transparent !important;
+}
+
+html.np-md #set-content .set-tab-box > div,
+html.np-md #set-content .set-tab-box > form > div:not(.tac) {
+  margin: 0 !important;
+}
+
+html.np-md #set-content .set-table2 > tbody > tr {
+  background: transparent !important;
+}
+
+/* 表单：标签列 + 控件列，实线分隔 */
+html.np-md #set-content .set-table2 {
+  width: 100% !important;
+  border-collapse: collapse !important;
+}
+
+html.np-md #set-content .set-table2 > tbody > tr > td {
+  padding: 14px 12px !important;
+  border: none !important;
+  border-bottom: 1px solid var(--np-divider) !important;
+  vertical-align: middle !important;
+  color: var(--md-on-surface-variant) !important;
+  font-size: 14px !important;
+  line-height: 20px !important;
+}
+
+html.np-md #set-content .set-table2 > tbody > tr:last-child > td {
+  border-bottom: none !important;
+}
+
+html.np-md #set-content .set-table2 td.td1 {
+  width: 240px;
+  padding-right: 24px !important;
+  color: var(--md-on-surface) !important;
+  font-weight: 500;
+  text-align: right;
+}
+
+html.np-md #set-content .set-table2 td.td1:has(+ td > textarea) {
+  vertical-align: top !important;
+  padding-top: 24px !important;
+}
+
+/* 文本框后的说明：放不下时换到下一行，而不是逐字折行 */
+html.np-md #set-content .set-table2 td:has(> textarea) {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 4px 12px;
+  font-size: 12px !important;
+}
+
+html.np-md #set-content .set-table2 td table td {
+  padding: 4px 16px 4px 0 !important;
+  border: none !important;
+}
+
+html.np-md #set-content .set-table2 input.input:not([type="file"]),
+html.np-md #set-content .set-table2 select {
+  height: 40px !important;
+  min-height: 40px;
+  margin: 4px 8px 4px 0 !important;
+  vertical-align: middle;
+}
+
+html.np-md #set-content .set-table2 input.input:not([type="file"]) {
+  min-width: 80px;
+}
+
+html.np-md #set-content .set-table2 select {
+  min-width: 96px;
+  padding-right: 8px !important;
+}
+
+html.np-md #set-content .set-table2 textarea {
+  width: min(100%, 560px) !important;
+  min-height: 96px;
+  padding: 10px 12px !important;
+  line-height: 20px;
+  resize: vertical;
+}
+
+html.np-md #set-content .set-table2 input[type="radio"],
+html.np-md #set-content .set-table2 input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  margin: 0 6px 0 0 !important;
+  vertical-align: -4px;
+}
+
+html.np-md #set-content .set-table2 input[type="radio"] ~ input[type="radio"],
+html.np-md #set-content .set-table2 input[type="checkbox"] ~ input[type="checkbox"] {
+  margin-left: 16px !important;
+}
+
+html.np-md #set-content .set-table2 input.input + input[type="checkbox"] {
+  margin-left: 8px !important;
+}
+
+html.np-md #set-content .set-table2 input[type="file"] {
+  height: 40px !important;
+  min-height: 40px;
+  margin: 4px 0;
+  padding: 0 12px 0 4px !important;
+  line-height: 38px;
+}
+
+html.np-md #set-content .set-table2 input[type="file"]::file-selector-button {
+  height: 32px;
+  margin-right: 12px;
+  padding: 0 16px;
+  border: none;
+  border-radius: var(--md-corner-full);
+  background: var(--md-secondary-container);
+  color: var(--md-on-secondary-container);
+  font: 500 13px var(--md-font);
+  cursor: pointer;
+}
+
+html.np-md #set-content .set-table2 a.abtn {
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
+/* 写短消息：老式 UBB 图标按钮（白底位图），深色下反相 */
+html.np-md #set-content .set-table2 td > div[style*="margin-bottom"] img {
+  margin: 2px 1px;
+  padding: 2px;
+  border-radius: var(--md-corner-xs);
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+html.np-md.np-dark #set-content .set-table2 td > div[style*="margin-bottom"] img {
+  filter: invert(0.88) hue-rotate(180deg);
+}
+
+/* 修改头像 */
+html.np-md #set-content #info_face td.td1 img {
+  border-radius: var(--md-corner-lg);
+  background: var(--md-surface-container-highest);
+  object-fit: cover;
+}
+
+html.np-md #set-content #info_face td > div > div {
+  margin-right: 16px;
+}
+
+/* 列表表头 */
+html.np-md #set-content .set-table2 tr.gray3 > td,
+html.np-md #set-content .set-table1 tr.gray3 > td,
+html.np-md #set-content .set-table1 td.gray3 {
+  padding: 10px 12px !important;
+  border-bottom: none !important;
+  background: var(--md-surface-container) !important;
+  color: var(--md-on-surface-variant) !important;
+  font-size: 12px !important;
+  font-weight: 500;
+}
+
+html.np-md #set-content tr.gray3 > td:first-child {
+  border-radius: var(--md-corner-sm) 0 0 var(--md-corner-sm);
+}
+
+html.np-md #set-content tr.gray3 > td:last-child {
+  border-radius: 0 var(--md-corner-sm) var(--md-corner-sm) 0;
+}
+
+/* 筛选行（积分日志）：一行里全是 td1 → 横排工具条 */
+html.np-md #set-content .set-table2 tr:has(> td.td1 + td.td1) {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 24px;
+  padding: 4px 0 12px;
+  border-bottom: 1px solid var(--np-divider);
+}
+
+html.np-md #set-content .set-table2 tr:has(> td.td1 + td.td1) > td.td1 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: auto !important;
+  padding: 0 !important;
+  border: none !important;
+  text-align: left;
+  white-space: nowrap;
+}
+
+html.np-md #set-content .set-table2 tr:has(> td.td1 + td.td1) > td.td1:last-child {
+  margin-left: auto;
+}
+
+html.np-md #set-content .set-table2 tr:has(> td.td1 + td.td1) input.input,
+html.np-md #set-content .set-table2 tr:has(> td.td1 + td.td1) select {
+  margin: 0 !important;
+}
+
+html.np-md #set-content .set-table2 input#stime,
+html.np-md #set-content .set-table2 input#etime {
+  width: 132px !important;
+}
+
+html.np-md #set-content form > .set-table2:only-child {
+  margin-bottom: 12px;
+}
+
+/* 用户权限：表头行 / 数值行 / 分组标题 */
+html.np-md #set-content .set-tab-box table[style*="fixed"] {
+  margin-bottom: 8px;
+  border-collapse: collapse !important;
+}
+
+html.np-md #set-content .set-tab-box .tr32 td,
+html.np-md #set-content .set-tab-box .tr3 td {
+  padding: 10px 8px !important;
+  border: none !important;
+  border-bottom: 1px solid var(--np-divider) !important;
+  font-size: 13px !important;
+}
+
+html.np-md #set-content .set-tab-box .tr3.f_two td {
+  background: var(--md-surface-container) !important;
+  color: var(--md-on-surface-variant) !important;
+  font-size: 12px !important;
+  font-weight: 500;
+}
+
+html.np-md #set-content .set-tab-box .tr32 td.s1 {
+  padding: 20px 0 8px !important;
+  border-bottom: none !important;
+  color: var(--md-primary) !important;
+  font-size: 14px !important;
+  font-weight: 500;
+}
+
+html.np-md #set-content .set-tab-box .tr32 td.s8 {
+  border-bottom: none !important;
+}
+
+/* 积分管理：余额做成数据卡片 */
+html.np-md #set-content .set-table1 td,
+html.np-md #set-content .set-table1 th {
+  padding: 10px 12px !important;
+  border: none !important;
+  border-bottom: 1px solid var(--np-divider) !important;
+  font-size: 13px !important;
+}
+
+html.np-md #set-content .set-table1 td.tar {
+  white-space: nowrap;
+}
+
+html.np-md #set-content .set-tab-box div[style*="padding-right:350px"] {
+  padding-right: 374px !important;
+}
+
+html.np-md #set-content .set-tab-box div[style*="width:350px"][style*="float:right"] {
+  overflow: hidden;
+  border-radius: var(--md-corner-md);
+  background: var(--md-surface-container-low);
+}
+
+html.np-md #set-content .set-table1:has(td.bdbA) {
+  width: 100% !important;
+}
+
+html.np-md #set-content .set-table1:has(td.bdbA) > tbody {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 12px;
+}
+
+html.np-md #set-content .set-table1:has(td.bdbA) tr {
+  display: block;
+}
+
+html.np-md #set-content .set-table1 td.bdbA {
+  display: block;
+  padding: 16px !important;
+  border: none !important;
+  border-radius: var(--md-corner-md) !important;
+  background: var(--md-surface-container) !important;
+  color: var(--md-on-surface-variant) !important;
+  font-size: 13px !important;
+  font-weight: 500;
+}
+
+html.np-md #set-content .set-table1 td.bdbA > span {
+  display: block;
+  margin-top: 4px;
+  color: var(--md-on-surface) !important;
+  font-size: 28px !important;
+  font-weight: 400 !important;
+  line-height: 36px;
+}
+
+html.np-md #set-content .set-table1 td.bdbA > span.s3 {
+  color: var(--md-primary) !important;
+}
+

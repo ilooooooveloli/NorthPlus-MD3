@@ -1,0 +1,391 @@
+/* --------------------------------------------------------------------------
+   14. 插件自带组件：悬浮工具栏、回顶 FAB、进度条、Snackbar、Lightbox、对话框
+   -------------------------------------------------------------------------- */
+#np-floating {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 99990;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--md-font);
+  pointer-events: none;
+}
+
+#np-floating > * {
+  pointer-events: auto;
+}
+
+/* 竖向浮动工具栏 */
+#np-toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 8px;
+  border-radius: var(--md-corner-full);
+  background: var(--md-surface-container);
+  box-shadow: var(--md-elevation-3);
+}
+
+.np-icon-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: none;
+  border-radius: var(--md-corner-full);
+  background: transparent;
+  color: var(--md-on-surface-variant);
+  cursor: pointer;
+  transition: background-color 0.15s var(--md-ease), border-radius 0.2s var(--md-ease);
+}
+
+.np-icon-btn:hover {
+  background: var(--np-hover);
+  color: var(--md-on-surface);
+}
+
+.np-icon-btn:active {
+  border-radius: var(--md-corner-md);
+  background: var(--np-press);
+}
+
+.np-icon-btn[aria-pressed="true"] {
+  background: var(--md-secondary-container);
+  color: var(--md-on-secondary-container);
+  border-radius: var(--md-corner-md);
+}
+
+.np-icon-btn svg {
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+}
+
+/* Plain tooltip */
+.np-icon-btn[data-tip]::after,
+#np-fab-top[data-tip]::after {
+  content: attr(data-tip);
+  position: absolute;
+  right: calc(100% + 12px);
+  top: 50%;
+  transform: translateY(-50%) scale(0.92);
+  padding: 4px 8px;
+  border-radius: var(--md-corner-xs);
+  background: var(--md-inverse-surface);
+  color: var(--md-inverse-on-surface);
+  font: 400 12px/16px var(--md-font);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.12s var(--md-ease), transform 0.12s var(--md-ease);
+}
+
+.np-icon-btn[data-tip]:hover::after,
+#np-fab-top[data-tip]:hover::after {
+  opacity: 1;
+  transform: translateY(-50%) scale(1);
+  transition-delay: 0.35s;
+}
+
+/* FAB */
+#np-fab-top {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  padding: 0;
+  border: none;
+  border-radius: var(--md-corner-lg);
+  background: var(--md-primary-container);
+  color: var(--md-on-primary-container);
+  box-shadow: var(--md-elevation-3);
+  cursor: pointer;
+  opacity: 0;
+  transform: scale(0.6);
+  visibility: hidden;
+  transition: opacity 0.2s var(--md-ease), transform 0.25s var(--md-ease), visibility 0s linear 0.25s,
+    box-shadow 0.15s var(--md-ease);
+}
+
+#np-fab-top.np-show {
+  opacity: 1;
+  transform: none;
+  visibility: visible;
+  transition: opacity 0.2s var(--md-ease), transform 0.25s var(--md-ease), visibility 0s,
+    box-shadow 0.15s var(--md-ease);
+}
+
+#np-fab-top:hover {
+  box-shadow: var(--md-elevation-4);
+}
+
+#np-fab-top svg {
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+}
+
+/* 阅读进度条 */
+#np-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 99999;
+  height: 3px;
+  pointer-events: none;
+}
+
+#np-progress > span {
+  display: block;
+  height: 100%;
+  width: 100%;
+  background: var(--md-primary);
+  border-radius: 0 var(--md-corner-full) var(--md-corner-full) 0;
+  transform-origin: left;
+  transform: scaleX(0);
+}
+
+/* Snackbar */
+#np-snackbar {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  z-index: 100000;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 288px;
+  max-width: 560px;
+  min-height: 48px;
+  box-sizing: border-box;
+  padding: 4px 8px 4px 16px;
+  border-radius: var(--md-corner-xs);
+  background: var(--md-inverse-surface);
+  color: var(--md-inverse-on-surface);
+  box-shadow: var(--md-elevation-3);
+  font: 400 14px/20px var(--md-font);
+  transform: translate(-50%, 16px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s var(--md-ease), transform 0.25s var(--md-ease);
+}
+
+#np-snackbar.np-show {
+  opacity: 1;
+  transform: translate(-50%, 0);
+  pointer-events: auto;
+}
+
+#np-snackbar .np-snackbar__text {
+  flex: 1;
+  padding: 10px 0;
+}
+
+#np-snackbar button {
+  height: 40px;
+  padding: 0 12px;
+  border: none;
+  border-radius: var(--md-corner-full);
+  background: transparent;
+  color: var(--md-inverse-primary);
+  font: 500 14px/20px var(--md-font);
+  cursor: pointer;
+}
+
+#np-snackbar button:hover {
+  background: color-mix(in srgb, var(--md-inverse-primary) 8%, transparent);
+}
+
+/* Lightbox */
+#np-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 100001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.88);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s var(--md-ease), visibility 0s linear 0.2s;
+  font-family: var(--md-font);
+}
+
+#np-lightbox.np-show {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.2s var(--md-ease), visibility 0s;
+}
+
+#np-lightbox img {
+  max-width: 92vw;
+  max-height: 86vh;
+  object-fit: contain;
+  border-radius: var(--md-corner-md);
+  box-shadow: var(--md-elevation-3);
+  cursor: zoom-out;
+}
+
+#np-lightbox .np-lb-bar {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  right: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #e9efed;
+  font-size: 14px;
+}
+
+#np-lightbox .np-lb-count {
+  margin-right: auto;
+  padding: 0 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+#np-lightbox .np-icon-btn,
+#np-lightbox .np-lb-nav {
+  color: #e9efed;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+#np-lightbox .np-icon-btn:hover,
+#np-lightbox .np-lb-nav:hover {
+  background: rgba(255, 255, 255, 0.18);
+  color: #fff;
+}
+
+#np-lightbox .np-lb-nav {
+  position: absolute;
+  top: 50%;
+  width: 48px;
+  height: 48px;
+  margin-top: -24px;
+}
+
+#np-lightbox .np-lb-prev { left: 16px; }
+#np-lightbox .np-lb-next { right: 16px; }
+
+#np-lightbox .np-lb-nav[hidden] {
+  display: none;
+}
+
+/* Dialog（快捷键帮助） */
+#np-dialog-scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 100002;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--md-scrim);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s var(--md-ease), visibility 0s linear 0.2s;
+}
+
+#np-dialog-scrim.np-show {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.2s var(--md-ease), visibility 0s;
+}
+
+.np-dialog {
+  width: min(420px, calc(100vw - 48px));
+  box-sizing: border-box;
+  padding: 24px;
+  border-radius: var(--md-corner-xl);
+  background: var(--md-surface-container-high);
+  color: var(--md-on-surface);
+  box-shadow: var(--md-elevation-3);
+  font-family: var(--md-font);
+  transform: scale(0.94);
+  transition: transform 0.25s var(--md-ease);
+}
+
+#np-dialog-scrim.np-show .np-dialog {
+  transform: none;
+}
+
+.np-dialog h2 {
+  margin: 0 0 16px;
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 400;
+  color: var(--md-on-surface);
+}
+
+.np-dialog dl {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 10px 16px;
+  margin: 0;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--md-on-surface-variant);
+}
+
+.np-dialog dt {
+  display: flex;
+  gap: 4px;
+}
+
+.np-dialog dd {
+  margin: 0;
+  align-self: center;
+}
+
+.np-dialog kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+  height: 28px;
+  padding: 0 8px;
+  box-sizing: border-box;
+  border-radius: var(--md-corner-sm);
+  background: var(--md-surface-container-highest);
+  color: var(--md-on-surface);
+  font: 500 13px/1 var(--md-font-mono);
+}
+
+.np-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 24px;
+}
+
+.np-text-btn {
+  height: 40px;
+  padding: 0 12px;
+  border: none;
+  border-radius: var(--md-corner-full);
+  background: transparent;
+  color: var(--md-primary);
+  font: 500 14px/20px var(--md-font);
+  cursor: pointer;
+}
+
+.np-text-btn:hover {
+  background: color-mix(in srgb, var(--md-primary) 8%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.np-ext *,
+  html.np-ext *::before,
+  html.np-ext *::after {
+    transition-duration: 0s !important;
+  }
+}
+
+

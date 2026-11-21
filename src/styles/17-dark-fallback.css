@@ -1,0 +1,17 @@
+/* --------------------------------------------------------------------------
+   17. 深色兜底：脚本自动标记的、未逐页适配的浅色底与描边
+   -------------------------------------------------------------------------- */
+html.np-md.np-dark .np-auto-surface {
+  background-color: var(--md-surface-container-low) !important;
+  background-image: none !important;
+  color: var(--md-on-surface) !important;
+}
+
+html.np-md.np-dark .np-auto-border {
+  border-color: var(--np-divider) !important;
+}
+
+html.np-md div.fl.input.f_one input:focus-visible {
+  outline: none !important;
+}
+

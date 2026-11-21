@@ -1,0 +1,146 @@
+/* --------------------------------------------------------------------------
+   6. 版块公告（可折叠）
+   -------------------------------------------------------------------------- */
+html.np-md .gonggao {
+  position: relative;
+  background: var(--md-surface-container-low) !important;
+  border: none !important;
+  border-radius: var(--md-corner-md) !important;
+  overflow: hidden !important;
+  margin: 0 0 12px !important;
+}
+
+html.np-md .gonggao .gongul {
+  display: flex !important;
+  align-items: center !important;
+  gap: 4px;
+  margin: 0 !important;
+  padding: 8px 8px 0 16px !important;
+  height: auto !important;
+  background: transparent !important;
+  border: none !important;
+}
+
+html.np-md .gonggao .gongul > a.fr {
+  order: 9 !important;
+  margin-left: auto !important;
+  margin-right: 8px !important;
+  float: none !important;
+  opacity: 0.6;
+}
+
+html.np-md .gonggao .gongul li {
+  float: none !important;
+  display: block !important;
+  height: auto !important;
+  width: auto !important;
+  padding: 0 !important;
+  line-height: normal !important;
+  background: transparent !important;
+  background-image: none !important;
+  border: none !important;
+  margin: 0 !important;
+}
+
+html.np-md .gonggao .gongul li.normal:empty {
+  display: none !important;
+}
+
+html.np-md .gonggao .gongul .lin {
+  position: static !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px;
+  height: 44px !important;
+  width: auto !important;
+  margin: 0 0 -1px !important;
+  padding: 0 8px !important;
+  text-indent: 0 !important;
+  line-height: 20px !important;
+  box-sizing: border-box !important;
+  border: none !important;
+  border-bottom: 3px solid transparent !important;
+  background: transparent !important;
+  color: var(--md-on-surface-variant) !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+}
+
+html.np-md .gonggao .gongul li.active .lin {
+  color: var(--md-primary) !important;
+  border-bottom-color: var(--md-primary) !important;
+}
+
+html.np-md .gonggao .gongul li.active .lin::before {
+  content: "";
+  width: 20px;
+  height: 20px;
+  background: currentColor;
+  -webkit-mask: var(--np-i-campaign) center / 20px no-repeat;
+  mask: var(--np-i-campaign) center / 20px no-repeat;
+}
+
+html.np-md #cate_thread,
+html.np-md #tab_1 {
+  background: transparent !important;
+  border: none !important;
+  color: var(--md-on-surface) !important;
+}
+
+html.np-md #cate_thread {
+  padding: 12px 16px !important;
+  border-top: 1px solid var(--np-divider) !important;
+}
+
+html.np-md #cate_thread img {
+  max-width: 100% !important;
+  height: auto !important;
+  border-radius: var(--md-corner-md);
+}
+
+html.np-md.np-collapse-notice #cate_thread.np-collapsed {
+  max-height: 88px !important;
+  overflow: hidden !important;
+  -webkit-mask-image: linear-gradient(#000 30%, transparent);
+  mask-image: linear-gradient(#000 30%, transparent);
+}
+
+html.np-md .np-notice-toggle {
+  display: none;
+}
+
+html.np-md.np-collapse-notice .np-notice-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  width: 100%;
+  height: 40px;
+  border: none !important;
+  border-top: 1px solid var(--np-divider) !important;
+  background: transparent !important;
+  color: var(--md-primary) !important;
+  font: 500 14px/20px var(--md-font) !important;
+  cursor: pointer;
+  padding: 0 !important;
+  border-radius: 0 !important;
+}
+
+html.np-md .np-notice-toggle:hover {
+  background: color-mix(in srgb, var(--md-primary) 8%, transparent) !important;
+}
+
+html.np-md .np-notice-toggle::after {
+  content: "";
+  width: 20px;
+  height: 20px;
+  background: currentColor;
+  -webkit-mask: var(--np-i-expand) center / 20px no-repeat;
+  mask: var(--np-i-expand) center / 20px no-repeat;
+  transition: transform 0.2s var(--md-ease);
+}
+
+html.np-md .np-notice-toggle[aria-expanded="true"]::after {
+  transform: rotate(180deg);
+}
+

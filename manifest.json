@@ -31,11 +31,43 @@
         "*://north-plus.net/*"
       ],
       "css": [
-        "src/content.css"
+        "src/styles/00-tokens.css",
+        "src/styles/01-widescreen.css",
+        "src/styles/02-base.css",
+        "src/styles/03-header.css",
+        "src/styles/04-breadcrumb.css",
+        "src/styles/05-cards.css",
+        "src/styles/06-forum-notice.css",
+        "src/styles/07-thread-list.css",
+        "src/styles/08-toolbar.css",
+        "src/styles/09-read.css",
+        "src/styles/10-forms.css",
+        "src/styles/11-footer.css",
+        "src/styles/12-user-center.css",
+        "src/styles/13-dark-content.css",
+        "src/styles/14-components.css",
+        "src/styles/15-post.css",
+        "src/styles/16-settings.css",
+        "src/styles/17-dark-fallback.css",
+        "src/styles/18-user-center-layout.css",
+        "src/styles/19-responsive.css",
+        "src/styles/20-quick-reply.css",
+        "src/styles/21-rinsp.css",
+        "src/styles/22-settings-subpages.css",
+        "src/styles/23-wall.css",
+        "src/styles/24-user-center-subpages.css"
       ],
       "js": [
         "src/color.js",
-        "src/content.js"
+        "src/content/00-core.js",
+        "src/content/01-prefs.js",
+        "src/content/02-pages.js",
+        "src/content/03-composer.js",
+        "src/content/04-floating.js",
+        "src/content/05-lightbox.js",
+        "src/content/06-navigation.js",
+        "src/content/07-purchase.js",
+        "src/content/99-main.js"
       ],
       "run_at": "document_start"
     }
