@@ -23,6 +23,7 @@
 - 悬浮工具栏：深浅色切换、宽屏、快速回复、回顶
 - 整行点击：点帖子 / 版块所在行任意处即可进入
 - 快速回复支持 `Ctrl/⌘ + Enter` 发送
+- 更新检测：每 6 小时读取一次 `update` 分支上的 `version.json`，有新版时图标显示 `NEW` 角标，弹窗顶部给出下载入口；也可在弹窗底部手动「检查更新」
 
 所有选项都在扩展弹窗里，改动即时生效。
 
@@ -58,11 +59,21 @@ manifest.json      扩展清单
 icons/             图标
 src/content.js     注入论坛页面的脚本（工具栏、快捷键、图片查看器等）
 src/content.css    MD3 主题样式
+src/background.js  后台定时检查更新
+src/update.js      更新检测逻辑（后台与弹窗共用）
 src/popup.*        设置弹窗
 ```
 
 ## 说明
 
-- 只在 `north-plus.net` 及其子域名下运行，只申请了 `storage` 权限（保存设置），不收集、不上传任何数据。
+- 只在 `north-plus.net` 及其子域名下运行，只申请了 `storage`（保存设置）和 `alarms`（定时检查更新）权限。除了读取 `update` 分支上的 `version.json`（raw.githubusercontent.com）检查新版本外不发出任何请求，不收集、不上传任何数据。
 - 纯样式 / 前端增强，论坛改版后可能有部分样式失效，欢迎提 Issue 或 PR。
 - 本项目与论坛官方无关。
+
+## 发布新版本
+
+1. 改 `manifest.json` 里的 `version`，提交并推送 `main`
+2. 在 GitHub 上发布对应的 Release（tag 如 `v2.1.0`，附上打包好的 zip）
+3. **最后**更新 `update` 分支的 `version.json`（`version` 和 `url`），已安装的用户会在 6 小时内收到提示
+
+`update` 分支只放这一个文件，先发 Release 再改它，避免用户看到提示却下载不到。

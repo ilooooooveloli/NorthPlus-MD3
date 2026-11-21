@@ -420,6 +420,37 @@ input[type="range"]:focus-visible {
   color: var(--md-on-surface-variant);
 }
 
+/* Update banner */
+.update-banner {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-height: 64px;
+  padding: 8px 16px;
+  border-radius: 16px;
+  background: var(--md-primary-container);
+  color: var(--md-on-primary-container);
+  text-decoration: none;
+  transition: filter 0.2s var(--md-ease);
+}
+
+.update-banner[hidden] {
+  display: none;
+}
+
+.update-banner:hover {
+  filter: brightness(0.96);
+}
+
+.update-banner .lead-icon,
+.update-banner .supporting {
+  color: inherit;
+}
+
+.update-banner .supporting {
+  opacity: 0.8;
+}
+
 /* Footer */
 footer {
   display: flex;
@@ -439,6 +470,17 @@ footer {
   color: var(--md-primary);
   font: 500 13px/20px var(--md-font);
   cursor: pointer;
+}
+
+.footer-left {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.text-btn:disabled {
+  opacity: 0.6;
+  cursor: default;
 }
 
 .text-btn:hover {

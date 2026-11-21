@@ -21,6 +21,13 @@
   </header>
 
   <main>
+    <a class="update-banner" id="update-banner" href="#" target="_blank" hidden>
+      <span class="lead-icon"><svg viewBox="0 0 24 24"><path d="M12 16 7 11l1.4-1.45 2.6 2.6V4h2v8.15l2.6-2.6L17 11l-5 5Zm-6 4q-.825 0-1.412-.587T4 18v-3h2v3h12v-3h2v3q0 .825-.587 1.413T18 20H6Z"/></svg></span>
+      <span class="text">
+        <span class="headline" id="update-title">发现新版本</span>
+        <span class="supporting">点击前往下载，解压覆盖后在扩展页刷新</span>
+      </span>
+    </a>
     <!-- 外观 -->
     <section class="card">
       <h2 class="section-label">外观</h2>
@@ -162,10 +169,14 @@
   </main>
 
   <footer>
-    <span id="version">v2.0.0</span>
+    <span class="footer-left">
+      <span id="version">v2.1.0</span>
+      <button type="button" class="text-btn" id="check-update">检查更新</button>
+    </span>
     <button type="button" class="text-btn" id="reset">恢复默认</button>
   </footer>
 
+  <script src="update.js"></script>
   <script src="popup.js"></script>
 </body>
 </html>

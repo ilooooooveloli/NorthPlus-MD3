@@ -76,3 +76,34 @@ widthRange.addEventListener('input', () => {
 document.getElementById('reset').addEventListener('click', () => save({ ...DEFAULT_PREFS }));
 
 document.getElementById('version').textContent = `v${chrome.runtime.getManifest().version}`;
+
+// ---- 更新检测 ----
+const updateBanner = document.getElementById('update-banner');
+const updateTitle = document.getElementById('update-title');
+const checkBtn = document.getElementById('check-update');
+
+function showUpdate(result) {
+  updateBanner.hidden = !result.hasUpdate;
+  if (result.hasUpdate) {
+    updateTitle.textContent = `发现新版本 v${result.latest}`;
+    updateBanner.href = result.url;
+  }
+}
+
+async function runUpdateCheck(force) {
+  checkBtn.disabled = true;
+  if (force) checkBtn.textContent = '检查中…';
+  try {
+    const result = await npCheckForUpdate({ force });
+    showUpdate(result);
+    if (force) checkBtn.textContent = result.hasUpdate ? '有新版本' : '已是最新';
+  } catch (_) {
+    if (force) checkBtn.textContent = '检查失败';
+  } finally {
+    checkBtn.disabled = false;
+    if (force) setTimeout(() => (checkBtn.textContent = '检查更新'), 2500);
+  }
+}
+
+checkBtn.addEventListener('click', () => runUpdateCheck(true));
+runUpdateCheck(false);

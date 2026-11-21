@@ -1,11 +1,15 @@
 {
   "manifest_version": 3,
   "name": "North+ 体验助手",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "为 North+ 论坛换上 Material 3 界面：深浅色、宽屏、吸顶导航、公告折叠、图片查看器、键盘快捷键等体验优化。",
   "permissions": [
-    "storage"
+    "storage",
+    "alarms"
   ],
+  "background": {
+    "service_worker": "src/background.js"
+  },
   "icons": {
     "16": "icons/icon16.png",
     "48": "icons/icon48.png",
