@@ -3310,49 +3310,6 @@ html.np-md #editor-content .wysiwyg textarea::placeholder {
   color: var(--md-on-surface-variant) !important;
 }
 
-/* 左侧表情框 */
-html.np-md #smiliebox {
-  box-sizing: border-box !important;
-  margin: 0 !important;
-  padding: 4px 8px 8px !important;
-  border: 1px solid var(--md-outline-variant) !important;
-  border-radius: var(--md-corner-lg) !important;
-  background: var(--md-surface-container-low) !important;
-}
-
-html.np-md #smiliebox legend {
-  padding: 0 8px !important;
-  font-size: 12px !important;
-  font-weight: 500 !important;
-  color: var(--md-on-surface-variant) !important;
-}
-
-html.np-md #smiliebox #menu_show img {
-  border-radius: var(--md-corner-sm);
-  transition: transform 0.12s var(--md-ease), box-shadow 0.12s var(--md-ease);
-}
-
-html.np-md #smiliebox #menu_show img:hover {
-  transform: scale(1.15);
-  box-shadow: var(--md-elevation-2);
-}
-
-html.np-md #smiliebox #td_face {
-  display: inline-flex !important;
-  align-items: center;
-  height: 28px;
-  padding: 0 12px;
-  border-radius: var(--md-corner-full);
-  color: var(--md-primary) !important;
-  font-size: 12px;
-  font-weight: 500;
-  text-decoration: none !important;
-}
-
-html.np-md #smiliebox #td_face:hover {
-  background: color-mix(in srgb, var(--md-primary) 8%, transparent);
-}
-
 /* 「更多」表情弹窗（脚本会把菜单移到 body 下并去掉 id） */
 html.np-md .menu:has(> .face) {
   overflow: hidden !important;
@@ -3386,6 +3343,201 @@ html.np-md.np-dark .menu > .face img {
 
 html.np-md #showface,
 html.np-md #showgeneralface {
+  background: transparent !important;
+}
+
+/* 表情弹窗（由底部「表情」按钮打开）：全部分类平铺成可横向滚动的 Chip，
+   表情固定格子 + object-fit，避免被拉伸变形 */
+html.np-md .menu.np-face-menu {
+  width: min(400px, calc(100vw - 16px)) !important;
+  padding: 0 !important;
+  border-radius: var(--md-corner-lg) !important;
+  z-index: 3000 !important;
+}
+
+html.np-md .menu.np-face-menu > #buttons {
+  display: flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  width: auto !important;
+  height: auto !important;
+  padding: 8px 8px 8px 12px !important;
+  overflow-x: auto !important;
+  scrollbar-width: none;
+  background: var(--md-surface-container-high) !important;
+  border-bottom: 1px solid var(--np-divider) !important;
+}
+
+html.np-md .menu.np-face-menu > #buttons::-webkit-scrollbar {
+  display: none;
+}
+
+/* 站点只显示 4 个分类、左右箭头翻页；这里全部显示 */
+html.np-md .menu.np-face-menu > #buttons > div {
+  display: inline-flex !important;
+  flex: 0 0 auto !important;
+  align-items: center !important;
+  justify-content: center !important;
+  float: none !important;
+  width: auto !important;
+  height: 32px !important;
+  padding: 0 12px !important;
+  box-sizing: border-box !important;
+  border: 1px solid var(--md-outline-variant) !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  white-space: nowrap !important;
+  cursor: pointer !important;
+}
+
+html.np-md .menu.np-face-menu > #buttons > div:hover {
+  background: var(--np-hover) !important;
+}
+
+html.np-md .menu.np-face-menu > #buttons > div.lian {
+  border-color: transparent !important;
+}
+
+/* 左右翻页箭头不再需要；关闭按钮放到最右 */
+html.np-md .menu.np-face-menu > #buttons > span:first-child,
+html.np-md .menu.np-face-menu > #buttons > span:last-child {
+  display: none !important;
+}
+
+html.np-md .menu.np-face-menu > #buttons > span:nth-child(2) {
+  order: 99;
+  position: sticky;
+  right: 0;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 32px !important;
+  height: 32px;
+  margin: 0 0 0 auto !important;
+  border-radius: var(--md-corner-full);
+  background: var(--md-surface-container-high);
+  float: none !important;
+}
+
+html.np-md .menu.np-face-menu > #buttons > span:nth-child(2) img {
+  display: none !important;
+}
+
+html.np-md .menu.np-face-menu > #buttons > span:nth-child(2)::before {
+  content: "✕";
+  font-size: 14px;
+  line-height: 1;
+  color: var(--md-on-surface-variant);
+}
+
+html.np-md .menu.np-face-menu > #buttons > span:nth-child(2):hover {
+  background: var(--md-surface-container-highest);
+}
+
+html.np-md .menu.np-face-menu > div[style*="clear"] {
+  display: none !important;
+}
+
+html.np-md .menu.np-face-menu > #showface {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(48px, 1fr));
+  align-content: start;
+  gap: 4px;
+  box-sizing: border-box !important;
+  width: auto !important;
+  height: min(280px, 50vh) !important;
+  padding: 8px !important;
+  overflow-y: auto !important;
+}
+
+html.np-md .menu.np-face-menu > #showface img {
+  box-sizing: border-box;
+  width: 100% !important;
+  height: 48px !important;
+  margin: 0 !important;
+  padding: 4px;
+  object-fit: contain;
+  border-radius: var(--md-corner-sm);
+  cursor: pointer;
+  transition: background-color 0.12s var(--md-ease);
+}
+
+html.np-md .menu.np-face-menu > #showface img:hover {
+  background: var(--np-hover);
+}
+
+/* 发帖页：编辑器底部表情条，左侧表情框收起 */
+html.np-md .np-post-hidden {
+  display: none !important;
+}
+
+html.np-md.np-editor-facebar #editor-content > .wysiwyg {
+  border-radius: 0 !important;
+}
+
+html.np-md #editor-content > .np-editor-toolbar {
+  flex: 0 0 100%;
+  box-sizing: border-box;
+  border-color: var(--md-outline-variant);
+  border-top: 1px solid var(--np-divider);
+  border-radius: 0 0 var(--md-corner-lg) var(--md-corner-lg);
+  background: var(--md-surface-container-high);
+  transition: border-color 0.15s var(--md-ease);
+}
+
+html.np-md #editor-content:focus-within > .np-editor-toolbar {
+  border-color: var(--md-primary);
+  border-top-color: var(--np-divider);
+}
+
+html.np-md.np-no-side #editor-side {
+  display: none !important;
+}
+
+html.np-md.np-no-side #editor-main {
+  float: none !important;
+  width: auto !important;
+  margin-left: 0 !important;
+}
+
+html.np-md.np-no-side #editor-main > div {
+  margin-left: 0 !important;
+  width: auto !important;
+}
+
+/* 站点给标题行 / 规则提示 / 编辑器 / 各选项行都写死了 200~205px 左缩进（给侧栏留位），
+   侧栏收起后全部铺平，与快速回复一样单栏 */
+html.np-md.np-no-side #editor-main {
+  padding-left: 0 !important;
+}
+
+html.np-md.np-no-side #postrule,
+html.np-md.np-no-side div:has(> div.fl.input.f_one),
+html.np-md.np-no-side #main form .editor-mwidth > div {
+  margin-left: 0 !important;
+  width: auto !important;
+}
+
+html.np-md.np-no-side div.fl.input.f_one {
+  flex: 1 1 auto;
+  width: 100% !important;
+}
+
+/* 发帖页附件区：跟在编辑器工具条下面 */
+html.np-md #editor-content > .np-editor-attach {
+  flex: 0 0 100%;
+  box-sizing: border-box;
+  margin-top: 8px;
+}
+
+html.np-md .np-editor-attach > table {
+  width: 100% !important;
+  margin: 8px 0 !important;
+}
+
+html.np-md .np-editor-attach th,
+html.np-md .np-editor-attach td {
   background: transparent !important;
 }
 
@@ -5050,74 +5202,6 @@ html.np-md .np-qr-btn[aria-expanded="true"] {
   color: var(--md-on-secondary-container) !important;
 }
 
-/* 表情弹出面板 */
-html.np-md .np-emoji-wrap {
-  position: relative;
-}
-
-html.np-md .np-emoji-panel {
-  position: absolute;
-  left: 0;
-  bottom: calc(100% + 8px);
-  z-index: 50;
-  width: min(380px, 80vw);
-  max-height: 320px;
-  overflow: auto;
-  padding: 12px;
-  box-sizing: border-box;
-  border-radius: var(--md-corner-lg);
-  background: var(--md-surface-container-high);
-  box-shadow: var(--md-elevation-2);
-}
-
-html.np-md .np-emoji-panel[hidden] {
-  display: none !important;
-}
-
-html.np-md .np-emoji-panel fieldset {
-  margin: 0 !important;
-  padding: 0 !important;
-  border: none !important;
-}
-
-html.np-md .np-emoji-panel legend {
-  display: none !important;
-}
-
-html.np-md .np-emoji-panel #menu_show,
-html.np-md .np-emoji-panel fieldset > div {
-  display: flex !important;
-  flex-wrap: wrap !important;
-  gap: 4px !important;
-  width: auto !important;
-  height: auto !important;
-}
-
-html.np-md .np-emoji-panel img {
-  max-width: 48px;
-  max-height: 48px;
-  padding: 4px;
-  border-radius: var(--md-corner-sm);
-  cursor: pointer;
-  transition: background-color 0.12s var(--md-ease);
-}
-
-html.np-md .np-emoji-panel img:hover {
-  background: var(--np-hover);
-}
-
-html.np-md .np-emoji-panel fieldset > span {
-  display: block;
-  margin-top: 8px;
-  text-align: right;
-}
-
-html.np-md .np-emoji-panel fieldset > span a {
-  color: var(--md-primary) !important;
-  font-size: 13px;
-  font-weight: 500;
-}
-
 /* 发帖选项 Chip */
 html.np-md .np-qr-opts {
   display: flex;
@@ -5318,10 +5402,6 @@ html.np-md.np-bp-phone .np-qr-actions .np-qr-hint {
 
 html.np-md.np-bp-phone .np-qr-actions input[type="submit"] {
   flex: 1 1 auto;
-}
-
-html.np-md.np-bp-phone .np-emoji-panel {
-  width: calc(100vw - 48px);
 }
 
 html.np-md .np-qr > table > tbody > tr:first-child > td.h2 {

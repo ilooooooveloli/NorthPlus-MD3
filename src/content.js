@@ -525,34 +525,10 @@
 
     const toolbar = el('div', { class: 'np-qr-toolbar' });
 
-    /* 表情：收进弹出面板 */
-    if (fieldset) {
-      const panel = el('div', { class: 'np-emoji-panel', role: 'dialog', 'aria-label': '表情' });
-      panel.hidden = true;
-      panel.append(fieldset);
-      const btn = el('button', { type: 'button', class: 'np-qr-btn', 'aria-expanded': 'false' }, [
-        icon('mood', 18),
-        el('span', { text: '表情' })
-      ]);
-      const setOpen = (open) => {
-        panel.hidden = !open;
-        btn.setAttribute('aria-expanded', String(open));
-      };
-      btn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        setOpen(panel.hidden);
-      });
-      panel.addEventListener('click', (e) => {
-        if (e.target instanceof HTMLImageElement) setTimeout(() => textarea.focus(), 0);
-      });
-      document.addEventListener('click', (e) => {
-        if (!panel.hidden && !panel.contains(e.target) && !btn.contains(e.target)) setOpen(false);
-      });
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && !panel.hidden) setOpen(false);
-      });
-      const wrap = el('div', { class: 'np-emoji-wrap' }, [btn, panel]);
-      toolbar.append(wrap);
+    /* 表情：输入框下方按钮，直接打开多分类表情弹窗 */
+    const faceBtn = facePickerButton(fieldset, () => textarea.focus());
+    if (faceBtn) {
+      toolbar.append(faceBtn);
       emojiTd?.classList.add('np-qr-hidden');
     }
 
@@ -560,18 +536,9 @@
     const attachTable = mainTd.querySelector(':scope > table');
     if (attachTable) {
       const attachBox = el('div', { class: 'np-qr-attach' });
-      attachBox.hidden = true;
       attachTable.before(attachBox);
       attachBox.append(attachTable);
-      const btn = el('button', { type: 'button', class: 'np-qr-btn', 'aria-expanded': 'false' }, [
-        icon('attach', 18),
-        el('span', { text: '附件' })
-      ]);
-      btn.addEventListener('click', () => {
-        attachBox.hidden = !attachBox.hidden;
-        btn.setAttribute('aria-expanded', String(!attachBox.hidden));
-      });
-      toolbar.append(btn);
+      toolbar.append(attachToggle(attachBox));
     }
 
     textarea.after(toolbar);
@@ -588,6 +555,100 @@
         }
       }
     });
+  }
+
+  /* ------------------------------------------------------------------
+     表情按钮：发帖 / 回帖共用。
+     站点自带的「更多」(#td_face, onclick=showDefault) 会生成多分类表情弹窗
+     (read.menu，body 的第一个子元素)。内容脚本拿不到页面全局函数，
+     所以通过点击原链接触发，再把弹窗挪到按钮旁边；插入表情仍走站点 addsmile。
+     ------------------------------------------------------------------ */
+  function faceMenu() {
+    const m = document.querySelector('body > .menu:has(> #buttons)');
+    return m && m.style.display !== 'none' && m.style.visibility !== 'hidden' ? m : null;
+  }
+
+  function placeFaceMenu(menu, btn) {
+    const r = btn.getBoundingClientRect();
+    const w = menu.offsetWidth;
+    const h = menu.offsetHeight;
+    const gap = 8;
+    const vw = document.documentElement.clientWidth;
+    let left = Math.min(Math.max(8, r.left), Math.max(8, vw - w - 8));
+    // 优先在按钮上方展开（与输入框贴近），空间不够再放下方
+    let top = r.top - h - gap >= 64 ? r.top - h - gap : r.bottom + gap;
+    menu.style.setProperty('position', 'absolute', 'important');
+    menu.style.setProperty('left', `${left + window.scrollX}px`, 'important');
+    menu.style.setProperty('top', `${top + window.scrollY}px`, 'important');
+    menu.style.setProperty('opacity', '1');
+  }
+
+  // 附件：工具条上的开关按钮，控制折叠的附件区
+  function attachToggle(box, open = false) {
+    box.hidden = !open;
+    const btn = el('button', { type: 'button', class: 'np-qr-btn', 'aria-expanded': String(open) }, [
+      icon('attach', 18),
+      el('span', { text: '附件' })
+    ]);
+    btn.addEventListener('click', () => {
+      box.hidden = !box.hidden;
+      btn.setAttribute('aria-expanded', String(!box.hidden));
+    });
+    return btn;
+  }
+
+  function facePickerButton(scope, refocus) {
+    const trigger = (scope || document).querySelector('#td_face');
+    if (!trigger) return null;
+    const btn = el('button', { type: 'button', class: 'np-qr-btn np-face-btn', 'aria-expanded': 'false', 'aria-haspopup': 'dialog' }, [
+      icon('mood', 18),
+      el('span', { text: '表情' })
+    ]);
+    const sync = () => btn.setAttribute('aria-expanded', String(!!faceMenu()));
+    const close = () => {
+      const m = faceMenu();
+      if (m) m.style.display = 'none';
+      sync();
+    };
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      if (faceMenu()) return close();
+      // 链接若是 href="#"，阻止跳到页顶；javascript: 链接本身就是动作，不拦
+      if (!/^\s*javascript:/i.test(trigger.getAttribute('href') || '')) {
+        trigger.addEventListener('click', (ev) => ev.preventDefault(), { once: true });
+      }
+      trigger.click();
+      const m = document.querySelector('body > .menu:has(> #buttons)');
+      if (m) {
+        m.classList.add('np-face-menu');
+        placeFaceMenu(m, btn);
+        // 站点自己的关闭（✕ / closep）也要同步按钮状态
+        if (!m.dataset.npFaceObs) {
+          m.dataset.npFaceObs = '1';
+          new MutationObserver(() => document.dispatchEvent(new Event('np-face-sync'))).observe(m, {
+            attributes: true,
+            attributeFilter: ['style', 'class']
+          });
+        }
+      }
+      sync();
+    });
+    document.addEventListener('click', (e) => {
+      const m = faceMenu();
+      // trigger.click() 冒泡上来的那次点击不算「点外面」
+      if (!m || btn.contains(e.target) || trigger.contains(e.target)) return;
+      if (m.contains(e.target)) {
+        if (e.target instanceof HTMLImageElement && e.target.closest('#showface')) setTimeout(refocus, 0);
+        return;
+      }
+      close();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && faceMenu()) close();
+    });
+    document.addEventListener('np-face-sync', sync);
+    return btn;
   }
 
   /* ------------------------------------------------------------------
@@ -731,6 +792,50 @@
     // iframe 的 load 不冒泡，用捕获监听
     box.addEventListener('load', syncEditorFrame, true);
     syncEditorFrame();
+
+    // 编辑器底部工具条（表情 / 附件），与快速回复一致；左侧表情框收起
+    const smilie = document.getElementById('smiliebox');
+    if (prefs.modernUI) {
+      const faceBtn = smilie
+        ? facePickerButton(smilie, () => {
+            const frame = box.querySelector('iframe');
+            const ta = box.querySelector('textarea');
+            (frame && frame.style.display !== 'none' ? frame.contentWindow : ta)?.focus();
+          })
+        : null;
+      const toolbar = el('div', { class: 'np-qr-toolbar np-editor-toolbar' });
+      box.after(toolbar);
+      root.classList.add('np-editor-facebar');
+      if (faceBtn) toolbar.append(faceBtn);
+
+      // 附件：整段（隐藏附件 / 批量上传 / 上传表格 / 文件类型说明）收进折叠区，与快速回复一致
+      const attachRow = [...document.querySelectorAll('#main form .editor-mwidth > div')].find((d) =>
+        d.querySelector('input[type="file"]')
+      );
+      if (attachRow) {
+        const attachBox = el('div', { class: 'np-qr-attach np-editor-attach' });
+        attachBox.append(...attachRow.childNodes);
+        toolbar.after(attachBox);
+        // 编辑旧帖时若已有附件（多出的勾选框），默认展开
+        const hasExisting = attachBox.querySelectorAll('input[type="checkbox"]').length > 1;
+        toolbar.append(attachToggle(attachBox, hasExisting));
+        (attachRow.closest('tr') || attachRow).classList.add('np-post-hidden');
+      }
+
+      if (faceBtn) {
+        smilie.classList.add('np-post-hidden');
+        // 侧栏若只剩表情框，就整栏收起，编辑器单栏铺满
+        const side = document.getElementById('editor-side');
+        const visible = (n) => n.getClientRects().length > 0;
+        if (
+          side &&
+          !side.innerText.trim() &&
+          ![...side.querySelectorAll('img, input, select, textarea, iframe')].some(visible)
+        ) {
+          root.classList.add('np-no-side');
+        }
+      }
+    }
 
     // 发帖选项的文字是 <span> 不是 <label>，点文字也能勾选
     document.querySelectorAll('#post-option .editor-mwidth > div > span').forEach((span) => {
