@@ -3201,14 +3201,25 @@ html.np-md #editor-tool a:hover {
   background: color-mix(in srgb, var(--md-primary) 8%, transparent) !important;
 }
 
+/* 编辑器卡片：工具栏 + 编辑区连成一张卡片 */
+html.np-ext {
+  --np-editor-bg: var(--md-surface-container-lowest);
+}
+
+html.np-ext.np-dark {
+  --np-editor-bg: var(--md-surface-container);
+}
+
 html.np-md #editor-button {
+  position: relative !important;
   box-sizing: border-box !important;
-  padding: 8px 12px !important;
+  padding: 6px 56px 6px 10px !important;
   border: 1px solid var(--md-outline-variant) !important;
-  border-bottom: none !important;
-  border-radius: var(--md-corner-md) var(--md-corner-md) 0 0 !important;
+  border-bottom: 1px solid var(--np-divider) !important;
+  border-radius: var(--md-corner-lg) var(--md-corner-lg) 0 0 !important;
   background: var(--md-surface-container-high) !important;
   background-image: none !important;
+  transition: border-color 0.15s var(--md-ease);
 }
 
 html.np-md #editor-button *,
@@ -3217,8 +3228,15 @@ html.np-md #editor-button div {
   border-color: transparent !important;
 }
 
+html.np-md #editor-button .editor-button,
+html.np-md #editor-button > div:not([style*="absolute"]) {
+  width: auto !important;
+  max-width: 100% !important;
+}
+
 html.np-md #editor-button img {
   border-radius: var(--md-corner-xs);
+  transition: background-color 0.15s var(--md-ease);
 }
 
 html.np-md #editor-button img:hover {
@@ -3231,19 +3249,165 @@ html.np-md.np-dark #icontab img {
   filter: invert(0.88) hue-rotate(180deg);
 }
 
-html.np-md #editor-content .wysiwyg textarea,
-html.np-md #editor-content .wysiwyg iframe {
+html.np-md #editor-content > .wysiwyg {
+  box-sizing: border-box !important;
+  overflow: hidden !important;
   border: 1px solid var(--md-outline-variant) !important;
-  border-radius: 0 0 var(--md-corner-md) var(--md-corner-md) !important;
-  background: var(--md-surface-container-lowest) !important;
-  padding: 16px !important;
-  font-size: 15px !important;
-  line-height: 1.7 !important;
-  box-shadow: none !important;
+  border-top: none !important;
+  border-radius: 0 0 var(--md-corner-lg) var(--md-corner-lg) !important;
+  background: var(--np-editor-bg) !important;
+  transition: border-color 0.15s var(--md-ease);
 }
 
-html.np-md #editor-content .wysiwyg textarea:focus {
+html.np-md #editor-content:focus-within > .wysiwyg,
+html.np-md #editor-content:focus-within > #editor-button {
   border-color: var(--md-primary) !important;
+}
+
+html.np-md #editor-content:focus-within > #editor-button {
+  border-bottom-color: var(--np-divider) !important;
+}
+
+html.np-md #editor-content .wysiwyg .htmlarea {
+  width: 100% !important;
+  border: none !important;
+  background: transparent !important;
+}
+
+/* 编辑器脚本会把 iframe / textarea 宽度写死成像素，统一拉满 */
+html.np-md #editor-content .wysiwyg textarea,
+html.np-md #editor-content .wysiwyg iframe {
+  display: block;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  min-height: 320px;
+  margin: 0 !important;
+  border: none !important;
+  border-radius: 0 !important;
+  outline: none !important;
+  box-shadow: none !important;
+  background: var(--np-editor-bg) !important;
+  color: var(--md-on-surface) !important;
+}
+
+html.np-md #editor-content .wysiwyg iframe {
+  padding: 0 !important;
+}
+
+html.np-md #editor-content .wysiwyg textarea {
+  padding: 14px 18px !important;
+  font-size: 15px !important;
+  line-height: 1.7 !important;
+  resize: vertical;
+}
+
+html.np-md #editor-content .wysiwyg textarea[style*="display: none"],
+html.np-md #editor-content .wysiwyg iframe[style*="display: none"] {
+  display: none !important;
+}
+
+html.np-md #editor-content .wysiwyg textarea::placeholder {
+  color: var(--md-on-surface-variant) !important;
+}
+
+/* 左侧表情框 */
+html.np-md #smiliebox {
+  box-sizing: border-box !important;
+  margin: 0 !important;
+  padding: 4px 8px 8px !important;
+  border: 1px solid var(--md-outline-variant) !important;
+  border-radius: var(--md-corner-lg) !important;
+  background: var(--md-surface-container-low) !important;
+}
+
+html.np-md #smiliebox legend {
+  padding: 0 8px !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  color: var(--md-on-surface-variant) !important;
+}
+
+html.np-md #smiliebox #menu_show img {
+  border-radius: var(--md-corner-sm);
+  transition: transform 0.12s var(--md-ease), box-shadow 0.12s var(--md-ease);
+}
+
+html.np-md #smiliebox #menu_show img:hover {
+  transform: scale(1.15);
+  box-shadow: var(--md-elevation-2);
+}
+
+html.np-md #smiliebox #td_face {
+  display: inline-flex !important;
+  align-items: center;
+  height: 28px;
+  padding: 0 12px;
+  border-radius: var(--md-corner-full);
+  color: var(--md-primary) !important;
+  font-size: 12px;
+  font-weight: 500;
+  text-decoration: none !important;
+}
+
+html.np-md #smiliebox #td_face:hover {
+  background: color-mix(in srgb, var(--md-primary) 8%, transparent);
+}
+
+/* 「更多」表情弹窗（脚本会把菜单移到 body 下并去掉 id） */
+html.np-md .menu:has(> .face) {
+  overflow: hidden !important;
+  border: none !important;
+  border-radius: var(--md-corner-md) !important;
+  background: var(--md-surface-container-high) !important;
+  box-shadow: var(--md-elevation-3) !important;
+  color: var(--md-on-surface) !important;
+}
+
+html.np-md .menu > .face {
+  box-sizing: content-box;
+  background: var(--md-surface-container-highest) !important;
+  background-image: none !important;
+  color: var(--md-on-surface-variant) !important;
+}
+
+html.np-md .menu > .face div {
+  border-radius: var(--md-corner-full);
+}
+
+html.np-md .menu > .face div.lian {
+  background: var(--md-secondary-container) !important;
+  background-image: none !important;
+  color: var(--md-on-secondary-container) !important;
+}
+
+html.np-md.np-dark .menu > .face img {
+  filter: invert(0.88) hue-rotate(180deg);
+}
+
+html.np-md #showface,
+html.np-md #showgeneralface {
+  background: transparent !important;
+}
+
+/* 帖子预览页（job.php?action=preview） */
+html.np-md.np-p-preview #main div.t table td.h {
+  padding: 20px 24px 8px !important;
+  font-size: 22px !important;
+  line-height: 28px !important;
+  font-weight: 400 !important;
+}
+
+html.np-md.np-p-preview #main div.t table tr.tr1 > th,
+html.np-md.np-p-preview #main div.t table tr.tr1 > th.np-auto-surface {
+  padding: 16px 24px 24px !important;
+  border: none !important;
+  background: transparent !important;
+  color: var(--md-on-surface) !important;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  line-height: 1.8 !important;
+  text-align: left !important;
+  overflow-wrap: anywhere;
 }
 
 /* 发帖选项 */
@@ -3278,6 +3442,82 @@ html.np-md #main form input.btn[value*="提"] {
   padding: 0 32px !important;
   background: var(--md-primary) !important;
   color: var(--md-on-primary) !important;
+}
+
+/* 表情栏原本 z-index:1000，会盖住吸顶导航 */
+html.np-md #editor-side {
+  z-index: 1 !important;
+}
+
+/* 发帖选项：复选框排成网格，整块可点 */
+html.np-md #post-option .editor-mwidth > div {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 2px 16px;
+}
+
+html.np-md #post-option .editor-mwidth > div > span {
+  display: inline-flex !important;
+  float: none !important;
+  width: auto !important;
+  margin: 0 !important;
+  white-space: nowrap;
+  align-items: center;
+  gap: 8px;
+  min-height: 36px;
+  padding: 0 12px 0 8px;
+  border-radius: var(--md-corner-full);
+  color: var(--md-on-surface) !important;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.15s var(--md-ease);
+}
+
+html.np-md #post-option .editor-mwidth > div > span:hover {
+  background: var(--np-hover);
+}
+
+html.np-md #post-option .editor-mwidth > div > span:has(input:disabled) {
+  opacity: 0.38;
+  cursor: default;
+  background: transparent;
+}
+
+html.np-md #post-option input[type="checkbox"] {
+  margin: 0 !important;
+}
+
+/* 加密 / 出售两行 */
+html.np-md.np-has-editor #main form tr.tr3 .editor-mwidth > div > div {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  min-height: 48px;
+}
+
+/* 预览按钮 → outlined button */
+html.np-md.np-has-editor #main form a.btn3 {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center;
+  height: 40px !important;
+  margin-left: 8px;
+  padding: 0 24px !important;
+  border: 1px solid var(--md-outline) !important;
+  border-radius: var(--md-corner-full) !important;
+  background: transparent !important;
+  background-image: none !important;
+  color: var(--md-primary) !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
+  vertical-align: middle;
+  transition: background-color 0.15s var(--md-ease);
+}
+
+html.np-md.np-has-editor #main form a.btn3:hover {
+  background: color-mix(in srgb, var(--md-primary) 8%, transparent) !important;
 }
 
 /* --------------------------------------------------------------------------

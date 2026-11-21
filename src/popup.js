@@ -3,6 +3,7 @@ const FULL_WIDTH_SLIDER = 1900;
 
 const DEFAULT_PREFS = {
   theme: 'auto',
+  seed: '#39c5bb',
   modernUI: true,
   wide: true,
   maxWidth: 1400,
@@ -23,10 +24,47 @@ const themeButtons = document.querySelectorAll('#theme-group button');
 const toggles = document.querySelectorAll('input[data-pref]');
 const widthRange = document.getElementById('width-range');
 const widthValue = document.getElementById('width-value');
+const seedButtons = document.querySelectorAll('#seed-group button');
+const seedCustom = document.getElementById('seed-custom');
+const seedCustomLabel = seedCustom.closest('.swatch-custom');
+const seedValue = document.getElementById('seed-value');
+
+// 弹窗自身也跟随种子色（只覆盖弹窗用到的角色色）
+const POPUP_ROLES = [
+  'primary', 'on-primary', 'primary-container', 'on-primary-container', 'secondary',
+  'secondary-container', 'on-secondary-container', 'surface', 'on-surface', 'on-surface-variant',
+  'surface-container-low', 'surface-container', 'surface-container-high', 'surface-container-highest',
+  'outline', 'outline-variant'
+];
+
+function applySeed(dark) {
+  const style = document.documentElement.style;
+  const seed = npColor.normalize(prefs.seed);
+  if (seed === npColor.DEFAULT_SEED) {
+    POPUP_ROLES.forEach((role) => style.removeProperty(`--md-${role}`));
+    return;
+  }
+  const scheme = npColor.scheme(seed, dark);
+  POPUP_ROLES.forEach((role) => style.setProperty(`--md-${role}`, scheme[role]));
+}
 
 function render() {
   const dark = prefs.theme === 'dark' || (prefs.theme === 'auto' && darkQuery.matches);
   document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+  applySeed(dark);
+
+  const seed = npColor.normalize(prefs.seed);
+  let preset = false;
+  seedButtons.forEach((btn) => {
+    btn.style.setProperty('--sw', btn.dataset.seed);
+    const on = btn.dataset.seed === seed;
+    if (on) preset = true;
+    btn.setAttribute('aria-checked', String(on));
+  });
+  seedCustomLabel.setAttribute('aria-checked', String(!preset));
+  seedCustomLabel.style.setProperty('--sw', seed);
+  if (seedCustom.value !== seed) seedCustom.value = seed;
+  seedValue.textContent = seed.toUpperCase();
 
   themeButtons.forEach((btn) => {
     btn.setAttribute('aria-checked', String(btn.dataset.theme === prefs.theme));
@@ -63,6 +101,17 @@ darkQuery.addEventListener('change', render);
 themeButtons.forEach((btn) => {
   btn.addEventListener('click', () => save({ theme: btn.dataset.theme }));
 });
+
+seedButtons.forEach((btn) => {
+  btn.addEventListener('click', () => save({ seed: btn.dataset.seed }));
+});
+
+// 拖动取色时只预览，松手（change）再写入存储，避免频繁写 sync
+seedCustom.addEventListener('input', () => {
+  prefs = { ...prefs, seed: npColor.normalize(seedCustom.value) };
+  render();
+});
+seedCustom.addEventListener('change', () => save({ seed: npColor.normalize(seedCustom.value) }));
 
 toggles.forEach((input) => {
   input.addEventListener('change', () => save({ [input.dataset.pref]: input.checked }));

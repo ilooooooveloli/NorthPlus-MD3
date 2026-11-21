@@ -6,6 +6,7 @@
 
   const DEFAULT_PREFS = {
     theme: 'auto', // 'auto' | 'dark' | 'light'
+    seed: '#39c5bb', // 种子色
     modernUI: true, // MD3 界面
     wide: true,
     maxWidth: 1400, // 0 = 全宽
@@ -27,6 +28,8 @@
     const p = location.pathname;
     if (/\/read\.php/.test(p)) return 'read';
     if (/\/thread\.php/.test(p)) return 'thread';
+    if (/\/post\.php/.test(p)) return 'post';
+    if (/\/job\.php/.test(p) && /action=preview/.test(location.search)) return 'preview';
     if (/^\/?$|index\.php/.test(p)) return 'index';
     return 'other';
   })();
@@ -131,6 +134,8 @@
     root.classList.toggle('np-lightbox', Boolean(prefs.lightbox));
     root.classList.toggle('np-rowclick', Boolean(prefs.rowClick));
 
+    applySeed(md);
+
     if (prefs.maxWidth === 0) {
       root.style.setProperty('--np-width-vw', '96vw');
       root.style.setProperty('--np-max-width', 'none');
@@ -144,7 +149,23 @@
     } catch (_) {}
 
     syncFloating();
+    syncEditorFrame();
     if (document.readyState !== 'loading') scheduleDarkFix();
+  }
+
+  // 种子色：非默认时把生成的角色色写到 <html> 行内样式，覆盖 CSS 里的默认配色
+  const SEED_VARS = [];
+  function applySeed(md) {
+    const color = globalThis.npColor;
+    const seed = color ? color.normalize(prefs.seed) : '';
+    SEED_VARS.splice(0).forEach((name) => root.style.removeProperty(name));
+    if (!md || !color || seed === color.DEFAULT_SEED) return;
+    const scheme = color.scheme(seed, isDark());
+    Object.entries(scheme).forEach(([role, value]) => {
+      const name = `--md-${role}`;
+      root.style.setProperty(name, value);
+      SEED_VARS.push(name);
+    });
   }
 
   function savePrefs(patch) {
@@ -216,6 +237,8 @@
       enhanceToolbars,
       enhanceNotice,
       enhanceQuickReply,
+      enhanceEditor,
+      enhancePreview,
       enhanceLightbox,
       syncFloating,
       setupScroll,
@@ -688,6 +711,109 @@
       wideBtn.setAttribute('aria-pressed', String(Boolean(prefs.wide)));
       wideBtn.replaceChildren(icon(prefs.wide ? 'collapse' : 'expand'));
     }
+  }
+
+  /* ------------------------------------------------------------------
+     发帖页编辑器：所见即所得模式是一个 iframe，外部样式进不去，
+     需要把配色写进 iframe 文档；编辑器切换模式时会重建/显隐 iframe，用观察器补上
+     ------------------------------------------------------------------ */
+  function enhanceEditor() {
+    const box = document.querySelector('#editor-content .wysiwyg');
+    if (!box || box.dataset.np) return;
+    box.dataset.np = '1';
+    root.classList.add('np-has-editor');
+    new MutationObserver(syncEditorFrame).observe(box, {
+      childList: true,
+      subtree: true,
+      attributes: true,
+      attributeFilter: ['style']
+    });
+    // iframe 的 load 不冒泡，用捕获监听
+    box.addEventListener('load', syncEditorFrame, true);
+    syncEditorFrame();
+
+    // 发帖选项的文字是 <span> 不是 <label>，点文字也能勾选
+    document.querySelectorAll('#post-option .editor-mwidth > div > span').forEach((span) => {
+      const input = span.querySelector('input[type="checkbox"]');
+      if (!input) return;
+      span.addEventListener('click', (e) => {
+        if (e.target !== input) input.click();
+      });
+    });
+  }
+
+  // 帖子预览页（job.php?action=preview）：正文单元格套用帖子正文样式
+  function enhancePreview() {
+    if (PAGE !== 'preview') return;
+    const body = document.querySelector('#main div.t table tr.tr1 > th');
+    if (body) body.classList.add('tpc_content', 'np-preview-body');
+  }
+
+  function editorFrameCss() {
+    const cs = getComputedStyle(root);
+    const v = (name) => cs.getPropertyValue(name).trim();
+    const dark = root.classList.contains('np-dark');
+    return `
+:root { color-scheme: ${dark ? 'dark' : 'light'}; }
+html, body {
+  margin: 0 !important;
+  background: ${v('--np-editor-bg')} !important;
+}
+body {
+  box-sizing: border-box;
+  min-height: 100vh;
+  padding: 14px 18px !important;
+  color: ${v('--md-on-surface')} !important;
+  caret-color: ${v('--md-primary')};
+  font-family: ${v('--md-font')} !important;
+  font-size: 15px !important;
+  line-height: 1.7 !important;
+  word-break: break-word;
+}
+a { color: ${v('--md-primary')} !important; }
+img { max-width: 100%; height: auto; }
+::selection { background: ${v('--md-primary-container')}; color: ${v('--md-on-primary-container')}; }
+.t, .t td { border-color: ${v('--md-outline-variant')} !important; }
+blockquote {
+  margin: 8px 0; padding: 8px 14px;
+  border-left: 3px solid ${v('--md-primary')};
+  background: ${v('--md-surface-container-high')};
+  border-radius: 4px;
+}
+hr { border: none; border-top: 1px solid ${v('--md-outline-variant')}; }
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb { background: ${v('--md-outline-variant')}; border-radius: 10px; border: 2px solid transparent; background-clip: content-box; }
+`;
+  }
+
+  function syncEditorFrame() {
+    if (!document.body) return;
+    const frames = document.querySelectorAll('#editor-content .wysiwyg iframe');
+    if (!frames.length) return;
+    const css = prefs.modernUI ? editorFrameCss() : '';
+    frames.forEach((frame) => {
+      let doc;
+      try {
+        doc = frame.contentDocument;
+      } catch (_) {
+        return;
+      }
+      if (!doc || !doc.documentElement) return;
+      let style = doc.getElementById('np-frame-style');
+      if (!css) {
+        style?.remove();
+        return;
+      }
+      if (!style) {
+        style = doc.createElement('style');
+        style.id = 'np-frame-style';
+        (doc.head || doc.documentElement).appendChild(style);
+      } else if (style !== (doc.head || doc.documentElement).lastElementChild) {
+        // 保证排在编辑器自带样式之后
+        (doc.head || doc.documentElement).appendChild(style);
+      }
+      if (style.textContent !== css) style.textContent = css;
+    });
   }
 
   function updateFab() {
