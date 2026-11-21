@@ -5620,7 +5620,7 @@ html.np-md .rinsp-config-list > dt:has(> select > option[value="hcdarkbeige"])::
   content: "MD3 界面开启时，深浅色由 North+ 体验助手接管，此项不生效";
   display: block;
   margin-top: 4px;
-  font-size: 12px;
+  font-size: 13px;
   color: var(--md-on-surface-variant);
 }
 
@@ -5655,4 +5655,247 @@ html.np-md .rinsp-buy-failed {
   background-color: var(--md-error-container) !important;
   border-color: var(--md-error) !important;
   color: var(--md-on-error-container) !important;
+}
+
+/* 21.4 凛+ 设置面板（u.php）：MD3 设置列表 */
+html.np-md .rinsp-config-panel {
+  font-size: 15px;
+  line-height: 22px;
+  color: var(--md-on-surface);
+  padding-bottom: 12px;
+}
+
+/* 面板内各段标题：换行而不是挤在一行里互相覆盖 */
+html.np-md #u-wrap .rinsp-config-panel > h5.u-h5 {
+  flex-wrap: wrap !important;
+  justify-content: flex-start !important;
+  column-gap: 8px !important;
+  row-gap: 4px !important;
+  margin: 12px 8px 0 !important;
+  padding: 18px 8px 8px 12px !important;
+  border-top: 1px solid var(--np-divider) !important;
+}
+
+html.np-md #u-wrap .rinsp-config-panel > h5.u-h5:first-child {
+  margin-top: 0 !important;
+  border-top: none !important;
+}
+
+html.np-md .rinsp-config-panel > h5.u-h5 > span[style] {
+  color: var(--md-on-surface-variant) !important;
+  font-size: 13px !important;
+}
+
+html.np-md .rinsp-config-panel > h5.u-h5 > .r {
+  float: none !important;
+  margin-left: auto !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  font-size: 13px !important;
+  font-weight: 400 !important;
+}
+
+html.np-md .rinsp-config-list {
+  margin: 0 !important;
+  padding: 4px 8px !important;
+}
+
+/* 每一项：44px 行高的列表项 */
+html.np-md .rinsp-config-list > dt,
+html.np-md .rinsp-config-panel > dt.rinsp-config-item-lv1 {
+  display: flex !important;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: 8px;
+  row-gap: 4px;
+  min-height: 48px;
+  box-sizing: border-box;
+  margin: 0 !important;
+  padding: 6px 12px !important;
+  border: none !important;
+  border-radius: var(--md-corner-md);
+  font-size: 15px !important;
+  line-height: 22px;
+  color: var(--md-on-surface);
+}
+
+/* 面板直属的选项行（焦点人物）与上方列表对齐 */
+html.np-md .rinsp-config-panel > dt.rinsp-config-item-lv1 {
+  margin: 0 8px !important;
+}
+
+html.np-md .rinsp-config-list > dt:hover {
+  background: var(--np-hover);
+}
+
+html.np-md .rinsp-config-list > dt > label,
+html.np-md .rinsp-config-panel > dt > label {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 32px;
+  cursor: pointer;
+}
+
+/* 只有一个开关的行：整行可点 */
+html.np-md .rinsp-config-list > dt > label:only-child {
+  flex: 1;
+}
+
+html.np-md .rinsp-config-list > dt > label > input[type="checkbox"],
+html.np-md .rinsp-config-panel > dt > label > input[type="checkbox"] {
+  flex: none;
+  width: 18px !important;
+  height: 18px !important;
+  margin: 0 !important;
+  accent-color: var(--md-primary);
+}
+
+/* 层级缩进：对齐到上一级的文字起点（复选框 18 + 间距 12） */
+html.np-md .rinsp-config-list > dt.rinsp-config-item-lv2 {
+  padding-left: 42px !important;
+}
+
+html.np-md .rinsp-config-list > dt.rinsp-config-item-lv3,
+html.np-md .rinsp-config-list > a.rinsp-config-item-lv3 {
+  padding-left: 72px !important;
+}
+
+html.np-md .rinsp-config-list > a.rinsp-config-item-lv3 {
+  display: block;
+  margin: 0 !important;
+  padding-top: 8px !important;
+  padding-bottom: 8px !important;
+}
+
+/* 分组标题（只有文字的分隔行） */
+html.np-md .rinsp-config-list > dt.rinsp-config-item-sep {
+  margin-top: 12px !important;
+  border-top: 1px solid var(--np-divider) !important;
+  border-radius: 0;
+  padding-top: 18px !important;
+}
+
+html.np-md .rinsp-config-list > dt.rinsp-config-item-sep:not(:has(label, select, a)) {
+  min-height: 0;
+  padding-bottom: 4px !important;
+  color: var(--md-primary);
+  font-size: 14px !important;
+  font-weight: 500;
+  letter-spacing: 0.1px;
+}
+
+html.np-md .rinsp-config-list > dt.rinsp-config-item-sep:not(:has(label, select, a)):hover {
+  background: none;
+}
+
+/* 说明文字 */
+html.np-md .rinsp-config-list > dt.rinsp-config-item-tip {
+  min-height: 0;
+  padding-top: 0 !important;
+  padding-bottom: 6px !important;
+  color: var(--md-on-surface-variant) !important;
+  font-size: 13px !important;
+  line-height: 18px;
+}
+
+html.np-md .rinsp-config-list > dt.rinsp-config-item-lv2.rinsp-config-item-tip {
+  padding-left: 42px !important;
+}
+
+html.np-md .rinsp-config-list > dt.rinsp-config-item-tip:hover {
+  background: none;
+}
+
+/* 上级未勾选时的禁用态，按 MD3 用 38% */
+html.np-md .rinsp-config-item-lv1:not(.rinsp-config-item-checked) + .rinsp-config-item-lv2:not(.rinsp-config-item-tip),
+html.np-md .rinsp-config-item-lv1:not(.rinsp-config-item-checked) + .rinsp-config-item-lv2 + .rinsp-config-item-lv2:not(.rinsp-config-item-tip),
+html.np-md .rinsp-config-item-lv1:not(.rinsp-config-item-checked) + .rinsp-config-item-lv2 + .rinsp-config-item-lv2 + .rinsp-config-item-lv2:not(.rinsp-config-item-tip),
+html.np-md .rinsp-config-item-lv2:not(.rinsp-config-item-checked) + .rinsp-config-item-lv3:not(.rinsp-config-item-tip),
+html.np-md .rinsp-config-item-lv2:not(.rinsp-config-item-checked) + .rinsp-config-item-lv3 + .rinsp-config-item-lv3:not(.rinsp-config-item-tip),
+html.np-md .rinsp-config-item-lv2:not(.rinsp-config-item-checked) + .rinsp-config-item-lv3 + .rinsp-config-item-lv3 + .rinsp-config-item-lv3:not(.rinsp-config-item-tip) {
+  opacity: 0.38 !important;
+}
+
+html.np-md .rinsp-config-list > dt > span {
+  margin-left: 0 !important;
+  color: var(--md-on-surface-variant);
+}
+
+html.np-md .rinsp-config-list > dt > a,
+html.np-md .rinsp-config-panel > dt > a,
+html.np-md .rinsp-config-list a.rinsp-intro-link {
+  margin-left: 0 !important;
+  color: var(--md-primary) !important;
+  font-weight: 500;
+}
+
+/* 下拉框：紧凑的 MD3 outlined 样式 */
+html.np-md .rinsp-config-panel select {
+  height: 36px !important;
+  min-height: 0 !important;
+  padding: 0 28px 0 12px !important;
+  font-size: 14px !important;
+  line-height: 34px !important;
+  border-radius: var(--md-corner-sm) !important;
+}
+
+/* 设置页「暗黑模式」的提示独占一行 */
+html.np-md .rinsp-config-list > dt:has(> select > option[value="hcdarkbeige"])::after {
+  flex-basis: 100%;
+  margin-top: 0;
+}
+
+/* 收藏夹 / 屏蔽名单：用户标签做成 chip */
+html.np-md .rinsp-nickname-list,
+html.np-md .rinsp-user-blacklist,
+html.np-md .rinsp-pinned-user-list {
+  display: flex !important;
+  flex-wrap: wrap;
+  gap: 8px;
+  width: auto !important;
+  margin: 0 !important;
+  padding: 8px 20px 12px !important;
+}
+
+html.np-md .rinsp-pinned-user-list:empty {
+  display: none !important;
+}
+
+html.np-md .rinsp-user-tag {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 2px;
+  min-width: 0 !important;
+  max-width: 14em !important;
+  height: 32px;
+  box-sizing: border-box;
+  margin: 0 !important;
+  padding: 0 12px 0 8px;
+  border: 1px solid var(--md-outline-variant);
+  border-radius: var(--md-corner-sm);
+  font-size: 13px;
+}
+
+html.np-md .rinsp-user-tag a {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--md-on-surface) !important;
+}
+
+html.np-md .rinsp-nickname-list:empty:after,
+html.np-md .rinsp-user-blacklist:empty:after {
+  margin-left: 0 !important;
+  color: var(--md-on-surface-variant) !important;
+  font-size: 13px;
+}
+
+html.np-md .rinsp-config-manage-panel {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 20px 4px;
+  color: var(--md-on-surface-variant);
 }
