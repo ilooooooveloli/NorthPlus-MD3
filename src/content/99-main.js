@@ -100,3 +100,4 @@ function watchInsertedContent() {
 }
 
 setupPurchase();
+setupRinspDarkToggle();

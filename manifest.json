@@ -67,6 +67,7 @@
         "src/content/05-lightbox.js",
         "src/content/06-navigation.js",
         "src/content/07-purchase.js",
+        "src/content/08-rinsp.js",
         "src/content/99-main.js"
       ],
       "run_at": "document_start"

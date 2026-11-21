@@ -77,9 +77,61 @@ html.np-wide .rinsp-infscroll-armed .rinsp-infscroll-loader-bar {
   width: var(--np-content-w) !important;
 }
 
-/* 扩展的悬浮工具栏已有回顶按钮，隐藏凛+ 的重复按钮 */
-html.np-floatingbar .rinsp-excontrol-totop {
-  display: none !important;
+/* 回顶：凛+ 开着「回到顶部按钮」时按它的来——扩展的回顶 FAB 让位（只占位不显示），
+   凛+ 的按钮放到 FAB 原来的位置、换成同样的 MD3 FAB 外观，显隐仍由凛+ 控制 */
+body:has(> .rinsp-bmcontrol-container > .rinsp-excontrol-totop) > #np-floating #np-fab-top {
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+html.np-floatingbar .rinsp-bmcontrol-container > .rinsp-excontrol-totop {
+  position: fixed !important;
+  left: auto !important;
+  right: 24px !important;
+  bottom: 24px !important;
+  z-index: 99991 !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 56px !important;
+  height: 56px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+  border-radius: var(--md-corner-lg) !important;
+  background: var(--md-primary-container) !important;
+  color: var(--md-on-primary-container) !important;
+  box-shadow: var(--md-elevation-3) !important;
+  outline: none !important;
+  opacity: 1;
+  transition: opacity 0.2s var(--md-ease), box-shadow 0.15s var(--md-ease) !important;
+}
+
+html.np-floatingbar .rinsp-bmcontrol-container > .rinsp-excontrol-totop:hover {
+  box-shadow: var(--md-elevation-4) !important;
+}
+
+html.np-floatingbar .rinsp-bmcontrol-container > .rinsp-excontrol-totop::after {
+  content: "" !important;
+  width: 24px;
+  height: 24px;
+  background: currentColor;
+  -webkit-mask: var(--np-i-up) center / 24px no-repeat;
+  mask: var(--np-i-up) center / 24px no-repeat;
+}
+
+html.np-floatingbar .rinsp-bmcontrol-container > .rinsp-excontrol-totop.rinsp-opacity-0 {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+html.np-md.np-floatingbar.np-bp-phone .rinsp-bmcontrol-container > .rinsp-excontrol-totop {
+  right: 12px !important;
+  bottom: 16px !important;
+  width: 48px !important;
+  height: 48px !important;
+  border-radius: var(--md-corner-md) !important;
 }
 
 /* 21.3 组件外观 */
@@ -151,9 +203,13 @@ html.np-md .rinsp-quick-action-divider {
   border-top-color: var(--md-outline-variant) !important;
 }
 
-/* MD3 开启时深浅色由扩展接管，凛+ 的暗黑模式开关无效，隐藏 */
-html.np-md .rinsp-dark-mode-toggle {
-  display: none !important;
+/* MD3 开启时深浅色由扩展接管：凛+ 快捷菜单里的暗黑模式开关改为切换 MD3 深浅色（见 content/08-rinsp.js） */
+html.np-md .rinsp-quick-action.rinsp-dark-mode-toggle::before {
+  content: "🌒开启暗黑模式" !important;
+}
+
+html.np-md.np-dark .rinsp-quick-action.rinsp-dark-mode-toggle::before {
+  content: "☀️关闭暗黑模式" !important;
 }
 
 /* 凛+ 弹窗（关键词编辑等）沿用论坛 .menu，MD3 已有样式，只去掉内层 5px 浅色边框 */
@@ -464,3 +520,116 @@ html.np-md .rinsp-config-manage-panel {
   color: var(--md-on-surface-variant);
 }
 
+/* 21.5 主菜单快速搜索栏（凛+「主菜单上添加快速搜索栏」）
+   凛+ 自己只做两件事：插入搜索框、把「社区论坛任务」缩写成「任务」（font-size: 0 + ::after）。
+   MD3 导航项的 font-size !important 会盖掉它的缩写，这里补回来，并把搜索框换成 MD3 搜索栏。 */
+html.np-md ul#guide.guide.rinsp-quicksearch-added li a[href="plugin.php?H_name-tasks.html"] {
+  font-size: 0 !important;
+}
+
+html.np-md ul#guide.guide.rinsp-quicksearch-added li a[href="plugin.php?H_name-tasks.html"]::after {
+  content: "任务";
+  font-size: 14px;
+}
+
+html.np-md ul#guide.guide.rinsp-quicksearch-added {
+  flex-wrap: nowrap !important;
+}
+
+html.np-md #mainNav .rinsp-quicksearch {
+  flex: 0 1 240px;
+  min-width: 140px;
+  height: 40px;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html.np-md #mainNav .rinsp-quicksearch-field {
+  width: 100% !important;
+  height: 40px !important;
+  box-sizing: border-box !important;
+  margin: 0 !important;
+  padding: 0 40px 0 16px !important;
+  font: 400 14px/20px var(--md-font) !important;
+  color: var(--md-on-surface) !important;
+  background: var(--md-surface-container-highest) !important;
+  border: none !important;
+  border-radius: var(--md-corner-full) !important;
+  box-shadow: none !important;
+  outline: none !important;
+  opacity: 1 !important;
+  transition: background-color 0.2s var(--md-ease), box-shadow 0.2s var(--md-ease) !important;
+}
+
+html.np-md #mainNav .rinsp-quicksearch-field:hover {
+  background: color-mix(in srgb, var(--md-on-surface) 8%, var(--md-surface-container-highest)) !important;
+}
+
+html.np-md #mainNav .rinsp-quicksearch-field:focus {
+  box-shadow: inset 0 0 0 2px var(--md-primary) !important;
+}
+
+/* 占位提示「搜索」 */
+html.np-md #mainNav .rinsp-quicksearch:has(.rinsp-quicksearch-field:invalid)::after {
+  left: 16px;
+  right: auto;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--md-on-surface-variant);
+  pointer-events: none;
+}
+
+/* 放大镜：换成跟随配色的 MD3 图标 */
+html.np-md #mainNav .rinsp-quicksearch-button {
+  right: 4px !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0 !important;
+  border-radius: var(--md-corner-full);
+  cursor: pointer;
+}
+
+html.np-md #mainNav .rinsp-quicksearch-button:hover {
+  background: var(--np-hover);
+}
+
+html.np-md #mainNav .rinsp-quicksearch-button::after {
+  width: 20px !important;
+  height: 20px !important;
+  background: var(--md-on-surface-variant) !important;
+  -webkit-mask: var(--np-i-search) center / 20px no-repeat;
+  mask: var(--np-i-search) center / 20px no-repeat;
+}
+
+/* 位置「主菜单空间置中」：凛+ 按原版页宽算出的定宽占位 li 去掉，左右两个弹性 spacer 让搜索栏居中 */
+html.np-md #mainNav > div:nth-of-type(2):has(> table ul.rinsp-quicksearch-align-center) {
+  flex: 1 1 auto !important;
+}
+
+html.np-md #mainNav > div:nth-of-type(2):has(> table ul.rinsp-quicksearch-align-center) table,
+html.np-md #mainNav > div:nth-of-type(2):has(> table ul.rinsp-quicksearch-align-center) td,
+html.np-md ul#guide.guide.rinsp-quicksearch-align-center {
+  width: 100% !important;
+}
+
+html.np-md ul#guide.guide.rinsp-quicksearch-align-center > li:first-child:not([id]):not(.rinsp-spacer) {
+  display: none !important;
+}
+
+html.np-md ul#guide.guide.rinsp-quicksearch-align-center > li.rinsp-spacer {
+  flex: 1 1 0 !important;
+}
+
+/* 手机：导航横向滚动，搜索栏给个固定宽度 */
+html.np-md.np-bp-phone #mainNav .rinsp-quicksearch {
+  flex: 0 0 180px;
+  height: 36px;
+}
+
+html.np-md.np-bp-phone #mainNav .rinsp-quicksearch-field {
+  height: 36px !important;
+}

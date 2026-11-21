@@ -126,6 +126,11 @@ html.np-md.np-collapse-notice .np-notice-toggle {
   border-radius: 0 !important;
 }
 
+/* 公告已被论坛自带的折叠按钮收起（含凛+「默认折叠版块公告」）：按它的来，扩展的展开按钮让位 */
+html.np-md.np-collapse-notice #cate_thread[style*="none"] + .np-notice-toggle {
+  display: none;
+}
+
 html.np-md .np-notice-toggle:hover {
   background: color-mix(in srgb, var(--md-primary) 8%, transparent) !important;
 }

@@ -249,12 +249,16 @@ html.np-md input[type="button"][onclick*="buytopic"] {
   color: var(--md-on-primary) !important;
 }
 
-/* 阅读排版 */
+/* 阅读排版（凛+「页面字体大小」调到「列表标题及内容」时字号按凛+ 的来，只保留行距） */
 html.np-readable .tpc_content > div[id^="read_"],
 html.np-readable .tpc_content > div.f14 {
-  font-size: 16px;
   line-height: 1.8;
   letter-spacing: 0.01em;
+}
+
+html.np-readable:not(.rinsp-textsize-step-2) .tpc_content > div[id^="read_"],
+html.np-readable:not(.rinsp-textsize-step-2) .tpc_content > div.f14 {
+  font-size: 16px;
 }
 
 html.np-readable .tpc_content p {

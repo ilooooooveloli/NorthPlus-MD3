@@ -39,7 +39,12 @@ function openFocused(newTab) {
   if (!item) return;
   const link = item.querySelector('h3 a[href]');
   if (!link) return;
-  if (newTab) window.open(link.href, '_blank');
+  openLink(link, newTab);
+}
+
+// 凛+「列表内链接默认在新窗口打开」会给链接加 target="_blank"：按链接自身的 target 走
+function openLink(link, newTab) {
+  if (newTab || link.target === '_blank') window.open(link.href, '_blank');
   else location.href = link.href;
 }
 
@@ -162,7 +167,6 @@ function setupRowClick() {
     if (!row) return;
     const link = row.querySelector('h3 a[href]');
     if (!link) return;
-    if (e.ctrlKey || e.metaKey || e.shiftKey) window.open(link.href, '_blank');
-    else location.href = link.href;
+    openLink(link, e.ctrlKey || e.metaKey || e.shiftKey);
   });
 }

@@ -1,9 +1,19 @@
 /* --------------------------------------------------------------------------
    3. 页头：精简、顶部应用栏（吸顶）、用户信息卡、横幅
    -------------------------------------------------------------------------- */
-html.np-md.np-compact #toptool,
 html.np-md.np-compact #header > table {
   display: none !important;
+}
+
+/* #toptool 收成 0 高而不是 display: none：凛+ 的回顶按钮靠 scrollIntoView(#toptool) 回顶 */
+html.np-md.np-compact #toptool {
+  display: block !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  overflow: hidden !important;
+  visibility: hidden !important;
 }
 
 html.np-md #toptool {
