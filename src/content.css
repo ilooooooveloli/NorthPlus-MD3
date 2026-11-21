@@ -1,25 +1,147 @@
 /* ==========================================================================
-   North+ 体验优化助手 - Content Stylesheet
-   Scoped via classes on <html>:
-     - .np-wide     : 宽屏适配，消除两侧留白
-     - .np-dark     : 深色模式
-     - .np-readable : 阅读排版优化
+   North+ 体验助手 v2 — Material 3 皮肤
+   <html> 上的开关类：
+     .np-ext       插件已加载（定义 tokens）
+     .np-md        MD3 界面
+     .np-dark      深色配色
+     .np-wide      宽屏适配
+     .np-compact   精简页头
+     .np-readable  阅读排版
+     .np-collapse-notice  折叠版块公告
+   色彩由种子色 #39c5bb 按 Material Theme Builder（tonal spot）生成。
    ========================================================================== */
 
+/* --------------------------------------------------------------------------
+   0. Tokens
+   -------------------------------------------------------------------------- */
 :root {
   --np-max-width: 1400px;
   --np-width-vw: 92vw;
 }
 
+html.np-ext {
+  /* Light scheme */
+  --md-primary: #006a64;
+  --md-on-primary: #ffffff;
+  --md-primary-container: #9df2e9;
+  --md-on-primary-container: #00504b;
+  --md-secondary: #4a6360;
+  --md-on-secondary: #ffffff;
+  --md-secondary-container: #cce8e4;
+  --md-on-secondary-container: #334b48;
+  --md-tertiary: #48617a;
+  --md-on-tertiary: #ffffff;
+  --md-tertiary-container: #cfe5ff;
+  --md-on-tertiary-container: #304961;
+  --md-error: #ba1a1a;
+  --md-on-error: #ffffff;
+  --md-error-container: #ffdad6;
+  --md-on-error-container: #93000a;
+  --md-surface: #f4fbf9;
+  --md-on-surface: #161d1c;
+  --md-on-surface-variant: #3f4947;
+  --md-surface-container-lowest: #ffffff;
+  --md-surface-container-low: #eef5f3;
+  --md-surface-container: #e9efed;
+  --md-surface-container-high: #e3eae8;
+  --md-surface-container-highest: #dde4e2;
+  --md-outline: #6f7977;
+  --md-outline-variant: #bec9c6;
+  --md-inverse-surface: #2b3231;
+  --md-inverse-on-surface: #ecf2f0;
+  --md-inverse-primary: #81d5cd;
+  --md-scrim: rgba(0, 0, 0, 0.32);
+
+  --md-elevation-1: 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.15);
+  --md-elevation-2: 0 1px 2px rgba(0, 0, 0, 0.3), 0 2px 6px 2px rgba(0, 0, 0, 0.15);
+  --md-elevation-3: 0 1px 3px rgba(0, 0, 0, 0.3), 0 4px 8px 3px rgba(0, 0, 0, 0.15);
+  --md-elevation-4: 0 2px 3px rgba(0, 0, 0, 0.3), 0 6px 10px 4px rgba(0, 0, 0, 0.15);
+
+  --md-corner-xs: 4px;
+  --md-corner-sm: 8px;
+  --md-corner-md: 12px;
+  --md-corner-lg: 16px;
+  --md-corner-xl: 28px;
+  --md-corner-full: 999px;
+
+  --md-font: Roboto, "Google Sans", system-ui, -apple-system, BlinkMacSystemFont,
+    "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+  --md-font-mono: "Roboto Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --md-ease: cubic-bezier(0.2, 0, 0, 1);
+
+  --np-divider: color-mix(in srgb, var(--md-outline-variant) 70%, transparent);
+  --np-hover: color-mix(in srgb, var(--md-on-surface) 8%, transparent);
+  --np-press: color-mix(in srgb, var(--md-on-surface) 10%, transparent);
+
+  /* Material Symbols（内联 SVG 作为 mask） */
+  --np-i-chevron-right: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M10 6 8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z'/></svg>");
+  --np-i-home: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M6 19h3v-6h6v6h3v-9l-6-4.5L6 10v9Zm-2 2V9l8-6 8 6v12h-7v-6h-2v6H4Z'/></svg>");
+  --np-i-expand: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6z'/></svg>");
+  --np-i-check: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/></svg>");
+  --np-i-reply: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M10 9V5l-7 7 7 7v-4.1c5 0 8.5 1.6 11 5.1-1-5-4-10-11-11z'/></svg>");
+  --np-i-quote: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M6 17h3l2-4V7H5v6h3zm8 0h3l2-4V7h-6v6h3z'/></svg>");
+  --np-i-more: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z'/></svg>");
+  --np-i-forum: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M21 6h-2v9H6v2c0 .55.45 1 1 1h11l4 4V7c0-.55-.45-1-1-1zm-4 6V3c0-.55-.45-1-1-1H3c-.55 0-1 .45-1 1v14l4-4h10c.55 0 1-.45 1-1z'/></svg>");
+  --np-i-lock: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z'/></svg>");
+  --np-i-chat: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z'/></svg>");
+  --np-i-eye: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z'/></svg>");
+  --np-i-bookmark: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M5 21V5q0-.825.588-1.413T7 3h10q.825 0 1.413.588T19 5v16l-7-3-7 3Zm2-3.05 5-2.15 5 2.15V5H7v12.95Z'/></svg>");
+  --np-i-edit: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M5 19h1.425L16.2 9.225 14.775 7.8 5 17.575V19Zm-2 2v-4.25L16.2 3.575q.3-.275.663-.425t.762-.15q.4 0 .775.15t.65.45L20.425 5q.3.275.437.65T21 6.4q0 .4-.138.763t-.437.662L7.25 21H3Z'/></svg>");
+  --np-i-article: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M7 17h7v-2H7v2Zm0-4h10v-2H7v2Zm0-4h10V7H7v2ZM5 21q-.825 0-1.412-.587T3 19V5q0-.825.588-1.413T5 3h14q.825 0 1.413.588T21 5v14q0 .825-.587 1.413T19 21H5Zm0-2h14V5H5v14Z'/></svg>");
+  --np-i-mail: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M4 20q-.825 0-1.412-.587T2 18V6q0-.825.588-1.412T4 4h16q.825 0 1.413.588T22 6v12q0 .825-.587 1.413T20 20H4Zm8-7L4 8v10h16V8l-8 5Zm0-2 8-5H4l8 5Z'/></svg>");
+  --np-i-person-add: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M18 14v-3h-3V9h3V6h2v3h3v2h-3v3h-2Zm-9-2q-1.65 0-2.825-1.175T5 8q0-1.65 1.175-2.825T9 4q1.65 0 2.825 1.175T13 8q0 1.65-1.175 2.825T9 12Zm-8 8v-2.8q0-.85.438-1.563T2.6 14.55q1.55-.775 3.15-1.163T9 13q1.65 0 3.25.388t3.15 1.162q.725.375 1.163 1.088T17 17.2V20H1Z'/></svg>");
+  --np-i-campaign: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M18 11v2h4v-2h-4zm-2 6.61c.96.71 2.21 1.65 3.2 2.39.4-.53.8-1.07 1.2-1.6-.99-.74-2.24-1.68-3.2-2.4-.4.54-.8 1.08-1.2 1.61zM20.4 5.6c-.4-.53-.8-1.07-1.2-1.6-.99.74-2.24 1.68-3.2 2.4.4.53.8 1.07 1.2 1.6.96-.72 2.21-1.65 3.2-2.4zM4 9c-1.1 0-2 .9-2 2v2c0 1.1.9 2 2 2h1v4h2v-4h1l5 3V6L8 9H4zm11.5 3c0-1.33-.58-2.53-1.5-3.35v6.69c.92-.81 1.5-2.01 1.5-3.34z'/></svg>");
+}
+
+html.np-ext.np-dark {
+  color-scheme: dark;
+  --md-primary: #81d5cd;
+  --md-on-primary: #003734;
+  --md-primary-container: #00504b;
+  --md-on-primary-container: #9df2e9;
+  --md-secondary: #b0ccc8;
+  --md-on-secondary: #1c3532;
+  --md-secondary-container: #334b48;
+  --md-on-secondary-container: #cce8e4;
+  --md-tertiary: #b0c9e5;
+  --md-on-tertiary: #193349;
+  --md-tertiary-container: #304961;
+  --md-on-tertiary-container: #cfe5ff;
+  --md-error: #ffb4ab;
+  --md-on-error: #690005;
+  --md-error-container: #93000a;
+  --md-on-error-container: #ffdad6;
+  --md-surface: #0e1514;
+  --md-on-surface: #dde4e2;
+  --md-on-surface-variant: #bec9c6;
+  --md-surface-container-lowest: #090f0f;
+  --md-surface-container-low: #161d1c;
+  --md-surface-container: #1a2120;
+  --md-surface-container-high: #252b2a;
+  --md-surface-container-highest: #303635;
+  --md-outline: #899391;
+  --md-outline-variant: #3f4947;
+  --md-inverse-surface: #dde4e2;
+  --md-inverse-on-surface: #2b3231;
+  --md-inverse-primary: #006a64;
+  --md-scrim: rgba(0, 0, 0, 0.6);
+}
+
 /* --------------------------------------------------------------------------
-   1. 宽屏适配 (.np-wide)
+   1. 宽屏适配（独立于 MD3 皮肤）
    -------------------------------------------------------------------------- */
+#wrapA > #mainNav {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 html.np-wide body {
   background-image: none !important;
 }
 
 html.np-wide #toptool,
 html.np-wide #header,
+html.np-wide #wrapA > #mainNav,
 html.np-wide #main,
 html.np-wide #footer,
 html.np-wide .footer,
@@ -30,7 +152,6 @@ html.np-wide div[style*="width:920px"] {
   box-sizing: border-box !important;
 }
 
-/* 顶部横幅与图片自适应，防止撑破布局 */
 html.np-wide #header table,
 html.np-wide #main table {
   max-width: 100% !important;
@@ -43,10 +164,8 @@ html.np-wide .tpc_content img {
   height: auto !important;
 }
 
-/* 帖子正文区域自动换行，防止长链接/长代码撑宽表格 */
 html.np-wide .tpc_content {
-  overflow-wrap: break-word !important;
-  word-wrap: break-word !important;
+  overflow-wrap: anywhere !important;
 }
 
 html.np-wide th.r_one,
@@ -55,882 +174,1722 @@ html.np-wide td.r_one {
 }
 
 /* --------------------------------------------------------------------------
-   2. 阅读排版优化 (.np-readable)
+   2. 基础：页面、文字、链接
    -------------------------------------------------------------------------- */
-html.np-readable body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
-    "Hiragino Sans GB", "Microsoft YaHei", Arial, sans-serif !important;
+html.np-md body {
+  background: var(--md-surface) !important;
+  color: var(--md-on-surface) !important;
+  font-family: var(--md-font) !important;
+  -webkit-font-smoothing: antialiased;
 }
 
-html.np-readable .t,
-html.np-readable .t5,
-html.np-readable #breadcrumbs {
-  border-radius: 6px !important;
+html.np-md body,
+html.np-md td,
+html.np-md th,
+html.np-md input,
+html.np-md select,
+html.np-md textarea,
+html.np-md button {
+  font-family: var(--md-font) !important;
 }
 
-html.np-readable .tpc_content {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
-    "Hiragino Sans GB", "Microsoft YaHei", Arial, sans-serif !important;
-  font-size: 15px !important;
-  line-height: 1.8 !important;
-  padding: 12px 24px 24px !important;
+html.np-md #wrapA,
+html.np-md #main,
+html.np-md #header,
+html.np-md #content,
+html.np-md .contentwrap {
+  background: transparent !important;
 }
 
-html.np-readable tr.tr3 {
-  transition: background-color 0.15s ease !important;
+html.np-md a {
+  color: var(--md-on-surface);
+  transition: color 0.15s var(--md-ease), background-color 0.15s var(--md-ease);
 }
 
-html.np-readable .pages {
-  border-radius: 4px !important;
-  overflow: hidden !important;
+html.np-md a:hover {
+  color: var(--md-primary);
+}
+
+html.np-md ::selection {
+  background: var(--md-primary-container);
+  color: var(--md-on-primary-container);
+}
+
+html.np-md .gray,
+html.np-md .gray2,
+html.np-md .gray3,
+html.np-md .f10,
+html.np-md .smalltxt {
+  color: var(--md-on-surface-variant) !important;
+}
+
+html.np-md :focus-visible {
+  outline: 3px solid var(--md-secondary) !important;
+  outline-offset: 2px !important;
+  border-radius: var(--md-corner-xs);
+}
+
+/* 通用：清除老皮肤的背景位图与灰色块 */
+html.np-md .f_one,
+html.np-md .f_two,
+html.np-md .t_one,
+html.np-md .t_two,
+html.np-md .r_one,
+html.np-md .tr1,
+html.np-md .tr2,
+html.np-md .tr3,
+html.np-md .tr4,
+html.np-md .h,
+html.np-md .h2,
+html.np-md .h3 {
+  background-color: transparent !important;
+  background-image: none !important;
+  color: inherit;
+}
+
+html.np-md table,
+html.np-md td,
+html.np-md th,
+html.np-md tr {
+  border-color: var(--np-divider) !important;
 }
 
 /* --------------------------------------------------------------------------
-   3. 深色模式 (.np-dark)
+   3. 页头：精简、顶部应用栏（吸顶）、用户信息卡、横幅
    -------------------------------------------------------------------------- */
-html.np-dark {
-  color-scheme: dark;
+html.np-md.np-compact #toptool,
+html.np-md.np-compact #header > table {
+  display: none !important;
 }
 
-html.np-dark body {
-  background-color: #141518 !important;
+html.np-md #toptool {
+  font-size: 12px !important;
+  padding: 6px 0 !important;
+}
+
+html.np-md #toptool a {
+  color: var(--md-on-surface-variant) !important;
+}
+
+html.np-md #header > table {
+  margin-top: 8px !important;
+}
+
+/* 顶部应用栏 */
+html.np-md #mainNav {
+  position: sticky !important;
+  top: 8px !important;
+  z-index: 1000 !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  min-height: 64px !important;
+  height: auto !important;
+  margin-top: 12px !important;
+  margin-bottom: 12px !important;
+  padding: 0 12px 0 16px !important;
+  box-sizing: border-box !important;
+  background: var(--md-surface-container) !important;
   background-image: none !important;
-  color: #dcdfe4 !important;
-}
-
-/* 主卡片与奇数行背景 */
-html.np-dark #wrapA,
-html.np-dark #main {
-  background-color: transparent !important;
-}
-
-html.np-dark .f_one,
-html.np-dark .t_one,
-html.np-dark .r_one,
-html.np-dark .t,
-html.np-dark .t2,
-html.np-dark .t5,
-html.np-dark .tr4,
-html.np-dark .gonggao,
-html.np-dark #cate_thread,
-html.np-dark #tab_1,
-html.np-dark #infobox,
-html.np-dark #profile-menubar,
-html.np-dark #user-login {
-  background-color: #1e2024 !important;
-  background-image: none !important;
-  border-color: #2e3238 !important;
-  color: #dcdfe4 !important;
-}
-
-/* 次级区域与偶数行背景 */
-html.np-dark .f_two,
-html.np-dark .t_two,
-html.np-dark .r_two,
-html.np-dark .tr2,
-html.np-dark #footer,
-html.np-dark #breadcrumbs,
-html.np-dark #notice {
-  background-color: #25282e !important;
-  background-image: none !important;
-  border-color: #2e3238 !important;
-}
-
-/* 版块公告栏标签页 */
-html.np-dark .gonggao .gongul {
-  border-bottom-color: #2e3238 !important;
-  background-color: #25282e !important;
-}
-
-html.np-dark .gonggao .gongul li {
-  background-color: #2c3038 !important;
-  background-image: none !important;
-}
-
-html.np-dark .gonggao .gongul li.active {
-  background-color: #1e2024 !important;
-}
-
-html.np-dark .gongul .lin {
-  border-color: #2e3238 !important;
-  color: #f0f2f5 !important;
-}
-
-/* 帖子列表顶部的 全部 / 精华 / 分类 切换标签 */
-html.np-dark .threadlist li a {
-  color: #b0b6be !important;
-}
-
-html.np-dark .threadlist li a:hover {
-  background-color: #383d47 !important;
-  color: #ffffff !important;
-}
-
-html.np-dark .threadlist li.current a,
-html.np-dark .threadlist li.current a:hover {
-  background-color: #1e2024 !important;
-  border-color: #383d47 !important;
-  border-bottom-color: #1e2024 !important;
-  color: #6cb6ff !important;
-}
-
-html.np-dark .threadlist2 a {
-  background-color: #25282e !important;
-  background-image: none !important;
-  border-color: #383d47 !important;
-  color: #dcdfe4 !important;
-}
-
-/* 下拉菜单与用户信息浮层 */
-html.np-dark .menu,
-html.np-dark .user-infoWraptwo {
-  background-color: #1e2024 !important;
-  background-image: none !important;
-  border-color: #383d47 !important;
-  color: #dcdfe4 !important;
-}
-
-html.np-dark .menu .ul2 li a:hover {
-  background-color: #2a2e35 !important;
-}
-
-/* 表格行悬停高亮 */
-html.np-dark .z .tr3:hover,
-html.np-dark tr.tr3.t_one:hover,
-html.np-dark tr.tr3.f_one:hover,
-html.np-dark tr.tr3.f_two:hover {
-  background-color: #2a2e35 !important;
-}
-
-html.np-dark .z .tr3:hover > td,
-html.np-dark tr.tr3.t_one:hover > td,
-html.np-dark tr.tr3.f_one:hover > td,
-html.np-dark tr.tr3.f_two:hover > td {
-  background-color: #2a2e35 !important;
-}
-
-/* 区块标题栏 */
-html.np-dark .h,
-html.np-dark .h2,
-html.np-dark .h3,
-html.np-dark th.h,
-html.np-dark th.h2 {
-  background-color: #2c3038 !important;
-  background-image: none !important;
-  border-color: #383d47 !important;
-  color: #f0f2f5 !important;
-}
-
-/* 顶部导航栏 */
-html.np-dark #mainNav {
-  background-color: #1b1d21 !important;
-  background-image: none !important;
-  border-color: #2e3238 !important;
-}
-
-/* 文字与链接 */
-html.np-dark a {
-  color: #dcdfe4 !important;
-}
-
-html.np-dark a:hover {
-  color: #6cb6ff !important;
-}
-
-html.np-dark h1,
-html.np-dark h2,
-html.np-dark h3,
-html.np-dark h1 a,
-html.np-dark h2 a,
-html.np-dark h3 a {
-  color: #f0f2f5 !important;
-}
-
-html.np-dark .tpc_content {
-  color: #dcdfe4 !important;
-}
-
-html.np-dark .tpc_content a {
-  color: #6cb6ff !important;
-}
-
-html.np-dark .gray,
-html.np-dark .gray2,
-html.np-dark .gray3,
-html.np-dark .tr2,
-html.np-dark .tr3,
-html.np-dark .f10,
-html.np-dark .tipad,
-html.np-dark .tiptop {
-  color: #a6adb8 !important;
-}
-
-/* 论坛内置颜色类在深色模式下的可读性适配 */
-html.np-dark .s1 {
-  color: #f87171 !important;
-}
-
-html.np-dark .s2 {
-  color: #4ade80 !important;
-}
-
-html.np-dark .s3 {
-  color: #fbbf24 !important;
-}
-
-html.np-dark .s4 {
-  color: #6cb6ff !important;
-}
-
-html.np-dark .s5 {
-  color: #e6eaf0 !important;
-}
-
-html.np-dark .s6 {
-  color: #b4bcc8 !important;
-}
-
-html.np-dark .s7 {
-  color: #c084fc !important;
-}
-
-html.np-dark .s8 {
-  color: #60a5fa !important;
-}
-
-/* 覆盖帖子、签名、公告与引用内常见暗色内联文字（避免黑字/深灰字在深色背景上看不清） */
-html.np-dark #main font[color="#000000" i],
-html.np-dark #main font[color="#000" i],
-html.np-dark #main font[color="black" i],
-html.np-dark #main font[color="#111111" i],
-html.np-dark #main font[color="#222222" i],
-html.np-dark #main font[color="#333333" i],
-html.np-dark #main font[color="#444444" i],
-html.np-dark #main font[color="#555555" i],
-html.np-dark #main font[color="#666666" i],
-html.np-dark #main font[color="#777777" i],
-html.np-dark #main font[color="#808080" i],
-html.np-dark #main font[color="#888888" i],
-html.np-dark #main font[color="gray" i],
-html.np-dark #main font[color="grey" i],
-html.np-dark #main font[color="dimgray" i],
-html.np-dark #main font[color="dimgrey" i],
-html.np-dark #main font[color="navy" i],
-html.np-dark #main font[color="darkblue" i],
-html.np-dark #main font[color="midnightblue" i],
-html.np-dark #main font[color="darkslategray" i],
-html.np-dark #main font[color="darkred" i],
-html.np-dark #main font[color="maroon" i],
-html.np-dark #main font[color="darkgreen" i],
-html.np-dark #main font[color="purple" i],
-html.np-dark #main font[color="indigo" i],
-html.np-dark #main font[color="brown" i],
-html.np-dark #main [style*="color:#000" i],
-html.np-dark #main [style*="color: #000" i],
-html.np-dark #main [style*="color:black" i],
-html.np-dark #main [style*="color: black" i],
-html.np-dark #main [style*="color:#111" i],
-html.np-dark #main [style*="color: #111" i],
-html.np-dark #main [style*="color:#222" i],
-html.np-dark #main [style*="color: #222" i],
-html.np-dark #main [style*="color:#333" i],
-html.np-dark #main [style*="color: #333" i],
-html.np-dark #main [style*="color:#444" i],
-html.np-dark #main [style*="color: #444" i],
-html.np-dark #main [style*="color:#555" i],
-html.np-dark #main [style*="color: #555" i],
-html.np-dark #main [style*="color:#666" i],
-html.np-dark #main [style*="color: #666" i],
-html.np-dark #main [style*="color:#777" i],
-html.np-dark #main [style*="color: #777" i],
-html.np-dark #main [style*="color:#808080" i],
-html.np-dark #main [style*="color: #808080" i],
-html.np-dark #main [style*="color:#888" i],
-html.np-dark #main [style*="color: #888" i],
-html.np-dark #main [style*="color:gray" i],
-html.np-dark #main [style*="color: gray" i],
-html.np-dark #main [style*="color:dimgray" i],
-html.np-dark #main [style*="color: dimgray" i],
-html.np-dark #main [style*="color:navy" i],
-html.np-dark #main [style*="color: navy" i],
-html.np-dark #main [style*="color:darkblue" i],
-html.np-dark #main [style*="color: darkblue" i],
-html.np-dark #main [style*="color: rgb(0," i],
-html.np-dark #main [style*="color:rgb(0," i],
-html.np-dark #main [style*="color: rgb(17," i],
-html.np-dark #main [style*="color: rgb(34," i],
-html.np-dark #main [style*="color: rgb(51," i],
-html.np-dark #main [style*="color: rgb(68," i],
-html.np-dark #main [style*="color: rgb(85," i],
-html.np-dark #main [style*="color: rgb(102," i],
-html.np-dark #main [style*="color: rgb(119," i],
-html.np-dark #main [style*="color: rgb(128," i],
-html.np-dark #main [style*="color: rgb(136," i],
-html.np-dark #main [style*="color: rgba(0," i],
-html.np-dark #main [style*="color:rgba(0," i] {
-  color: #e2e6ed !important;
-}
-
-html.np-dark #main [bgcolor="#ffffff" i],
-html.np-dark #main [bgcolor="#fff" i],
-html.np-dark #main [bgcolor="white" i],
-html.np-dark #main [bgcolor="#f5f5f5" i],
-html.np-dark #main [bgcolor="#f0f0f0" i],
-html.np-dark #main [bgcolor="#fafafa" i],
-html.np-dark #main [bgcolor="#eeeeee" i],
-html.np-dark #main [bgcolor="#eee" i],
-html.np-dark .tpc_content [style*="background-color:#fff" i],
-html.np-dark .tpc_content [style*="background-color: #fff" i],
-html.np-dark .tpc_content [style*="background-color:white" i],
-html.np-dark .tpc_content [style*="background-color: white" i],
-html.np-dark .tpc_content [style*="background-color:#f5f5f5" i],
-html.np-dark .tpc_content [style*="background-color: #f5f5f5" i],
-html.np-dark .tpc_content [style*="background-color:#f0f0f0" i],
-html.np-dark .tpc_content [style*="background-color: #f0f0f0" i],
-html.np-dark .tpc_content [style*="background-color:#eee" i],
-html.np-dark .tpc_content [style*="background-color: #eee" i],
-html.np-dark .tpc_content [style*="background-color: rgb(255," i],
-html.np-dark .tpc_content [style*="background-color: rgb(245," i],
-html.np-dark .tpc_content [style*="background-color: rgb(240," i],
-html.np-dark .tpc_content [style*="background:#fff" i],
-html.np-dark .tpc_content [style*="background: #fff" i] {
-  background-color: #242832 !important;
-}
-
-html.np-dark #honor,
-html.np-dark #infobox,
-html.np-dark #infobox span {
-  color: #a6b0c0 !important;
-}
-
-html.np-dark #main font[color="blue" i],
-html.np-dark #main font[color="#0000ff" i],
-html.np-dark #main font[color="#00f" i],
-html.np-dark #main [style*="color:blue" i],
-html.np-dark #main [style*="color: blue" i],
-html.np-dark #main [style*="color:#0000ff" i],
-html.np-dark #main [style*="color: #0000ff" i],
-html.np-dark #main [style*="color: rgb(0, 0, 255)" i] {
-  color: #60a5fa !important;
-}
-
-html.np-dark #main font[color="red" i],
-html.np-dark #main font[color="#ff0000" i],
-html.np-dark #main font[color="#f00" i],
-html.np-dark #main [style*="color:red" i],
-html.np-dark #main [style*="color: red" i],
-html.np-dark #main [style*="color:#ff0000" i],
-html.np-dark #main [style*="color: #ff0000" i],
-html.np-dark #main [style*="color: rgb(255, 0, 0)" i] {
-  color: #f87171 !important;
-}
-
-html.np-dark input::placeholder,
-html.np-dark textarea::placeholder {
-  color: #8b95a5 !important;
-}
-
-/* 引用、代码块与提示框 */
-html.np-dark .quote,
-html.np-dark .quote2,
-html.np-dark .blockquote,
-html.np-dark .blockquote3,
-html.np-dark .tips {
-  background-color: #181a1e !important;
-  border-color: #383d47 !important;
-  color: #b0b6be !important;
-}
-
-/* 边框与分割线 */
-html.np-dark table,
-html.np-dark td,
-html.np-dark th,
-html.np-dark tr {
-  border-color: #2e3238 !important;
-}
-
-/* 表单控件 */
-html.np-dark input:not([type="checkbox"]):not([type="radio"]),
-html.np-dark textarea,
-html.np-dark select {
-  background-color: #181a1e !important;
-  color: #e4e6eb !important;
-  border: 1px solid #383d47 !important;
-}
-
-html.np-dark input[type="submit"],
-html.np-dark input[type="button"],
-html.np-dark button,
-html.np-dark .btn,
-html.np-dark .btn2,
-html.np-dark .abtn {
-  background-color: #2c3038 !important;
-  color: #f0f2f5 !important;
-  border: 1px solid #444a56 !important;
-}
-
-html.np-dark input[type="submit"]:hover,
-html.np-dark input[type="button"]:hover,
-html.np-dark button:hover,
-html.np-dark .btn:hover,
-html.np-dark .btn2:hover,
-html.np-dark .abtn:hover {
-  background-color: #383d47 !important;
-}
-
-/* 分页器 */
-html.np-dark .pages {
-  border-color: #383d47 !important;
-  background-color: #1e2024 !important;
-}
-
-html.np-dark .pages ul li a {
-  color: #dcdfe4 !important;
-}
-
-html.np-dark .pages ul li b {
-  background-color: #3a7bd5 !important;
-  color: #ffffff !important;
-}
-
-html.np-dark .pages ul li a:hover {
-  background-color: #2c3038 !important;
-  color: #6cb6ff !important;
-}
-
-/* 个人中心 (u.php) 与设置中心 (profile.php) */
-html.np-dark .guide,
-html.np-dark .bdbA {
-  border-color: #2e3238 !important;
-}
-
-html.np-dark .guide {
-  background-color: #25282e !important;
-  background-image: none !important;
-  color: #dcdfe4 !important;
-}
-
-html.np-dark #u-wrap,
-html.np-dark #u-wrap2,
-html.np-dark #main #u-wrap2,
-html.np-dark #set-wrap,
-html.np-dark #set-side-wrap,
-html.np-dark #set-content {
-  background-color: #1e2024 !important;
-  background-image: none !important;
-  border-color: #2e3238 !important;
-  color: #dcdfe4 !important;
-}
-
-html.np-dark #u-sidebar {
-  border-right-color: #2e3238 !important;
-}
-
-html.np-dark #u-portrait,
-html.np-dark #u-sidebar .bgA,
-html.np-dark .bgA {
-  background-color: #25282e !important;
-  background-image: none !important;
-  border-color: #2e3238 !important;
-}
-
-html.np-dark #u-sidebar-box,
-html.np-dark #u-custom,
-html.np-dark #u-operate,
-html.np-dark #u-sidebar table td,
-html.np-dark #u-content,
-html.np-dark #u-top {
-  color: #dcdfe4 !important;
-}
-
-html.np-dark #u-top-nav ul {
-  border-bottom-color: #2e3238 !important;
-}
-
-html.np-dark #u-top-nav ul li {
-  background-color: transparent !important;
-  background-image: none !important;
-  border-color: transparent !important;
-}
-
-html.np-dark #u-top-nav li a {
-  background-color: #2c3038 !important;
-  background-image: none !important;
-  border: 1px solid #383d47 !important;
-  border-bottom: 0 !important;
-  color: #b0b6be !important;
-}
-
-html.np-dark #u-top-nav li a:hover {
-  background-color: #383d47 !important;
-  color: #ffffff !important;
-}
-
-html.np-dark #u-top-nav li.current a,
-html.np-dark #u-top-nav li.current a:hover {
-  background-color: #1e2024 !important;
-  border: 1px solid #383d47 !important;
-  border-bottom: 0 !important;
-  color: #6cb6ff !important;
-}
-
-html.np-dark .u-h5 {
-  background: none !important;
-  border-bottom: 1px solid #2e3238 !important;
-  color: #f0f2f5 !important;
-}
-
-html.np-dark .u-h1,
-html.np-dark .u-h5 span,
-html.np-dark .u-h5 .b {
-  background: transparent !important;
-  color: #f0f2f5 !important;
-}
-
-html.np-dark .u-h5 .r,
-html.np-dark .u-h5 .r a {
-  background: transparent !important;
-  color: #9aa0a6 !important;
-}
-
-html.np-dark #u-contentside {
-  border-left-color: #2e3238 !important;
-}
-
-html.np-dark .feed-list,
-html.np-dark .article-list,
-html.np-dark .feed-list dt,
-html.np-dark .feed-list dd,
-html.np-dark .article-list dd,
-html.np-dark .link1,
-html.np-dark #u-feed-list li,
-html.np-dark .u-list li {
-  border-bottom-color: #2e3238 !important;
-  color: #dcdfe4 !important;
-}
-
-html.np-dark .u-table {
-  background: transparent !important;
-}
-
-html.np-dark .u-table td,
-html.np-dark .u-table th {
-  border-bottom-color: #2e3238 !important;
-  color: #dcdfe4 !important;
-}
-
-html.np-dark .u-table th {
-  color: #f0f2f5 !important;
-}
-
-html.np-dark .u-table2 {
-  border-color: #2e3238 !important;
-}
-
-html.np-dark .u-table2 td:hover,
-html.np-dark .u-table2 td.current {
-  background-color: #25282e !important;
-  color: #f0f2f5 !important;
-}
-
-html.np-dark #set-side {
-  background-color: #25282e !important;
-  border-right-color: #2e3238 !important;
-}
-
-html.np-dark #set-side h2,
-html.np-dark .set-h2 {
-  background-color: #2c3038 !important;
-  border-bottom-color: #2e3238 !important;
-  color: #f0f2f5 !important;
-}
-
-html.np-dark #set-side ul li a,
-html.np-dark #set-menu li a {
-  color: #b0b6be !important;
-}
-
-html.np-dark #set-side ul li.current a,
-html.np-dark #set-side ul li a:hover,
-html.np-dark #set-menu li.current a,
-html.np-dark #set-menu li a:hover {
-  background-color: #1e2024 !important;
-  color: #6cb6ff !important;
-}
-
-html.np-dark #set-content-wrap,
-html.np-dark .set-tab-box {
-  border-color: #2e3238 !important;
-}
-
-html.np-dark .set-tab {
-  border-bottom-color: #2e3238 !important;
-}
-
-html.np-dark .set-tab ul li {
-  background-color: #2c3038 !important;
-  background-image: none !important;
-  border-color: #383d47 !important;
-}
-
-html.np-dark .set-tab ul li a {
-  color: #b0b6be !important;
-}
-
-html.np-dark .set-tab ul li.current {
-  background-color: #1e2024 !important;
-  border-color: #383d47 !important;
-  border-bottom-color: #1e2024 !important;
-}
-
-html.np-dark .set-tab ul li.current a {
-  color: #6cb6ff !important;
-}
-
-html.np-dark .set-tab-table {
-  background-color: #25282e !important;
-  background-image: none !important;
-}
-
-html.np-dark .set-tab-table td {
-  border-color: #2e3238 !important;
-}
-
-html.np-dark .set-tab-table td.current {
-  background-color: #1e2024 !important;
-  border-color: #2e3238 !important;
-}
-
-html.np-dark .set-tab-table td.current a {
-  color: #6cb6ff !important;
-}
-
-html.np-dark #set-content,
-html.np-dark #set-content form,
-html.np-dark .set-table,
-html.np-dark .set-table2 td {
-  border-bottom-color: #2e3238 !important;
-  color: #dcdfe4 !important;
-}
-
-/* --------------------------------------------------------------------------
-   4. 悬浮快捷工具栏 (#np-floating-bar)
-   -------------------------------------------------------------------------- */
-#np-floating-bar {
-  position: fixed;
-  right: 20px;
-  bottom: 24px;
-  z-index: 99999;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  padding: 6px;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.92);
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
-  backdrop-filter: blur(8px);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", sans-serif;
-}
-
-html.np-dark #np-floating-bar {
-  background: rgba(30, 32, 36, 0.92);
-  border-color: rgba(255, 255, 255, 0.12);
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.45);
-}
-
-#np-floating-bar button {
-  width: 36px;
-  height: 36px;
   border: none !important;
-  border-radius: 8px;
+  border-radius: var(--md-corner-lg) !important;
+  transition: background-color 0.2s var(--md-ease), box-shadow 0.2s var(--md-ease) !important;
+}
+
+html.np-md.np-scrolled #mainNav {
+  background: var(--md-surface-container-high) !important;
+  box-shadow: var(--md-elevation-2) !important;
+}
+
+html.np-md #mainNav > div {
+  position: static !important;
+  width: auto !important;
+  padding: 0 !important;
+  bottom: auto !important;
+}
+
+html.np-md #mainNav > div:not(.np-brand) {
+  display: flex !important;
+  align-items: center !important;
+}
+
+html.np-md #mainNav > div:first-of-type {
+  order: 3 !important;
+  margin-left: auto !important;
+  gap: 4px !important;
+}
+
+html.np-md #mainNav > div:nth-of-type(2) {
+  order: 2 !important;
+  flex: 0 1 auto !important;
+  min-width: 0 !important;
+}
+
+html.np-md #mainNav table,
+html.np-md #mainNav td {
+  border: none !important;
   background: transparent !important;
-  color: #444 !important;
-  font-size: 16px;
-  line-height: 1;
-  cursor: pointer;
-  display: flex;
+  width: auto !important;
+}
+
+html.np-md #mainNav .np-brand {
+  order: 1 !important;
+  display: none;
+  align-items: center;
+  gap: 10px;
+  margin-right: 8px;
+  font-size: 22px;
+  line-height: 28px;
+  font-weight: 500;
+  color: var(--md-primary) !important;
+  text-decoration: none !important;
+  white-space: nowrap;
+}
+
+html.np-md.np-compact #mainNav .np-brand {
+  display: inline-flex;
+}
+
+html.np-md #mainNav .np-brand__icon {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0;
-  transition: background-color 0.15s ease, color 0.15s ease, transform 0.1s ease;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--md-corner-md);
+  background: var(--md-primary-container);
 }
 
-html.np-dark #np-floating-bar button {
-  color: #d0d4dc !important;
+html.np-md #mainNav .np-brand__icon::before {
+  content: "";
+  width: 20px;
+  height: 20px;
+  background: var(--md-on-primary-container);
+  -webkit-mask: var(--np-i-forum) center / 20px no-repeat;
+  mask: var(--np-i-forum) center / 20px no-repeat;
 }
 
-#np-floating-bar button:hover {
-  background: rgba(0, 0, 0, 0.08) !important;
-  color: #111 !important;
-}
-
-html.np-dark #np-floating-bar button:hover {
-  background: rgba(255, 255, 255, 0.12) !important;
-  color: #ffffff !important;
-}
-
-#np-floating-bar button:active {
-  transform: scale(0.94);
-}
-
-/* --------------------------------------------------------------------------
-   5. 现代化界面美化 (.np-modern)
-   -------------------------------------------------------------------------- */
-html.np-modern {
-  --np-bg: #f3f5f8;
-  --np-surface: #ffffff;
-  --np-surface-2: #f8fafc;
-  --np-surface-hover: #f1f5f9;
-  --np-border: #e2e8f0;
-  --np-border-subtle: #edf2f7;
-  --np-text: #1e293b;
-  --np-text-muted: #64748b;
-  --np-accent: #2563eb;
-  --np-accent-hover: #1d4ed8;
-  --np-accent-soft: rgba(37, 99, 235, 0.1);
-  --np-reply-bg: #0f766e;
-  --np-reply-hover: #0d9488;
-  --np-danger: #dc2626;
-  --np-danger-hover: #b91c1c;
-  --np-shadow: 0 1px 3px rgba(15, 23, 42, 0.06), 0 1px 2px rgba(15, 23, 42, 0.04);
-  --np-radius: 12px;
-  --np-radius-sm: 8px;
-}
-
-html.np-modern.np-dark {
-  --np-bg: #0f1115;
-  --np-surface: #181b21;
-  --np-surface-2: #222630;
-  --np-surface-hover: #2b303d;
-  --np-border: #3d4454;
-  --np-border-subtle: #2c323f;
-  --np-text: #e8ecf2;
-  --np-text-muted: #9aa5b8;
-  --np-accent: #4c8dff;
-  --np-accent-hover: #6ea3ff;
-  --np-accent-soft: rgba(76, 141, 255, 0.18);
-  --np-reply-bg: #0d9488;
-  --np-reply-hover: #14b8a6;
-  --np-danger: #ef4444;
-  --np-danger-hover: #f87171;
-  --np-shadow: 0 2px 10px rgba(0, 0, 0, 0.36);
-}
-
-html.np-modern body {
-  background-color: var(--np-bg) !important;
-  color: var(--np-text) !important;
-}
-
-html.np-modern a {
-  transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
-}
-
-/* --- 5.1 顶部导航栏与用户信息卡 --- */
-html.np-modern #mainNav {
-  background: var(--np-surface-2) !important;
-  border-radius: var(--np-radius) var(--np-radius) 0 0 !important;
-  border: 1px solid var(--np-border) !important;
-  border-bottom: 1px solid var(--np-border-subtle) !important;
-  padding: 4px 12px !important;
-}
-
-html.np-modern.np-dark #mainNav {
-  background: #161920 !important;
-  border-bottom-color: var(--np-border) !important;
-}
-
-html.np-modern #user-login {
+/* 导航项：药丸形 */
+html.np-md ul#guide.guide {
+  display: flex !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+  gap: 4px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  height: auto !important;
   background: transparent !important;
   border: none !important;
 }
 
-html.np-modern #user-login,
-html.np-modern #user-login a {
-  color: var(--np-text) !important;
-}
-
-html.np-modern #user-login a:hover {
-  color: var(--np-accent) !important;
-}
-
-html.np-modern ul#guide.guide {
+html.np-md ul#guide.guide li {
+  float: none !important;
+  width: auto !important;
+  height: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
   background: transparent !important;
   background-image: none !important;
-  border: none !important;
+}
+
+html.np-md ul#guide.guide li a {
+  display: inline-flex !important;
+  align-items: center !important;
+  height: 40px !important;
+  width: auto !important;
+  padding: 0 16px !important;
+  border-radius: var(--md-corner-full) !important;
+  background: transparent !important;
+  background-image: none !important;
+  color: var(--md-on-surface-variant) !important;
+  font-size: 14px !important;
+  line-height: 20px !important;
+  font-weight: 500 !important;
+  white-space: nowrap !important;
+  text-decoration: none !important;
+}
+
+html.np-md ul#guide.guide li a:hover {
+  background: var(--np-hover) !important;
+  color: var(--md-on-surface) !important;
+}
+
+html.np-md ul#guide.guide li.current a,
+html.np-md ul#guide.guide li.current a:hover {
+  background: var(--md-secondary-container) !important;
+  color: var(--md-on-secondary-container) !important;
+}
+
+/* 屏蔽配置下拉：保持原逻辑，只换皮 */
+html.np-md #peacemakerconfig > div:not([hidden]) {
+  background: var(--md-surface-container) !important;
+  color: var(--md-on-surface) !important;
+  border-radius: var(--md-corner-lg) !important;
+  box-shadow: var(--md-elevation-2) !important;
+  padding: 8px 0 !important;
+}
+
+/* 用户区 */
+html.np-md #user-login {
   display: flex !important;
   align-items: center !important;
   gap: 4px !important;
-  padding: 4px 0 !important;
-  margin: 0 !important;
-  height: auto !important;
+  background: transparent !important;
+  border: none !important;
+  color: var(--md-on-surface) !important;
+  font-size: 14px !important;
+  white-space: nowrap !important;
 }
 
-html.np-modern ul#guide.guide li {
+html.np-md #user-login a {
+  display: inline-flex !important;
+  align-items: center !important;
+  height: 40px !important;
+  padding: 0 12px !important;
+  border-radius: var(--md-corner-full) !important;
+  color: var(--md-on-surface-variant) !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
+}
+
+html.np-md #user-login a:first-child {
+  color: var(--md-on-surface) !important;
+}
+
+html.np-md #user-login a:hover {
+  background: var(--np-hover) !important;
+  color: var(--md-on-surface) !important;
+}
+
+/* 展开/收起用户信息的按钮 → 图标按钮 */
+html.np-md #one-key {
+  order: 9 !important;
+  position: relative !important;
+  width: 40px !important;
+  height: 40px !important;
+  flex: none !important;
+  border-radius: 50% !important;
   background: transparent !important;
   background-image: none !important;
+  color: var(--md-on-surface-variant);
+  cursor: pointer;
+}
+
+html.np-md #one-key:hover {
+  background: var(--np-hover) !important;
+}
+
+html.np-md #one-key::before {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  background: currentColor;
+  -webkit-mask: var(--np-i-expand) center / 24px no-repeat;
+  mask: var(--np-i-expand) center / 24px no-repeat;
+  transform: rotate(180deg);
+  transition: transform 0.25s var(--md-ease);
+}
+
+html.np-md #one-key.one-hidden::before {
+  transform: none;
+}
+
+/* 用户信息卡 */
+html.np-md #infobox {
+  box-sizing: border-box !important;
+  background: var(--md-surface-container-low) !important;
+  background-image: none !important;
   border: none !important;
+  border-radius: var(--md-corner-lg) !important;
+  padding: 12px 16px !important;
+  margin: 0 0 12px !important;
+  width: auto !important;
+  color: var(--md-on-surface-variant) !important;
+  font-size: 13px !important;
+}
+
+html.np-md #infobox table,
+html.np-md #infobox td {
+  border: none !important;
+  background: transparent !important;
+}
+
+html.np-md #infobox a {
+  color: var(--md-on-surface);
+}
+
+html.np-md #infobox a:hover {
+  color: var(--md-primary);
+}
+
+html.np-md #user_info > a[href^="u.php"] > img,
+html.np-md #user_info > a:first-child > img {
+  width: 40px !important;
+  height: 40px !important;
+  object-fit: cover !important;
+  border-radius: 50% !important;
+  border: none !important;
+}
+
+/* --- 用户信息卡重排 --- */
+html.np-md #infobox.np-infobox {
+  padding: 16px 20px !important;
+}
+
+html.np-md #infobox.np-infobox > table > tbody > tr {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  flex-wrap: wrap !important;
+  gap: 12px 24px !important;
+}
+
+html.np-md #infobox.np-infobox > table,
+html.np-md #infobox.np-infobox > table > tbody {
+  display: block !important;
+  width: 100% !important;
+}
+
+html.np-md #user_info {
+  display: block !important;
+  flex: 1 1 380px !important;
+  width: auto !important;
+  padding: 0 !important;
+  min-width: 0;
+}
+
+html.np-md #user_info > a:first-child > img {
+  position: static !important;
+  float: left !important;
+  clip: auto !important;
+  clip-path: none !important;
+  width: 48px !important;
+  height: 48px !important;
+  margin: 0 !important;
+  object-fit: cover !important;
+  border-radius: 50% !important;
+  background: var(--md-surface-container-highest) !important;
+}
+
+html.np-md #user_info > div:last-of-type {
+  margin-left: 64px !important;
+  line-height: normal !important;
+}
+
+html.np-md #user_info div.fl,
+html.np-md #user_info div.gray2 {
+  float: none !important;
+  width: auto !important;
+}
+
+html.np-md #user_info div.gray2 {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+html.np-md #user_info div.gray2 > div.fl {
+  margin: 0 !important;
+}
+
+html.np-md #user_info .c {
+  display: none !important;
+}
+
+html.np-md .np-info-line {
+  float: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+}
+
+html.np-md .np-level {
+  display: inline-flex;
+  align-items: center;
+  height: 24px;
+  padding: 0 10px;
+  border-radius: var(--md-corner-full);
+  background: var(--md-primary-container);
+  color: var(--md-on-primary-container);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+html.np-md .np-info-stat {
+  margin-right: 4px;
+  font-size: 13px;
+  color: var(--md-on-surface-variant);
+}
+
+html.np-md .np-info-stat b {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--md-on-surface);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Assist chip（我的主题 / 我的回复 / 热门版块） */
+html.np-md #infobox a.np-chip,
+html.np-md #shortcutforum li a {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  height: 32px !important;
+  padding: 0 14px !important;
+  box-sizing: border-box !important;
+  border: 1px solid var(--md-outline-variant) !important;
+  border-radius: var(--md-corner-sm) !important;
+  background: transparent !important;
+  background-image: none !important;
+  color: var(--md-on-surface) !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  line-height: 20px !important;
+  text-decoration: none !important;
+  white-space: nowrap !important;
+}
+
+html.np-md #infobox a.np-chip {
+  padding-left: 10px !important;
+}
+
+html.np-md #infobox a.np-chip:hover,
+html.np-md #shortcutforum li a:hover {
+  background: var(--np-hover) !important;
+  color: var(--md-on-surface) !important;
+}
+
+html.np-md #infobox a.np-chip::before {
+  content: "";
+  width: 18px;
+  height: 18px;
+  background: var(--md-primary);
+  -webkit-mask: var(--np-i-article) center / 18px no-repeat;
+  mask: var(--np-i-article) center / 18px no-repeat;
+}
+
+html.np-md #infobox a.np-chip--replies::before {
+  -webkit-mask-image: var(--np-i-chat);
+  mask-image: var(--np-i-chat);
+}
+
+/* “更多”下拉 → 图标按钮 */
+html.np-md #infobox a.np-info-more {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 32px !important;
+  height: 32px !important;
+  padding: 0 !important;
+  border-radius: 50% !important;
+  background: transparent !important;
+  background-image: none !important;
+  font-size: 0 !important;
+  color: var(--md-on-surface-variant) !important;
+  text-indent: 0 !important;
+}
+
+html.np-md #infobox a.np-info-more::before {
+  content: "";
+  width: 20px;
+  height: 20px;
+  background: currentColor;
+  -webkit-mask: var(--np-i-expand) center / 20px no-repeat;
+  mask: var(--np-i-expand) center / 20px no-repeat;
+}
+
+html.np-md #infobox a.np-info-more:hover {
+  background: var(--np-hover) !important;
+}
+
+/* 签名行 */
+html.np-md .np-honor-row {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin-top: 6px;
+  min-height: 28px;
+}
+
+html.np-md .np-honor {
+  font-size: 13px !important;
+  line-height: 20px;
+  color: var(--md-on-surface-variant) !important;
+}
+
+html.np-md .np-honor--empty {
+  font-style: italic;
+  opacity: 0.8;
+}
+
+html.np-md #infobox a.np-honor-edit {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 28px !important;
+  height: 28px !important;
+  border-radius: 50% !important;
+  font-size: 0 !important;
+  color: var(--md-on-surface-variant) !important;
+}
+
+html.np-md #infobox a.np-honor-edit img {
+  display: none !important;
+}
+
+html.np-md #infobox a.np-honor-edit::before {
+  content: "";
+  width: 16px;
+  height: 16px;
+  background: currentColor;
+  -webkit-mask: var(--np-i-edit) center / 16px no-repeat;
+  mask: var(--np-i-edit) center / 16px no-repeat;
+}
+
+html.np-md #infobox a.np-honor-edit:hover {
+  background: var(--np-hover) !important;
+  color: var(--md-primary) !important;
+}
+
+/* 热门版块 / 首页统计 */
+html.np-md #infobox.np-infobox > table > tbody > tr > td:last-child {
+  display: block !important;
+  flex: 0 1 auto !important;
+  width: auto !important;
+  min-width: 0;
+  padding: 0 !important;
+  text-align: right;
+}
+
+html.np-md #fav-fid {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  padding: 0 !important;
+}
+
+html.np-md #shortcutname {
+  float: none !important;
+  margin-right: 4px;
+  font-size: 12px !important;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--md-on-surface-variant) !important;
+}
+
+html.np-md ul#shortcutforum {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+}
+
+html.np-md ul#shortcutforum li {
   float: none !important;
   margin: 0 !important;
   padding: 0 !important;
-  width: auto !important;
-  height: auto !important;
+  background: none !important;
+  list-style: none !important;
 }
 
-html.np-modern ul#guide.guide li a {
+/* 横幅广告位：圆角卡片并排 */
+html.np-md #header .np-ads {
+  display: flex !important;
+  gap: 12px !important;
+  margin: 0 0 12px !important;
+  padding: 0 !important;
+  border: none !important;
+  background: transparent !important;
+}
+
+html.np-md #header .np-ads.np-ads--empty {
+  display: none !important;
+}
+
+html.np-md #header .np-ads > a {
+  flex: 1 1 0 !important;
+  min-width: 0 !important;
+}
+
+html.np-md #header .np-ads img {
+  display: block !important;
+  width: 100% !important;
+  height: auto !important;
+  border-radius: var(--md-corner-md) !important;
+}
+
+/* 下拉菜单（社区服务、版块切换、发帖类型等） */
+html.np-md .menu,
+html.np-md .user-infoWraptwo,
+html.np-md .dropdown-content {
+  background: var(--md-surface-container) !important;
+  background-image: none !important;
+  color: var(--md-on-surface) !important;
+  border: none !important;
+  border-radius: var(--md-corner-lg) !important;
+  box-shadow: var(--md-elevation-2) !important;
+  padding: 8px !important;
+  overflow: hidden;
+}
+
+html.np-md .menu ul,
+html.np-md .menu li {
+  background: transparent !important;
+  border: none !important;
+}
+
+html.np-md .menu .ul2 li a,
+html.np-md .menu ul li a,
+html.np-md .dropdown-content a {
+  display: block !important;
+  padding: 8px 12px !important;
+  border-radius: var(--md-corner-sm) !important;
+  color: var(--md-on-surface) !important;
+  font-size: 14px !important;
+  line-height: 20px !important;
+  text-decoration: none !important;
+  background: transparent !important;
+}
+
+html.np-md .menu .ul2 li a:hover,
+html.np-md .menu ul li a:hover,
+html.np-md .dropdown-content a:hover {
+  background: var(--np-hover) !important;
+}
+
+html.np-md .menu .ul3 h2,
+html.np-md .menu .ul3 h2 a {
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  color: var(--md-primary) !important;
+  background: transparent !important;
+  padding: 8px 12px 4px !important;
+  border: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   4. 面包屑 / 公告条
+   -------------------------------------------------------------------------- */
+html.np-md #main > div.bdbA {
+  border: none !important;
+  background: transparent !important;
+  margin: 0 0 12px !important;
+  padding: 0 !important;
+}
+
+html.np-md #breadcrumbs {
+  display: flex !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+  gap: 4px !important;
+  min-height: 48px !important;
+  height: auto !important;
+  box-sizing: border-box !important;
+  padding: 4px 8px !important;
+  background: var(--md-surface-container-low) !important;
+  background-image: none !important;
+  border: none !important;
+  border-radius: var(--md-corner-lg) !important;
+  font-size: 14px !important;
+  line-height: 20px !important;
+  color: var(--md-on-surface-variant) !important;
+}
+
+html.np-md #breadcrumbs .crumbs-item {
   display: inline-flex !important;
   align-items: center !important;
-  white-space: nowrap !important;
-  width: auto !important;
+  gap: 4px !important;
+  float: none !important;
+  height: 32px !important;
+  padding: 0 8px !important;
+  margin: 0 !important;
+  border-radius: var(--md-corner-sm) !important;
   background: transparent !important;
   background-image: none !important;
-  border-radius: 8px !important;
-  padding: 5px 12px !important;
-  height: auto !important;
-  line-height: 1.4 !important;
-  color: var(--np-text) !important;
+  color: var(--md-on-surface-variant) !important;
+  text-decoration: none !important;
+}
+
+html.np-md #breadcrumbs a.crumbs-item:hover {
+  background: var(--np-hover) !important;
+  color: var(--md-on-surface) !important;
+}
+
+html.np-md #breadcrumbs .crumbs-item.current,
+html.np-md #breadcrumbs .crumbs-item.current a,
+html.np-md #breadcrumbs .crumbs-item strong {
+  color: var(--md-on-surface) !important;
+  font-weight: 500 !important;
+}
+
+/* 分隔符 → chevron 图标 */
+html.np-md #breadcrumbs i {
+  display: inline-block !important;
+  position: static !important;
+  float: none !important;
+  top: auto !important;
+  align-self: center !important;
+  vertical-align: middle !important;
+  width: 18px !important;
+  height: 18px !important;
+  margin: 0 2px 0 -6px !important;
+  background: var(--md-on-surface-variant) !important;
+  background-image: none !important;
+  -webkit-mask: var(--np-i-chevron-right) center / 18px no-repeat;
+  mask: var(--np-i-chevron-right) center / 18px no-repeat;
+  opacity: 0.7;
+}
+
+/* 首页图标：保留原图点击（版块菜单），视觉换成 home 图标 */
+html.np-md #breadcrumbs span.crumbs-item:has(> #td_cate) {
+  position: relative !important;
+  width: 32px !important;
+  padding: 0 !important;
+  justify-content: center !important;
+  cursor: pointer;
+}
+
+html.np-md #breadcrumbs span.crumbs-item:has(> #td_cate)::before {
+  content: "";
+  width: 20px;
+  height: 20px;
+  background: var(--md-on-surface-variant);
+  -webkit-mask: var(--np-i-home) center / 20px no-repeat;
+  mask: var(--np-i-home) center / 20px no-repeat;
+  pointer-events: none;
+}
+
+html.np-md #breadcrumbs span.crumbs-item:has(> #td_cate):hover {
+  background: var(--np-hover) !important;
+}
+
+html.np-md #breadcrumbs #td_cate {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  opacity: 0 !important;
+}
+
+html.np-md #breadcrumbs img.threadrss,
+html.np-md #breadcrumbs img.threadno {
+  opacity: 0.55;
+  vertical-align: middle;
+}
+
+html.np-md #breadcrumbs > .fr {
+  float: none !important;
+  margin-left: auto !important;
+}
+
+html.np-md #breadcrumbs > .fr a {
+  display: inline-flex !important;
+  align-items: center !important;
+  height: 32px !important;
+  padding: 0 12px !important;
+  border-radius: var(--md-corner-full) !important;
+  color: var(--md-primary) !important;
   font-weight: 500 !important;
   text-decoration: none !important;
-  transition: background-color 0.15s ease, color 0.15s ease !important;
 }
 
-html.np-modern ul#guide.guide li a:hover {
-  background-color: var(--np-surface-hover) !important;
-  color: var(--np-accent) !important;
+html.np-md #breadcrumbs > .fr a:hover {
+  background: color-mix(in srgb, var(--md-primary) 8%, transparent) !important;
 }
 
-html.np-modern.np-dark ul#guide.guide li a {
-  color: #cbd5e1 !important;
+/* 首页公告滚动条 */
+html.np-md #breadcrumbs > a.crumbs-item:first-child:has(strong) {
+  background: var(--md-tertiary-container) !important;
+  color: var(--md-on-tertiary-container) !important;
 }
 
-html.np-modern.np-dark ul#guide.guide li a:hover {
-  background-color: rgba(255, 255, 255, 0.1) !important;
-  color: #ffffff !important;
+html.np-md #breadcrumbs > a.crumbs-item:first-child:has(strong) strong {
+  color: var(--md-on-tertiary-container) !important;
 }
 
-html.np-modern ul#guide.guide li.current {
+html.np-md #breadcrumbs #notice {
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+  background: transparent !important;
+  border: none !important;
+}
+
+html.np-md #breadcrumbs #notice li {
+  color: var(--md-on-surface) !important;
+}
+
+/* --------------------------------------------------------------------------
+   5. 卡片容器（版块分类、帖子列表、公告）
+   -------------------------------------------------------------------------- */
+html.np-md .t,
+html.np-md .t.z {
+  background: var(--md-surface-container-low) !important;
+  background-image: none !important;
+  border: none !important;
+  border-radius: var(--md-corner-md) !important;
+  box-shadow: none !important;
+  overflow: hidden !important;
+  margin: 0 0 12px !important;
+  padding: 0 !important;
+}
+
+html.np-md .t > table {
+  border-collapse: collapse !important;
+  border: none !important;
+}
+
+html.np-md .t th.h,
+html.np-md .t td.h {
+  padding: 16px 16px 8px !important;
+  border: none !important;
+  color: var(--md-on-surface) !important;
+  font-size: 16px !important;
+  line-height: 24px !important;
+  font-weight: 500 !important;
+  text-align: left;
+}
+
+html.np-md .t th.h h2,
+html.np-md .t th.h h2 a,
+html.np-md .t th.h a.cfont {
+  font-size: 16px !important;
+  line-height: 24px !important;
+  font-weight: 500 !important;
+  color: var(--md-on-surface) !important;
+}
+
+html.np-md .t th.h .closeicon img {
+  opacity: 0.6;
+}
+
+/* 列头 */
+html.np-md .t tr.tr2 td,
+html.np-md .t tr.tr2 th {
+  padding: 8px 12px !important;
+  border: none !important;
+  border-bottom: 1px solid var(--np-divider) !important;
+  color: var(--md-on-surface-variant) !important;
+  font-size: 12px !important;
+  line-height: 16px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.04em;
+}
+
+/* 内容行 */
+html.np-md .t tr.tr3 > td,
+html.np-md .t tr.tr3 > th {
+  border: none !important;
+  border-bottom: 1px solid var(--np-divider) !important;
+  padding: 12px !important;
+  vertical-align: middle !important;
+  color: var(--md-on-surface) !important;
   background: transparent !important;
 }
 
-html.np-modern ul#guide.guide li.current a,
-html.np-modern ul#guide.guide li.current a:hover {
-  background-color: var(--np-accent) !important;
+html.np-md .t tr.tr3:last-child > td,
+html.np-md .t tr.tr3:last-child > th {
+  border-bottom: none !important;
+}
+
+html.np-md .t tr.tr3 {
+  transition: background-color 0.15s var(--md-ease);
+}
+
+html.np-md .t tr.tr3:hover,
+html.np-md .t tr.tr3:hover > td,
+html.np-md .t tr.tr3:hover > th {
+  background-color: var(--np-hover) !important;
+}
+
+/* 键盘焦点行 */
+html.np-md .t tr.tr3.np-kb-focus,
+html.np-md .t tr.tr3.np-kb-focus > td,
+html.np-md .t tr.tr3.np-kb-focus > th {
+  background-color: color-mix(in srgb, var(--md-secondary-container) 70%, transparent) !important;
+}
+
+html.np-md div.t5.np-kb-focus {
+  box-shadow: inset 0 0 0 2px var(--md-secondary) !important;
+}
+
+/* --- 5.1 首页版块行 --- */
+html.np-md tr[id^="fid_"] h3.b,
+html.np-md tr[id^="fid_"] h3.b a {
+  font-size: 15px !important;
+  line-height: 22px !important;
+  font-weight: 500 !important;
+  color: var(--md-on-surface) !important;
+  text-decoration: none !important;
+}
+
+html.np-md tr[id^="fid_"] > th > h3.b a:hover {
+  color: var(--md-primary) !important;
+}
+
+html.np-md tr[id^="fid_"] .smalltxt {
+  display: inline-block;
+  margin-top: 2px;
+  font-size: 12px !important;
+  line-height: 16px !important;
+}
+
+html.np-md tr[id^="fid_"] th > div {
+  margin-top: 6px;
+  font-size: 12px;
+  color: var(--md-on-surface-variant);
+}
+
+html.np-md tr[id^="fid_"] th > div h3.b {
+  display: inline !important;
+}
+
+html.np-md tr[id^="fid_"] th > div h3.b a {
+  display: inline-flex !important;
+  align-items: center !important;
+  height: 24px !important;
+  padding: 0 10px !important;
+  margin: 2px 0 !important;
+  border: 1px solid var(--md-outline-variant) !important;
+  border-radius: var(--md-corner-sm) !important;
+  font-size: 12px !important;
+  line-height: 16px !important;
+  color: var(--md-on-surface-variant) !important;
+}
+
+html.np-md tr[id^="fid_"] th > div h3.b a:hover {
+  background: var(--np-hover) !important;
+  color: var(--md-on-surface) !important;
+}
+
+/* 今日发帖数 → 徽章 */
+html.np-md tr[id^="fid_"] .np-zero {
+  display: none !important;
+}
+
+html.np-md tr[id^="fid_"] .np-badge {
+  display: inline-flex !important;
+  align-items: center;
+  height: 16px;
+  min-width: 16px;
+  padding: 0 5px;
+  margin-left: 6px;
+  box-sizing: border-box;
+  border-radius: var(--md-corner-full);
+  background: var(--md-error) !important;
+  color: var(--md-on-error) !important;
+  font-size: 11px !important;
+  line-height: 16px !important;
+  font-weight: 500;
+  vertical-align: 2px;
+}
+
+/* 版块状态图标 → M3 圆形图标 */
+html.np-md td.np-ficon {
+  width: 56px !important;
+}
+
+html.np-md td.np-ficon a {
+  position: relative;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--md-surface-container-highest);
+}
+
+html.np-md td.np-ficon img {
+  display: none !important;
+}
+
+html.np-md td.np-ficon a::before {
+  content: "";
+  width: 20px;
+  height: 20px;
+  background: var(--md-on-surface-variant);
+  -webkit-mask: var(--np-i-forum) center / 20px no-repeat;
+  mask: var(--np-i-forum) center / 20px no-repeat;
+}
+
+html.np-md td.np-ficon--new a {
+  background: var(--md-primary-container);
+}
+
+html.np-md td.np-ficon--new a::before {
+  background: var(--md-on-primary-container);
+}
+
+html.np-md td.np-ficon--lock a::before {
+  -webkit-mask-image: var(--np-i-lock);
+  mask-image: var(--np-i-lock);
+}
+
+/* --------------------------------------------------------------------------
+   6. 版块公告（可折叠）
+   -------------------------------------------------------------------------- */
+html.np-md .gonggao {
+  position: relative;
+  background: var(--md-surface-container-low) !important;
+  border: none !important;
+  border-radius: var(--md-corner-md) !important;
+  overflow: hidden !important;
+  margin: 0 0 12px !important;
+}
+
+html.np-md .gonggao .gongul {
+  display: flex !important;
+  align-items: center !important;
+  gap: 4px;
+  margin: 0 !important;
+  padding: 8px 8px 0 16px !important;
+  height: auto !important;
+  background: transparent !important;
+  border: none !important;
+}
+
+html.np-md .gonggao .gongul > a.fr {
+  order: 9 !important;
+  margin-left: auto !important;
+  margin-right: 8px !important;
+  float: none !important;
+  opacity: 0.6;
+}
+
+html.np-md .gonggao .gongul li {
+  float: none !important;
+  display: block !important;
+  height: auto !important;
+  width: auto !important;
+  padding: 0 !important;
+  line-height: normal !important;
+  background: transparent !important;
   background-image: none !important;
-  color: #ffffff !important;
-  font-weight: 600 !important;
+  border: none !important;
+  margin: 0 !important;
 }
 
-html.np-modern #infobox {
-  background-color: var(--np-surface) !important;
-  border: 1px solid var(--np-border) !important;
-  border-top: none !important;
-  border-radius: 0 0 var(--np-radius) var(--np-radius) !important;
-  padding: 10px 14px !important;
-  margin-bottom: 10px !important;
-  box-shadow: var(--np-shadow) !important;
+html.np-md .gonggao .gongul li.normal:empty {
+  display: none !important;
 }
 
-/* 头像保持原始比例，避免 <td width="1"> 或固定宽高属性导致挤压/拉伸变形 */
+html.np-md .gonggao .gongul .lin {
+  position: static !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px;
+  height: 44px !important;
+  width: auto !important;
+  margin: 0 0 -1px !important;
+  padding: 0 8px !important;
+  text-indent: 0 !important;
+  line-height: 20px !important;
+  box-sizing: border-box !important;
+  border: none !important;
+  border-bottom: 3px solid transparent !important;
+  background: transparent !important;
+  color: var(--md-on-surface-variant) !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+}
+
+html.np-md .gonggao .gongul li.active .lin {
+  color: var(--md-primary) !important;
+  border-bottom-color: var(--md-primary) !important;
+}
+
+html.np-md .gonggao .gongul li.active .lin::before {
+  content: "";
+  width: 20px;
+  height: 20px;
+  background: currentColor;
+  -webkit-mask: var(--np-i-campaign) center / 20px no-repeat;
+  mask: var(--np-i-campaign) center / 20px no-repeat;
+}
+
+html.np-md #cate_thread,
+html.np-md #tab_1 {
+  background: transparent !important;
+  border: none !important;
+  color: var(--md-on-surface) !important;
+}
+
+html.np-md #cate_thread {
+  padding: 12px 16px !important;
+  border-top: 1px solid var(--np-divider) !important;
+}
+
+html.np-md #cate_thread img {
+  max-width: 100% !important;
+  height: auto !important;
+  border-radius: var(--md-corner-md);
+}
+
+html.np-md.np-collapse-notice #cate_thread.np-collapsed {
+  max-height: 88px !important;
+  overflow: hidden !important;
+  -webkit-mask-image: linear-gradient(#000 30%, transparent);
+  mask-image: linear-gradient(#000 30%, transparent);
+}
+
+html.np-md .np-notice-toggle {
+  display: none;
+}
+
+html.np-md.np-collapse-notice .np-notice-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  width: 100%;
+  height: 40px;
+  border: none !important;
+  border-top: 1px solid var(--np-divider) !important;
+  background: transparent !important;
+  color: var(--md-primary) !important;
+  font: 500 14px/20px var(--md-font) !important;
+  cursor: pointer;
+  padding: 0 !important;
+  border-radius: 0 !important;
+}
+
+html.np-md .np-notice-toggle:hover {
+  background: color-mix(in srgb, var(--md-primary) 8%, transparent) !important;
+}
+
+html.np-md .np-notice-toggle::after {
+  content: "";
+  width: 20px;
+  height: 20px;
+  background: currentColor;
+  -webkit-mask: var(--np-i-expand) center / 20px no-repeat;
+  mask: var(--np-i-expand) center / 20px no-repeat;
+  transition: transform 0.2s var(--md-ease);
+}
+
+html.np-md .np-notice-toggle[aria-expanded="true"]::after {
+  transform: rotate(180deg);
+}
+
+/* --------------------------------------------------------------------------
+   7. 帖子列表（thread.php）
+   -------------------------------------------------------------------------- */
+html.np-md table#ajaxtable {
+  width: 100% !important;
+  border-collapse: collapse !important;
+}
+
+html.np-md table#ajaxtable th.h {
+  padding: 12px 16px !important;
+}
+
+/* 筛选 Chip */
+html.np-md .hthread {
+  display: flex !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+  gap: 8px;
+}
+
+html.np-md ul.fl.threadlist {
+  display: flex !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  height: auto !important;
+  border: none !important;
+  float: none !important;
+}
+
+html.np-md ul.fl.threadlist #t_typedb {
+  display: contents !important;
+}
+
+html.np-md ul.fl.threadlist li {
+  float: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  background: transparent !important;
+}
+
+html.np-md ul.fl.threadlist li a {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px;
+  height: 32px !important;
+  padding: 0 16px !important;
+  box-sizing: border-box !important;
+  border: 1px solid var(--md-outline-variant) !important;
+  border-radius: var(--md-corner-sm) !important;
+  background: transparent !important;
+  background-image: none !important;
+  color: var(--md-on-surface-variant) !important;
+  font-size: 14px !important;
+  line-height: 20px !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
+}
+
+html.np-md ul.fl.threadlist li a:hover {
+  background: var(--np-hover) !important;
+  color: var(--md-on-surface) !important;
+}
+
+html.np-md ul.fl.threadlist li.current a,
+html.np-md ul.fl.threadlist li.current a:hover {
+  padding-left: 8px !important;
+  border-color: transparent !important;
+  background: var(--md-secondary-container) !important;
+  color: var(--md-on-secondary-container) !important;
+}
+
+html.np-md ul.fl.threadlist li.current a::before {
+  content: "";
+  width: 18px;
+  height: 18px;
+  background: currentColor;
+  -webkit-mask: var(--np-i-check) center / 18px no-repeat;
+  mask: var(--np-i-check) center / 18px no-repeat;
+}
+
+/* 分隔行（“普通主题”） */
+html.np-md table#ajaxtable tr.np-divider-row td {
+  text-align: left !important;
+  padding: 16px 16px 8px !important;
+  color: var(--md-primary) !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+}
+
+/* 帖子行 */
+html.np-md table#ajaxtable tr.tr3 > td {
+  padding: 12px !important;
+}
+
+html.np-md table#ajaxtable tr.tr3 > td:first-child {
+  width: 32px;
+  padding-left: 16px !important;
+  text-align: center;
+}
+
+html.np-md table#ajaxtable tr.tr3 > td:first-child img {
+  opacity: 0.75;
+}
+
+html.np-md.np-rowclick table#ajaxtable tr.tr3,
+html.np-md.np-rowclick tr[id^="fid_"] {
+  cursor: pointer;
+}
+
+html.np-md table#ajaxtable td[id^="td_"] h3 {
+  display: inline !important;
+  margin: 0 !important;
+  font-size: 15px !important;
+  line-height: 22px !important;
+  font-weight: 500 !important;
+}
+
+html.np-md table#ajaxtable td[id^="td_"] h3 a {
+  color: var(--md-on-surface) !important;
+  text-decoration: none !important;
+}
+
+html.np-md table#ajaxtable td[id^="td_"] h3 a:visited {
+  color: var(--md-on-surface-variant) !important;
+}
+
+html.np-md table#ajaxtable td[id^="td_"] h3 a:hover {
+  color: var(--md-primary) !important;
+}
+
+html.np-md table#ajaxtable td[id^="td_"] h3 a font,
+html.np-md table#ajaxtable td[id^="td_"] h3 a b {
+  font-weight: 500 !important;
+}
+
+/* 主题分类 → assist chip */
+html.np-md table#ajaxtable td[id^="td_"] > a.s8,
+html.np-md table#ajaxtable td[id^="td_"] a[href*="type"] {
+  display: inline-flex !important;
+  align-items: center !important;
+  height: 24px !important;
+  padding: 0 8px !important;
+  margin-right: 8px !important;
+  border-radius: var(--md-corner-sm) !important;
+  background: var(--md-tertiary-container) !important;
+  color: var(--md-on-tertiary-container) !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
+  vertical-align: 1px;
+}
+
+/* 行内分页 */
+html.np-md table#ajaxtable span.tpage {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 2px;
+  margin-left: 8px;
+}
+
+html.np-md table#ajaxtable span.tpage > img {
+  display: none !important;
+}
+
+html.np-md table#ajaxtable span.tpage a {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 4px;
+  box-sizing: border-box;
+  border-radius: var(--md-corner-xs);
+  background: var(--md-surface-container-high);
+  color: var(--md-on-surface-variant) !important;
+  font-size: 11px;
+  text-decoration: none !important;
+}
+
+html.np-md table#ajaxtable span.tpage a:hover {
+  background: var(--md-secondary-container);
+  color: var(--md-on-secondary-container) !important;
+}
+
+/* 作者 / 时间 */
+html.np-md table#ajaxtable a.bl {
+  font-size: 13px !important;
+  font-weight: 500;
+  color: var(--md-on-surface) !important;
+}
+
+html.np-md table#ajaxtable .f10,
+html.np-md table#ajaxtable .gray2 {
+  font-size: 12px !important;
+  font-variant-numeric: tabular-nums;
+}
+
+html.np-md table#ajaxtable td.y-style a.f10 {
+  color: var(--md-on-surface) !important;
+  white-space: nowrap !important;
+}
+
+html.np-md table#ajaxtable tr.tr3 > td:last-child {
+  white-space: nowrap !important;
+}
+
+/* 回复 / 人气 → 图标数字 */
+html.np-md .np-stats {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 2px;
+  white-space: nowrap;
+}
+
+html.np-md .np-stat {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--md-on-surface-variant);
+  font-variant-numeric: tabular-nums;
+}
+
+html.np-md .np-stat::before {
+  content: "";
+  width: 14px;
+  height: 14px;
+  flex: none;
+  background: currentColor;
+  -webkit-mask: var(--np-i-chat) center / 14px no-repeat;
+  mask: var(--np-i-chat) center / 14px no-repeat;
+  opacity: 0.8;
+}
+
+html.np-md .np-stat--view::before {
+  -webkit-mask-image: var(--np-i-eye);
+  mask-image: var(--np-i-eye);
+}
+
+html.np-md .np-stat--reply {
+  color: var(--md-on-surface);
+  font-weight: 500;
+}
+
+html.np-md .np-stat--hot {
+  color: var(--md-error);
+}
+
+/* --------------------------------------------------------------------------
+   8. 工具栏：发帖/回复按钮 + 分页
+   -------------------------------------------------------------------------- */
+html.np-md div.t3 {
+  display: flex !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  height: auto !important;
+  padding: 4px 0 !important;
+  margin: 0 0 12px !important;
+}
+
+html.np-md div.t3 > .c,
+html.np-md div.tiptop > .c,
+html.np-md div.tipad > .c {
+  display: none !important;
+}
+
+html.np-md div.t3 > .fl {
+  float: none !important;
+  order: 1 !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+html.np-md div.t3 > .fr {
+  float: none !important;
+  order: 10 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+}
+
+html.np-md div.t3 > .np-t3-push-right {
+  margin-left: auto !important;
+}
+
+/* 图片按钮 → M3 按钮 */
+html.np-md a.np-action-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  height: 40px !important;
+  padding: 0 24px 0 16px !important;
+  box-sizing: border-box !important;
+  border-radius: var(--md-corner-full) !important;
+  font-size: 14px !important;
+  line-height: 20px !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
+  transition: box-shadow 0.15s var(--md-ease), border-radius 0.15s var(--md-ease), background-color 0.15s var(--md-ease) !important;
+}
+
+html.np-md a.np-action-btn > img {
+  display: none !important;
+}
+
+html.np-md a.np-action-btn .np-action-btn__inner {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+html.np-md a.np-action-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+html.np-md a.np-action-btn--primary,
+html.np-md a.np-action-btn--primary:hover {
+  background: var(--md-primary) !important;
+  color: var(--md-on-primary) !important;
+}
+
+html.np-md a.np-action-btn--primary:hover {
+  box-shadow: var(--md-elevation-1) !important;
+}
+
+html.np-md a.np-action-btn--reply,
+html.np-md a.np-action-btn--reply:hover {
+  background: var(--md-secondary-container) !important;
+  color: var(--md-on-secondary-container) !important;
+}
+
+html.np-md a.np-action-btn--reply:hover {
+  box-shadow: var(--md-elevation-1) !important;
+}
+
+html.np-md a.np-action-btn:active {
+  border-radius: var(--md-corner-sm) !important;
+}
+
+/* 分页 */
+html.np-md .pages {
+  border: none !important;
+  background: transparent !important;
+  overflow: visible !important;
+  height: auto !important;
+}
+
+html.np-md .pages ul {
+  display: flex !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+  gap: 4px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+html.np-md .pages ul li {
+  float: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  background: transparent !important;
+  list-style: none !important;
+}
+
+html.np-md .pages ul li a,
+html.np-md .pages ul li b {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-width: 40px !important;
+  height: 40px !important;
+  padding: 0 12px !important;
+  box-sizing: border-box !important;
+  border: none !important;
+  border-radius: var(--md-corner-full) !important;
+  background: transparent !important;
+  color: var(--md-on-surface-variant) !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
+  font-variant-numeric: tabular-nums;
+}
+
+html.np-md .pages ul li a:hover {
+  background: var(--np-hover) !important;
+  color: var(--md-on-surface) !important;
+}
+
+html.np-md .pages ul li b {
+  background: var(--md-primary) !important;
+  color: var(--md-on-primary) !important;
+}
+
+html.np-md .pages ul li.pagesone {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  padding: 0 4px 0 12px !important;
+  height: 40px !important;
+  font-size: 13px !important;
+  color: var(--md-on-surface-variant) !important;
+}
+
+html.np-md .pages ul li.pagesone input[type="text"],
+html.np-md .pages ul li.pagesone input:not([type]) {
+  width: 56px !important;
+  height: 32px !important;
+  padding: 0 8px !important;
+  text-align: center !important;
+}
+
+/* 上一主题 / 下一主题 → 文字按钮 */
+html.np-md span.fl.pages ul li a.fn {
+  color: var(--md-primary) !important;
+  padding: 0 16px !important;
+  background: transparent !important;
+}
+
+html.np-md span.fl.pages ul li a.fn:hover {
+  background: color-mix(in srgb, var(--md-primary) 8%, transparent) !important;
+}
+
+/* --------------------------------------------------------------------------
+   9. 帖子阅读页（read.php）
+   -------------------------------------------------------------------------- */
+html.np-md #main > div.h2 {
+  display: flex !important;
+  justify-content: flex-end;
+  gap: 4px;
+  height: auto !important;
+  margin: 0 0 8px !important;
+  padding: 0 !important;
+  border: none !important;
+  background: transparent !important;
+}
+
+html.np-md #main > div.h2 .w,
+html.np-md #main > div.h2 .w a {
+  float: none !important;
+  color: var(--md-on-surface-variant) !important;
+  font-size: 12px !important;
+}
+
+html.np-md div.t5.t2 {
+  background: var(--md-surface-container-low) !important;
+  background-image: none !important;
+  border: none !important;
+  border-radius: var(--md-corner-md) !important;
+  box-shadow: none !important;
+  overflow: hidden !important;
+  margin: 0 0 12px !important;
+  scroll-margin-top: 96px;
+}
+
+html.np-md table.js-post {
+  border-collapse: collapse !important;
+  border: none !important;
+}
+
+html.np-md table.js-post > tbody > tr > th,
+html.np-md table.js-post > tbody > tr > td {
+  border: none !important;
+}
+
+/* 左侧作者栏 */
+html.np-md table.js-post th.r_two {
+  background: var(--md-surface-container) !important;
+  background-image: none !important;
+  border: none !important;
+  padding: 16px 12px !important;
+  vertical-align: top !important;
+  color: var(--md-on-surface) !important;
+}
+
+html.np-md table.js-post th.r_two .user-pic table,
+html.np-md table.js-post th.r_two .user-pic td {
+  border: none !important;
+  background: transparent !important;
+}
+
+html.np-md table.js-post th.r_two .user-pic img {
+  padding: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  border-radius: var(--md-corner-md) !important;
+  box-shadow: none !important;
+}
+
+html.np-md table.js-post th.r_two strong {
+  font-size: 14px !important;
+  line-height: 20px !important;
+  font-weight: 500 !important;
+  color: var(--md-on-surface) !important;
+}
+
+html.np-md .user-infoWrap {
+  background: var(--md-surface-container-high) !important;
+  background-image: none !important;
+  color: var(--md-on-surface) !important;
+  border: none !important;
+  border-radius: var(--md-corner-lg) !important;
+  box-shadow: var(--md-elevation-2) !important;
+}
+
+/* 头像保持比例 */
 .user-pic table td[width="1"],
 table.js-post th.r_two .user-pic table td[width="1"] {
   width: auto !important;
@@ -940,599 +1899,199 @@ table.js-post th.r_two .user-pic table td[width="1"] {
 table.js-post th.r_two img.pic,
 #u-portrait img,
 .user-infoWraptwo img,
-.u-face img,
-.avatar img,
-img.avatar,
-.face img {
+.u-face img {
   width: auto !important;
   height: auto !important;
   max-width: 160px !important;
   max-height: 225px !important;
   object-fit: contain !important;
-  object-position: center !important;
 }
 
-html.np-dark .user-pic img,
-html.np-dark table.js-post th.r_two img.pic {
-  border-color: var(--np-border, #3d4454) !important;
-  background-color: transparent !important;
-}
-
-html.np-modern #user_info > a[href^="u.php"] > img {
-  width: 40px !important;
-  height: 40px !important;
-  aspect-ratio: 1 / 1 !important;
-  clip: auto !important;
-  object-fit: cover !important;
-  object-position: center !important;
-  border-radius: 50% !important;
-  border: 2px solid var(--np-border) !important;
-}
-
-/* --- 5.2 面包屑导航 --- */
-html.np-modern #main > div.bdbA {
-  border: none !important;
-  background: transparent !important;
-  margin-bottom: 10px !important;
-}
-
-html.np-modern #breadcrumbs {
-  background-color: var(--np-surface) !important;
-  background-image: none !important;
-  border: 1px solid var(--np-border) !important;
-  border-radius: var(--np-radius-sm) !important;
-  padding: 8px 14px !important;
-  box-shadow: var(--np-shadow) !important;
-  display: flex !important;
-  align-items: center !important;
-  flex-wrap: wrap !important;
-  gap: 6px !important;
-  height: auto !important;
-  line-height: 1.5 !important;
-}
-
-html.np-modern #breadcrumbs .fr {
-  margin-left: auto !important;
-  float: none !important;
-}
-
-/* --- 5.3 版块公告栏 --- */
-html.np-modern .gonggao {
-  background-color: var(--np-surface) !important;
-  border: 1px solid var(--np-border) !important;
-  border-radius: var(--np-radius) !important;
-  box-shadow: var(--np-shadow) !important;
-  overflow: hidden !important;
-  margin-bottom: 12px !important;
-}
-
-html.np-modern .gonggao .gongul {
-  background-color: var(--np-surface-2) !important;
-  border-bottom: 1px solid var(--np-border) !important;
-  padding: 6px 12px !important;
-}
-
-html.np-modern .gonggao .gongul li {
-  border-radius: 6px !important;
-  border: none !important;
-  background: transparent !important;
-}
-
-html.np-modern .gonggao .gongul li.active {
-  background-color: var(--np-surface) !important;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08) !important;
-}
-
-html.np-modern #cate_thread,
-html.np-modern #tab_1 {
-  background-color: var(--np-surface) !important;
-  padding: 10px 14px !important;
-}
-
-/* --- 5.4 工具栏与功能按钮排布 (div.t3 / 分页 / 发帖回复按钮) --- */
-html.np-modern div.t3 {
+/* 楼层头 */
+html.np-md div.tiptop {
   display: flex !important;
   align-items: center !important;
   flex-wrap: wrap !important;
   gap: 8px !important;
-  padding: 10px 0 !important;
-  margin: 4px 0 !important;
   height: auto !important;
-}
-
-html.np-modern div.t3 > .c,
-html.np-modern div.tiptop > .c,
-html.np-modern div.tipad > .c {
-  display: none !important;
-}
-
-html.np-modern div.t3 > .fl {
-  float: none !important;
-  order: 1 !important;
-  display: flex !important;
-  align-items: center !important;
-}
-
-html.np-modern div.t3 > .fr {
-  float: none !important;
-  order: 10 !important;
-  display: inline-flex !important;
-  align-items: center !important;
-}
-
-html.np-modern div.t3 > .np-t3-push-right {
-  margin-left: auto !important;
-}
-
-/* 隐藏旧版位图按钮，显示现代 SVG 按钮 */
-html.np-modern a.np-action-btn {
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  text-decoration: none !important;
-  border-radius: var(--np-radius-sm) !important;
-  padding: 7px 15px !important;
-  font-size: 13px !important;
-  font-weight: 600 !important;
-  line-height: 1.2 !important;
-  color: #ffffff !important;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12) !important;
-  transition: background-color 0.15s ease, transform 0.1s ease, box-shadow 0.15s ease !important;
-}
-
-html.np-modern a.np-action-btn > img {
-  display: none !important;
-}
-
-html.np-modern a.np-action-btn .np-action-btn__inner {
-  display: inline-flex !important;
-  align-items: center !important;
-  gap: 6px !important;
-}
-
-html.np-modern a.np-action-btn--primary {
-  background-color: var(--np-accent) !important;
-}
-
-html.np-modern a.np-action-btn--primary:hover {
-  background-color: var(--np-accent-hover) !important;
-  color: #ffffff !important;
-  transform: translateY(-1px);
-}
-
-html.np-modern a.np-action-btn--reply {
-  background-color: var(--np-reply-bg) !important;
-}
-
-html.np-modern a.np-action-btn--reply:hover {
-  background-color: var(--np-reply-hover) !important;
-  color: #ffffff !important;
-  transform: translateY(-1px);
-}
-
-/* 现代分页组件 */
-html.np-modern .pages {
-  border: none !important;
-  background: transparent !important;
-  overflow: visible !important;
-}
-
-html.np-modern .pages ul {
-  display: flex !important;
-  align-items: center !important;
-  flex-wrap: wrap !important;
-  gap: 4px !important;
   margin: 0 !important;
-  padding: 0 !important;
-}
-
-html.np-modern .pages ul li {
-  float: none !important;
-  margin: 0 !important;
+  padding: 12px 12px 12px 20px !important;
   border: none !important;
-  background: transparent !important;
-}
-
-html.np-modern .pages ul li a,
-html.np-modern .pages ul li b {
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  min-width: 30px !important;
-  height: 30px !important;
-  padding: 0 9px !important;
-  border-radius: 6px !important;
-  font-size: 12.5px !important;
-  border: 1px solid var(--np-border) !important;
-  background-color: var(--np-surface) !important;
-  color: var(--np-text) !important;
-  text-decoration: none !important;
-  box-sizing: border-box !important;
-}
-
-html.np-modern .pages ul li a:hover {
-  background-color: var(--np-surface-hover) !important;
-  border-color: var(--np-accent) !important;
-  color: var(--np-accent) !important;
-}
-
-html.np-modern .pages ul li b {
-  background-color: var(--np-accent) !important;
-  border-color: var(--np-accent) !important;
-  color: #ffffff !important;
-  font-weight: 600 !important;
-}
-
-html.np-modern .pages ul li.pagesone {
-  display: inline-flex !important;
-  align-items: center !important;
-  gap: 6px !important;
-  padding: 0 8px !important;
-  height: 30px !important;
+  border-bottom: 1px solid var(--np-divider) !important;
+  position: static !important;
+  color: var(--md-on-surface-variant) !important;
   font-size: 12px !important;
-  color: var(--np-text-muted) !important;
 }
 
-html.np-modern .pages ul li.pagesone input[type="text"] {
-  width: 44px !important;
+html.np-md div.tiptop > .fl {
+  float: none !important;
+}
+
+html.np-md div.tiptop span.fl a.s3 {
+  display: inline-flex !important;
+  align-items: center !important;
   height: 24px !important;
-  padding: 0 6px !important;
-  border-radius: 5px !important;
-  border: 1px solid var(--np-border) !important;
-  background-color: var(--np-surface) !important;
-  color: var(--np-text) !important;
-  text-align: center !important;
-}
-
-/* 通用按钮与表单控件 */
-html.np-modern select,
-html.np-modern input[type="text"],
-html.np-modern textarea {
-  border-radius: 6px !important;
-  border: 1px solid var(--np-border) !important;
-  background-color: var(--np-surface) !important;
-  color: var(--np-text) !important;
-  padding: 5px 10px !important;
-  font-size: 13px !important;
-  transition: border-color 0.15s ease, box-shadow 0.15s ease !important;
-}
-
-html.np-modern select:focus,
-html.np-modern input[type="text"]:focus,
-html.np-modern textarea:focus {
-  outline: none !important;
-  border-color: var(--np-accent) !important;
-  box-shadow: 0 0 0 2px var(--np-accent-soft) !important;
-}
-
-html.np-modern input.btn,
-html.np-modern button.btn,
-html.np-modern a.abtn {
-  border-radius: 6px !important;
-  border: 1px solid var(--np-border) !important;
-  background-color: var(--np-surface-2) !important;
-  background-image: none !important;
-  color: var(--np-text) !important;
-  padding: 5px 12px !important;
-  font-size: 12.5px !important;
+  padding: 0 8px !important;
+  border-radius: var(--md-corner-sm) !important;
+  background: var(--md-primary-container) !important;
+  color: var(--md-on-primary-container) !important;
+  font-size: 12px !important;
   font-weight: 500 !important;
-  cursor: pointer !important;
   text-decoration: none !important;
-  transition: background-color 0.15s ease, border-color 0.15s ease !important;
 }
 
-html.np-modern input.btn:hover,
-html.np-modern button.btn:hover,
-html.np-modern a.abtn:hover {
-  background-color: var(--np-surface-hover) !important;
-  border-color: var(--np-accent) !important;
-  color: var(--np-accent) !important;
+html.np-md div.tiptop .bianji {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 50%;
+  color: var(--md-on-surface-variant) !important;
 }
 
-html.np-modern input.btn.btn-danger {
-  background-color: var(--np-danger) !important;
-  border-color: var(--np-danger) !important;
-  color: #ffffff !important;
-  font-weight: 600 !important;
-  padding: 7px 16px !important;
-}
-
-html.np-modern input.btn.btn-danger:hover {
-  background-color: var(--np-danger-hover) !important;
-  border-color: var(--np-danger-hover) !important;
-  color: #ffffff !important;
-}
-
-/* --- 5.5 帖子列表体验优化 (div.t.z / #ajaxtable / .threadlist) --- */
-html.np-modern .t,
-html.np-modern .t.z {
-  background-color: var(--np-surface) !important;
-  border: 1px solid var(--np-border) !important;
-  border-radius: var(--np-radius) !important;
-  box-shadow: var(--np-shadow) !important;
-  overflow: hidden !important;
-  margin-bottom: 14px !important;
-}
-
-html.np-modern .t th.h,
-html.np-modern .t th.h2 {
-  background-color: var(--np-surface-2) !important;
-  background-image: none !important;
-  border-bottom: 1px solid var(--np-border) !important;
-  padding: 10px 14px !important;
-}
-
-/* 分类筛选药丸标签 */
-html.np-modern .hthread {
-  display: flex !important;
-  align-items: center !important;
-  flex-wrap: wrap !important;
-}
-
-html.np-modern ul.fl.threadlist {
-  display: flex !important;
-  align-items: center !important;
-  flex-wrap: wrap !important;
-  gap: 6px !important;
-  margin: 0 !important;
-  padding: 2px 0 !important;
-  height: auto !important;
-  border: none !important;
-}
-
-html.np-modern ul.fl.threadlist #t_typedb {
-  display: contents !important;
-}
-
-html.np-modern ul.fl.threadlist li {
+html.np-md div.tiptop > .fr {
   float: none !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  border: none !important;
-  background: transparent !important;
-}
-
-html.np-modern ul.fl.threadlist li a {
-  display: inline-flex !important;
-  align-items: center !important;
-  padding: 5px 13px !important;
-  border-radius: 999px !important;
-  font-size: 12.5px !important;
-  font-weight: 500 !important;
-  border: 1px solid transparent !important;
-  background-color: transparent !important;
-  color: var(--np-text-muted) !important;
-  text-decoration: none !important;
-  height: auto !important;
-  line-height: 1.4 !important;
-}
-
-html.np-modern ul.fl.threadlist li a:hover {
-  background-color: var(--np-surface-hover) !important;
-  color: var(--np-text) !important;
-}
-
-html.np-modern ul.fl.threadlist li.current a,
-html.np-modern ul.fl.threadlist li.current a:hover {
-  background-color: var(--np-accent) !important;
-  border-color: var(--np-accent) !important;
-  color: #ffffff !important;
-  font-weight: 600 !important;
-}
-
-/* 帖子列表表格无竖线 + 舒适行距 */
-html.np-modern table#ajaxtable {
-  border-collapse: collapse !important;
-  width: 100% !important;
-}
-
-html.np-modern table#ajaxtable tr.tr2 td {
-  background-color: var(--np-surface-2) !important;
-  border: none !important;
-  border-bottom: 1px solid var(--np-border) !important;
-  padding: 9px 10px !important;
-  font-size: 12px !important;
-  font-weight: 600 !important;
-  color: var(--np-text-muted) !important;
-}
-
-html.np-modern div.t tr.tr3 > td,
-html.np-modern div.t tr.tr3 > th {
-  background-color: var(--np-surface) !important;
-  color: var(--np-text) !important;
-  border-color: var(--np-border-subtle) !important;
-}
-
-html.np-modern table#ajaxtable tr.tr3.t_one > td,
-html.np-modern table#ajaxtable tr.tr3.t_one > th {
-  border: none !important;
-  border-bottom: 1px solid var(--np-border-subtle) !important;
-  padding: 12px 10px !important;
-  vertical-align: middle !important;
-  background-color: var(--np-surface) !important;
-  color: var(--np-text) !important;
-}
-
-html.np-modern table#ajaxtable tr.tr3.t_one:hover > td,
-html.np-modern table#ajaxtable tr.tr3.t_one:hover > th {
-  background-color: var(--np-surface-hover) !important;
-}
-
-html.np-modern table#ajaxtable td[id^="td_"] h3 {
-  display: inline !important;
-  font-size: 14.5px !important;
-  font-weight: 500 !important;
-  line-height: 1.5 !important;
-}
-
-html.np-modern table#ajaxtable td[id^="td_"] h3 a[id^="a_ajax_"] {
-  color: var(--np-text) !important;
-  text-decoration: none !important;
-}
-
-html.np-modern table#ajaxtable td[id^="td_"] h3 a[id^="a_ajax_"]:visited {
-  color: var(--np-text-muted) !important;
-}
-
-html.np-modern table#ajaxtable td[id^="td_"] h3 a[id^="a_ajax_"]:hover {
-  color: var(--np-accent) !important;
-  text-decoration: underline !important;
-}
-
-/* 主题分类徽章 */
-html.np-modern table#ajaxtable td[id^="td_"] a.s8 {
-  display: inline-block !important;
-  padding: 2px 8px !important;
-  margin-right: 6px !important;
-  border-radius: 5px !important;
-  background-color: var(--np-accent-soft) !important;
-  color: var(--np-accent) !important;
-  font-size: 12px !important;
-  font-weight: 500 !important;
-  text-decoration: none !important;
-  vertical-align: baseline !important;
-}
-
-html.np-modern table#ajaxtable td.tal.y-style.f10 {
-  font-variant-numeric: tabular-nums !important;
-  white-space: nowrap !important;
-}
-
-html.np-modern table#ajaxtable td.tal.y-style.f10 .s8 {
-  color: var(--np-accent) !important;
-  font-weight: 600 !important;
-}
-
-/* --- 5.6 帖子阅读页卡片与操作栏 (read.php) --- */
-html.np-modern div.h2 {
-  background-color: var(--np-surface) !important;
-  border: 1px solid var(--np-border) !important;
-  border-radius: var(--np-radius-sm) !important;
-  padding: 6px 12px !important;
-  margin-bottom: 10px !important;
-}
-
-html.np-modern div.t5.t2 {
-  background-color: var(--np-surface) !important;
-  border: 1px solid var(--np-border) !important;
-  border-radius: var(--np-radius) !important;
-  box-shadow: var(--np-shadow) !important;
-  overflow: hidden !important;
-  margin-bottom: 16px !important;
-}
-
-html.np-modern table.js-post th.r_two {
-  background-color: var(--np-surface-2) !important;
-  border-right: 1px solid var(--np-border-subtle) !important;
-  padding: 16px 12px !important;
-}
-
-html.np-modern table.js-post th.r_two .user-pic img {
-  border-radius: 10px !important;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1) !important;
-}
-
-html.np-modern div.tiptop {
-  border-bottom: 1px solid var(--np-border-subtle) !important;
-  padding: 10px 16px !important;
-  margin: 0 !important;
-  display: flex !important;
-  align-items: center !important;
-  flex-wrap: wrap !important;
-  gap: 8px !important;
-  height: auto !important;
-  position: static !important;
-}
-
-html.np-modern div.tiptop > .fl {
-  float: none !important;
-  order: 0 !important;
-}
-
-html.np-modern div.tiptop span.fl a.s3 {
-  display: inline-block !important;
-  padding: 2px 8px !important;
-  border-radius: 999px !important;
-  background-color: var(--np-accent-soft) !important;
-  color: var(--np-accent) !important;
-  font-weight: 600 !important;
-  font-size: 12px !important;
-  text-decoration: none !important;
-}
-
-html.np-modern div.tiptop > .fr {
-  order: 10 !important;
   margin-left: auto !important;
-  float: none !important;
   display: inline-flex !important;
   align-items: center !important;
-  gap: 8px !important;
+  gap: 2px !important;
 }
 
-html.np-modern div.tiptop > .fr ~ .fr {
+html.np-md div.tiptop > .fr ~ .fr {
   margin-left: 0 !important;
 }
 
-html.np-modern div.tpc_content {
-  padding: 18px 24px 22px !important;
+html.np-md div.tiptop > .fr > a,
+html.np-md div.tiptop > .fr .dropdown > a {
+  display: inline-flex !important;
+  align-items: center !important;
+  height: 28px !important;
+  padding: 0 10px !important;
+  border-radius: var(--md-corner-full) !important;
+  color: var(--md-on-surface-variant) !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
 }
 
-html.np-modern div.h1.fl,
-html.np-modern h1#subject_tpc.fl {
+html.np-md div.tiptop > .fr > a:hover,
+html.np-md div.tiptop > .fr .dropdown > a:hover {
+  background: var(--np-hover) !important;
+  color: var(--md-on-surface) !important;
+}
+
+/* 标题 */
+html.np-md h1#subject_tpc,
+html.np-md div.h1.fl h1#subject_tpc {
   float: none !important;
-  width: 100% !important;
   display: block !important;
+  width: auto !important;
+  margin: 0 0 16px !important;
+  padding: 0 !important;
+  font-size: 22px !important;
+  line-height: 30px !important;
+  font-weight: 500 !important;
+  color: var(--md-on-surface) !important;
+  border: none !important;
 }
 
-html.np-modern div.h1.fl h1#subject_tpc {
-  font-size: 19px !important;
-  font-weight: 700 !important;
-  line-height: 1.4 !important;
-  margin-bottom: 12px !important;
+html.np-md div.h1.fl {
+  float: none !important;
+  width: 100% !important;
 }
 
-/* 引用块与付费块 */
-html.np-modern blockquote.blockquote3 {
-  border: 1px solid var(--np-border) !important;
-  border-left: 3px solid var(--np-accent) !important;
-  background-color: var(--np-surface-2) !important;
-  border-radius: 0 var(--np-radius-sm) var(--np-radius-sm) 0 !important;
-  padding: 10px 14px !important;
-  margin: 10px 0 14px !important;
+/* 正文 */
+html.np-md div.tpc_content {
+  padding: 20px 24px 16px !important;
+  color: var(--md-on-surface) !important;
 }
 
-html.np-modern h6.quote.jumbotron {
-  border: 1px solid var(--np-border) !important;
-  background-color: var(--np-surface-2) !important;
-  border-radius: var(--np-radius-sm) !important;
+html.np-md .tpc_content a {
+  color: var(--md-primary) !important;
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--md-primary) 40%, transparent);
+  text-underline-offset: 3px;
+}
+
+html.np-md .tpc_content img {
+  border-radius: var(--md-corner-xs);
+}
+
+html.np-md.np-lightbox .tpc_content img.np-zoomable {
+  cursor: zoom-in;
+}
+
+html.np-md .tpc_content pre,
+html.np-md .tpc_content code {
+  font-family: var(--md-font-mono) !important;
+}
+
+/* 引用 / 代码 / 付费块 */
+html.np-md .quote,
+html.np-md .quote2,
+html.np-md .blockquote,
+html.np-md blockquote.blockquote3,
+html.np-md .tips {
+  background: var(--md-surface-container-high) !important;
+  background-image: none !important;
+  border: none !important;
+  border-radius: var(--md-corner-md) !important;
+  color: var(--md-on-surface) !important;
   padding: 12px 16px !important;
-  margin: 10px 0 !important;
+  margin: 12px 0 !important;
 }
 
-/* 楼层底部操作栏 (.tipad / .readbot) */
-html.np-modern div.tipad {
-  border-top: 1px solid var(--np-border-subtle) !important;
-  padding: 8px 16px !important;
-  margin: 0 !important;
+html.np-md h6.quote.jumbotron {
+  background: var(--md-tertiary-container) !important;
+  color: var(--md-on-tertiary-container) !important;
+  border: none !important;
+  border-radius: var(--md-corner-md) !important;
+  padding: 16px !important;
+  margin: 12px 0 !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+}
+
+html.np-md input[type="button"][onclick*="buytopic"] {
+  background: var(--md-primary) !important;
+  color: var(--md-on-primary) !important;
+}
+
+/* 阅读排版 */
+html.np-readable .tpc_content > div[id^="read_"],
+html.np-readable .tpc_content > div.f14 {
+  font-size: 16px;
+  line-height: 1.8;
+  letter-spacing: 0.01em;
+}
+
+html.np-readable .tpc_content p {
+  margin: 0 0 0.8em;
+}
+
+/* 楼层底部操作栏 */
+html.np-md div.tipad {
   display: flex !important;
   align-items: center !important;
-  justify-content: space-between !important;
   flex-wrap: wrap !important;
   gap: 8px !important;
   height: auto !important;
   line-height: normal !important;
+  margin: 0 !important;
+  padding: 8px 12px 12px 20px !important;
+  border: none !important;
   position: static !important;
 }
 
-html.np-modern div.tipad > .fl,
-html.np-modern div.tipad > .readbot {
+html.np-md div.tipad > .fl,
+html.np-md div.tipad > .readbot {
   float: none !important;
   order: 0 !important;
   position: static !important;
   margin: 0 !important;
 }
 
-html.np-modern div.tipad > .fr {
+html.np-md div.tipad > .fr {
   float: none !important;
   order: 10 !important;
   margin-left: auto !important;
@@ -1542,125 +2101,2002 @@ html.np-modern div.tipad > .fr {
   position: static !important;
 }
 
-html.np-modern div.tipad > .fr ~ .fr {
+html.np-md div.tipad > .fr a {
+  color: var(--md-on-surface-variant) !important;
+  font-size: 12px !important;
+}
+
+html.np-md div.tipad > .fr ~ .fr {
   margin-left: 0 !important;
 }
 
-html.np-modern div.tipad .readbot {
+html.np-md div.tipad ul.readbot {
   display: flex !important;
   align-items: center !important;
-  flex-wrap: wrap !important;
-  gap: 6px !important;
+  gap: 8px !important;
   margin: 0 !important;
   padding: 0 !important;
-  float: none !important;
-  list-style: none !important;
   width: auto !important;
   height: auto !important;
-  position: static !important;
+  list-style: none !important;
 }
 
-html.np-modern div.tipad ul.readbot li {
+html.np-md div.tipad ul.readbot li {
   float: none !important;
+  width: auto !important;
+  height: auto !important;
   margin: 0 !important;
   padding: 0 !important;
   border: none !important;
-  width: auto !important;
-  height: auto !important;
+  background: none !important;
   line-height: normal !important;
   text-indent: 0 !important;
-  list-style: none !important;
-  background: none !important;
   position: static !important;
-  top: auto !important;
-  left: auto !important;
 }
 
-html.np-modern div.tipad .readbot a {
+html.np-md div.tipad .readbot a,
+html.np-md div.tipad > .content-dropB > a.dropB {
   display: inline-flex !important;
   align-items: center !important;
-  gap: 4px !important;
-  float: none !important;
+  gap: 6px !important;
   position: static !important;
-  top: auto !important;
-  left: auto !important;
-  right: auto !important;
-  bottom: auto !important;
+  float: none !important;
   width: auto !important;
-  height: auto !important;
+  height: 32px !important;
   margin: 0 !important;
-  padding: 4px 11px !important;
-  line-height: 1.4 !important;
+  padding: 0 16px 0 12px !important;
+  box-sizing: border-box !important;
+  border: none !important;
+  border-radius: var(--md-corner-full) !important;
+  background: var(--md-secondary-container) !important;
+  background-image: none !important;
+  color: var(--md-on-secondary-container) !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  line-height: 20px !important;
   text-indent: 0 !important;
   white-space: nowrap !important;
-  vertical-align: middle !important;
-  border-radius: 6px !important;
-  border: 1px solid var(--np-border) !important;
-  background-color: var(--np-surface-2) !important;
-  color: var(--np-text) !important;
-  font-size: 12px !important;
-  font-weight: 500 !important;
   text-decoration: none !important;
-  background-image: none !important;
+  cursor: pointer;
+  transition: border-radius 0.15s var(--md-ease), box-shadow 0.15s var(--md-ease) !important;
 }
 
-html.np-modern div.tipad .readbot a img {
-  vertical-align: middle !important;
-  height: 14px !important;
-  width: auto !important;
-  flex-shrink: 0 !important;
+html.np-md div.tipad .readbot a:hover,
+html.np-md div.tipad > .content-dropB > a.dropB:hover {
+  box-shadow: var(--md-elevation-1) !important;
 }
 
-html.np-modern div.tipad .readbot a:hover {
-  background-color: var(--np-accent-soft) !important;
-  border-color: var(--np-accent) !important;
-  color: var(--np-accent) !important;
+html.np-md div.tipad .readbot a:active,
+html.np-md div.tipad > .content-dropB > a.dropB:active {
+  border-radius: var(--md-corner-sm) !important;
 }
 
-html.np-modern div.tipad > .content-dropB {
+html.np-md div.tipad .readbot a img {
+  display: none !important;
+}
+
+html.np-md div.tipad .readbot a::before,
+html.np-md div.tipad > .content-dropB > a.dropB::before {
+  content: "";
+  width: 18px;
+  height: 18px;
+  flex: none;
+  background: currentColor;
+  -webkit-mask: var(--np-i-reply) center / 18px no-repeat;
+  mask: var(--np-i-reply) center / 18px no-repeat;
+}
+
+html.np-md div.tipad .readbot li.yinyong a::before {
+  -webkit-mask-image: var(--np-i-quote);
+  mask-image: var(--np-i-quote);
+}
+
+html.np-md div.tipad .readbot li.shou a::before {
+  -webkit-mask-image: var(--np-i-bookmark);
+  mask-image: var(--np-i-bookmark);
+}
+
+html.np-md div.tipad > .content-dropB {
   order: 2 !important;
   float: none !important;
   position: static !important;
   width: auto !important;
   height: auto !important;
   margin: 0 !important;
-  display: inline-flex !important;
-  align-items: center !important;
 }
 
-html.np-modern div.tipad > .content-dropB > a.dropB {
+html.np-md div.tipad > .content-dropB > a.dropB {
+  background: transparent !important;
+  color: var(--md-on-surface-variant) !important;
+  padding: 0 12px !important;
+}
+
+html.np-md div.tipad > .content-dropB > a.dropB:hover {
+  background: var(--np-hover) !important;
+  box-shadow: none !important;
+}
+
+html.np-md div.tipad > .content-dropB > a.dropB::before {
+  -webkit-mask-image: var(--np-i-more);
+  mask-image: var(--np-i-more);
+}
+
+/* 快速回复 */
+html.np-md form[name="FORM"] > div.t5 {
+  background: var(--md-surface-container-low) !important;
+  border: none !important;
+  border-radius: var(--md-corner-md) !important;
+  overflow: hidden !important;
+  box-shadow: none !important;
+  margin-bottom: 12px !important;
+  scroll-margin-top: 96px;
+}
+
+html.np-md form[name="FORM"] > div.t5 td.h2 {
+  padding: 16px 20px 8px !important;
+  border: none !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  color: var(--md-on-surface) !important;
+}
+
+html.np-md form[name="FORM"] > div.t5 td.h2 b {
+  font-weight: 500 !important;
+}
+
+html.np-md form[name="FORM"] > div.t5 td {
+  border: none !important;
+  padding: 8px 12px !important;
+}
+
+html.np-md form[name="FORM"] textarea {
+  width: 100% !important;
+  min-height: 180px !important;
+  box-sizing: border-box !important;
+  padding: 12px 16px !important;
+  font-size: 15px !important;
+  line-height: 1.7 !important;
+  resize: vertical !important;
+}
+
+/* --------------------------------------------------------------------------
+   10. 通用表单控件与按钮
+   -------------------------------------------------------------------------- */
+html.np-md input[type="text"],
+html.np-md input[type="password"],
+html.np-md input[type="email"],
+html.np-md input[type="number"],
+html.np-md input[type="search"],
+html.np-md input.input,
+html.np-md select,
+html.np-md textarea {
+  box-sizing: border-box !important;
+  min-height: 32px;
+  padding: 4px 12px !important;
+  border: 1px solid var(--md-outline) !important;
+  border-radius: var(--md-corner-xs) !important;
+  background: transparent !important;
+  color: var(--md-on-surface) !important;
+  font-size: 14px !important;
+  outline: none !important;
+  transition: border-color 0.15s var(--md-ease), box-shadow 0.15s var(--md-ease) !important;
+}
+
+html.np-md select {
+  background: var(--md-surface-container-low) !important;
+}
+
+html.np-md input[type="text"]:hover,
+html.np-md input[type="password"]:hover,
+html.np-md input.input:hover,
+html.np-md select:hover,
+html.np-md textarea:hover {
+  border-color: var(--md-on-surface) !important;
+}
+
+html.np-md input[type="text"]:focus,
+html.np-md input[type="password"]:focus,
+html.np-md input.input:focus,
+html.np-md select:focus,
+html.np-md textarea:focus {
+  border-color: var(--md-primary) !important;
+  box-shadow: inset 0 0 0 1px var(--md-primary) !important;
+}
+
+html.np-md input::placeholder,
+html.np-md textarea::placeholder {
+  color: var(--md-on-surface-variant) !important;
+}
+
+html.np-md fieldset {
+  border: 1px solid var(--md-outline-variant) !important;
+  border-radius: var(--md-corner-md) !important;
+  background: transparent !important;
+}
+
+html.np-md legend {
+  padding: 0 6px !important;
+  color: var(--md-on-surface-variant) !important;
+}
+
+html.np-md input[type="checkbox"],
+html.np-md input[type="radio"] {
+  accent-color: var(--md-primary);
+}
+
+html.np-md input[type="submit"],
+html.np-md input[type="button"],
+html.np-md input[type="reset"],
+html.np-md button:not([class*="np-"]):not([id^="np-"]),
+html.np-md input.btn,
+html.np-md input.bt,
+html.np-md .btn2 {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 36px !important;
+  padding: 0 20px !important;
+  box-sizing: border-box !important;
+  border: none !important;
+  border-radius: var(--md-corner-full) !important;
+  background: var(--md-secondary-container) !important;
+  background-image: none !important;
+  color: var(--md-on-secondary-container) !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  cursor: pointer !important;
+  transition: box-shadow 0.15s var(--md-ease), border-radius 0.15s var(--md-ease) !important;
+}
+
+html.np-md input[type="submit"] {
+  background: var(--md-primary) !important;
+  color: var(--md-on-primary) !important;
+}
+
+html.np-md input[type="submit"]:hover,
+html.np-md input[type="button"]:hover,
+html.np-md button:not([class*="np-"]):not([id^="np-"]):hover,
+html.np-md input.btn:hover {
+  box-shadow: var(--md-elevation-1) !important;
+}
+
+html.np-md input[type="submit"]:active,
+html.np-md input[type="button"]:active,
+html.np-md input.btn:active {
+  border-radius: var(--md-corner-sm) !important;
+}
+
+html.np-md input:disabled,
+html.np-md button:disabled {
+  opacity: 0.38 !important;
+  box-shadow: none !important;
+  cursor: default !important;
+}
+
+html.np-md input.btn.btn-danger {
+  background: var(--md-error) !important;
+  color: var(--md-on-error) !important;
+}
+
+html.np-md a.abtn {
+  display: inline-flex !important;
+  align-items: center !important;
+  height: 32px !important;
+  padding: 0 16px !important;
+  box-sizing: border-box !important;
+  border: 1px solid var(--md-outline-variant) !important;
+  border-radius: var(--md-corner-full) !important;
+  background: transparent !important;
+  background-image: none !important;
+  color: var(--md-primary) !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
+}
+
+html.np-md a.abtn:hover {
+  background: color-mix(in srgb, var(--md-primary) 8%, transparent) !important;
+}
+
+/* --------------------------------------------------------------------------
+   11. 页脚 / 杂项
+   -------------------------------------------------------------------------- */
+html.np-md #footer,
+html.np-md .footer {
+  background: transparent !important;
+  background-image: none !important;
+  border: none !important;
+  color: var(--md-on-surface-variant) !important;
+  padding: 16px 0 32px !important;
+}
+
+html.np-md #footer a {
+  color: var(--md-on-surface-variant) !important;
+}
+
+html.np-md div.t5.t_one {
+  background: transparent !important;
+  border: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   12. 个人中心（u.php）与设置（profile.php）
+   -------------------------------------------------------------------------- */
+html.np-md #u-wrap,
+html.np-md #u-wrap2,
+html.np-md #set-wrap,
+html.np-md #set-content {
+  background: var(--md-surface-container-low) !important;
+  background-image: none !important;
+  border: none !important;
+  border-radius: var(--md-corner-md) !important;
+  color: var(--md-on-surface) !important;
+}
+
+html.np-md #u-sidebar,
+html.np-md #set-side {
+  background: var(--md-surface-container) !important;
+  border: none !important;
+}
+
+html.np-md #u-portrait,
+html.np-md .bgA {
+  background: var(--md-surface-container) !important;
+  background-image: none !important;
+  border-color: var(--np-divider) !important;
+}
+
+html.np-md #u-top-nav ul,
+html.np-md .set-tab {
+  border-bottom: 1px solid var(--np-divider) !important;
+}
+
+html.np-md #u-top-nav ul li,
+html.np-md .set-tab ul li {
+  background: transparent !important;
+  background-image: none !important;
+  border: none !important;
+}
+
+html.np-md #u-top-nav li a,
+html.np-md .set-tab ul li a {
+  display: inline-block !important;
+  background: transparent !important;
+  background-image: none !important;
+  border: none !important;
+  border-bottom: 3px solid transparent !important;
+  color: var(--md-on-surface-variant) !important;
+  font-weight: 500 !important;
+  padding: 0 12px !important;
+}
+
+html.np-md #u-top-nav li.current a,
+html.np-md .set-tab ul li.current a {
+  color: var(--md-primary) !important;
+  border-bottom-color: var(--md-primary) !important;
+}
+
+html.np-md .u-h5,
+html.np-md #set-side h2,
+html.np-md .set-h2 {
+  background: none !important;
+  border: none !important;
+  border-bottom: 1px solid var(--np-divider) !important;
+  color: var(--md-on-surface) !important;
+  font-weight: 500 !important;
+}
+
+html.np-md .u-h1,
+html.np-md .u-h5 span,
+html.np-md .u-h5 .b {
+  background: transparent !important;
+  color: var(--md-on-surface) !important;
+}
+
+html.np-md .u-h5 .r,
+html.np-md .u-h5 .r a {
+  background: transparent !important;
+  color: var(--md-on-surface-variant) !important;
+}
+
+html.np-md #set-side ul li a,
+html.np-md #set-menu li a {
+  display: block !important;
+  margin: 2px 8px !important;
+  padding: 8px 12px !important;
+  border-radius: var(--md-corner-full) !important;
+  color: var(--md-on-surface-variant) !important;
+  background: transparent !important;
+}
+
+html.np-md #set-side ul li.current a,
+html.np-md #set-menu li.current a {
+  background: var(--md-secondary-container) !important;
+  color: var(--md-on-secondary-container) !important;
+}
+
+html.np-md #set-side ul li a:hover,
+html.np-md #set-menu li a:hover {
+  background: var(--np-hover) !important;
+}
+
+html.np-md .feed-list,
+html.np-md .article-list,
+html.np-md .feed-list dt,
+html.np-md .feed-list dd,
+html.np-md .article-list dd,
+html.np-md #u-feed-list li,
+html.np-md .u-list li,
+html.np-md .u-table td,
+html.np-md .u-table th,
+html.np-md .set-table,
+html.np-md .set-table2 td {
+  border-color: var(--np-divider) !important;
+  color: var(--md-on-surface) !important;
+  background: transparent !important;
+}
+
+html.np-md .set-tab-table {
+  background: var(--md-surface-container) !important;
+  background-image: none !important;
+}
+
+html.np-md .set-tab-table td.current,
+html.np-md .u-table2 td.current {
+  background: var(--md-secondary-container) !important;
+  color: var(--md-on-secondary-container) !important;
+}
+
+/* --------------------------------------------------------------------------
+   13. 深色模式：修正帖子里写死的暗色文字/白底
+   -------------------------------------------------------------------------- */
+html.np-md.np-dark .s1 { color: #ffb4ab !important; }
+html.np-md.np-dark .s2 { color: #8fd88f !important; }
+html.np-md.np-dark .s3 { color: #f2c46d !important; }
+html.np-md.np-dark .s4 { color: var(--md-primary) !important; }
+html.np-md.np-dark .s5 { color: var(--md-on-surface) !important; }
+html.np-md.np-dark .s6 { color: var(--md-on-surface-variant) !important; }
+html.np-md.np-dark .s7 { color: #e0b6ff !important; }
+html.np-md.np-dark .s8 { color: var(--md-tertiary) !important; }
+
+html.np-md.np-dark #main font[color="#000000" i],
+html.np-md.np-dark #main font[color="#000" i],
+html.np-md.np-dark #main font[color="black" i],
+html.np-md.np-dark #main font[color="#111111" i],
+html.np-md.np-dark #main font[color="#222222" i],
+html.np-md.np-dark #main font[color="#333333" i],
+html.np-md.np-dark #main font[color="#444444" i],
+html.np-md.np-dark #main font[color="#555555" i],
+html.np-md.np-dark #main font[color="#666666" i],
+html.np-md.np-dark #main font[color="#808080" i],
+html.np-md.np-dark #main font[color="gray" i],
+html.np-md.np-dark #main font[color="grey" i],
+html.np-md.np-dark #main font[color="navy" i],
+html.np-md.np-dark #main font[color="darkblue" i],
+html.np-md.np-dark #main font[color="darkred" i],
+html.np-md.np-dark #main font[color="maroon" i],
+html.np-md.np-dark #main font[color="darkgreen" i],
+html.np-md.np-dark #main font[color="purple" i],
+html.np-md.np-dark #main font[color="indigo" i],
+html.np-md.np-dark #main font[color="brown" i],
+html.np-md.np-dark #main [style*="color:#000" i],
+html.np-md.np-dark #main [style*="color: #000" i],
+html.np-md.np-dark #main [style*="color:black" i],
+html.np-md.np-dark #main [style*="color: black" i],
+html.np-md.np-dark #main [style*="color:#333" i],
+html.np-md.np-dark #main [style*="color: #333" i],
+html.np-md.np-dark #main [style*="color:#666" i],
+html.np-md.np-dark #main [style*="color: #666" i],
+html.np-md.np-dark #main [style*="color:gray" i],
+html.np-md.np-dark #main [style*="color: gray" i],
+html.np-md.np-dark #main [style*="color:navy" i],
+html.np-md.np-dark #main [style*="color: navy" i],
+html.np-md.np-dark #main [style*="color: rgb(0," i],
+html.np-md.np-dark #main [style*="color:rgb(0," i],
+html.np-md.np-dark #main [style*="color: rgb(51," i],
+html.np-md.np-dark #main [style*="color: rgb(102," i],
+html.np-md.np-dark #main [style*="color: rgba(0," i] {
+  color: var(--md-on-surface) !important;
+}
+
+html.np-md.np-dark #main font[color="blue" i],
+html.np-md.np-dark #main font[color="#0000ff" i],
+html.np-md.np-dark #main [style*="color:blue" i],
+html.np-md.np-dark #main [style*="color: blue" i],
+html.np-md.np-dark #main [style*="color: rgb(0, 0, 255)" i] {
+  color: #9ecaff !important;
+}
+
+html.np-md.np-dark #main font[color="red" i],
+html.np-md.np-dark #main font[color="#ff0000" i],
+html.np-md.np-dark #main [style*="color:red" i],
+html.np-md.np-dark #main [style*="color: red" i],
+html.np-md.np-dark #main [style*="color:#ff0000" i],
+html.np-md.np-dark #main [style*="color: #ff0000" i],
+html.np-md.np-dark #main [style*="color: rgb(255, 0, 0)" i] {
+  color: #ffb4ab !important;
+}
+
+html.np-md.np-dark #main [bgcolor="#ffffff" i],
+html.np-md.np-dark #main [bgcolor="#fff" i],
+html.np-md.np-dark #main [bgcolor="white" i],
+html.np-md.np-dark #main [bgcolor="#f5f5f5" i],
+html.np-md.np-dark #main [bgcolor="#f0f0f0" i],
+html.np-md.np-dark #main [bgcolor="#eeeeee" i],
+html.np-md.np-dark .tpc_content [style*="background-color:#fff" i],
+html.np-md.np-dark .tpc_content [style*="background-color: #fff" i],
+html.np-md.np-dark .tpc_content [style*="background-color:white" i],
+html.np-md.np-dark .tpc_content [style*="background-color: white" i],
+html.np-md.np-dark .tpc_content [style*="background-color: rgb(255," i],
+html.np-md.np-dark .tpc_content [style*="background:#fff" i],
+html.np-md.np-dark .tpc_content [style*="background: #fff" i] {
+  background-color: var(--md-surface-container-high) !important;
+}
+
+/* --------------------------------------------------------------------------
+   14. 插件自带组件：悬浮工具栏、回顶 FAB、进度条、Snackbar、Lightbox、对话框
+   -------------------------------------------------------------------------- */
+#np-floating {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 99990;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--md-font);
+  pointer-events: none;
+}
+
+#np-floating > * {
+  pointer-events: auto;
+}
+
+/* 竖向浮动工具栏 */
+#np-toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 8px;
+  border-radius: var(--md-corner-full);
+  background: var(--md-surface-container);
+  box-shadow: var(--md-elevation-3);
+}
+
+.np-icon-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: none;
+  border-radius: var(--md-corner-full);
+  background: transparent;
+  color: var(--md-on-surface-variant);
+  cursor: pointer;
+  transition: background-color 0.15s var(--md-ease), border-radius 0.2s var(--md-ease);
+}
+
+.np-icon-btn:hover {
+  background: var(--np-hover);
+  color: var(--md-on-surface);
+}
+
+.np-icon-btn:active {
+  border-radius: var(--md-corner-md);
+  background: var(--np-press);
+}
+
+.np-icon-btn[aria-pressed="true"] {
+  background: var(--md-secondary-container);
+  color: var(--md-on-secondary-container);
+  border-radius: var(--md-corner-md);
+}
+
+.np-icon-btn svg {
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+}
+
+/* Plain tooltip */
+.np-icon-btn[data-tip]::after,
+#np-fab-top[data-tip]::after {
+  content: attr(data-tip);
+  position: absolute;
+  right: calc(100% + 12px);
+  top: 50%;
+  transform: translateY(-50%) scale(0.92);
+  padding: 4px 8px;
+  border-radius: var(--md-corner-xs);
+  background: var(--md-inverse-surface);
+  color: var(--md-inverse-on-surface);
+  font: 400 12px/16px var(--md-font);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.12s var(--md-ease), transform 0.12s var(--md-ease);
+}
+
+.np-icon-btn[data-tip]:hover::after,
+#np-fab-top[data-tip]:hover::after {
+  opacity: 1;
+  transform: translateY(-50%) scale(1);
+  transition-delay: 0.35s;
+}
+
+/* FAB */
+#np-fab-top {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  padding: 0;
+  border: none;
+  border-radius: var(--md-corner-lg);
+  background: var(--md-primary-container);
+  color: var(--md-on-primary-container);
+  box-shadow: var(--md-elevation-3);
+  cursor: pointer;
+  opacity: 0;
+  transform: scale(0.6);
+  visibility: hidden;
+  transition: opacity 0.2s var(--md-ease), transform 0.25s var(--md-ease), visibility 0s linear 0.25s,
+    box-shadow 0.15s var(--md-ease);
+}
+
+#np-fab-top.np-show {
+  opacity: 1;
+  transform: none;
+  visibility: visible;
+  transition: opacity 0.2s var(--md-ease), transform 0.25s var(--md-ease), visibility 0s,
+    box-shadow 0.15s var(--md-ease);
+}
+
+#np-fab-top:hover {
+  box-shadow: var(--md-elevation-4);
+}
+
+#np-fab-top svg {
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+}
+
+/* 阅读进度条 */
+#np-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 99999;
+  height: 3px;
+  pointer-events: none;
+}
+
+#np-progress > span {
+  display: block;
+  height: 100%;
+  width: 100%;
+  background: var(--md-primary);
+  border-radius: 0 var(--md-corner-full) var(--md-corner-full) 0;
+  transform-origin: left;
+  transform: scaleX(0);
+}
+
+/* Snackbar */
+#np-snackbar {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  z-index: 100000;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 288px;
+  max-width: 560px;
+  min-height: 48px;
+  box-sizing: border-box;
+  padding: 4px 8px 4px 16px;
+  border-radius: var(--md-corner-xs);
+  background: var(--md-inverse-surface);
+  color: var(--md-inverse-on-surface);
+  box-shadow: var(--md-elevation-3);
+  font: 400 14px/20px var(--md-font);
+  transform: translate(-50%, 16px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s var(--md-ease), transform 0.25s var(--md-ease);
+}
+
+#np-snackbar.np-show {
+  opacity: 1;
+  transform: translate(-50%, 0);
+  pointer-events: auto;
+}
+
+#np-snackbar .np-snackbar__text {
+  flex: 1;
+  padding: 10px 0;
+}
+
+#np-snackbar button {
+  height: 40px;
+  padding: 0 12px;
+  border: none;
+  border-radius: var(--md-corner-full);
+  background: transparent;
+  color: var(--md-inverse-primary);
+  font: 500 14px/20px var(--md-font);
+  cursor: pointer;
+}
+
+#np-snackbar button:hover {
+  background: color-mix(in srgb, var(--md-inverse-primary) 8%, transparent);
+}
+
+/* Lightbox */
+#np-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 100001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.88);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s var(--md-ease), visibility 0s linear 0.2s;
+  font-family: var(--md-font);
+}
+
+#np-lightbox.np-show {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.2s var(--md-ease), visibility 0s;
+}
+
+#np-lightbox img {
+  max-width: 92vw;
+  max-height: 86vh;
+  object-fit: contain;
+  border-radius: var(--md-corner-md);
+  box-shadow: var(--md-elevation-3);
+  cursor: zoom-out;
+}
+
+#np-lightbox .np-lb-bar {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  right: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #e9efed;
+  font-size: 14px;
+}
+
+#np-lightbox .np-lb-count {
+  margin-right: auto;
+  padding: 0 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+#np-lightbox .np-icon-btn,
+#np-lightbox .np-lb-nav {
+  color: #e9efed;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+#np-lightbox .np-icon-btn:hover,
+#np-lightbox .np-lb-nav:hover {
+  background: rgba(255, 255, 255, 0.18);
+  color: #fff;
+}
+
+#np-lightbox .np-lb-nav {
+  position: absolute;
+  top: 50%;
+  width: 48px;
+  height: 48px;
+  margin-top: -24px;
+}
+
+#np-lightbox .np-lb-prev { left: 16px; }
+#np-lightbox .np-lb-next { right: 16px; }
+
+#np-lightbox .np-lb-nav[hidden] {
+  display: none;
+}
+
+/* Dialog（快捷键帮助） */
+#np-dialog-scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 100002;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--md-scrim);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s var(--md-ease), visibility 0s linear 0.2s;
+}
+
+#np-dialog-scrim.np-show {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.2s var(--md-ease), visibility 0s;
+}
+
+.np-dialog {
+  width: min(420px, calc(100vw - 48px));
+  box-sizing: border-box;
+  padding: 24px;
+  border-radius: var(--md-corner-xl);
+  background: var(--md-surface-container-high);
+  color: var(--md-on-surface);
+  box-shadow: var(--md-elevation-3);
+  font-family: var(--md-font);
+  transform: scale(0.94);
+  transition: transform 0.25s var(--md-ease);
+}
+
+#np-dialog-scrim.np-show .np-dialog {
+  transform: none;
+}
+
+.np-dialog h2 {
+  margin: 0 0 16px;
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 400;
+  color: var(--md-on-surface);
+}
+
+.np-dialog dl {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 10px 16px;
+  margin: 0;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--md-on-surface-variant);
+}
+
+.np-dialog dt {
+  display: flex;
+  gap: 4px;
+}
+
+.np-dialog dd {
+  margin: 0;
+  align-self: center;
+}
+
+.np-dialog kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+  height: 28px;
+  padding: 0 8px;
+  box-sizing: border-box;
+  border-radius: var(--md-corner-sm);
+  background: var(--md-surface-container-highest);
+  color: var(--md-on-surface);
+  font: 500 13px/1 var(--md-font-mono);
+}
+
+.np-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 24px;
+}
+
+.np-text-btn {
+  height: 40px;
+  padding: 0 12px;
+  border: none;
+  border-radius: var(--md-corner-full);
+  background: transparent;
+  color: var(--md-primary);
+  font: 500 14px/20px var(--md-font);
+  cursor: pointer;
+}
+
+.np-text-btn:hover {
+  background: color-mix(in srgb, var(--md-primary) 8%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.np-ext *,
+  html.np-ext *::before,
+  html.np-ext *::after {
+    transition-duration: 0s !important;
+  }
+}
+
+
+/* --------------------------------------------------------------------------
+   15. 发帖 / 编辑页（post.php）
+   -------------------------------------------------------------------------- */
+html.np-md #main form div.t.f_one > table th.h {
+  padding: 20px 24px 8px !important;
+  font-size: 22px !important;
+  line-height: 28px !important;
+  font-weight: 400 !important;
+}
+
+html.np-md #main form div.t.f_one > table th.h b {
+  font-weight: 400 !important;
+}
+
+/* 标题输入框 → outlined text field */
+html.np-md div.fl.input.f_one {
+  float: none !important;
+  display: flex !important;
+  align-items: center !important;
+  width: min(100%, 760px) !important;
+  height: 48px !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+  border: 1px solid var(--md-outline) !important;
+  border-radius: var(--md-corner-xs) !important;
+  background: transparent !important;
+  transition: border-color 0.15s var(--md-ease), box-shadow 0.15s var(--md-ease);
+}
+
+html.np-md div.fl.input.f_one:hover {
+  border-color: var(--md-on-surface) !important;
+}
+
+html.np-md div.fl.input.f_one:focus-within {
+  border-color: var(--md-primary) !important;
+  box-shadow: inset 0 0 0 1px var(--md-primary) !important;
+}
+
+html.np-md div.fl.input.f_one input {
+  flex: 1 !important;
+  width: auto !important;
+  height: 46px !important;
+  padding: 0 16px !important;
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  font-size: 16px !important;
+  color: var(--md-on-surface) !important;
+}
+
+html.np-md #postrule,
+html.np-md #postrule a {
+  margin: 4px 0 8px;
+  font-size: 12px !important;
+  color: var(--md-on-surface-variant) !important;
+}
+
+html.np-md #icontab .t5 {
+  background: transparent !important;
+  border: none !important;
+}
+
+/* 编辑器 */
+html.np-md div:has(> div.fl.input.f_one) {
+  height: auto !important;
+  overflow: visible !important;
+  margin-bottom: 4px !important;
+}
+
+html.np-md #editor-content {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  margin-top: 8px !important;
+  background: transparent !important;
+  border: none !important;
+}
+
+html.np-md #editor-content > .c {
+  display: none !important;
+}
+
+html.np-md #editor-content > #editor-button,
+html.np-md #editor-content > .wysiwyg {
+  float: none !important;
+  flex: 0 0 100% !important;
+  width: 100% !important;
+}
+
+html.np-md #editor-tab {
+  position: static !important;
+  top: auto !important;
+  left: auto !important;
+  display: inline-flex !important;
+  gap: 4px !important;
+  width: auto !important;
+  height: auto !important;
+  margin: 8px 0 !important;
+  padding: 4px !important;
+  border-radius: var(--md-corner-full) !important;
+  background: var(--md-surface-container-high) !important;
+}
+
+html.np-md #editor-tab > .c {
+  display: none !important;
+}
+
+html.np-md #editor-tab > span {
+  position: static !important;
+  float: none !important;
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
+  width: auto !important;
+  height: 32px !important;
+  padding: 0 16px !important;
+  border: none !important;
+  border-radius: var(--md-corner-full) !important;
+  background: transparent !important;
+  background-image: none !important;
+  color: var(--md-on-surface-variant) !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  cursor: pointer;
+}
+
+html.np-md #editor-tab > span:hover {
+  background: var(--np-hover) !important;
+}
+
+html.np-md #editor-tab > span.buttonPressed {
+  background: var(--md-secondary-container) !important;
+  color: var(--md-on-secondary-container) !important;
+}
+
+html.np-md #editor-tool {
+  overflow: visible !important;
+  position: static !important;
+  top: auto !important;
+  right: auto !important;
+  margin-left: auto !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  width: auto !important;
+  height: auto !important;
+  margin: 8px 0 !important;
+}
+
+html.np-md #editor-tool span {
+  display: inline-flex !important;
+  height: auto !important;
+  overflow: visible !important;
+  border: none !important;
+  background: transparent !important;
+  padding: 0 !important;
+}
+
+html.np-md #editor-tool a {
+  display: inline-flex !important;
+  align-items: center !important;
+  height: 32px !important;
+  padding: 0 12px !important;
+  border: none !important;
+  border-radius: var(--md-corner-full) !important;
+  background: transparent !important;
+  color: var(--md-primary) !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
+}
+
+html.np-md #editor-tool a:hover {
+  background: color-mix(in srgb, var(--md-primary) 8%, transparent) !important;
+}
+
+html.np-md #editor-button {
+  box-sizing: border-box !important;
+  padding: 8px 12px !important;
+  border: 1px solid var(--md-outline-variant) !important;
+  border-bottom: none !important;
+  border-radius: var(--md-corner-md) var(--md-corner-md) 0 0 !important;
+  background: var(--md-surface-container-high) !important;
+  background-image: none !important;
+}
+
+html.np-md #editor-button *,
+html.np-md #editor-button div {
+  background-color: transparent !important;
+  border-color: transparent !important;
+}
+
+html.np-md #editor-button img {
+  border-radius: var(--md-corner-xs);
+}
+
+html.np-md #editor-button img:hover {
+  background: var(--np-hover) !important;
+}
+
+html.np-md.np-dark #editor-button img,
+html.np-md.np-dark #editor-button .editor-button,
+html.np-md.np-dark #icontab img {
+  filter: invert(0.88) hue-rotate(180deg);
+}
+
+html.np-md #editor-content .wysiwyg textarea,
+html.np-md #editor-content .wysiwyg iframe {
+  border: 1px solid var(--md-outline-variant) !important;
+  border-radius: 0 0 var(--md-corner-md) var(--md-corner-md) !important;
+  background: var(--md-surface-container-lowest) !important;
+  padding: 16px !important;
+  font-size: 15px !important;
+  line-height: 1.7 !important;
+  box-shadow: none !important;
+}
+
+html.np-md #editor-content .wysiwyg textarea:focus {
+  border-color: var(--md-primary) !important;
+}
+
+/* 发帖选项 */
+html.np-md #main form table tr.tr3 > th,
+html.np-md #main form table tr.tr3 > td {
+  padding: 12px 0 !important;
+  border: none !important;
+  border-top: 1px solid var(--np-divider) !important;
+  background: transparent !important;
+  font-weight: 400 !important;
+  color: var(--md-on-surface) !important;
+}
+
+html.np-md a.abtn3 {
+  display: inline-flex !important;
+  align-items: center !important;
+  height: 32px !important;
+  padding: 0 16px !important;
+  border: none !important;
+  border-radius: var(--md-corner-full) !important;
+  background: var(--md-secondary-container) !important;
+  background-image: none !important;
+  color: var(--md-on-secondary-container) !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
+}
+
+html.np-md #main form input.btn[type="submit"],
+html.np-md #main form input.btn[value*="提"] {
+  height: 40px !important;
+  padding: 0 32px !important;
+  background: var(--md-primary) !important;
+  color: var(--md-on-primary) !important;
+}
+
+/* --------------------------------------------------------------------------
+   16. 设置中心（profile.php）
+   -------------------------------------------------------------------------- */
+html.np-md #set-wrap {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 12px !important;
+  width: auto !important;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+}
+
+html.np-md #set-side {
+  float: none !important;
+  flex: 0 0 220px !important;
+  width: 220px !important;
+  padding: 8px !important;
+  box-sizing: border-box !important;
+  background: var(--md-surface-container-low) !important;
+  border: none !important;
+  border-radius: var(--md-corner-lg) !important;
+}
+
+html.np-md #set-side-wrap {
+  width: auto !important;
+  background: transparent !important;
+  border: none !important;
+}
+
+html.np-md #set-side .set-h2,
+html.np-md #set-side h2 {
+  width: auto !important;
+  height: auto !important;
+  padding: 12px 16px 8px !important;
+  border: none !important;
+  background: transparent !important;
+  font-size: 12px !important;
+  line-height: 16px !important;
+  letter-spacing: 0.04em;
+}
+
+html.np-md #set-side .set-h2 a {
+  color: var(--md-primary) !important;
+  font-weight: 500 !important;
+}
+
+html.np-md #set-menu {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+html.np-md #set-menu li {
+  float: none !important;
+  width: auto !important;
+  padding: 0 !important;
+  margin: 0 0 2px !important;
+  background: transparent !important;
+  list-style: none !important;
+}
+
+html.np-md #set-menu li a {
+  display: flex !important;
+  align-items: center !important;
+  width: auto !important;
+  height: 48px !important;
+  margin: 0 !important;
+  padding: 0 16px !important;
+  box-sizing: border-box !important;
+  border-radius: var(--md-corner-full) !important;
+  color: var(--md-on-surface-variant) !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
+}
+
+html.np-md #set-content {
+  float: none !important;
+  flex: 1 1 auto !important;
+  width: auto !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+  background: transparent !important;
+  border: none !important;
+}
+
+html.np-md #set-content-wrap {
+  padding: 24px !important;
+  border: none !important;
+  border-radius: var(--md-corner-lg) !important;
+  background: var(--md-surface-container-low) !important;
+}
+
+html.np-md .bdbdash {
+  border-bottom: 1px solid var(--np-divider) !important;
+  padding-bottom: 12px !important;
+  margin-bottom: 12px !important;
+}
+
+html.np-md .set-content-left img.pic {
+  width: 160px !important;
+  height: 160px !important;
+  max-width: none !important;
+  max-height: none !important;
+  padding: 0 !important;
+  border: none !important;
+  border-radius: var(--md-corner-xl) !important;
+  background: var(--md-surface-container-highest) !important;
+  object-fit: cover !important;
+}
+
+html.np-md .set-content-left td.tac {
+  padding-right: 24px !important;
+  vertical-align: top !important;
+}
+
+html.np-md .set-content-left td.tac a {
+  display: inline-flex !important;
+  margin-top: 8px;
+  height: 32px;
+  align-items: center;
+  padding: 0 12px;
+  border-radius: var(--md-corner-full);
+  color: var(--md-primary) !important;
+  font-weight: 500;
+}
+
+html.np-md .set-content-left td.tac a:hover {
+  background: color-mix(in srgb, var(--md-primary) 8%, transparent);
+}
+
+html.np-md .set-content-left .bdbdash > div:first-child > span:first-child {
+  font-size: 24px !important;
+  line-height: 32px !important;
+  font-weight: 500 !important;
+  color: var(--md-on-surface) !important;
+}
+
+html.np-md .set-content-left .bdbdash > div {
+  margin-bottom: 8px;
+}
+
+html.np-md .set-content-left a.link5 {
+  display: inline-flex !important;
+  align-items: center !important;
+  height: 32px !important;
+  margin: 4px 4px 0 0 !important;
+  padding: 0 14px !important;
+  border: 1px solid var(--md-outline-variant) !important;
+  border-radius: var(--md-corner-sm) !important;
+  color: var(--md-on-surface) !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
+}
+
+html.np-md .set-content-left a.link5:hover {
+  background: var(--np-hover) !important;
+}
+
+html.np-md .set-content-left .bdbdash > div:first-child a.link5 {
+  border: none !important;
+  color: var(--md-primary) !important;
+  padding: 0 8px !important;
+}
+
+html.np-md #honor {
+  color: var(--md-on-surface-variant) !important;
+  font-style: italic;
+}
+
+html.np-md a#sethonor {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 28px !important;
+  height: 28px !important;
+  border-radius: 50% !important;
+  font-size: 0 !important;
+  color: var(--md-on-surface-variant) !important;
+  vertical-align: middle;
+}
+
+html.np-md a#sethonor img {
+  display: none !important;
+}
+
+html.np-md a#sethonor::before {
+  content: "";
+  width: 16px;
+  height: 16px;
+  background: currentColor;
+  -webkit-mask: var(--np-i-edit) center / 16px no-repeat;
+  mask: var(--np-i-edit) center / 16px no-repeat;
+}
+
+html.np-md a#sethonor:hover {
+  background: var(--np-hover) !important;
+}
+
+html.np-md .set-table1 td,
+html.np-md .set-table1 th {
+  padding: 6px 16px 6px 0 !important;
+  border: none !important;
+  color: var(--md-on-surface) !important;
+  font-size: 14px !important;
+}
+
+/* 右侧：短消息 / 收藏 小卡片 */
+html.np-md .set-content-right > div {
+  margin-bottom: 12px !important;
+  border-radius: var(--md-corner-md) !important;
+  background: var(--md-surface-container) !important;
+  overflow: hidden !important;
+}
+
+html.np-md .set-content-right .set-tab-table {
+  width: 100% !important;
+  background: transparent !important;
+  border: none !important;
+  border-bottom: 1px solid var(--np-divider) !important;
+}
+
+html.np-md .set-content-right .set-tab-table td {
+  height: 44px !important;
+  padding: 0 16px !important;
+  border: none !important;
+  background: transparent !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+}
+
+html.np-md .set-content-right .set-tab-table td.current,
+html.np-md .set-content-right .set-tab-table td:first-child {
+  color: var(--md-on-surface) !important;
+  background: transparent !important;
+}
+
+html.np-md .set-content-right .set-tab-table td a {
+  color: var(--md-primary) !important;
+}
+
+html.np-md .set-content-right .set-tab-box {
+  border: none !important;
+  background: transparent !important;
+  padding: 4px 0 !important;
+}
+
+html.np-md .set-content-right .set-tab-box td {
+  padding: 8px 16px !important;
+  color: var(--md-on-surface-variant) !important;
+  font-size: 13px !important;
+}
+
+/* --------------------------------------------------------------------------
+   17. 深色兜底：脚本自动标记的、未逐页适配的浅色底与描边
+   -------------------------------------------------------------------------- */
+html.np-md.np-dark .np-auto-surface {
+  background-color: var(--md-surface-container-low) !important;
+  background-image: none !important;
+  color: var(--md-on-surface) !important;
+}
+
+html.np-md.np-dark .np-auto-border {
+  border-color: var(--np-divider) !important;
+}
+
+html.np-md div.fl.input.f_one input:focus-visible {
+  outline: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   18. 用户中心（u.php）：重新排版
+   -------------------------------------------------------------------------- */
+html.np-md #u-wrap,
+html.np-md #u-wrap #u-wrap2 {
+  width: auto !important;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+}
+
+html.np-md #u-wrap #u-wrap2 {
+  display: grid !important;
+  grid-template-columns: 260px minmax(0, 1fr) !important;
+  gap: 12px !important;
+  align-items: start !important;
+}
+
+html.np-md #u-wrap #u-wrap2::after,
+html.np-md #u-wrap #u-wrap2::before {
+  display: none !important;
+}
+
+/* 左侧资料卡 */
+html.np-md #u-wrap #u-sidebar {
+  float: none !important;
+  width: auto !important;
+  padding: 24px 16px 16px !important;
+  box-sizing: border-box !important;
+  border: none !important;
+  border-radius: var(--md-corner-lg) !important;
+  background: var(--md-surface-container-low) !important;
+  text-align: center !important;
+}
+
+html.np-md #u-wrap #u-portrait,
+html.np-md #u-wrap #u-portrait table,
+html.np-md #u-wrap #u-portrait td {
+  width: auto !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+  border: none !important;
+  background: transparent !important;
+  text-align: center !important;
+}
+
+html.np-md #u-wrap #u-portrait img {
+  width: 160px !important;
+  height: 160px !important;
+  max-width: none !important;
+  max-height: none !important;
+  padding: 0 !important;
+  border: none !important;
+  border-radius: var(--md-corner-xl) !important;
+  background: var(--md-surface-container-highest) !important;
+  object-fit: cover !important;
+}
+
+html.np-md #u-wrap #u-sidebar .bgA {
+  margin: 16px 0 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  background: transparent !important;
+}
+
+html.np-md #u-wrap #u-sidebar .bgA table {
+  width: auto !important;
+  margin: 0 auto !important;
+}
+
+html.np-md #u-wrap #u-sidebar .bgA tr {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+html.np-md #u-wrap #u-sidebar .bgA td {
+  width: auto !important;
+  padding: 0 !important;
+  border: none !important;
+  font-size: 13px !important;
+}
+
+html.np-md #u-wrap #u-sidebar .bgA td:last-child {
+  display: inline-flex !important;
+  align-items: center !important;
+  height: 24px !important;
+  padding: 0 10px !important;
+  border-radius: var(--md-corner-full) !important;
+  background: var(--md-primary-container) !important;
+  color: var(--md-on-primary-container) !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+}
+
+html.np-md #u-wrap #u-sidebar > .bdbA {
+  margin: 16px 0 0 !important;
+  padding: 16px 0 0 !important;
+  border: none !important;
+  border-top: 1px solid var(--np-divider) !important;
+  background: transparent !important;
+}
+
+html.np-md #u-wrap #u-sidebar > .bdbA table,
+html.np-md #u-wrap #u-sidebar > .bdbA tbody,
+html.np-md #u-wrap #u-sidebar > .bdbA tr {
+  display: block !important;
+  width: 100% !important;
+}
+
+html.np-md #u-wrap #u-sidebar > .bdbA tr {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 8px !important;
+}
+
+html.np-md #u-wrap #u-sidebar > .bdbA td {
+  display: block !important;
+  width: auto !important;
+  padding: 0 !important;
+  border: none !important;
+}
+
+html.np-md #u-wrap #u-sidebar > .bdbA td img {
+  display: none !important;
+}
+
+html.np-md #u-wrap #u-sidebar > .bdbA td a {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  height: 40px !important;
+  border-radius: var(--md-corner-full) !important;
+  background: var(--md-primary) !important;
+  color: var(--md-on-primary) !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
+  transition: box-shadow 0.15s var(--md-ease), border-radius 0.15s var(--md-ease);
+}
+
+html.np-md #u-wrap #u-sidebar > .bdbA td:last-child a {
+  background: var(--md-secondary-container) !important;
+  color: var(--md-on-secondary-container) !important;
+}
+
+html.np-md #u-wrap #u-sidebar > .bdbA td a:hover {
+  box-shadow: var(--md-elevation-1) !important;
+}
+
+html.np-md #u-wrap #u-sidebar > .bdbA td a:active {
+  border-radius: var(--md-corner-sm) !important;
+}
+
+html.np-md #u-wrap #u-sidebar > .bdbA td a::before {
+  content: "";
+  width: 18px;
+  height: 18px;
+  background: currentColor;
+  -webkit-mask: var(--np-i-mail) center / 18px no-repeat;
+  mask: var(--np-i-mail) center / 18px no-repeat;
+}
+
+html.np-md #u-wrap #u-sidebar > .bdbA td:last-child a::before {
+  -webkit-mask-image: var(--np-i-person-add);
+  mask-image: var(--np-i-person-add);
+}
+
+/* 右侧主体：头部 + 两栏 */
+html.np-md #u-wrap #u-content {
+  float: none !important;
+  width: auto !important;
+  min-width: 0 !important;
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) 300px !important;
+  gap: 12px !important;
+  align-items: start !important;
+  background: transparent !important;
+  border: none !important;
+}
+
+html.np-md #u-wrap #u-top {
+  grid-column: 1 / -1 !important;
+  position: static !important;
+  height: auto !important;
+  padding: 20px 24px 0 !important;
+  border: none !important;
+  border-radius: var(--md-corner-lg) !important;
+  background: var(--md-surface-container-low) !important;
+}
+
+html.np-md #u-wrap #u-top > table {
+  float: none !important;
+  width: auto !important;
+}
+
+html.np-md #u-wrap #u-top > table td {
+  padding: 0 8px 0 0 !important;
+  border: none !important;
+  vertical-align: middle !important;
+}
+
+html.np-md #u-wrap #u-top .u-h1 {
+  margin: 0 !important;
+  padding: 0 8px 0 0 !important;
+  font-size: 28px !important;
+  line-height: 36px !important;
+  font-weight: 400 !important;
+  color: var(--md-on-surface) !important;
+  background: transparent !important;
+}
+
+html.np-md #u-wrap #u-top > .c {
+  display: none !important;
+}
+
+html.np-md #u-wrap #u-top-nav {
   position: static !important;
   width: auto !important;
   height: auto !important;
-  padding: 4px 11px !important;
-  line-height: 1.4 !important;
-  text-indent: 0 !important;
-  white-space: nowrap !important;
-  border-radius: 6px !important;
-  border: 1px solid var(--np-border) !important;
-  background-color: var(--np-surface-2) !important;
-  background-image: none !important;
-  color: var(--np-text) !important;
-  font-size: 12px !important;
+  margin-top: 12px !important;
+}
+
+html.np-md #u-wrap #u-top-nav ul {
+  float: none !important;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  width: auto !important;
+  height: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+}
+
+html.np-md #u-wrap #u-top-nav ul li {
+  float: none !important;
+  width: auto !important;
+  height: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  background: transparent !important;
+}
+
+html.np-md #u-wrap #u-top-nav li a {
+  float: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  width: auto !important;
+  height: 48px !important;
+  padding: 0 16px !important;
+  border: none !important;
+  border-bottom: 3px solid transparent !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: var(--md-on-surface-variant) !important;
+  font-size: 14px !important;
   font-weight: 500 !important;
   text-decoration: none !important;
-  cursor: pointer !important;
 }
 
-html.np-modern div.tipad > .content-dropB > a.dropB:hover {
-  background-color: var(--np-accent-soft) !important;
-  border-color: var(--np-accent) !important;
-  color: var(--np-accent) !important;
+html.np-md #u-wrap #u-top-nav li a:hover {
+  background: var(--np-hover) !important;
+  color: var(--md-on-surface) !important;
 }
 
-/* 快速回复框 */
-html.np-modern form[name="FORM"] > div.t5 {
-  border-radius: var(--np-radius) !important;
-  border: 1px solid var(--np-border) !important;
-  background-color: var(--np-surface) !important;
-  box-shadow: var(--np-shadow) !important;
+html.np-md #u-wrap #u-top-nav li.current a {
+  color: var(--md-primary) !important;
+  border-bottom-color: var(--md-primary) !important;
+  border-radius: 3px 3px 0 0 !important;
+}
+
+html.np-md #u-wrap #u-contentmain,
+html.np-md #u-wrap #u-contentside {
+  float: none !important;
+  width: auto !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  background: transparent !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 12px !important;
+}
+
+/* 内容卡片（好友近况 / 最新回复 / 最新主题，以及其它子页） */
+html.np-md #u-wrap #u-contentmain > div,
+html.np-md #u-wrap #u-contentside > div {
+  width: auto !important;
+  margin: 0 !important;
+  padding: 4px 0 8px !important;
+  border: none !important;
+  border-radius: var(--md-corner-lg) !important;
+  background: var(--md-surface-container-low) !important;
+  overflow: hidden;
+}
+
+html.np-md #u-wrap .u-h5 {
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  height: auto !important;
+  margin: 0 !important;
+  padding: 12px 8px 8px 20px !important;
+  border: none !important;
+  background: transparent !important;
+  font-size: 16px !important;
+  line-height: 24px !important;
+  font-weight: 500 !important;
+}
+
+html.np-md #u-wrap .u-h5 a.r {
+  position: static !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  height: 32px !important;
+  padding: 0 12px !important;
+  border-radius: var(--md-corner-full) !important;
+  color: var(--md-primary) !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
+}
+
+html.np-md #u-wrap .u-h5 a.r:hover {
+  background: color-mix(in srgb, var(--md-primary) 8%, transparent) !important;
+}
+
+html.np-md #u-wrap dl.feed-list,
+html.np-md #u-wrap dl.article-list {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+}
+
+html.np-md #u-wrap dl.feed-list dt,
+html.np-md #u-wrap dl.feed-list dd,
+html.np-md #u-wrap dl.article-list dt,
+html.np-md #u-wrap dl.article-list dd {
+  display: flex !important;
+  align-items: baseline !important;
+  gap: 12px !important;
+  margin: 0 !important;
+  padding: 12px 20px !important;
+  border: none !important;
+  background: transparent !important;
+  font-size: 14px !important;
+  line-height: 20px !important;
+  color: var(--md-on-surface) !important;
+  transition: background-color 0.15s var(--md-ease);
+}
+
+html.np-md #u-wrap dl.article-list + dl.article-list dt,
+html.np-md #u-wrap dl.feed-list dt + dd {
+  border-top: 1px solid var(--np-divider) !important;
+}
+
+html.np-md #u-wrap dl.feed-list dt:hover,
+html.np-md #u-wrap dl.article-list dt:hover {
+  background: var(--np-hover) !important;
+}
+
+html.np-md #u-wrap dl.article-list dt a.link1,
+html.np-md #u-wrap dl.feed-list a.link1 {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--md-on-surface) !important;
+  text-decoration: none !important;
+}
+
+html.np-md #u-wrap dl.article-list dt a.link1:hover {
+  color: var(--md-primary) !important;
+}
+
+html.np-md #u-wrap dl.article-list dt .f9,
+html.np-md #u-wrap dl.article-list dt .gray3 {
+  flex: none;
+  font-size: 12px !important;
+  color: var(--md-on-surface-variant) !important;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+html.np-md #u-wrap #u-contentmain > div:not(:has(dl, table, li)),
+html.np-md #u-wrap #u-contentside > div:not(:has(dl, table, li)) {
+  padding-bottom: 16px !important;
+}
+
+html.np-md #u-wrap #u-contentside > div:not(:has(dl, table, li))::after {
+  content: "暂无内容";
+  display: block;
+  padding: 8px 20px 0;
+  font-size: 13px;
+  color: var(--md-on-surface-variant);
+}
+
+html.np-md #u-wrap .u-table,
+html.np-md #u-wrap .u-table2 {
+  width: 100% !important;
+  border-collapse: collapse !important;
+}
+
+html.np-md #u-wrap .u-table td,
+html.np-md #u-wrap .u-table th {
+  padding: 12px 20px !important;
+  border: none !important;
+  border-bottom: 1px solid var(--np-divider) !important;
+}
+
+html.np-md #u-wrap #u-contentmain > table,
+html.np-md #u-wrap #u-contentmain > form > table {
+  width: 100% !important;
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+  border: none !important;
+  border-radius: var(--md-corner-lg) !important;
+  background: var(--md-surface-container-low) !important;
   overflow: hidden !important;
+}
+
+html.np-md #u-wrap .u-table tr:last-child > td,
+html.np-md #u-wrap .u-table tr:last-child > th {
+  border-bottom: none !important;
+}
+
+html.np-md #u-wrap .u-table th {
+  text-align: left !important;
+  font-weight: 400 !important;
+}
+
+html.np-md #u-wrap .u-table th > a:first-child {
+  display: block !important;
+  margin-bottom: 4px !important;
+  font-size: 15px !important;
+  line-height: 22px !important;
+  font-weight: 500 !important;
+  color: var(--md-on-surface) !important;
+  text-decoration: none !important;
+}
+
+html.np-md #u-wrap .u-table th > a:first-child:hover {
+  color: var(--md-primary) !important;
+}
+
+html.np-md #u-wrap .u-table td {
+  white-space: nowrap !important;
+  font-size: 12px !important;
+  color: var(--md-on-surface-variant) !important;
+  font-variant-numeric: tabular-nums;
+}
+
+html.np-md #u-wrap .u-table tr:hover > td,
+html.np-md #u-wrap .u-table tr:hover > th {
+  background: var(--np-hover) !important;
+}
+
+html.np-md #u-wrap dl.feed-list dt,
+html.np-md #u-wrap dl.feed-list dd {
+  display: block !important;
+}
+
+/* 资料页等使用 .u-content-66 / .u-content-33 的子页 */
+html.np-md #u-wrap #u-content > .c {
+  display: none !important;
+}
+
+html.np-md #u-wrap #u-content > .u-content-66,
+html.np-md #u-wrap #u-content > .u-content-33 {
+  float: none !important;
+  width: auto !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 12px !important;
+}
+
+html.np-md #u-wrap #u-content > .u-content-66 {
+  grid-column: 1 !important;
+}
+
+html.np-md #u-wrap #u-content > .u-content-33 {
+  grid-column: 2 !important;
+}
+
+html.np-md #u-wrap #u-content > div:not(#u-top):not(.c):not(.u-content-66):not(.u-content-33):not(#u-contentmain):not(#u-contentside) {
+  grid-column: 1 / -1 !important;
+  float: none !important;
+  width: auto !important;
+}
+
+html.np-md #u-wrap #u-content > .u-content-66 > div,
+html.np-md #u-wrap #u-content > .u-content-33 > div,
+html.np-md #u-wrap #u-content > .u-profile {
+  width: auto !important;
+  margin: 0 !important;
+  padding: 4px 0 8px !important;
+  border: none !important;
+  border-radius: var(--md-corner-lg) !important;
+  background: var(--md-surface-container-low) !important;
+  overflow: hidden;
+}
+
+html.np-md #u-wrap #u-content .u-table {
+  table-layout: auto !important;
+}
+
+html.np-md #u-wrap #u-content .u-content-66 .u-table th,
+html.np-md #u-wrap #u-content .u-content-33 .u-table th,
+html.np-md #u-wrap #u-content .u-content-66 .u-table td:first-child,
+html.np-md #u-wrap #u-content .u-content-33 .u-table td:first-child {
+  width: 96px !important;
+  white-space: nowrap !important;
+  color: var(--md-on-surface-variant) !important;
+  font-size: 13px !important;
+  font-weight: 400 !important;
+}
+
+html.np-md #u-wrap #u-content .u-content-66 .u-table td,
+html.np-md #u-wrap #u-content .u-content-33 .u-table td {
+  white-space: normal !important;
+  font-size: 14px !important;
+  color: var(--md-on-surface) !important;
+  font-variant-numeric: tabular-nums;
+}
+
+html.np-md #u-wrap #u-content .u-profile .u-table th {
+  width: auto !important;
+  white-space: normal !important;
+}
+
+@media (max-width: 1100px) {
+  html.np-md #u-wrap #u-content > .u-content-33 {
+    grid-column: 1 !important;
+  }
+}
+
+@media (max-width: 1100px) {
+  html.np-md #u-wrap #u-content {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
 }

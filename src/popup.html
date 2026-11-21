@@ -3,105 +3,168 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>North+ 体验优化助手</title>
+  <title>North+ 体验助手</title>
   <link rel="stylesheet" href="popup.css" />
 </head>
 <body>
-  <div class="container">
-    <header class="header">
-      <div class="title">North+ 体验优化助手</div>
-      <div class="subtitle">north-plus.net 专属优化</div>
-    </header>
+  <header class="appbar">
+    <div class="brand-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24"><path d="M21 6h-2v9H6v2c0 .55.45 1 1 1h11l4 4V7c0-.55-.45-1-1-1zm-4 6V3c0-.55-.45-1-1-1H3c-.55 0-1 .45-1 1v14l4-4h10c.55 0 1-.45 1-1z"/></svg>
+    </div>
+    <div class="appbar-text">
+      <h1>North+ 体验助手</h1>
+      <p>Material 3 界面 · 设置即时生效</p>
+    </div>
+    <a class="icon-btn" href="https://www.north-plus.net/" target="_blank" title="打开论坛" aria-label="打开论坛">
+      <svg viewBox="0 0 24 24"><path d="M5 21q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h7v2H5v14h14v-7h2v7q0 .825-.587 1.413T19 21H5Zm4.7-5.3-1.4-1.4L17.6 5H14V3h7v7h-2V6.4l-9.3 9.3Z"/></svg>
+    </a>
+  </header>
 
-    <section class="section">
-      <div class="label-row">
-        <span class="label">外观模式</span>
-      </div>
-      <div class="segmented" id="theme-group">
-        <button type="button" data-theme="auto">跟随系统</button>
-        <button type="button" data-theme="dark">深色</button>
-        <button type="button" data-theme="light">浅色</button>
+  <main>
+    <!-- 外观 -->
+    <section class="card">
+      <h2 class="section-label">外观</h2>
+
+      <label class="list-item">
+        <span class="lead-icon"><svg viewBox="0 0 24 24"><path d="M12 22q-2.05 0-3.875-.788t-3.187-2.15q-1.363-1.362-2.15-3.187T2 12q0-2.075.813-3.9t2.2-3.175Q6.4 3.575 8.25 2.787T12.2 2q2 0 3.775.688t3.113 1.9q1.337 1.212 2.125 2.875T22 11.05q0 2.875-1.75 4.413T16 17h-1.85q-.225 0-.312.125t-.088.275q0 .3.375.863t.375 1.287q0 1.25-.687 1.85T12 22Zm-5.5-9q.65 0 1.075-.425T8 11.5q0-.65-.425-1.075T6.5 10q-.65 0-1.075.425T5 11.5q0 .65.425 1.075T6.5 13Zm3-4q.65 0 1.075-.425T11 7.5q0-.65-.425-1.075T9.5 6q-.65 0-1.075.425T8 7.5q0 .65.425 1.075T9.5 9Zm5 0q.65 0 1.075-.425T16 7.5q0-.65-.425-1.075T14.5 6q-.65 0-1.075.425T13 7.5q0 .65.425 1.075T14.5 9Zm3 4q.65 0 1.075-.425T19 11.5q0-.65-.425-1.075T17.5 10q-.65 0-1.075.425T16 11.5q0 .65.425 1.075T17.5 13Z"/></svg></span>
+        <span class="text">
+          <span class="headline">MD3 界面</span>
+          <span class="supporting">关闭后恢复论坛原版样式</span>
+        </span>
+        <span class="switch"><input type="checkbox" data-pref="modernUI" /><span class="track"><span class="handle"><svg viewBox="0 0 24 24"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span></span></span>
+      </label>
+
+      <div class="field" data-requires="modernUI">
+        <div class="field-label">配色</div>
+        <div class="cbg" id="theme-group" role="radiogroup" aria-label="配色">
+          <button type="button" role="radio" data-theme="auto">
+            <svg viewBox="0 0 24 24"><path d="M12 22q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.137 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.137T12 22Zm1-2.075q2.975-.375 4.988-2.613T20 12q0-2.95-2.013-5.188T13 4.075v15.85Z"/></svg>
+            跟随系统
+          </button>
+          <button type="button" role="radio" data-theme="light">
+            <svg viewBox="0 0 24 24"><path d="M12 17q-2.075 0-3.537-1.463T7 12q0-2.075 1.463-3.537T12 7q2.075 0 3.538 1.463T17 12q0 2.075-1.463 3.538T12 17ZM2 13v-2h3v2H2Zm17 0v-2h3v2h-3ZM11 5V2h2v3h-2Zm0 17v-3h2v3h-2ZM6.4 7.75 4.5 5.9l1.4-1.45 1.8 1.9-1.3 1.4ZM18.1 19.55l-1.825-1.9 1.3-1.4 1.925 1.85-1.4 1.45ZM16.25 6.4l1.85-1.9 1.45 1.4-1.9 1.8-1.4-1.3ZM4.45 18.1l1.9-1.825 1.4 1.3-1.85 1.925-1.45-1.4Z"/></svg>
+            浅色
+          </button>
+          <button type="button" role="radio" data-theme="dark">
+            <svg viewBox="0 0 24 24"><path d="M12 21q-3.75 0-6.375-2.625T3 12q0-3.75 2.625-6.375T12 3q.35 0 .688.025t.662.075q-1.025.725-1.638 1.888T11.1 7.5q0 2.25 1.575 3.825T16.5 12.9q1.375 0 2.525-.613T20.9 10.65q.05.325.075.662T21 12q0 3.75-2.625 6.375T12 21Z"/></svg>
+            深色
+          </button>
+        </div>
       </div>
     </section>
 
-    <section class="section">
-      <div class="toggle-row">
-        <div>
-          <div class="label">宽屏适配</div>
-          <div class="desc">消除两侧大面积留白</div>
+    <!-- 布局 -->
+    <section class="card">
+      <h2 class="section-label">布局</h2>
+
+      <label class="list-item">
+        <span class="lead-icon"><svg viewBox="0 0 24 24"><path d="M3 21v-8h2v4.6L17.6 5H13V3h8v8h-2V6.4L6.4 19H11v2H3Z"/></svg></span>
+        <span class="text">
+          <span class="headline">宽屏适配</span>
+          <span class="supporting">消除两侧大面积留白</span>
+        </span>
+        <span class="switch"><input type="checkbox" data-pref="wide" /><span class="track"><span class="handle"><svg viewBox="0 0 24 24"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span></span></span>
+      </label>
+
+      <div class="field" data-requires="wide">
+        <div class="field-label">
+          <span>最大内容宽度</span>
+          <span class="value" id="width-value">1400px</span>
         </div>
-        <label class="switch">
-          <input type="checkbox" id="wide-toggle" />
-          <span class="slider"></span>
-        </label>
+        <input type="range" id="width-range" min="1000" max="1900" step="50" value="1400" aria-label="最大内容宽度" />
+        <div class="range-hints"><span>1000px</span><span>全宽</span></div>
       </div>
 
-      <div class="width-control" id="width-control">
-        <div class="label-row">
-          <span class="sub-label">最大内容宽度</span>
-          <span class="value-badge" id="width-value">1400px</span>
-        </div>
-        <input type="range" id="width-range" min="1000" max="1900" step="50" value="1400" />
-        <div class="range-hints">
-          <span>1000px</span>
-          <span>1400px</span>
-          <span>全宽</span>
-        </div>
-      </div>
+      <div class="divider"></div>
+
+      <label class="list-item" data-requires="modernUI">
+        <span class="lead-icon"><svg viewBox="0 0 24 24"><path d="M5 21q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h14q.825 0 1.413.588T21 5v14q0 .825-.587 1.413T19 21H5Zm0-12h14V5H5v4Z"/></svg></span>
+        <span class="text">
+          <span class="headline">精简页头</span>
+          <span class="supporting">隐藏大 Logo 横幅，导航栏吸顶</span>
+        </span>
+        <span class="switch"><input type="checkbox" data-pref="compactHeader" /><span class="track"><span class="handle"><svg viewBox="0 0 24 24"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span></span></span>
+      </label>
+
+      <label class="list-item" data-requires="modernUI">
+        <span class="lead-icon"><svg viewBox="0 0 24 24"><path d="M18 11v2h4v-2h-4Zm-2 6.61q1.44 1.065 3.2 2.39.4-.53.8-1.07-1.76-1.32-3.2-2.4-.4.54-.8 1.08ZM20.4 5.6q-.4-.53-.8-1.07-1.48 1.11-3.2 2.4.4.53.8 1.07 1.44-1.08 3.2-2.4ZM4 9q-.825 0-1.412.588T2 11v2q0 .825.588 1.413T4 15h1v4h2v-4h1l5 3V6L8 9H4Zm11.5 3q0-2-1.5-3.35v6.7q1.5-1.35 1.5-3.35Z"/></svg></span>
+        <span class="text">
+          <span class="headline">折叠版块公告</span>
+          <span class="supporting">默认收起长公告，按版块记住展开状态</span>
+        </span>
+        <span class="switch"><input type="checkbox" data-pref="collapseNotice" /><span class="track"><span class="handle"><svg viewBox="0 0 24 24"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span></span></span>
+      </label>
     </section>
 
-    <section class="section">
-      <div class="toggle-row">
-        <div>
-          <div class="label">现代化界面美化</div>
-          <div class="desc">优化导航栏、帖子列表与按钮排布</div>
-        </div>
-        <label class="switch">
-          <input type="checkbox" id="modern-toggle" />
-          <span class="slider"></span>
-        </label>
-      </div>
+    <!-- 阅读 -->
+    <section class="card">
+      <h2 class="section-label">阅读</h2>
+
+      <label class="list-item">
+        <span class="lead-icon"><svg viewBox="0 0 24 24"><path d="M9.25 18V8.75H5.5V6H15.75v2.75H12V18H9.25ZM16.75 18v-5.5h-2.5V10h7.75v2.5h-2.5V18h-2.75Z"/></svg></span>
+        <span class="text">
+          <span class="headline">阅读排版</span>
+          <span class="supporting">正文 16px、更舒适的行距</span>
+        </span>
+        <span class="switch"><input type="checkbox" data-pref="readable" /><span class="track"><span class="handle"><svg viewBox="0 0 24 24"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span></span></span>
+      </label>
+
+      <label class="list-item">
+        <span class="lead-icon"><svg viewBox="0 0 24 24"><path d="M5 21q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h14q.825 0 1.413.588T21 5v14q0 .825-.587 1.413T19 21H5Zm1-4h12l-3.75-5-3 4L9 13l-3 4Z"/></svg></span>
+        <span class="text">
+          <span class="headline">图片查看器</span>
+          <span class="supporting">点击帖内大图全屏查看，← → 切换</span>
+        </span>
+        <span class="switch"><input type="checkbox" data-pref="lightbox" /><span class="track"><span class="handle"><svg viewBox="0 0 24 24"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span></span></span>
+      </label>
+
+      <label class="list-item">
+        <span class="lead-icon"><svg viewBox="0 0 24 24"><path d="M7 22q-.825 0-1.412-.587T5 20q0-.825.588-1.412T7 18q.825 0 1.413.588T9 20q0 .825-.587 1.413T7 22Zm10 0q-.825 0-1.412-.587T15 20q0-.825.588-1.412T17 18q.825 0 1.413.588T19 20q0 .825-.587 1.413T17 22ZM5.2 4h14.75q.575 0 .875.513t.025 1.037l-3.55 6.4q-.275.5-.738.775T15.55 13H8.1L7 15h12v2H7q-1.125 0-1.7-.988t-.05-1.962L6.6 11.6 3 4H1V2h3.25l.95 2Z"/></svg></span>
+        <span class="text">
+          <span class="headline">购买后原地刷新</span>
+          <span class="supporting">买完楼层内容留在当前位置</span>
+        </span>
+        <span class="switch"><input type="checkbox" data-pref="stayOnPurchase" /><span class="track"><span class="handle"><svg viewBox="0 0 24 24"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span></span></span>
+      </label>
     </section>
 
-    <section class="section">
-      <div class="toggle-row">
-        <div>
-          <div class="label">阅读排版优化</div>
-          <div class="desc">优化字体、行距与卡片圆角</div>
-        </div>
-        <label class="switch">
-          <input type="checkbox" id="readable-toggle" />
-          <span class="slider"></span>
-        </label>
-      </div>
-    </section>
+    <!-- 效率 -->
+    <section class="card">
+      <h2 class="section-label">效率</h2>
 
-    <section class="section">
-      <div class="toggle-row">
-        <div>
-          <div class="label">购买后原地刷新</div>
-          <div class="desc">购买楼层内容后留在当前页并定位</div>
-        </div>
-        <label class="switch">
-          <input type="checkbox" id="purchase-toggle" />
-          <span class="slider"></span>
-        </label>
-      </div>
-    </section>
+      <label class="list-item">
+        <span class="lead-icon"><svg viewBox="0 0 24 24"><path d="M11 20V7.825l-5.6 5.6L4 12l8-8 8 8-1.4 1.425-5.6-5.6V20h-2Z"/></svg></span>
+        <span class="text">
+          <span class="headline">悬浮工具栏</span>
+          <span class="supporting">深浅色、宽屏、快速回复、回顶</span>
+        </span>
+        <span class="switch"><input type="checkbox" data-pref="floatingBar" /><span class="track"><span class="handle"><svg viewBox="0 0 24 24"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span></span></span>
+      </label>
 
-    <section class="section">
-      <div class="toggle-row">
-        <div>
-          <div class="label">右下角快捷栏</div>
-          <div class="desc">快速切换深浅色、宽屏与回到顶部</div>
-        </div>
-        <label class="switch">
-          <input type="checkbox" id="floating-toggle" />
-          <span class="slider"></span>
-        </label>
-      </div>
+      <label class="list-item">
+        <span class="lead-icon"><svg viewBox="0 0 24 24"><path d="M4 19q-.825 0-1.412-.587T2 17V7q0-.825.588-1.412T4 5h16q.825 0 1.413.588T22 7v10q0 .825-.587 1.413T20 19H4Zm4-3h8v-2H8v2Zm-3-3h2v-2H5v2Zm3 0h2v-2H8v2Zm3 0h2v-2h-2v2Zm3 0h2v-2h-2v2Zm3 0h2v-2h-2v2ZM5 10h2V8H5v2Zm3 0h2V8H8v2Zm3 0h2V8h-2v2Zm3 0h2V8h-2v2Zm3 0h2V8h-2v2Z"/></svg></span>
+        <span class="text">
+          <span class="headline">键盘快捷键</span>
+          <span class="supporting">J/K 切换 · ←/→ 翻页 · R 回复 · ? 帮助</span>
+        </span>
+        <span class="switch"><input type="checkbox" data-pref="shortcuts" /><span class="track"><span class="handle"><svg viewBox="0 0 24 24"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span></span></span>
+      </label>
+
+      <label class="list-item">
+        <span class="lead-icon"><svg viewBox="0 0 24 24"><path d="M11.1 21.5q-.55 0-1.012-.237t-.763-.688L4.85 14.3q-.2-.3-.162-.663T5 13.05q.325-.3.75-.287t.75.312L9 15.85V5.5q0-.425.288-.712T10 4.5q.425 0 .713.288T11 5.5V13h2V3q0-.425.288-.712T14 2q.425 0 .713.288T15 3v10h2V4.5q0-.425.288-.712T18 3.5q.425 0 .713.288T19 4.5V13h.5v-6q0-.425.288-.712T20.5 6q.425 0 .713.288T21.5 7v10.5q0 1.65-1.175 2.825T17.5 21.5h-6.4Z"/></svg></span>
+        <span class="text">
+          <span class="headline">整行点击打开</span>
+          <span class="supporting">点帖子/版块所在行任意处即可进入</span>
+        </span>
+        <span class="switch"><input type="checkbox" data-pref="rowClick" /><span class="track"><span class="handle"><svg viewBox="0 0 24 24"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span></span></span>
+      </label>
     </section>
-  </div>
+  </main>
+
+  <footer>
+    <span id="version">v2.0.0</span>
+    <button type="button" class="text-btn" id="reset">恢复默认</button>
+  </footer>
 
   <script src="popup.js"></script>
 </body>

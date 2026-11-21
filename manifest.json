@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "North+ 体验优化助手",
-  "version": "1.0.0",
-  "description": "优化 North+ 论坛的页面宽度（消除两侧大面积留白）、提供深色模式与阅读体验增强。",
+  "name": "North+ 体验助手",
+  "version": "2.0.0",
+  "description": "为 North+ 论坛换上 Material 3 界面：深浅色、宽屏、吸顶导航、公告折叠、图片查看器、键盘快捷键等体验优化。",
   "permissions": [
     "storage"
   ],
@@ -13,7 +13,7 @@
   },
   "action": {
     "default_popup": "src/popup.html",
-    "default_title": "North+ 体验优化助手",
+    "default_title": "North+ 体验助手",
     "default_icon": {
       "16": "icons/icon16.png",
       "48": "icons/icon48.png",
