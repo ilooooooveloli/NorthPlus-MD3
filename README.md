@@ -79,7 +79,7 @@ src/popup.*        设置弹窗
 
 ## 说明
 
-- 只在 `north-plus.net` 及其子域名下运行，只申请了 `storage`（保存设置）和 `alarms`（定时检查更新）权限。除了读取 `update` 分支上的 `version.json`（raw.githubusercontent.com）检查新版本外不发出任何请求，不收集、不上传任何数据。
+- 只在 North+ / South+ 系列论坛域名下运行（north / south / east / white / level / snow / spring / summer / blue-plus.net、south-plus.org、bbs.imoutolove.me 及其 www 子域名），只申请了 `storage`（保存设置）和 `alarms`（定时检查更新）权限。除了读取 `update` 分支上的 `version.json`（raw.githubusercontent.com）检查新版本外不发出任何请求，不收集、不上传任何数据。
 - 兼容油猴脚本「南加北加论坛强化脚本(凛+)」：它的悬浮按钮会挪到宽屏两侧留白、配色跟随 MD3；MD3 开启时深浅色由本扩展接管，凛+ 自带的暗黑模式暂不生效（它快捷菜单里的暗黑开关改为切换 MD3 深浅色），关闭 MD3 后恢复。
   与凛+ 重复的功能按凛+ 的设置来：快速搜索栏（保留它的「任务」缩写，换 MD3 外观）、回到顶部按钮、默认折叠版块公告、页面字体大小、购买免刷新、列表链接新窗口打开。
 - 纯样式 / 前端增强，论坛改版后可能有部分样式失效，欢迎提 Issue 或 PR。

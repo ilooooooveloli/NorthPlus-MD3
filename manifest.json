@@ -28,7 +28,26 @@
     {
       "matches": [
         "*://*.north-plus.net/*",
-        "*://north-plus.net/*"
+        "*://north-plus.net/*",
+        "*://*.south-plus.net/*",
+        "*://south-plus.net/*",
+        "*://*.south-plus.org/*",
+        "*://south-plus.org/*",
+        "*://*.east-plus.net/*",
+        "*://east-plus.net/*",
+        "*://*.white-plus.net/*",
+        "*://white-plus.net/*",
+        "*://*.level-plus.net/*",
+        "*://level-plus.net/*",
+        "*://*.snow-plus.net/*",
+        "*://snow-plus.net/*",
+        "*://*.spring-plus.net/*",
+        "*://spring-plus.net/*",
+        "*://*.summer-plus.net/*",
+        "*://summer-plus.net/*",
+        "*://*.blue-plus.net/*",
+        "*://blue-plus.net/*",
+        "*://bbs.imoutolove.me/*"
       ],
       "css": [
         "src/styles/00-tokens.css",
