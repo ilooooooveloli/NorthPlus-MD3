@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "North+ 体验助手",
-  "version": "2.4.1",
+  "version": "2.4.2",
   "description": "为 North+ 论坛换上 Material 3 界面：深浅色、宽屏、吸顶导航、公告折叠、图片查看器、键盘快捷键等体验优化。",
   "permissions": [
     "storage",
